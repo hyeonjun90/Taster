@@ -13,6 +13,5 @@
 <jsp:include page="./top.jsp"></jsp:include>
 <div style="width:100%; height:300px; background-color:#fff"></div>
 <jsp:include page="./bottom.jsp"></jsp:include>
-d
 </body>
 </html>
