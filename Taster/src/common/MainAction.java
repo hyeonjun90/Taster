@@ -24,7 +24,6 @@ public class MainAction extends ActionSupport {
 		
 	public String execute() throws Exception {
 		testBean = (PositionBean) sqlMapper.queryForObject("test");
-		System.out.println("member_level() : " + testBean.getMember_level());
 		
 		return SUCCESS;
 	}
