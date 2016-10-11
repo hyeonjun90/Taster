@@ -1,7 +1,99 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE sqlMap PUBLIC '-//ibatis.apache.org//DTD Sql Map 2.0//EN' 'http://ibatis.apache.org/dtd/sql-map-2.dtd'>
-<sqlMap>
-	<select id="test" resultClass="bean.PositionBean">
-		select * from MEMBER_POSITION where p_idx=1
-	</select>
-</sqlMap>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">      
+    
+<!-- 용량제한 100MB로 설정 -->
+<struts>
+<constant name="struts.multipart.maxSize" value="104857600" />
+
+<package name="board" extends="struts-default">
+	<!-- 글로벌 예외 처리 화면 설정 -->
+	
+	<!-- 게시판 리스트 액션 -->
+	<action name="listAction" class="qboard.QBoardListAction">
+		<result>/qboard/qboard_list.jsp</result>
+	</action>
+	
+	<!-- 게시판 글쓰기 액션 -->
+	<action name="writeForm" class="qboard.QWriteAction" method="form">
+	 	<result>/qboard/qboard_write.jsp</result>
+	</action>
+	
+	<action name="writeAction" class="qboard.QWriteAction">
+		<result type="redirect-action">
+			<param name="actionName">listAction</param>
+		</result>
+	</action>
+	
+	<!-- 게시판 답변글쓰기 액션 -->
+	<action name="replyForm" class="qboard.QWriteAction" method="reply">
+	 	<result type="chain">writeForm</result>
+	</action>
+	<action name="replyAction" class="Qboard.QwriteAction">
+		<result type="redirect-action">
+			<param name="actionName">listAction</param>
+		</result>
+	</action>
+	<!-- 게시판 글 읽기 액션 -->
+	<action name="viewAction" class="qboard.boardViewAction">
+		<result>
+			/qboard/qboard_view.jsp
+		</result>
+	</action>
+	<!-- 게시판 파일 다운로드 액션 -->
+	<action name="fileDownloadAction" class="qboard.boardViewAction" method="download">
+		<result name="success" type="stream">
+                <param name="contentType">binary/octet-stream</param>
+                <param name="inputName">inputStream</param>
+                <param name="contentDisposition">${contentDisposition}</param>
+                <param name="contentLength">${contentLength}</param> 
+                <param name="bufferSize">409600</param>
+         </result>
+	</action>
+	
+	<!-- 게시판 수정 액션 -->
+	<action name="modifyForm" class="qboard.boardViewAction">
+		<result type="chain">writeForm</result>
+	</action>
+	
+	<action name="modifyAction" class="qboard.QModifyAction">
+		<result type="chain">viewAction</result>
+	</action>
+	
+	<!-- 비밀번호 체크 액션 -->
+	<action name="checkForm" class="qboard.boardViewAction" method="checkForm">
+		<result>/qboard/qboard_check_password.jsp</result>
+	</action>
+	<action name="checkForm2" class="qboard.boardViewAction" method="checkForm">
+		<result>/qboard/qboard_check_password2.jsp</result>
+	</action>
+	
+	여기까지 하다가 맘.
+	<action name="checkAction" class="board.viewAction" method="checkAction">
+		<result name="error">/board/checkError.jsp</result>
+		<result>/board/checkSuccess.jsp</result>
+	</action>
+	
+	
+	<action name="checkAction2" class="board.viewAction" method="checkAction2">
+		<result name="error">/board/checkError.jsp</result>
+		<result>/board/checkSuccess.jsp</result>
+	</action>
+	
+	<action name="deleteAction" class="board.deleteAction">
+		<result type="chain">listAction</result>
+	</action>
+	
+	<action name="deleteAction2" class="board.deleteAction" method="execute2">
+		<result type="chain">listAction</result>
+	</action>
+	
+	<!-- 코멘트작성 관련 액션 -->
+	<action name="writeCommentAction" class="board.commentWriteAction">
+		<result type="chain">
+		viewAction
+		</result>
+	</action>
+</package>
+</struts>
