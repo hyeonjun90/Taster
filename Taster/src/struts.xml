@@ -3,7 +3,7 @@
 <struts>
 	<constant name="struts.multipart.maxSize" value="104857600" />
 	<package name="main" extends="struts-default">
-		<action name="main" class="common.MainAction">
+		<action name="main" class="common.MainAction" >
 			<result>/common/main.jsp</result>
 		</action>
 	</package>  
