@@ -6,7 +6,7 @@
 		<action name="main" class="common.MainAction">
 			<result>/common/main.jsp</result>
 		</action>
-	</package>
+	</package> 
 	
 	<include file="admin.xml" />
 	<include file="member.xml" />
