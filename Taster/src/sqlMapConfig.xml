@@ -19,5 +19,5 @@
 	 	</dataSource>
 	 </transactionManager>
 	 
-	 <sqlMap resource="/sql/boardSQL.xml" />
+	<sqlMap resource="/sql/member.xml" />
 </sqlMapConfig>
