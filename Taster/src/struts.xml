@@ -8,6 +8,9 @@
 		</action>
 	</package>
 	
+	<include file="admin.xml" />
+	<include file="member.xml" />
+	<include file="mypage.xml" />
 </struts>
 
 
