@@ -1,7 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE sqlMap PUBLIC '-//ibatis.apache.org//DTD Sql Map 2.0//EN' 'http://ibatis.apache.org/dtd/sql-map-2.dtd'>
 <sqlMap>
-	<select id="test" resultClass="bean.PositionBean">
-		select * from MEMBER_POSITION where p_idx=1
-	</select>
+
+	<typeAlias alias="admin" type="bean.ShopBean"/>
+		<resultMap id="AshopRes" class="admin">
+			<result property="shop_idx" column="shop_idx"/>
+			<result property="shop_name" column="shop_name"/>
+			<result property="shop_tel" column="shop_tel"/>
+			<result property="shop_kind" column="shop_kind"/>
+			<result property="shop_addr1" column="shop_addr1"/>
+			<result property="shop_addr2" column="shop_addr2"/>
+			<result property="shop_addr3" column="shop_addr3"/>
+			<result property="shop_addr4" column="shop_addr4"/>
+			<result property="shop_price" column="shop_price"/>
+			<result property="shop_holiday" column="shop_holiday"/>	
+			<result property="shop_readCount" column="shop_readCount"/>
+			<result property="shop_new" column="shop_new"/>
+		</resultMap>
+		
+		<!-- 공통으로 사용할 selec-all 명령문 -->
+		<sql id="select-all">
+		SELECT * FROM SHOP
+		</sql>
+		
+		<!-- 공통으로 사용할 where-Sidx 명령문 -->
+		<sql id="where-Sidx">
+			WHERE shop_idx = #shop_idx#
+		</sql>
+		
+		<!-- select 쿼리문 정의-->
+		<select id="selectAll" resultMap="AshopRes" parameterClass="int">
+			<include refid="select-all"/>
+			ORDER BY shop_idx DESC
+		</select>
+		
+		<select id="selectOne" resultMap="AshopRes" parameterClass="int">
+			<include refid="select-all"/>
+			<include refid="where-Sidx"/>
+		</select>
+		
+		<select id="selectLastNo" resultClass="admin" parameterClass="int">
+			SELECT max(shop_idx) as shop_idx FROM SHOP
+		</select>
+		
+		<select id="selectName" resultMap="AshopRes">
+			<include refid="select-all"/>
+			<include refid="where-Sidx"/>
+			AND shop_name = #shop_name#
+		</select>
+		
+		<!-- insert 쿼리문 정의 -->
+		<insert id="insertAshop" parameterClass="admin">
+		INSERT INTO SHOP(shop_idx, shop_name, shop_tel, shop_kind, shop_addr1, shop_addr2, shop_addr3, shop_addr4, shop_price, shop_holiday, shop_readCount, shop_new)
+		VALUES (shop_no_seq.NEXTVAL, #shop_name#, #shop_tel#, #shop_kind#, #shop_addr1#, #shop_addr2#, #shop_addr3#, #shop_addr4#, #shop_price#, #shop_holiday#, #shop_readCount#, #shop_new#)
+		</insert>
+
 </sqlMap>
