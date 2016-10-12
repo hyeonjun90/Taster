@@ -18,7 +18,7 @@
                 org.apache.tiles.impl.BasicTilesContainer.DEFINITIONS_CONFIG
             </param-name>
             <param-value>
-                /WEB-INF/tiles-hello.xml
+                /WEB-INF/tiles.xml
             </param-value>
         </init-param>
         <load-on-startup>1</load-on-startup>
