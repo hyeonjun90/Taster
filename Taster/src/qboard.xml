@@ -69,16 +69,16 @@
 		<result>/qboard/qboard_check_password2.jsp</result>
 	</action>
 	
-	여기까지 하다가 맘.
-	<action name="checkAction" class="board.viewAction" method="checkAction">
-		<result name="error">/board/checkError.jsp</result>
-		<result>/board/checkSuccess.jsp</result>
+	
+	<action name="checkAction" class="qboard.boardViewAction" method="checkAction">
+		<result name="error">/qboard/qboard_check_error.jsp</result>
+		<result>/qboard/qboard_check_success.jsp</result>
 	</action>
 	
 	
-	<action name="checkAction2" class="board.viewAction" method="checkAction2">
-		<result name="error">/board/checkError.jsp</result>
-		<result>/board/checkSuccess.jsp</result>
+	<action name="checkAction2" class="qboard.boardViewAction" method="checkAction2">
+		<result name="error">/qboard/qboard_check_error.jsp</result>
+		<result>/qboard/qboard_check_success.jsp</result>
 	</action>
 	
 	<action name="deleteAction" class="board.deleteAction">
