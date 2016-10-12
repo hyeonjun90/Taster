@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="euc-kr"?>
+<!DOCTYPE tiles-definitions PUBLIC 
+	"-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN"
+	"http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+	
+<tiles-definitions>
+
+<!-- 메인페이지 : 맛집페이지 포함 -->
+
+	<definition name="main" template="/common/layout1.jsp">
+	<put-attribute name="title_main" value="맛객에 오신 것을 환영합니다!"/>
+	<put-attribute name="top" value="/common/top1.jsp"/>
+	<put-attribute name="body" value="/common/main.jsp"/>
+	<put-attribute name="bottom" value="/common/bottom.jsp"/>
+	</definition>
+	
+	<definition name="foods_menu" template="/common/layout1.jsp">
+	<put-attribute name="top" value="/common/top1.jsp"/>
+	<put-attribute name="body" value="/foods/foods_menu_list.jsp"/>
+	<put-attribute name="bottom" value="/common/bottom.jsp"/>
+	</definition>
+	
+	<definition name="foods_area" template="/common/layout1.jsp">
+	<put-attribute name="top" value="/common/top1.jsp"/>
+	<put-attribute name="body" value="/foods/foods_area_list.jsp"/>
+	<put-attribute name="bottom" value="/common/bottom.jsp"/>
+	</definition>
+	
+	<definition name="foods_hot" template="/common/layout1.jsp">
+	<put-attribute name="top" value="/common/top1.jsp"/>
+	<put-attribute name="body" value="/foods/foods_hot_list.jsp"/>
+	<put-attribute name="bottom" value="/common/bottom.jsp"/>
+	</definition>
+	
+	<definition name="foods_new" template="/common/layout1.jsp">
+	<put-attribute name="top" value="/common/top1.jsp"/>
+	<put-attribute name="body" value="/foods/foods_new_list.jsp"/>
+	<put-attribute name="bottom" value="/common/bottom.jsp"/>
+	</definition>
+	
+	<definition name="foods_recommand" template="/common/layout1.jsp">
+	<put-attribute name="top" value="/common/top1.jsp"/>
+	<put-attribute name="body" value="/foods/foods_recommend_list.jsp"/>
+	<put-attribute name="bottom" value="/common/bottom.jsp"/>
+	</definition>
+	
+	<definition name="foods_detail" template="/common/layout1.jsp">
+	<put-attribute name="top" value="/common/top1.jsp"/>
+	<put-attribute name="body" value="/foods/foods_detail.jsp"/>
+	<put-attribute name="bottom" value="/common/bottom.jsp"/>
+	</definition>
+	
+
+<!-- 마이페이지 -->
+<!-- 마이페이지 메인페이지 tiles 구성 샘플 -->
+
+	<definition name="mypage_main" template="/common/layout2.jsp">
+	<put-attribute name="top" value="/common/top2.jsp"/>
+	<put-attribute name="body" value="/member/member_my_page.jsp"/>
+	<put-attribute name="bottom" value="/common/bottom.jsp"/>
+	</definition>
+
+<!-- 이 아래로 마이페이지 나머지 페이지구성 tiles를 넣어주세요 -->
+
+<!-- 문의게시판 -->
+
+<!-- 회원가입,로그인 -->
+
+<!-- 관리자페이지 -->
+
+
+	
+</tiles-definitions>
