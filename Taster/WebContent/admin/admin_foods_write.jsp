@@ -46,7 +46,7 @@
 	</table>
 	
 	<s:if test="reply">
-		<form action="replyAction.action" method="post" name="frm" enctype="multipart/form-data" onsubmit="return validation();">
+		<form action="AdminShopAddAction" method="post" name="frm" enctype="multipart/form-data" onsubmit="return validation();">
 			<s:hidden name="ref" value="%{resultClass.ref}" />
 			<s:hidden name="re_level" value="%{resultClass.re_level}" />
 			<s:hidden name="re_step" value="%{resultClass.re_step}" />
@@ -102,10 +102,13 @@
 				<font color="#FF0000">*</font> 주소
 			</td>
 			<td width="500">
+				
 				<s:textfield name="shop_addr1 + shop_addr2 + shop_addr3 + shop_addr4" theme="simple" value="%{resultClass.shop_addr1 + shop_addr2 + shop_addr3 + shop_addr4}" cssStyle="width:370px" maxlength="50" />
-				<input name="submit" type="submit" value="주소보기" class="inputb">
+				<input type="submit" value="주소검색">
 			</td>
 		</tr>
+		
+		
 		
 		<tr>
 			<td align="right" colspan="2">
@@ -116,13 +119,69 @@
 			<td colspan="2" height="1"></td>
 			</tr>
 		
-		<tr>
-			<td align="right" colspan="2">
-				<br/><input name="submit" type="submit" value="작성완료" class="inputb">
-			</td>
-		</tr>
 		
 	</table>
-</form>
+	
+	
+	
+	<br/>
+	    <input type="radio" name="korean" value="korean"> 한식 
+	    &nbsp;
+		<input type="radio" name="korean" value="korean"> 한식 
+		&nbsp;
+		<input type="radio" name="korean" value="korean"> 한식 
+		&nbsp;
+		<input type="radio" name="korean" value="korean"> 한식 
+		&nbsp;
+		<input type="radio" name="korean" value="korean"> 한식 
+		&nbsp;
+		<input type="radio" name="korean" value="korean"> 한식 
+		&nbsp;
+		<input type="radio" name="korean" value="korean"> 한식 
+	<br/>
+	
+	     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<input type="radio" name="korean" value="korean"> 한식 
+		 &nbsp;
+		<input type="radio" name="korean" value="korean"> 한식 
+		 &nbsp;
+		<input type="radio" name="korean" value="korean"> 한식 
+		 &nbsp;
+		<input type="radio" name="korean" value="korean"> 한식 
+		 &nbsp;
+		<input type="radio" name="korean" value="korean"> 한식 
+		 &nbsp;
+		<input type="radio" name="korean" value="korean"> 한식 
+		 &nbsp;
+		<input type="radio" name="korean" value="korean"> 한식 
+		
+		<br/>
+	    <input type="radio" name="korean" value="korean"> 한식 
+	    &nbsp;
+		<input type="radio" name="korean" value="korean"> 한식 
+		&nbsp;
+		<input type="radio" name="korean" value="korean"> 한식 
+		&nbsp;
+		<input type="radio" name="korean" value="korean"> 한식 
+		&nbsp;
+		<input type="radio" name="korean" value="korean"> 한식 
+		&nbsp;
+		<input type="radio" name="korean" value="korean"> 한식 
+		&nbsp;
+		<input type="radio" name="korean" value="korean"> 한식 
+		
+		
+		 <tr>
+			<td align="right" colspan="2">
+				<center><input name="submit" type="submit" value="등록하기" class="inputb"></center>
+			</td>
+		</tr>
+
+
+
+	
+		
+		
+</form> 
 </body>
 </html>
