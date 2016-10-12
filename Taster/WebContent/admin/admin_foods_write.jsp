@@ -45,12 +45,7 @@
 		</tr>
 	</table>
 	
-	<s:if test="reply">
-		<form action="AdminShopAddAction" method="post" name="frm" enctype="multipart/form-data" onsubmit="return validation();">
-			<s:hidden name="ref" value="%{resultClass.ref}" />
-			<s:hidden name="re_level" value="%{resultClass.re_level}" />
-			<s:hidden name="re_step" value="%{resultClass.re_step}" />
-	</s:if>
+	
 	
 	<s:elseif test="resultClass == NULL">
 		<form action="writeAction.action" method="post" name="frm" enctype="multipart/form-data" onsubmit="return validation();">

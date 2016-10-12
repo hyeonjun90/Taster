@@ -36,7 +36,7 @@
       <tr>
         <td width="100" bgcolor="#F4F4F4">  식당이름</td>
         <td width="500" bgcolor="#FFFFFF">
-          &nbsp;&nbsp;<s:property value="resultClass.subject" />
+          &nbsp;&nbsp;<s:property value="resultClass.shop_name" />
         </td>
       </tr>
       							
@@ -47,7 +47,7 @@
       <tr>
         <td bgcolor="#F4F4F4">  전화번호 </td>
         <td bgcolor="#FFFFFF">
-          &nbsp;&nbsp;<s:property value="resultClass.name" />
+          &nbsp;&nbsp;<s:property value="resultClass.shop_tel" />
         </td>
       </tr>
       <tr bgcolor="#777777">
@@ -57,7 +57,7 @@
       <tr>
         <td bgcolor="#F4F4F4">  가격대 </td>
         <td bgcolor="#FFFFFF">
-          &nbsp;&nbsp;<pre><s:property value="resultClass.content" /></pre>
+          &nbsp;&nbsp;<pre><s:property value="resultClass.shop_price" /></pre>
         </td>
       </tr>
       <tr bgcolor="#777777">
@@ -65,9 +65,9 @@
       </tr>
       
       <tr>
-        <td bgcolor="#F4F4F4">  식당 주소 </td>
+        <td bgcolor="#F4F4F4">   주소 </td>
         <td bgcolor="#FFFFFF">
-          &nbsp;&nbsp;<s:property value="resultClass.readhit" />
+          &nbsp;&nbsp;<s:property value="resultClass.shop_addr1" />
         </td>
       </tr>
       <tr bgcolor="#777777">
@@ -98,7 +98,7 @@
 				</s:param>
 	        </s:url>
 				
-	<input name="list" type="button" value="수정" class="inputb" onClick="javascript:open_win_noresizable('checkForm.action?no=<s:property value="resultClass.no" />&currentPage=<s:property value="currentPage" />','modify')">
+	
 					
 	<input name="list" type="button" value="삭제" class="inputb" onClick="javascript:open_win_noresizable('checkForm.action?no=<s:property value="resultClass.no" />&currentPage=<s:property value="currentPage" />','delete')">
 
