@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
+<%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
+ 
 <div class="top_module">
   <div class="menu_container">
     <div class="btn_home" style="float:left;">·Î°í</div>
