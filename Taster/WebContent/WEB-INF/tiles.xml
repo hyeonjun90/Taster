@@ -60,6 +60,17 @@
 	</definition>
 
 <!-- 이 아래로 마이페이지 나머지 페이지구성 tiles를 넣어주세요 -->
+	<definition name="shop_add_form" template="/common/layout2.jsp">
+	<put-attribute name="top" value="/common/top2.jsp"/>
+	<put-attribute name="body" value="/member/member_food_write.jsp"/>
+	<put-attribute name="bottom" value="/common/bottom.jsp"/>
+	</definition>
+	
+	<definition name="qboard_write" template="/common/layout2.jsp">
+	<put-attribute name="top" value="/common/top2.jsp"/>
+	<put-attribute name="body" value="/qboard/qboard_write.jsp"/>
+	<put-attribute name="bottom" value="/common/bottom.jsp"/>
+	</definition>
 
 <!-- 문의게시판 -->
 
