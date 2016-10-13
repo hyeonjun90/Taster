@@ -16,7 +16,7 @@
 
 <table style="width:100%;" class="top_table">
 	<tr>
-		<td onclick="location.href='shopAdd.action'">내 식당등록</td>
+		<td onclick="location.href='shopAdd.action'">식당등록</td>
 		<td onclick="location.href='qWrite.action'">문의하기</td>
 	</tr>
 </table>
