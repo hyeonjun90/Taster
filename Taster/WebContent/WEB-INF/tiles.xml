@@ -8,7 +8,6 @@
 <!-- 메인페이지 : 맛집페이지 포함 -->
 
 	<definition name="main" template="/common/layout1.jsp">
-	<put-attribute name="title_main" value="맛객에 오신 것을 환영합니다!"/>
 	<put-attribute name="top" value="/common/top1.jsp"/>
 	<put-attribute name="body" value="/common/main.jsp"/>
 	<put-attribute name="bottom" value="/common/bottom.jsp"/>

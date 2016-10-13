@@ -13,7 +13,16 @@
 			<param name="actionName">main</param>
 			</result>
 		</action>
-
+		
+	<!-- 	<action name="approvalRequestList" class="admin.ApprovalRequestListAction" method="execute">
+			<result type="tiles">AshopWrite</result>
+		</action>
+		
+		<action name="approvalRequestDetailView" class="admin.ApprovalRquestDetailView">
+			<result type="redirect-action">
+			<param name="actionName">main</param>
+			</result>
+		</action> -->
 		
 		
 	</package>
