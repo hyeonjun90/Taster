@@ -2,15 +2,29 @@
 <!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN" "http://struts.apache.org/dtds/struts-2.0.dtd">
 <struts>
 	<constant name="struts.multipart.maxSize" value="104857600"/>
-	<package name="admin" extends="struts-default">
+	<package name="admin" extends="struts-default, tiles-default">
 		
 		<action name="AshopWriteForm" class="admin.AdminShopAddAction" method="form">
-			<result>/admin/admin_foods_write.jsp</result>
+			<result type="tiles">AshopWrite</result>
 		</action>
 		
 		<action name="AshopWriteAction" class="admin.AdminShopAddAction">
-			<result>/common/main.jsp</result>
+			<result type="redirect-action">
+			<param name="actionName">main</param>
+			</result>
 		</action>
+		
+	<!-- 	<action name="approvalRequestList" class="admin.ApprovalRequestListAction" method="execute">
+			<result type="tiles">AshopWrite</result>
+		</action>
+		
+		<action name="approvalRequestDetailView" class="admin.ApprovalRquestDetailView">
+			<result type="redirect-action">
+			<param name="actionName">main</param>
+			</result>
+		</action> -->
+		
+		
 	</package>
 </struts>
   

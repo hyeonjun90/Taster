@@ -62,7 +62,7 @@
 </style>
 </head>
 <body>
-<jsp:include page="../common/top.jsp"></jsp:include>
+
 <center>
 <div id="joinDiv">
 <div><strong>회원가입</strong></div>
