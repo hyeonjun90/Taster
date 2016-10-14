@@ -19,38 +19,38 @@
 		</resultMap>
 		
 		<!-- 공통으로 사용할 selec-all 명령문 -->
-		<sql id="select-all">
+		<sql id="Shop-select-all">
 		SELECT * FROM SHOP
 		</sql>
 		
 		<!-- 공통으로 사용할 where-Sidx 명령문 -->
-		<sql id="where-Sidx">
+		<sql id="Shop-where-Sidx">
 			WHERE shop_idx = #shop_idx#
 		</sql>
 		
 		<!-- select 쿼리문 정의-->
-		<select id="selectAll" resultMap="AshopRes" parameterClass="int">
-			<include refid="select-all"/>
+		<select id="Shop-selectAll" resultMap="AshopRes" parameterClass="int">
+			<include refid="Shop-select-all"/>
 			ORDER BY shop_idx DESC
 		</select>
 		
-		<select id="selectOne" resultMap="AshopRes" parameterClass="int">
-			<include refid="select-all"/>
-			<include refid="where-Sidx"/>
+		<select id="Shop-selectOne" resultMap="AshopRes" parameterClass="int">
+			<include refid="Shop-select-all"/>
+			<include refid="Shop-where-Sidx"/>
 		</select>
 		
-		<select id="selectLastNo" resultClass="admin" parameterClass="int">
+		<select id="Shop-selectLastNo" resultClass="admin" parameterClass="int">
 			SELECT max(shop_idx) as shop_idx FROM SHOP
 		</select>
 		
-		<select id="selectName" resultMap="AshopRes">
-			<include refid="select-all"/>
-			<include refid="where-Sidx"/>
+		<select id="Shop-selectName" resultMap="AshopRes">
+			<include refid="Shop-select-all"/>
+			<include refid="Shop-where-Sidx"/>
 			AND shop_name = #shop_name#
 		</select>
 		
 		<!-- insert 쿼리문 정의 -->
-		<insert id="insertAshop" parameterClass="admin">
+		<insert id="Shop-insertAshop" parameterClass="admin">
 		INSERT INTO SHOP(shop_idx, shop_name, shop_tel, shop_kind, shop_addr1, shop_addr2, shop_addr3, shop_addr4, shop_price, shop_holiday, shop_readCount, shop_new)
 		VALUES (shop_no_seq.NEXTVAL, #shop_name#, #shop_tel#, #shop_kind#, #shop_addr1#, #shop_addr2#, #shop_addr3#, #shop_addr4#, #shop_price#, #shop_holiday#, #shop_readCount#, #shop_new#)
 		</insert>
