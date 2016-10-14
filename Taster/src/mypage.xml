@@ -15,7 +15,7 @@
 			<result type="tiles">foods_detail</result>
 		</action>
 		
-		<action name="memberMypage" class="member.MemberMyPageAction" method="form">
+		<action name="memberMypage" class="" method="form">
 			<result>/member/member_my_page.jsp</result>
 		</action>
 	</package>  

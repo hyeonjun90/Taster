@@ -15,7 +15,7 @@ public class PagingAction {
 	private StringBuffer pagingHtml;    //이전,다음 을 만들기 위한 HTML 테그 StringBuffer
 	
 	//생성자
-	public PagingAction(int currentPage, int totalCount, int blockCount, int blcokPage){
+	public PagingAction(int currentPage, int totalCount, int blockCount, int blockPage){
 		
 		this.currentPage = currentPage;
 		this.totalCount = totalCount;
