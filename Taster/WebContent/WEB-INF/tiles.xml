@@ -7,43 +7,43 @@
 
 <!-- 메인페이지 : 맛집페이지 포함 -->
 
-	<definition name="main" template="/common/layout1.jsp">
+	<definition name="main" template="/common/layout.jsp">
 	<put-attribute name="top" value="/common/top1.jsp"/>
 	<put-attribute name="body" value="/common/main.jsp"/>
 	<put-attribute name="bottom" value="/common/bottom.jsp"/>
 	</definition>
 	
-	<definition name="foods_menu" template="/common/layout1.jsp">
+	<definition name="foods_menu" template="/common/layout.jsp">
 	<put-attribute name="top" value="/common/top1.jsp"/>
 	<put-attribute name="body" value="/foods/foods_menu_list.jsp"/>
 	<put-attribute name="bottom" value="/common/bottom.jsp"/>
 	</definition>
 	
-	<definition name="foods_area" template="/common/layout1.jsp">
+	<definition name="foods_area" template="/common/layout.jsp">
 	<put-attribute name="top" value="/common/top1.jsp"/>
 	<put-attribute name="body" value="/foods/foods_area_list.jsp"/>
 	<put-attribute name="bottom" value="/common/bottom.jsp"/>
 	</definition>
 	
-	<definition name="foods_hot" template="/common/layout1.jsp">
+	<definition name="foods_hot" template="/common/layout.jsp">
 	<put-attribute name="top" value="/common/top1.jsp"/>
 	<put-attribute name="body" value="/foods/foods_hot_list.jsp"/>
 	<put-attribute name="bottom" value="/common/bottom.jsp"/>
 	</definition>
 	
-	<definition name="foods_new" template="/common/layout1.jsp">
+	<definition name="foods_new" template="/common/layout.jsp">
 	<put-attribute name="top" value="/common/top1.jsp"/>
 	<put-attribute name="body" value="/foods/foods_new_list.jsp"/>
 	<put-attribute name="bottom" value="/common/bottom.jsp"/>
 	</definition>
 	
-	<definition name="foods_recommand" template="/common/layout1.jsp">
+	<definition name="foods_recommand" template="/common/layout.jsp">
 	<put-attribute name="top" value="/common/top1.jsp"/>
 	<put-attribute name="body" value="/foods/foods_recommend_list.jsp"/>
 	<put-attribute name="bottom" value="/common/bottom.jsp"/>
 	</definition>
 	
-	<definition name="foods_detail" template="/common/layout1.jsp">
+	<definition name="foods_detail" template="/common/layout.jsp">
 	<put-attribute name="top" value="/common/top1.jsp"/>
 	<put-attribute name="body" value="/foods/foods_detail.jsp"/>
 	<put-attribute name="bottom" value="/common/bottom.jsp"/>
@@ -53,20 +53,20 @@
 <!-- 마이페이지 -->
 <!-- 마이페이지 메인페이지 tiles 구성 샘플 -->
 
-	<definition name="mypage_main" template="/common/layout2.jsp">
+	<definition name="mypage_main" template="/common/layout.jsp">
 	<put-attribute name="top" value="/common/top2.jsp"/>
 	<put-attribute name="body" value="/member/member_my_page.jsp"/>
 	<put-attribute name="bottom" value="/common/bottom.jsp"/>
 	</definition>
 
 <!-- 이 아래로 마이페이지 나머지 페이지구성 tiles를 넣어주세요 -->
-	<definition name="shop_add_form" template="/common/layout2.jsp">
+	<definition name="shop_add_form" template="/common/layout.jsp">
 	<put-attribute name="top" value="/common/top2.jsp"/>
 	<put-attribute name="body" value="/member/member_food_write.jsp"/>
 	<put-attribute name="bottom" value="/common/bottom.jsp"/>
 	</definition>
 	
-	<definition name="qboard_write" template="/common/layout2.jsp">
+	<definition name="qboard_write" template="/common/layout.jsp">
 	<put-attribute name="top" value="/common/top2.jsp"/>
 	<put-attribute name="body" value="/qboard/qboard_write.jsp"/>
 	<put-attribute name="bottom" value="/common/bottom.jsp"/>
@@ -78,25 +78,25 @@
 
 <!-- 관리자페이지 -->
 	
-	<definition name="AshopWrite" template="/common/layout2.jsp">
+	<definition name="AshopWrite" template="/common/layout.jsp">
 	<put-attribute name="top" value="/common/top2.jsp"/>
 	<put-attribute name="body" value="/admin/admin_foods_write.jsp"/>
 	<put-attribute name="bottom" value="/common/bottom.jsp"/>
 	</definition>
 	
-	<definition name="ApprovalRequestList" template="/common/layout2.jsp">
+	<definition name="ApprovalRequestList" template="/common/layout.jsp">
 	<put-attribute name="top" value="/common/top2.jsp"/>
 	<put-attribute name="body" value="/admin/approval_request_list.jsp"/>
 	<put-attribute name="bottom" value="/common/bottom.jsp"/>
 	</definition>
 	
-	<definition name="ApprovalRequestDetail" template="/common/layout2.jsp">
+	<definition name="ApprovalRequestDetail" template="/common/layout.jsp">
 	<put-attribute name="top" value="/common/top2.jsp"/>
 	<put-attribute name="body" value="/admin/approval_request_detail.jsp"/>
 	<put-attribute name="bottom" value="/common/bottom.jsp"/>
 	</definition>
 	
-	<definition name="AshopWrite" template="/common/layout2.jsp">
+	<definition name="AshopWrite" template="/common/layout.jsp">
 	<put-attribute name="top" value="/common/top2.jsp"/>
 	<put-attribute name="body" value="/admin/admin_foods_write.jsp"/>
 	<put-attribute name="bottom" value="/common/bottom.jsp"/>
