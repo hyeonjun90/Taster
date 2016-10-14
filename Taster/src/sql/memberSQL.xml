@@ -64,7 +64,7 @@
 	</select>
 	
 <!--공통으로 사용 할 bookmark select-->
-	<sql id="bookmark-selec-all">
+	<sql id="bookmark-select-all">
 		SELECT*FORM BOOKMARK
 	</sql>
 	

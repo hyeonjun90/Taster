@@ -18,11 +18,9 @@
 			<result type="tiles">ApprovalRequestList</result>
 		</action>
 		
-		<!-- 	<action name="approvalRequestDetailView" class="admin.ApprovalRquestDetailView">
-			<result type="redirect-action">
-			<param name="actionName">main</param>
-			</result>
-		</action> -->
+		<action name="approvalRequestDetailView" class="admin.ApprovalRequestDetailView">
+			<result type="tiles">ApprovalRequestDetail</result>
+		</action>
 		
 		
 	</package>
