@@ -1,6 +1,6 @@
-package member;
+package common;
 
-public class MyPagePagingAction {
+public class PagingAction {
 	
 	private int currentPage;  //현재 페이지
 	private int totalCount;   //전체 게시물 수 
@@ -15,7 +15,7 @@ public class MyPagePagingAction {
 	private StringBuffer pagingHtml;    //이전,다음 을 만들기 위한 HTML 테그 StringBuffer
 	
 	//생성자
-	public MyPagePagingAction(int currentPage, int totalCount, int blockCount, int blcokPage){
+	public PagingAction(int currentPage, int totalCount, int blockCount, int blcokPage){
 		
 		this.currentPage = currentPage;
 		this.totalCount = totalCount;
