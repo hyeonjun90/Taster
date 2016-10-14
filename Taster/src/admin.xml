@@ -14,11 +14,11 @@
 			</result>
 		</action>
 		
-	<!-- 	<action name="approvalRequestList" class="admin.ApprovalRequestListAction" method="execute">
-			<result type="tiles">AshopWrite</result>
+		<action name="approvalRequestList" class="admin.ApprovalRequestListAction" method="execute">
+			<result type="tiles">ApprovalRequestList</result>
 		</action>
 		
-		<action name="approvalRequestDetailView" class="admin.ApprovalRquestDetailView">
+		<!-- 	<action name="approvalRequestDetailView" class="admin.ApprovalRquestDetailView">
 			<result type="redirect-action">
 			<param name="actionName">main</param>
 			</result>
