@@ -3,7 +3,7 @@
 <sqlMap>
 
 	<typeAlias alias="admin_shop" type="bean.ShopBean"/> <!-- 관리자 삽 관리 -->
-	<typeAlias alias="ApprovalReq" type="bean.RequestListBean"/> <!-- 신규등록 승인 요청 리스트 -->
+	<typeAlias alias="AprReq" type="bean.RequestListBean"/> <!-- 신규등록 승인 요청 리스트 -->
 
 	
 		<resultMap id="AshopRes" class="admin_shop"><!-- 관리자 삽 관리 -->
@@ -23,6 +23,8 @@
 		
 		<resultMap id="AprReqRes" class="AprReq">   <!-- 신규등록 승인 요청 리스트 -->
 			<result property="r_idx" column="r_idx"/>
+			<result property="r_regdate" column="r_regdate"/>
+			<result property="r_id" column="r_id"/>
 			<result property="r_nicname" column="r_nicname"/>
 			<result property="r_shop_name" column="r_shop_name"/>
 			<result property="r_shop_tel" column="r_shop_tel"/>
@@ -34,6 +36,9 @@
 			<result property="r_shop_price" column="r_shop_price"/>
 			<result property="r_shop_holiday" column="r_shop_holiday"/>	
 		</resultMap>
+		
+		
+		
 		
 		<!-- ShopRes에서 공통으로 사용할 select-all 명령문 -->
 		<sql id="Shop-select-all">
@@ -108,21 +113,8 @@
 		
 		<!-- insert 쿼리문 정의 -->
 		<insert id="AprReq-insertReqList" parameterClass="AprReq">
-		INSERT INTO REQUEST_LIST(r_idx, r_nicname, , r_shop_tel, r_shop_kind, r_shop_addr1, r_shop_addr2, r_shop_addr3, r_shop_addr4, r_shop_price, r_shop_holiday)
-		VALUES (request_no_seq.NEXTVAL, #r_nicname#, #r_shop_name#, #r_shop_kind#, #r_shop_addr1#, #r_shop_addr2#, #r_shop_addr3#, #r_shop_addr4#, #r_shop_price#, #r_shop_holiday#)
+		INSERT INTO REQUEST_LIST(r_idx, r_regdate, r_id, r_nicname, , r_shop_tel, r_shop_kind, r_shop_addr1, r_shop_addr2, r_shop_addr3, r_shop_addr4, r_shop_price, r_shop_holiday)
+		VALUES (request_no_seq.NEXTVAL, #r_regdate#, #r_id#, #r_nicname#, #r_shop_name#, #r_shop_kind#, #r_shop_addr1#, #r_shop_addr2#, #r_shop_addr3#, #r_shop_addr4#, #r_shop_price#, #r_shop_holiday#)
 		</insert>
-		
-		
-		<result property="r_idx" column="r_idx"/>
-			<result property="r_nicname" column="r_nicname"/>
-			<result property="r_shop_name" column="r_shop_name"/>
-			<result property="r_shop_tel" column="r_shop_tel"/>
-			<result property="r_shop_kind" column="r_shop_kind"/>
-			<result property="r_shop_addr1" column="r_shop_addr1"/>
-			<result property="r_shop_addr2" column="r_shop_addr2"/>
-			<result property="r_shop_addr3" column="r_shop_addr3"/>
-			<result property="r_shop_addr4" column="r_shop_addr4"/>
-			<result property="r_shop_price" column="r_shop_price"/>
-			<result property="r_shop_holiday" column="r_shop_holiday"/>	
 
 </sqlMap>

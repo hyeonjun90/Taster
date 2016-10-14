@@ -14,12 +14,6 @@
 			</result>
 		</action>
 		
-		<action name="AshopWriteAction" class="admin.AdminShopAddAction">
-			<result type="redirect-action">
-			<param name="actionName">main</param>
-			</result>
-		</action>
-		
 		<action name="approvalRequestList" class="admin.ApprovalRequestListAction" method="execute">
 			<result type="tiles">ApprovalRequestList</result>
 		</action>
