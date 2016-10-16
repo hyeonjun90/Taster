@@ -107,7 +107,7 @@
 		
 		<select id="AprReq-selectName" resultMap="AprReqRes">
 			<include refid="AprReq-select-all"/>
-			<include refid="AprReq-where-Sidx"/>
+			<include refid="AprReq-where-Ridx"/>
 			AND shop_name = #shop_name#
 		</select>
 		

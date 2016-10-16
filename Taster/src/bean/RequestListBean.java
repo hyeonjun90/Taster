@@ -15,8 +15,8 @@ public class RequestListBean {
 	private String r_shop_addr2;
 	private String r_shop_addr3;
 	private String r_shop_addr4;
-	private String price;
-	private String holiday;
+	private String r_shop_price;
+	private String r_shop_holiday;
 	public int getR_idx() {
 		return r_idx;
 	}
@@ -83,18 +83,19 @@ public class RequestListBean {
 	public void setR_shop_addr4(String r_shop_addr4) {
 		this.r_shop_addr4 = r_shop_addr4;
 	}
-	public String getPrice() {
-		return price;
+	public String getR_shop_price() {
+		return r_shop_price;
 	}
-	public void setPrice(String price) {
-		this.price = price;
+	public void setR_shop_price(String r_shop_price) {
+		this.r_shop_price = r_shop_price;
 	}
-	public String getHoliday() {
-		return holiday;
+	public String getR_shop_holiday() {
+		return r_shop_holiday;
 	}
-	public void setHoliday(String holiday) {
-		this.holiday = holiday;
+	public void setR_shop_holiday(String r_shop_holiday) {
+		this.r_shop_holiday = r_shop_holiday;
 	}
+	
 	
 	
 }

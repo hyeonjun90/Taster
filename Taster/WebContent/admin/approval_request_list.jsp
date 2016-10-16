@@ -58,8 +58,8 @@
 				<td align="center"><s:property value="r_shop_addr1"/></td>
 				<td align="center"><s:property value="r_shop_addr1"/></td>
 				<td align="center"><s:property value="r_shop_addr1"/></td>
-				<td align="center"><s:property value="r_shop_price"/></td>
-				<result property="r_shop_holiday" column="r_shop_holiday"/>	
+				<td align="center"><s:property value="price"/></td>
+
 			</tr>
 		
 		

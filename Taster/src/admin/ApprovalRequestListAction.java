@@ -34,7 +34,7 @@ public class ApprovalRequestListAction extends ActionSupport {
 	}
 	
 	public String execute() throws Exception {
-		list = sqlMapper.queryForList("selectAll");
+		list = sqlMapper.queryForList("AprReq-selectAll");
 		
 		totalCount = list.size();
 		
