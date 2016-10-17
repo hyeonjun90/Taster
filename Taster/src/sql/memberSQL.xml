@@ -2,10 +2,9 @@
 <!DOCTYPE sqlMap PUBLIC '-//ibatis.apache.org//DTD Sql Map 2.0//EN' 'http://ibatis.apache.org/dtd/sql-map-2.dtd'>
 
 <sqlMap>
-	<typeAlias alias="review" type="bean.ReviewBean"/>
-	<typeAlias alias="bookMark" type="bean.BookMarkBean"/>
+	<typeAlias alias="myPageList" type="bean.JoinR_B_S"/>
 	
-	<resultMap id="reviewRes" class="review">
+	<resultMap id="myPageRes" class="myPageList">
 		<result property="review_idx" column="review_idx"/>
 		<result property="r_title" column="r_title"/>
 		<result property="r_content" column="r_content"/>
@@ -15,74 +14,41 @@
 		<result property="r_regdate" column="r_redate"/>
 		<result property="member_id" column="member_id"/>
 		<result property="shop_idx" column="shop_idx"/>
-	</resultMap>
-	
-	<resultMap id="bookMarkRes" class="bookMark">
 		<result property="bookmark_idx" column="bookmark_idx"/>
-		<result property="member_id" column="member_id"/>
-		<result property="shop_idx"/>
+		<result property="shop_name" column="shop_name"/>
+		<result property="shop_tel" column="shop_tel"/>
+		<result property="shop_kind" column="shop_kind"/>
+		<result property="shop_addr1" column="shop_addr1"/>
+		<result property="shop_addr2" column="shop_addr2"/>
+		<result property="shop_addr3" column="shop_addr3"/>
+		<result property="shop_addr4" column="shop_addr4"/>
+		<result property="shop_price" column="shop_price"/>
+		<result property="shop_holiday" column="shop_holiday"/>
+		<result property="shop_readCount" column="shop_readCount"/>
+		<result property="shop_new" column="shop_new"/>
 	</resultMap>
 	
-<!-- 공통으로 사용할  myshop select-->
-	<sql id="myshop-select-all">
-		SELECT*FROM REVIEW
-	</sql>
-	
-<!--공통으로 사용할 myshop where-->
-		<!--회원 아이디  -->
-	<sql id="myshop-where-m-id">
-		WHERE member_id=#member_idx#
-	</sql>
-		<!--리뷰 인덱스  -->
-	<sql id="myshop-where-r-idx">
-		WHERE review_idx=#review_idx#
-	</sql>
-		<!-- 식당 인덱스 -->
-	<sql id="myshop-where-s-idx">
-		WHERE shop_idx=#shop_idx#
-	</sql>
-
-
-	<!-- myshop select 회원 아이디에 해당하는 리뷰 전체 검색 -->
-	<select id="myshop-m-selectAll" resultMap="reviewRes" parameterClass="int">
-		<include refid="myshop-select-all"/>
-		<include refid="myshop-where-m-id"/>
-		ORDER BY review_idx DESC
+	<!--reviewList select문 선언 -->
+	<select id="reviewList-selectAll" resultMap="myPageRes" parameterClass="String">
+		select r_image, shop_name from review r inner join shop s on r.shop_idx=s.shop_idx
+		where member_id=#member_id# order by review_idx desc
 	</select>
 	
-	<!-- myshop select 식당 인덱스에 해당하는 리뷰 전체 검색 -->
-	<select id="myshop-s-selectAll" resultMap="reviewRes" parameterClass="int">
-		<include refid="myshop-select-all"/>
-		<include refid="myshop-where-s-idx"/>
-		ORDER BY review_idx DESC
+	<!-- bookmarkList select문 선언 -->
+	<select id="bookmarkList-selectAll" resultMap="myPageRes" parameterClass="String">
+		select r_image, shop_name from review r left join shop s on r.shop_idx=s.shop_idx
+		left join bookmark b on r.shop_idx=b.shop_idx 
+		where member_id = #member_id#
+		order by bookmark_idx DESC, review_idx desc
 	</select>
 	
-	<!-- myshop selcet 리뷰 인덱스에 해당하는 한줄 검색 -->
-	<select id="myshop-r-selectOne" resultMap="reviewRes" parameterClass="int">
-		<include refid="myshop-select-all"/>
-		<include refid="myshop-where-r-idx"/>
-	</select>
 	
-<!--공통으로 사용 할 bookmark select-->
-	<sql id="bookmark-select-all">
-		SELECT*FORM BOOKMARK
-	</sql>
 	
-<!-- 공통으로 사용 할 bookmark where-->
-	<sql id="bookmark-where-m-id">
-		WHERE member_id=#member_id#
-	</sql>
 	
-	<sql id="bookmark-where-b-idx">
-		WHERE bookmark_idx=#bookmark_idx#
-	</sql>
 	
-	<!-- bookmark select 회원 아이디에 해당하는 즐겨찾기 전체 검색-->
-	<select id ="bookmark-m-selectAll" resultMap="bookMarkRes" parameterClass="int">
-		<include refid="bookmark-select-all"/>
-		<include refid="bookmark-where-m-id"/>
-		ORDER BY bookmark_idx DESC
-	</select>
-
+	
+	
+	
+	
 
 </sqlMap>

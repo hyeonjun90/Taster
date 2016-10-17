@@ -71,6 +71,14 @@
 	<put-attribute name="body" value="/qboard/qboard_write.jsp"/>
 	<put-attribute name="bottom" value="/common/bottom.jsp"/>
 	</definition>
+	
+	<definition name="member_my_page" template="/common/layout.jsp">
+	<put-attribute name="top" value="/common/top2.jsp"/>
+	<put-attribute name="body" value="/member/member_my_page.jsp"/>
+	<put-attribute name="bottom" value="/common/bottom.jsp"/>
+	</definition>
+	
+	
 
 <!-- 문의게시판 -->
 

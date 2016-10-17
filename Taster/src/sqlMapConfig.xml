@@ -20,4 +20,5 @@
 	 </transactionManager>
 	 
 	<sqlMap resource="/sql/memberSQL.xml" />
+	
 </sqlMapConfig>
