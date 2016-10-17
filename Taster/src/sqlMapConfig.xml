@@ -21,4 +21,5 @@
 	 
 	<sqlMap resource="/sql/memberSQL.xml" />
 	<sqlMap resource="/sql/adminSQL.xml" />
+	<sqlMap resource="/sql/rboardSQL.xml" />
 </sqlMapConfig>
