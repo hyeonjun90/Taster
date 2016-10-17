@@ -5,110 +5,52 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<title>식당등록보기</title>
-	
-	<script type="text/javascript">
-		function open_win_noresizable (url, name) {
-			var oWin = window.open(url, name, "scrollbars=no,status=no,resizable=no,width=300,height=150");
-		}
-	</script>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<title>등록한 식당 보기</title>
 </head>
-  
-  <body>
-  
-  	<table width="600" border="0" cellspacing="0" cellpadding="2">
-  		<tr>
-  			<td align="center"><h2>식당등록보기</h2></td>
-  		</tr>
-  		<tr>
-  			<td height="20"></td>
-  		</tr>
-  	</table>
-		
-<table width="600" border="0" cellspacing="0" cellpadding="0">
-      
-      <tr bgcolor="#777777">
-        <td height="1" colspan="2"></td>
-      </tr>
-			
-      
-      
-      <tr>
-        <td width="100" bgcolor="#F4F4F4">  식당이름</td>
-        <td width="500" bgcolor="#FFFFFF">
-          &nbsp;&nbsp;<s:property value="resultClass.shop_name" />
-        </td>
-      </tr>
-      							
-      <tr bgcolor="#777777">
-        <td height="1" colspan="2"></td>
-      </tr>
-      
-      <tr>
-        <td bgcolor="#F4F4F4">  전화번호 </td>
-        <td bgcolor="#FFFFFF">
-          &nbsp;&nbsp;<s:property value="resultClass.shop_tel" />
-        </td>
-      </tr>
-      <tr bgcolor="#777777">
-        <td height="1" colspan="2"></td>	
-      </tr>
-      
-      <tr>
-        <td bgcolor="#F4F4F4">  가격대 </td>
-        <td bgcolor="#FFFFFF">
-          &nbsp;&nbsp;<pre><s:property value="resultClass.shop_price" /></pre>
-        </td>
-      </tr>
-      <tr bgcolor="#777777">
-        <td height="1" colspan="2"></td>
-      </tr>
-      
-      <tr>
-        <td bgcolor="#F4F4F4">   주소 </td>
-        <td bgcolor="#FFFFFF">
-          &nbsp;&nbsp;<s:property value="resultClass.shop_addr1" />
-        </td>
-      </tr>
-      <tr bgcolor="#777777">
-        <td height="1" colspan="2"></td>	
-      </tr>
-      
-      
-      
-     
-      
-      <tr>
-        <td height="10" colspan="2"></td>
-      </tr>
-      
-      
-      <tr>
-        <td align="right" colspan="2">
-        
-	        <s:url id="modifyURL" action="modifyForm" >
-				<s:param name="no">
-					<s:property value="no" />
-				</s:param>
-	        </s:url>
-					
-	        <s:url id="deleteURL" action="deleteAction" >
-				<s:param name="no">
-					<s:property value="no" />
-				</s:param>
-	        </s:url>
-				
+<body>
+<table width="600" border="0" cellspacing="0" cellpadding="2">
+		<tr>
+			<td align="center"><h2>식당등록 게시판</h2></td>
+		</tr>
+</table>
+
+
 	
-					
-	<input name="list" type="button" value="삭제" class="inputb" onClick="javascript:open_win_noresizable('checkForm.action?no=<s:property value="resultClass.no" />&currentPage=<s:property value="currentPage" />','delete')">
+<br>
+<table width="300" height="20" border="1"> 
 
-	<input name="list" type="button" value="목록" class="inputb" onClick="javascript:location.href='listAction.action?currentPage=<s:property value="currentPage" />'">
+<tr>
+<td width="100">식당 이름: </td>
+<td>${message}</td>
+</tr>
 
-        </td>
-      </tr>
 
-  </table>
- </body>
+<tr>
+<td width="100">전화번호:</td>
+<td>${message1}</td>
+</tr>
+
+<tr>
+<td width="100" >가격:</td>
+<td>${message2}</td>
+</tr>
+
+<tr>
+<td width="100">주소:</td>
+<td>${message3}</td>
+</tr>
+
+<tr>
+<td width="100">업종:</td>
+<td>${message4}</td>
+</tr>
+</table>
+
+<s:submit align="center" value="목록보기"/>
+
+</body>
+
 </html>
 
 
