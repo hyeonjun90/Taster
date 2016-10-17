@@ -1,7 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE sqlMap PUBLIC '-//ibatis.apache.org//DTD Sql Map 2.0//EN' 'http://ibatis.apache.org/dtd/sql-map-2.dtd'>
 <sqlMap>
-	<select id="test" resultClass="bean.PositionBean">
-		select * from MEMBER_POSITION where p_idx=1
-	</select>
+
+	<typeAlias alias="rboard" type="bean.RecomBoardBean"/> <!-- 맛집추천리스트 -->
+
+		<resultMap id="rboardRes" class="rboard"><!-- 맛집추천리스트-->
+			<result property="rec_idx" column="rec_idx"/>
+			<result property="rec_date" column="rec_date"/>
+			<result property="rec_subject" column="rec_subject"/>
+			<result property="rec_image" column="rec_image"/>
+		</resultMap>
+		
+		
+		<!-- rboardRes에서 공통으로 사용할 select-all 명령문 -->
+		<sql id="rboard-select-all">
+		SELECT * FROM RECOMBOARD
+		</sql>
+		
+		<!-- 공통으로 사용할 where-idx 명령문 -->
+		<sql id="rboard-where-idx">
+			WHERE rec_idx = #rec_idx#
+		</sql>
+		
+		<!-- select 쿼리문 정의-->
+		<select id="rboard-selectAll" resultMap="rboardRes" parameterClass="int">
+			<include refid="rboard-select-all"/>
+			ORDER BY rec_idx DESC
+		</select>
+		
+		<select id="rboard-selectOne" resultMap="rboardRes" parameterClass="int">
+			<include refid="rboard-select-all"/>
+			<include refid="rboard-where-idx"/>
+		</select>
+		
+		<select id="rboard-selectLastNo" resultClass="rboard" parameterClass="int">
+			SELECT max(rec_idx) as rec_idx FROM RECOMBOARD
+		</select>
+		
+		<select id="rboard-selectSubject" resultMap="rboardRes">
+			<include refid="rboard-select-all"/>
+			<include refid="rboard-where-idx"/>
+			AND rec_subject = #rec_subject#
+		</select>
+		
+		<!-- insert 쿼리문 정의 -->
+		<insert id="rboard-insertRboard" parameterClass="rboard">
+		INSERT INTO RECOMBOARD(rec_idx, rec_date, rec_subject, rec_image)
+		VALUES (recomBoard_no_seq.NEXTVAL, #rec_date#, #rec_subject#, #rec_image#)
+		</insert>
+		
 </sqlMap>
