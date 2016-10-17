@@ -1,33 +1,88 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN" "http://struts.apache.org/dtds/struts-2.0.dtd">
 <struts>
+<<<<<<< HEAD
+	<package name="admin" extends="struts-default, tiles-default">
+	
+	<!-- 관리자의 식당등록 액션 -->
+=======
 
 	<constant name="struts.multipart.maxSize" value="104857600"/>
 	
 <package name="admin" extends="struts-default, tiles-default">
 	
+<<<<<<< HEAD
 
       
+=======
+		<action name="admin_foods_write" class="admin.admin_foods_writeAction">
+			<result>/admin/admin_foods_writeResult.jsp</result>
+		</action>
+	
+		
+>>>>>>> branch 'master' of https://github.com/hyeonjun90/Taster.git
+>>>>>>> branch 'master' of https://github.com/hyeonjun90/Taster
 		<action name="AshopWriteForm" class="admin.AdminShopAddAction" method="form">
 			<result type="tiles">AshopWrite</result>
+<<<<<<< HEAD
 			</action>
 
 		<action name="AshopWriteAction" class="admin.AdminShopAddAction">
      	  	 <result type="tiles">AshopWriteResult</result>
      	</action>
 
+=======
+
+		</action>
+		
+<<<<<<< HEAD
+		<action name="AshopWriteAction" class="admin.AdminShopAddAction">
+			<result type="redirect-action">
+			<param name="actionName">main</param>
+			</result>
+		</action>
+		
+	<!-- 신규가게 등록 요청글 관련 -->
+		<!-- 신규가게등록 승인 요청 리스트 보기 -->
+		<action name="approvalRequestList" class="admin.ApprovalRequestListAction">
+=======
+>>>>>>> branch 'master' of https://github.com/hyeonjun90/Taster
 		
 
 		<action name="approvalRequestList" class="admin.ApprovalRequestListAction" method="execute">
+>>>>>>> branch 'master' of https://github.com/hyeonjun90/Taster.git
 			<result type="tiles">ApprovalRequestList</result>
 
 		</action>
 		
+		<!-- 신규가게등록 리스트 글 상세보기 -->
 		<action name="approvalRequestDetailView" class="admin.ApprovalRequestDetailView">
 			<result type="tiles">ApprovalRequestDetail</result>
 		</action>
 
-			
+	<!-- 맛집추천리스트 관련 -->
+		<!-- 관리자 화면에서 맛집추천리스트 등록글 리스트 조회 -->
+		<action name="adminRboardList" class="rboard.AdminRBoardListAction">
+			<result type="tiles">AdminRBoardList</result>
+		</action>
+		
+		<!-- 관리자 화면에서 맛집추천리스트 포스팅 작성하기 페이지로 이동 -->
+		<action name="rboardWriteForm" class="rboard.AdminRBoardWriteAction" method="form">
+			<result type="tiles">AdminRBoardWrite</result>
+		</action>
+		
+		<!-- 관리자 화면에서 맛집추천리스트 작성하기 실행 -->
+		<action name="rboardWriteAction" class="rboard.AdminRBoardWriteAction">
+			<result type="redirect-action">
+			<param name="actionName">AdminRBoardList</param>
+			</result>
+		</action>
+		
+		<!-- 맛집추천리스트 등록글 상세 조회 -->
+		<action name="rboardDetailView" class="rboard.RboardDetailView" method="execute">
+			<result type="tiles">rboardDetail</result>
+		</action>
+
 	</package>
 </struts>
   
