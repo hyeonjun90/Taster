@@ -20,8 +20,8 @@
 		<action name="approvalRequestDetailView" class="admin.ApprovalRequestDetailView">
 			<result type="tiles">ApprovalRequestDetail</result>
 		</action>
-		
-		
+
+			
 	</package>
 </struts>
   

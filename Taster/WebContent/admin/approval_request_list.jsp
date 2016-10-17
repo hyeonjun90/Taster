@@ -46,19 +46,15 @@
 		</s:url> 
 		
 			<tr bgcolor="#FFFFFF" align="center">
-				<!-- <td> 체크박스</td> -->
+				<td> 체크박스</td>
 				<td><s:property value="r_idx"/></td>
 				<td align="center"><s:property value="r_regdate"/></td>
 				<td align="center"><s:property value="r_id"/></td>
 				<td align="center"><s:property value="r_nicname"/></td>
 				<td align="left"> &nbsp;<s:a href="%{ReqDetailViewURL}"><s:property value="r_shop_name"/></s:a></td>
-				<td align="center"><s:property value="r_shop_tel"/></td>
 				<td align="center"><s:property value="r_shop_kind"/></td>
-				<td align="center"><s:property value="r_shop_addr1"/></td>
-				<td align="center"><s:property value="r_shop_addr1"/></td>
-				<td align="center"><s:property value="r_shop_addr1"/></td>
-				<td align="center"><s:property value="r_shop_addr1"/></td>
-				<td align="center"><s:property value="price"/></td>
+				<td align="center"><s:property value='"r_shop_addr1"+"r_shop_addr2"'/></td>
+				<td align="center"><s:property value="r_shop_price"/></td>
 
 			</tr>
 		
@@ -77,15 +73,19 @@
 		</tr>
 		</s:if>
 		
+		<tr align="right">
+			<td colspan="9">
+			<input type="button" value="승인하기" class="inputb" onClick="javascript:location.href='writeForm.action?currentpage=<s:property value="currentPage"/>';">
+			<input type="button" value="거부하기" class="inputb" onClick="javascript:location.href='writeForm.action?currentpage=<s:property value="currentPage"/>';">
+			</td>
+		</tr>
+		
 		<tr align="center">
 			<td colspan="9"><s:property value="pagingHtml" escape="false"/></td>
 		</tr>
 		
-		<tr align="right">
-			<td colspan="9">
-			<input type="button" value="글쓰기" class="inputb" onClick="javascript:location.href='writeForm.action?currentpage=<s:property value="currentPage"/>';">
-			</td>
-		</tr>
+
+		
 				
 	</table>
 

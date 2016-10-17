@@ -35,6 +35,8 @@
 			<result property="r_shop_addr4" column="r_shop_addr4"/>
 			<result property="r_shop_price" column="r_shop_price"/>
 			<result property="r_shop_holiday" column="r_shop_holiday"/>	
+			<result property="r_shop_content" column="r_shop_content"/>	
+			
 		</resultMap>
 		
 		
@@ -113,8 +115,8 @@
 		
 		<!-- insert 쿼리문 정의 -->
 		<insert id="AprReq-insertReqList" parameterClass="AprReq">
-		INSERT INTO REQUEST_LIST(r_idx, r_regdate, r_id, r_nicname, , r_shop_tel, r_shop_kind, r_shop_addr1, r_shop_addr2, r_shop_addr3, r_shop_addr4, r_shop_price, r_shop_holiday)
-		VALUES (request_no_seq.NEXTVAL, #r_regdate#, #r_id#, #r_nicname#, #r_shop_name#, #r_shop_kind#, #r_shop_addr1#, #r_shop_addr2#, #r_shop_addr3#, #r_shop_addr4#, #r_shop_price#, #r_shop_holiday#)
+		INSERT INTO REQUEST_LIST(r_idx, r_regdate, r_id, r_nicname, , r_shop_tel, r_shop_kind, r_shop_addr1, r_shop_addr2, r_shop_addr3, r_shop_addr4, r_shop_price, r_shop_holiday, r_shop_content)
+		VALUES (request_no_seq.NEXTVAL, #r_regdate#, #r_id#, #r_nicname#, #r_shop_name#, #r_shop_kind#, #r_shop_addr1#, #r_shop_addr2#, #r_shop_addr3#, #r_shop_addr4#, #r_shop_price#, #r_shop_holiday#, #r_shop_content#)
 		</insert>
 
 </sqlMap>

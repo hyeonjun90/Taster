@@ -4,19 +4,21 @@ import java.sql.Date;
 
 public class RequestListBean {
 
-	private int r_idx;
-	private Date r_regdate; 
-	private String r_id;
-	private String r_nicname;
-	private String r_shop_name;
-	private String r_shop_tel;
-	private String r_shop_kind;
-	private String r_shop_addr1;
-	private String r_shop_addr2;
-	private String r_shop_addr3;
-	private String r_shop_addr4;
-	private String r_shop_price;
-	private String r_shop_holiday;
+	private int r_idx; //인덱스 기본키
+	private Date r_regdate; //요청글 작성일
+	private String r_id; //작성자 아이디
+	private String r_nicname; //작성자 닉넴임
+	private String r_shop_name; //가게이름
+	private String r_shop_tel; //가게전화번호
+	private String r_shop_kind; //업종
+	private String r_shop_addr1; //주소1(도/시)
+	private String r_shop_addr2; //주소2(시/구)
+	private String r_shop_addr3; //주소3(구/군)
+	private String r_shop_addr4; //주소4(동+나머지)
+	private String r_shop_price; //가격대
+	private String r_shop_holiday; //휴일
+	private String r_shop_content; //입력내용
+	
 	public int getR_idx() {
 		return r_idx;
 	}
@@ -94,6 +96,12 @@ public class RequestListBean {
 	}
 	public void setR_shop_holiday(String r_shop_holiday) {
 		this.r_shop_holiday = r_shop_holiday;
+	}
+	public String getR_shop_content() {
+		return r_shop_content;
+	}
+	public void setR_shop_content(String r_shop_content) {
+		this.r_shop_content = r_shop_content;
 	}
 	
 	
