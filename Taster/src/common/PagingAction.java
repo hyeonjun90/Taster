@@ -1,6 +1,6 @@
-package member;
+package common;
 
-public class MyPagePagingAction {
+public class PagingAction {
 	
 	private int currentPage;  //현재 페이지
 	private int totalCount;   //전체 게시물 수 
@@ -15,7 +15,7 @@ public class MyPagePagingAction {
 	private StringBuffer pagingHtml;    //이전,다음 을 만들기 위한 HTML 테그 StringBuffer
 	
 	//생성자
-	public MyPagePagingAction(int currentPage, int totalCount, int blockCount, int blcokPage){
+	public PagingAction(int currentPage, int totalCount, int blockCount, int blockPage){
 		
 		this.currentPage = currentPage;
 		this.totalCount = totalCount;
@@ -64,7 +64,7 @@ public class MyPagePagingAction {
 			if(i==currentPage){     //현재 페이지일때 링크를 없애고 빨간색으로 강조 
 				pagingHtml.append("&nbsp;<b><font color='red'>");
 				pagingHtml.append(i);
-				pagingHtml.append("<.font></b>");
+				pagingHtml.append("</font></b>");
 			}else{                 //그외 페이지일 때는 링크 액션 맵핑
 				pagingHtml.append("&nbsp;<a href='memberMyPage.action?currentPage=");
 				pagingHtml.append(i);

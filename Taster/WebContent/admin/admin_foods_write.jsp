@@ -7,57 +7,16 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>식당 등록 게시판</title>
-
-<script type="text/javascript">
-	function validation() {
-		
-			var frm = document.forms(0);
-			
-			if(frm.shop_name.value == "") {
-				alert("식당이름을 입력해주세요.");
-				return false;
-			} 
-			
-			else if(frm.shop_price.value == "") {
-				alert("가격대 입력해주세요.");
-				return false;
-				
-			}
-			
-			else if(frm.shop_tel.value == "") {
-				alert("전화번호를 입력해주세요.");
-				return false;
-			}
-			
-			else if(frm.shop_addr1 + shop_addr2 + shop_addr3 + shop_addr4 .value == "") {
-				alert("주소을 입력해주세요.");
-				return false;			
-			} 
-			
-			return true;
-		}
-</script>
 </head>
 <body>
-	<table width="600" border="0" cellspacing="0" cellpadding="2">
+
+<table width="600" border="0" cellspacing="0" cellpadding="2">
 		<tr>
 			<td align="center"><h2>식당등록 게시판</h2></td>
 		</tr>
-	</table>
-	
-	
-	
-	<s:elseif test="resultClass == NULL">
-		<form action="writeAction.action" method="post" name="frm" enctype="multipart/form-data" onsubmit="return validation();">
-	</s:elseif>
-	
-	<s:else>
-		<form action="modifyAction.action" method="post" name="frm" enctype="multipart/form-data" onsubmit="return validation();">
-			<s:hidden name="no" value="%{resultClass.no}" />
-			<s:hidden name="currentPage" value="%{currentPage}" />
-			<s:hidden name="old_file" value="%{resultClass.file_savname}" />
-	</s:else>
-	<table width="600" border="0" cellspacing="0" cellpadding="0">
+</table>
+
+<table width="600" border="0" cellspacing="0" cellpadding="0">
 	
 		<tr>
 			<td align="right" colspan="2">
@@ -68,115 +27,67 @@
 			<td colspan="2" height="1"></td>
 
 		</tr>
-		
-		
-		
-		<tr>
-			<td width="100">
-				<font color="#FF0000">*</font> 식당이름
-			</td>
-			<td width="500">
-				<s:textfield name="shop_name" theme="simple" value="%{resultClass.shop_name}" cssStyle="width:370px" maxlength="50" />
-			</td>
-		</tr>
-		<td width="100">
-				<font color="#FF0000">*</font> 전화번호
-			</td>
-			<td width="500">
-				<s:textfield name="shop_tel" theme="simple" value="%{resultClass.shop_tel}" cssStyle="width:370px" maxlength="50" />
-			</td>
-		</tr>
-		<td width="100">
-				<font color="#FF0000">*</font> 가격대
-			</td>
-			<td width="500">
-				<s:textfield name="shop_price" theme="simple" value="%{resultClass.shop_price}" cssStyle="width:370px" maxlength="50" />
-			</td>
-		</tr>
-		<td width="100">
-				<font color="#FF0000">*</font> 주소
-			</td>
-			<td width="500">
-				
-				<s:textfield name="shop_addr1 + shop_addr2 + shop_addr3 + shop_addr4" theme="simple" value="%{resultClass.shop_addr1 + shop_addr2 + shop_addr3 + shop_addr4}" cssStyle="width:370px" maxlength="50" />
-				<input type="submit" value="주소검색">
-			</td>
-		</tr>
-		
-		
-		
-		<tr>
-			<td align="right" colspan="2">
-				<font color="#FF0000">
-			</td>
-		</tr>
-		<tr bgcolor="#777777">
-			<td colspan="2" height="1"></td>
-			</tr>
-		
-		
 	</table>
 	
-	
-	
-	<br/>
-	    <input type="radio" name="korean" value="korean"> 한식 
-	    &nbsp;
-		<input type="radio" name="korean" value="korean"> 한식 
-		&nbsp;
-		<input type="radio" name="korean" value="korean"> 한식 
-		&nbsp;
-		<input type="radio" name="korean" value="korean"> 한식 
-		&nbsp;
-		<input type="radio" name="korean" value="korean"> 한식 
-		&nbsp;
-		<input type="radio" name="korean" value="korean"> 한식 
-		&nbsp;
-		<input type="radio" name="korean" value="korean"> 한식 
-	<br/>
-	
-	     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		<input type="radio" name="korean" value="korean"> 한식 
-		 &nbsp;
-		<input type="radio" name="korean" value="korean"> 한식 
-		 &nbsp;
-		<input type="radio" name="korean" value="korean"> 한식 
-		 &nbsp;
-		<input type="radio" name="korean" value="korean"> 한식 
-		 &nbsp;
-		<input type="radio" name="korean" value="korean"> 한식 
-		 &nbsp;
-		<input type="radio" name="korean" value="korean"> 한식 
-		 &nbsp;
-		<input type="radio" name="korean" value="korean"> 한식 
-		
-		<br/>
-	    <input type="radio" name="korean" value="korean"> 한식 
-	    &nbsp;
-		<input type="radio" name="korean" value="korean"> 한식 
-		&nbsp;
-		<input type="radio" name="korean" value="korean"> 한식 
-		&nbsp;
-		<input type="radio" name="korean" value="korean"> 한식 
-		&nbsp;
-		<input type="radio" name="korean" value="korean"> 한식 
-		&nbsp;
-		<input type="radio" name="korean" value="korean"> 한식 
-		&nbsp;
-		<input type="radio" name="korean" value="korean"> 한식 
-		
-		
-		 <tr>
-			<td align="right" colspan="2">
-				<center><input name="submit" type="submit" value="등록하기" class="inputb"></center>
+<br>
+
+
+<s:form action="admin_foods_write" theme="simple">
+		<tr>
+			<td width="100">
+				<font color="#FF0000">*</font> 식당이름:
+			</td>
+			<td width="500">
+				<s:textfield name="shop_name" theme="simple"  cssStyle="width:370px"/>
 			</td>
 		</tr>
-
-
-
-	
+		<br>
+       <tr>
+		<td width="100">
+				<font color="#FF0000">*</font> 전화번호:
+			</td>
+			<td width="500">
+				<s:textfield name="shop_tel" theme="simple"  cssStyle="width:370px" />
+			</td>
+		</tr>
+		<br>
+		<tr>
+		<td width="100">
+				<font color="#FF0000">*</font> 가격대:
+			</td>
+			<td width="500">
+			&nbsp;&nbsp;&nbsp;<s:textfield name="shop_price" theme="simple"  cssStyle="width:370px"  />
+			</td>
+		</tr>
+		<br>
+		<td width="100">
+				<font color="#FF0000">*</font> 주소:
+			</td>
+			<td width="500">
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <s:textfield name="shop_addr" theme="simple"  cssStyle="width:370px"  />
+			
+			</td>
+		</tr>
+		<br>
+		<input type="radio" name="korean" value="한식"> 한식 
+	    &nbsp;
+		
+		<input type="radio" name="korean" value="중식"> 중식
+	    &nbsp;
+		
+		<input type="radio" name="korean" value="양식"> 양식 
+	    &nbsp;
+		<br>
+		<s:submit value="등록하기" align="center" />
+		</s:form>
 		
 		
-</form> 
+		
+		
+		
+
+
+	    
+		
 </body>
 </html>

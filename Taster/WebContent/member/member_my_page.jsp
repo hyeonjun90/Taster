@@ -20,10 +20,12 @@
 		<td onclick="location.href='qWrite.action'">문의하기</td>
 	</tr>
 </table>
-<table>
+	
+<table style="width:100%; margin-top:-50px">
 	<tr>
-		<td onclick="">
-
+		<td>MY REVIEW RESTAURANT</td>
+		<td>My BOOKMARK RESTAURANT</td>
+	</tr>
 </table>
 
 <jsp:include page="/common/bottom.jsp"></jsp:include>
