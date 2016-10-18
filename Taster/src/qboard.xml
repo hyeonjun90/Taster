@@ -25,10 +25,17 @@
 	<action name="qWriteForm" class="qboard.QWriteAction" method="form">
 	 	<result>/qboard/qboard_write.jsp</result>
 	</action>
-	
 	<action name="qWritePro" class="qboard.QWriteAction">
 		<result type="redirect-action">
 			<param name="actionName">qboardList</param>
+		</result>
+	</action>
+	
+	
+	<!-- 게시판 글 상세보기 액션 -->
+	<action name="qboardViewForm" class="qboard.QBoardViewAction">
+		<result>
+			/qboard/qboard_view.jsp
 		</result>
 	</action>
 	
@@ -46,14 +53,7 @@
 	-->
 	
 	
-	<!-- 게시판 글 읽기 액션 -->
-	<!-- 
-	<action name="viewAction" class="qboard.QBoardViewAction">
-		<result>
-			/qboard/qboard_view.jsp
-		</result>
-	</action>
-	 -->
+	
 	
 	
 	<!-- 게시판 파일 다운로드 액션 -->
