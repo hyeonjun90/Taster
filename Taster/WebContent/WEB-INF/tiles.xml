@@ -37,17 +37,26 @@
 	<put-attribute name="bottom" value="/common/bottom.jsp"/>
 	</definition>
 	
-	<definition name="foods_recommand" template="/common/layout.jsp">
-	<put-attribute name="top" value="/common/top1.jsp"/>
-	<put-attribute name="body" value="/foods/foods_recommend_list.jsp"/>
-	<put-attribute name="bottom" value="/common/bottom.jsp"/>
-	</definition>
-	
 	<definition name="foods_detail" template="/common/layout.jsp">
 	<put-attribute name="top" value="/common/top1.jsp"/>
 	<put-attribute name="body" value="/foods/foods_detail.jsp"/>
 	<put-attribute name="bottom" value="/common/bottom.jsp"/>
 	</definition>
+	
+	<!-- 유저 화면에서 보는 맛집추천리스트 포스팅 화면 -->
+	<definition name="foods_recommand" template="/common/layout.jsp">
+	<put-attribute name="top" value="/common/top1.jsp"/>
+	<put-attribute name="body" value="/foods/foods_recommend_list.jsp"/>
+	<put-attribute name="bottom" value="/common/bottom.jsp"/>
+	</definition>
+
+	<!-- 맛집추천리스트 포스팅글 상세보기 -->
+	<definition name="rboardDetail" template="/common/layout.jsp">
+	<put-attribute name="top" value="/common/top1.jsp"/>
+	<put-attribute name="body" value="/foods/foods_recommend_list.jsp"/>
+	<put-attribute name="bottom" value="/common/bottom.jsp"/>
+	</definition>
+
 	
 
 <!-- 마이페이지 -->
@@ -78,31 +87,59 @@
 
 <!-- 관리자페이지 -->
 	
+	<!-- 신규가게 등록 요청글 관련 -->
+	<!-- 신규가게 등록 쓰기화면 -->
 	<definition name="AshopWrite" template="/common/layout.jsp">
 	<put-attribute name="top" value="/common/top2.jsp"/>
 	<put-attribute name="body" value="/admin/admin_foods_write.jsp"/>
 	<put-attribute name="bottom" value="/common/bottom.jsp"/>
 	</definition>
+
+	<definition name="AshopWriteResult" template="/common/layout.jsp">
+	<put-attribute name="top" value="/common/top2.jsp"/>
+	<put-attribute name="body" value="/admin/admin_foods_writeResult.jsp"/>
+	<put-attribute name="bottom" value="/common/bottom.jsp"/>
+	</definition>
 	
+	
+
+	<!-- 신규가게 등록 요청 리스트 조회-->
 	<definition name="ApprovalRequestList" template="/common/layout.jsp">
 	<put-attribute name="top" value="/common/top2.jsp"/>
 	<put-attribute name="body" value="/admin/approval_request_list.jsp"/>
 	<put-attribute name="bottom" value="/common/bottom.jsp"/>
 	</definition>
 	
+	<!-- 신규가게등록 리스트 글 상세보기 -->
 	<definition name="ApprovalRequestDetail" template="/common/layout.jsp">
 	<put-attribute name="top" value="/common/top2.jsp"/>
 	<put-attribute name="body" value="/admin/approval_request_detail.jsp"/>
 	<put-attribute name="bottom" value="/common/bottom.jsp"/>
 	</definition>
 	
-	<definition name="AshopWrite" template="/common/layout.jsp">
+	
+	<!-- 맛집추천리스트 관련 -->
+	<!-- 관리자 화면에서 맛집추천리스트 등록글 리스트 조회 -->
+	<definition name="AdminRBoardList" template="/common/layout.jsp">
 	<put-attribute name="top" value="/common/top2.jsp"/>
-	<put-attribute name="body" value="/admin/admin_foods_write.jsp"/>
+	<put-attribute name="body" value="/rboard/admin_rboard_list.jsp"/>
+	<put-attribute name="bottom" value="/common/bottom.jsp"/>
+	</definition>
+		
+	<!-- 관리자 화면에서 맛집추천리스트 작성하기 -->
+	<definition name="AdminRBoardWrite" template="/common/layout.jsp">
+	<put-attribute name="top" value="/common/top2.jsp"/>
+	<put-attribute name="body" value="/rboard/admin_rboard_write.jsp"/>
 	<put-attribute name="bottom" value="/common/bottom.jsp"/>
 	</definition>
 	
+		<!-- 맛집추천리스트 등록글 상세 조회 -->
+	<definition name="rboardDetail" template="/common/layout.jsp">
+	<put-attribute name="top" value="/common/top2.jsp"/>
+	<put-attribute name="body" value="/rboard/foods_rboard_view.jsp"/>
+	<put-attribute name="bottom" value="/common/bottom.jsp"/>
+	</definition>
 	
-	
-	
+
 </tiles-definitions>
+	
