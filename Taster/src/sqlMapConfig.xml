@@ -9,7 +9,7 @@
 	 		  maxSessions="10"
 	 		  maxTransactions="5"
 	 		  useStatementNamespaces="false" />
-	 
+
 	 <transactionManager type="JDBC" commitRequired="false">
 	 	<dataSource type="SIMPLE">
 	 		<property name="JDBC.Driver" value="${driver}" />
@@ -20,5 +20,8 @@
 	 </transactionManager>
 	 
 	<sqlMap resource="/sql/memberSQL.xml" />
-	
+
+	<sqlMap resource="/sql/adminSQL.xml" />
+	<sqlMap resource="/sql/rboardSQL.xml" />
+
 </sqlMapConfig>

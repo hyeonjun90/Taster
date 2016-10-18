@@ -64,7 +64,7 @@ public class PagingAction {
 			if(i==currentPage){     //현재 페이지일때 링크를 없애고 빨간색으로 강조 
 				pagingHtml.append("&nbsp;<b><font color='red'>");
 				pagingHtml.append(i);
-				pagingHtml.append("<.font></b>");
+				pagingHtml.append("</font></b>");
 			}else{                 //그외 페이지일 때는 링크 액션 맵핑
 				pagingHtml.append("&nbsp;<a href='memberMyPage.action?currentPage=");
 				pagingHtml.append(i);

@@ -3,28 +3,53 @@
 <struts>
 	<constant name="struts.multipart.maxSize" value="104857600"/>
 	<package name="admin" extends="struts-default, tiles-default">
-		
+	
+
+	<!-- 관리자의 식당등록 액션 -->
 		<action name="AshopWriteForm" class="admin.AdminShopAddAction" method="form">
 			<result type="tiles">AshopWrite</result>
-		</action>
-		
+
+			</action>
+
 		<action name="AshopWriteAction" class="admin.AdminShopAddAction">
-			<result type="redirect-action">
-			<param name="actionName">main</param>
-			</result>
-		</action>
+     	  	 <result type="tiles">AshopWriteResult</result>
+     	</action>
 		
+		
+		<!-- 신규가게 등록 요청글 관련 -->
+		<!-- 신규가게등록 승인 요청 리스트 보기 -->
 		<action name="approvalRequestList" class="admin.ApprovalRequestListAction" method="execute">
 			<result type="tiles">ApprovalRequestList</result>
 		</action>
 		
-		<!-- 	<action name="approvalRequestDetailView" class="admin.ApprovalRquestDetailView">
+		<!-- 신규가게등록 리스트 글 상세보기 -->
+		<action name="approvalRequestDetailView" class="admin.ApprovalRequestDetailView">
+			<result type="tiles">ApprovalRequestDetail</result>
+		</action>
+
+	<!-- 맛집추천리스트 관련 -->
+		<!-- 관리자 화면에서 맛집추천리스트 등록글 리스트 조회 -->
+		<action name="adminRboardList" class="rboard.AdminRBoardListAction">
+			<result type="tiles">AdminRBoardList</result>
+		</action>
+		
+		<!-- 관리자 화면에서 맛집추천리스트 포스팅 작성하기 페이지로 이동 -->
+		<action name="rboardWriteForm" class="rboard.AdminRBoardWriteAction" method="form">
+			<result type="tiles">AdminRBoardWrite</result>
+		</action>
+		
+		<!-- 관리자 화면에서 맛집추천리스트 작성하기 실행 -->
+		<action name="rboardWriteAction" class="rboard.AdminRBoardWriteAction">
 			<result type="redirect-action">
-			<param name="actionName">main</param>
+			<param name="actionName">AdminRBoardList</param>
 			</result>
-		</action> -->
+		</action>
 		
-		
+		<!-- 맛집추천리스트 등록글 상세 조회 -->
+		<action name="rboardDetailView" class="rboard.RboardDetailView" method="execute">
+			<result type="tiles">rboardDetail</result>
+		</action>
+
 	</package>
 </struts>
   
