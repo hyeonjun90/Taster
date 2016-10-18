@@ -33,6 +33,7 @@
 	<select id="reviewList-selectAll" resultMap="myPageRes" parameterClass="String">
 		select r_image, shop_name from review r inner join shop s on r.shop_idx=s.shop_idx
 		where member_id=#member_id# order by review_idx desc
+	</select>
 	
 	<!-- 테스트 코드 -->
 	<select id="test" resultClass="bean.PositionBean">
@@ -46,14 +47,4 @@
 		where member_id = #member_id#
 		order by bookmark_idx DESC, review_idx desc
 	</select>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
 </sqlMap>
