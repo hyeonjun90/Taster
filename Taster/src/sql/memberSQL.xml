@@ -42,7 +42,12 @@
 		WHERE shop_idx=#shop_idx#
 	</sql>
 
-
+	
+	<!-- 테스트 코드 -->
+	<select id="test" resultClass="bean.PositionBean">
+		select * from Member_Position where p_idx=1
+	</select>
+	
 	<!-- myshop select 회원 아이디에 해당하는 리뷰 전체 검색 -->
 	<select id="myshop-m-selectAll" resultMap="reviewRes" parameterClass="int">
 		<include refid="myshop-select-all"/>

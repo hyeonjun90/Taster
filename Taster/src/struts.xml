@@ -11,6 +11,8 @@
 	<include file="admin.xml" />
 	<include file="member.xml" />
 	<include file="mypage.xml" />
+	<include file="qboard.xml" />
+	
 </struts>
 
 
