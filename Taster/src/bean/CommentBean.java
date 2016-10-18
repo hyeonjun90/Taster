@@ -1,6 +1,6 @@
 package bean;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class CommentBean { // 문의게시판 답변 Bean
 	private int c_idx; //인덱스

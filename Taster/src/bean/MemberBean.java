@@ -1,6 +1,6 @@
 package bean;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class MemberBean {
 	private String member_id;
@@ -13,7 +13,7 @@ public class MemberBean {
 	private String member_image;
 	private Date member_joinDate; //가입일
 	private Date member_loginDate; // 최근 로그인
-	private int p_idx;  // 회원 등급 1.유저 2.에디터 3.관리자
+	private int member_level;  // 회원 등급 1.유저 2.에디터 3.관리자
 	
 	public String getMember_id() {
 		return member_id;
@@ -75,11 +75,11 @@ public class MemberBean {
 	public void setMember_loginDate(Date member_loginDate) {
 		this.member_loginDate = member_loginDate;
 	}
-	public int getP_idx() {
-		return p_idx;
+	public int getMember_level() {
+		return member_level;
 	}
-	public void setP_idx(int p_idx) {
-		this.p_idx = p_idx;
+	public void setMember_level(int member_level) {
+		this.member_level = member_level;
 	}
 	
 	
