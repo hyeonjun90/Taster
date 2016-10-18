@@ -26,14 +26,19 @@ function setZipcode(zipcode, sido, gugun, dong, ri, bldg, bunji){
 	var zipcode1 = zipcode.substring(0, zipcode.indexOf("-"));
 	var zipcode2 = zipcode.substring(zipcode.indexOf("-")+1, zipcode.length);
 	
-	opener.document.forms[0].member_zipcode1.value=zipcode1;
-	opener.document.forms[0].member_zipcode2.value=zipcode2;
-	opener.document.forms[0].member_addr1.value=juso;
+	//alert(juso + "//" + zipcode1 + "//" + zipcode2);
+	opener.document.joinForm.member_zipcode1.value = zipcode1;
+	opener.document.joinForm.member_zipcode2.value = zipcode2;
+	opener.document.joinForm.member_addr1.value = juso;
 	self.close();
 }
 </script>
 </head>
 <body>
+
+<c:if test="${empty zipList }">
+	<center><h3>검색 된 결과가 없습니다.</h3></center>
+</c:if>
 
 <c:forEach var="zip" items="${zipList }">
 <ul>

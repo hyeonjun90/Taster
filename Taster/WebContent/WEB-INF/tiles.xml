@@ -100,25 +100,7 @@
       <put-attribute name="bottom" value="/common/bottom.jsp"/>
    </definition>
    
-   <definition name="member_idCheck" template="/common/layout.jsp">
-      <put-attribute name="top" value="/common/top1.jsp"/>
-      <put-attribute name="body" value="/member/member_idCheck.jsp"/>
-      <put-attribute name="bottom" value="/common/bottom.jsp"/>
-   </definition>
-   
-   <definition name="member_zipcode" template="/common/layout.jsp">
-      <put-attribute name="top" value="/common/top1.jsp"/>
-      <put-attribute name="body" value="/member/member_zipcode.jsp"/>
-      <put-attribute name="bottom" value="/common/bottom.jsp"/>
-   </definition>
-   
-   <definition name="member_zipcode_search" template="/common/layout.jsp">
-      <put-attribute name="top" value="/common/top1.jsp"/>
-      <put-attribute name="body" value="/member/member_zipcode_search.jsp"/>
-      <put-attribute name="bottom" value="/common/bottom.jsp"/>
-   </definition>
-   
-<!-- 관리자페이지 -->
+   <!-- 관리자페이지 -->
 	
 	<!-- 신규가게 등록 요청글 관련 -->
 	<!-- 신규가게 등록 쓰기화면 -->

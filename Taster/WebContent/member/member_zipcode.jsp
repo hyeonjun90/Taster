@@ -11,8 +11,9 @@
 			method: "post",
 			data: {"dong": encodeURIComponent($("#dong").val())},
 			success: function(data) {
-				//alert(data);
+				
 				$("#zipcode").html(data);
+				
 			}
 		});
 	}
@@ -32,7 +33,7 @@
 	<tr align="center">
 		<td align="center">
 			<font size="2">지역명 : </font>
-			<input type="text" name="dong" id="dong"/>
+			<input type="text" name="dong" id="dong" onkeydown="javascript:if(event.keyCode==13){ zipSearch(); return false; }"/>
 			<input type="button" value="검색" onclick="zipSearch();"><br>
 			<font size="2">동을 입력하세요.(예:방배, 원천, 2글자 이상입력)</font>
 		</td>
