@@ -9,7 +9,7 @@
 	 		  maxSessions="10"
 	 		  maxTransactions="5"
 	 		  useStatementNamespaces="false" />
-	 
+
 	 <transactionManager type="JDBC" commitRequired="false">
 	 	<dataSource type="SIMPLE">
 	 		<property name="JDBC.Driver" value="${driver}" />
@@ -19,5 +19,25 @@
 	 	</dataSource>
 	 </transactionManager>
 	 
+<<<<<<< HEAD
 	<sqlMap resource="/sql/memberSQL.xml" />
 </sqlMapConfig>
+=======
+	<sqlMap resource="/sql/memberSQL.xml" />
+	<sqlMap resource="/sql/adminSQL.xml" />
+	<sqlMap resource="/sql/qboardSQL.xml" />
+	<sqlMap resource="/sql/rboardSQL.xml" />
+<<<<<<< HEAD
+=======
+
+>>>>>>> branch 'master' of https://github.com/hyeonjun90/Taster
+
+<<<<<<< HEAD
+
+
+</sqlMapConfig>
+=======
+</sqlMapConfig>
+>>>>>>> branch 'master' of https://github.com/hyeonjun90/Taster
+
+>>>>>>> branch 'master' of https://github.com/hyeonjun90/Taster

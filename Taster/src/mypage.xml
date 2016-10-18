@@ -1,6 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN" "http://struts.apache.org/dtds/struts-2.0.dtd">
 <struts>
+	<constant name="struts.multipart.maxSize" value="104857600" />
+	<package name="mypage" extends="struts-default, tiles-default">
+		<action name="shopAdd" class="member.ShopAddAction" method="execute">
+			<result type="tiles">member_food_write</result>
+		</action>
+		
+		<action name="qWrite" class="qboard.QWriteAction" method="execute">
+			<result type="tiles">qboard_write</result>
+		</action>
+
+		<action name="foodDatail" class="foods.FoodsDetailAction" method="execute">
+			<result type="tiles">foods_detail</result>
+		</action>
+		
+		<action name="memberMypage" class="member.MemberMyPageAction" method="execute">
+			<result type="tiles">member_my_page</result>
+		</action>
+		
+	</package>  
 	
 </struts>
-  

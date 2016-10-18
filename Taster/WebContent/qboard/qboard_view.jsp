@@ -31,32 +31,32 @@
 		<tr>
 			<td width="100">번호</td>
 			<td width="500">
-				<s:property value="resultClass.no" />
+				<s:property value="resultClass.b_idx" />
 			</td>
 		</tr>
 		<tr>
 			<td width="100">제목</td>
 			<td width="500">
-				<s:property value="resultClass.subject" />
+				<s:property value="resultClass.b_title" />
 			</td>
 		</tr>
 		<tr>
 			<td width="100">이름</td>
 			<td width="500">
-				<s:property value="resultClass.name" />
+				<s:property value="resultClass.member_id" />
 			</td>
 		</tr>
 		
 		<tr>
 			<td width="100">내용</td>
 			<td width="500">
-				${resultClass.content }
+				${resultClass.b_content }
 			</td>
 		</tr>
 		<tr>
 			<td width="100">조회수</td>
 			<td width="500">
-				<s:property value="resultClass.readhit" />
+				<s:property value="resultClass.readcount" />
 			</td>
 		</tr>
 		<tr>
@@ -65,6 +65,7 @@
 				<s:property value="resultClass.regdate" />
 			</td>
 		</tr>
+		
 		<tr>
 			<td width="100">첨부파일</td>
 			<td width="500">
@@ -80,6 +81,9 @@
 				</s:a>
 			</td>
 		</tr>
+
+		
+		
 		<tr bgcolor="#777777">
 			<td colspan="2" height="1"></td>
 		</tr>
@@ -92,16 +96,16 @@
 					<table>
 						<tr>
 							<td width="170">
-								이&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;름 <s:textfield name="name" theme="simple" value="" cssStyle="width:100px" maxlength="20" /><br>
-								비밀번호 <s:textfield name="password" theme="simple" value="" cssStyle="width:100px" maxlength="20" />
+								이&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;름 <s:textfield name="member_id" theme="simple" value="" cssStyle="width:100px" maxlength="20" /><br>
+								비밀번호 <s:textfield name="c_pwd" theme="simple" value="" cssStyle="width:100px" maxlength="20" />
 							</td>
-							<s:hidden name="originno" value="%{resultClass.no}" />
+							<s:hidden name="b_idx" value="%{resultClass.b_idx}" />
 					<!-- !!!!!!!!!!!!!!!!!!!!!!!!수정!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
-							<s:hidden name="no" value="%{resultClass.no}" />
+							<s:hidden name="c_idx" value="%{resultClass.c_idx}" />
 							<s:hidden name="currentPage" value="%{currentPage}" />
 					<!-- !!!!!!!!!!!!!!!!!!!!!!!!수정!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
 							<td align="left">
-								<s:textarea name="content" theme="simple" value="" cols="60" rows="3" />
+								<s:textarea name="c_content" theme="simple" value="" cols="60" rows="3" />
 							</td>
 						</tr>
 						<tr>
@@ -122,12 +126,12 @@
 		<s:iterator value="commentlist" status="stat">
 		<tr>
 			<td height="10" width="130" align="center">
-				<s:property value="name" /><br>
-				<s:property value="regdate" /><br><br>
+				<s:property value="member_id" /><br>
+				<s:property value="c_regdate" /><br><br>
 			</td>
 			<td>
 			<!-- @@@@@@@@@@@@코멘트 삭제@@@@@@@@@@@@ -->
-				<s:property value="content" /> 
+				<s:property value="c_content" /> 
 				<a href="javascript:open_win_noresizable('checkForm2.action?no=<s:property value="no" />&originno=<s:property value="originno" />&currentPage=<s:property value="currentPage" />','cdelete')">x</a>
 			</td>
 		</tr>

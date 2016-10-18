@@ -9,7 +9,7 @@ public class CommentBean { // 문의게시판 답변 Bean
 	private int b_idx; // 게시판 b_idx 참조 (FK)
 	
 	public int getC_idx() {
-		return c_idx;
+		return c_idx; 
 	}
 	public void setC_idx(int c_idx) {
 		this.c_idx = c_idx;

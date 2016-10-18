@@ -7,74 +7,147 @@
 
 <!-- 메인페이지 : 맛집페이지 포함 -->
 
-	<definition name="main" template="/common/layout1.jsp">
-	<put-attribute name="title_main" value="맛객에 오신 것을 환영합니다!"/>
+	<definition name="main" template="/common/layout.jsp">
 	<put-attribute name="top" value="/common/top1.jsp"/>
 	<put-attribute name="body" value="/common/main.jsp"/>
 	<put-attribute name="bottom" value="/common/bottom.jsp"/>
 	</definition>
 	
-	<definition name="foods_menu" template="/common/layout1.jsp">
+	<definition name="foods_menu" template="/common/layout.jsp">
 	<put-attribute name="top" value="/common/top1.jsp"/>
 	<put-attribute name="body" value="/foods/foods_menu_list.jsp"/>
 	<put-attribute name="bottom" value="/common/bottom.jsp"/>
 	</definition>
 	
-	<definition name="foods_area" template="/common/layout1.jsp">
+	<definition name="foods_area" template="/common/layout.jsp">
 	<put-attribute name="top" value="/common/top1.jsp"/>
 	<put-attribute name="body" value="/foods/foods_area_list.jsp"/>
 	<put-attribute name="bottom" value="/common/bottom.jsp"/>
 	</definition>
 	
-	<definition name="foods_hot" template="/common/layout1.jsp">
+	<definition name="foods_hot" template="/common/layout.jsp">
 	<put-attribute name="top" value="/common/top1.jsp"/>
 	<put-attribute name="body" value="/foods/foods_hot_list.jsp"/>
 	<put-attribute name="bottom" value="/common/bottom.jsp"/>
 	</definition>
 	
-	<definition name="foods_new" template="/common/layout1.jsp">
+	<definition name="foods_new" template="/common/layout.jsp">
 	<put-attribute name="top" value="/common/top1.jsp"/>
 	<put-attribute name="body" value="/foods/foods_new_list.jsp"/>
 	<put-attribute name="bottom" value="/common/bottom.jsp"/>
 	</definition>
 	
-	<definition name="foods_recommand" template="/common/layout1.jsp">
-	<put-attribute name="top" value="/common/top1.jsp"/>
-	<put-attribute name="body" value="/foods/foods_recommend_list.jsp"/>
-	<put-attribute name="bottom" value="/common/bottom.jsp"/>
-	</definition>
-	
-	<definition name="foods_detail" template="/common/layout1.jsp">
+	<definition name="foods_detail" template="/common/layout.jsp">
 	<put-attribute name="top" value="/common/top1.jsp"/>
 	<put-attribute name="body" value="/foods/foods_detail.jsp"/>
 	<put-attribute name="bottom" value="/common/bottom.jsp"/>
 	</definition>
 	
+	<!-- 유저 화면에서 보는 맛집추천리스트 포스팅 화면 -->
+	<definition name="foods_recommand" template="/common/layout.jsp">
+	<put-attribute name="top" value="/common/top1.jsp"/>
+	<put-attribute name="body" value="/foods/foods_recommend_list.jsp"/>
+	<put-attribute name="bottom" value="/common/bottom.jsp"/>
+	</definition>
+
+	<!-- 맛집추천리스트 포스팅글 상세보기 -->
+	<definition name="rboardDetail" template="/common/layout.jsp">
+	<put-attribute name="top" value="/common/top1.jsp"/>
+	<put-attribute name="body" value="/foods/foods_recommend_list.jsp"/>
+	<put-attribute name="bottom" value="/common/bottom.jsp"/>
+	</definition>
+
+	
 
 <!-- 마이페이지 -->
 <!-- 마이페이지 메인페이지 tiles 구성 샘플 -->
 
-	<definition name="mypage_main" template="/common/layout2.jsp">
+	<definition name="mypage_main" template="/common/layout.jsp">
 	<put-attribute name="top" value="/common/top2.jsp"/>
 	<put-attribute name="body" value="/member/member_my_page.jsp"/>
 	<put-attribute name="bottom" value="/common/bottom.jsp"/>
 	</definition>
 
 <!-- 이 아래로 마이페이지 나머지 페이지구성 tiles를 넣어주세요 -->
+	<definition name="shop_add_form" template="/common/layout.jsp">
+	<put-attribute name="top" value="/common/top2.jsp"/>
+	<put-attribute name="body" value="/member/member_food_write.jsp"/>
+	<put-attribute name="bottom" value="/common/bottom.jsp"/>
+	</definition>
+	
+	<definition name="qboard_write" template="/common/layout.jsp">
+	<put-attribute name="top" value="/common/top2.jsp"/>
+	<put-attribute name="body" value="/qboard/qboard_write.jsp"/>
+	<put-attribute name="bottom" value="/common/bottom.jsp"/>
+	</definition>
+	
+	<definition name="member_my_page" template="/common/layout.jsp">
+	<put-attribute name="top" value="/common/top2.jsp"/>
+	<put-attribute name="body" value="/member/member_my_page.jsp"/>
+	<put-attribute name="bottom" value="/common/bottom.jsp"/>
+	</definition>
+	
+	
 
 <!-- 문의게시판 -->
 
 <!-- 회원가입,로그인 -->
 
 <!-- 관리자페이지 -->
-
-	<definition name="admin_main" template="/common/layout2.jsp">
-	<put-attribute name="title" value="관리자페이지입니다"/>
-	<put-attribute name="top" value="/common/top1.jsp"/>
-	<put-attribute name="body" value="/common/main.jsp"/>
+	
+	<!-- 신규가게 등록 요청글 관련 -->
+	<!-- 신규가게 등록 쓰기화면 -->
+	<definition name="AshopWrite" template="/common/layout.jsp">
+	<put-attribute name="top" value="/common/top2.jsp"/>
+	<put-attribute name="body" value="/admin/admin_foods_write.jsp"/>
 	<put-attribute name="bottom" value="/common/bottom.jsp"/>
 	</definition>
 
-
+	<definition name="AshopWriteResult" template="/common/layout.jsp">
+	<put-attribute name="top" value="/common/top2.jsp"/>
+	<put-attribute name="body" value="/admin/admin_foods_writeResult.jsp"/>
+	<put-attribute name="bottom" value="/common/bottom.jsp"/>
+	</definition>
 	
+	
+
+	<!-- 신규가게 등록 요청 리스트 조회-->
+	<definition name="ApprovalRequestList" template="/common/layout.jsp">
+	<put-attribute name="top" value="/common/top2.jsp"/>
+	<put-attribute name="body" value="/admin/approval_request_list.jsp"/>
+	<put-attribute name="bottom" value="/common/bottom.jsp"/>
+	</definition>
+	
+	<!-- 신규가게등록 리스트 글 상세보기 -->
+	<definition name="ApprovalRequestDetail" template="/common/layout.jsp">
+	<put-attribute name="top" value="/common/top2.jsp"/>
+	<put-attribute name="body" value="/admin/approval_request_detail.jsp"/>
+	<put-attribute name="bottom" value="/common/bottom.jsp"/>
+	</definition>
+	
+	
+	<!-- 맛집추천리스트 관련 -->
+	<!-- 관리자 화면에서 맛집추천리스트 등록글 리스트 조회 -->
+	<definition name="AdminRBoardList" template="/common/layout.jsp">
+	<put-attribute name="top" value="/common/top2.jsp"/>
+	<put-attribute name="body" value="/rboard/admin_rboard_list.jsp"/>
+	<put-attribute name="bottom" value="/common/bottom.jsp"/>
+	</definition>
+		
+	<!-- 관리자 화면에서 맛집추천리스트 작성하기 -->
+	<definition name="AdminRBoardWrite" template="/common/layout.jsp">
+	<put-attribute name="top" value="/common/top2.jsp"/>
+	<put-attribute name="body" value="/rboard/admin_rboard_write.jsp"/>
+	<put-attribute name="bottom" value="/common/bottom.jsp"/>
+	</definition>
+	
+		<!-- 맛집추천리스트 등록글 상세 조회 -->
+	<definition name="rboardDetail" template="/common/layout.jsp">
+	<put-attribute name="top" value="/common/top2.jsp"/>
+	<put-attribute name="body" value="/rboard/foods_rboard_view.jsp"/>
+	<put-attribute name="bottom" value="/common/bottom.jsp"/>
+	</definition>
+	
+
 </tiles-definitions>
+	

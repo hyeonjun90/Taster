@@ -25,6 +25,7 @@ public class MainAction extends ActionSupport {
 	public String execute() throws Exception {
 		testBean = (PositionBean) sqlMapper.queryForObject("test");
 		
+		
 		return SUCCESS;
 	}
 

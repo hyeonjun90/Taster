@@ -2,156 +2,84 @@
 <!DOCTYPE sqlMap PUBLIC '-//ibatis.apache.org//DTD Sql Map 2.0//EN' 'http://ibatis.apache.org/dtd/sql-map-2.dtd'>
 <sqlMap>
 
-	<typeAlias alias="board" type="board.boardVO"/>
-	<typeAlias alias="comment" type="board.cboardVO"/>
+	<typeAlias alias="board" type="bean.QnABoardBean"/>
+	<typeAlias alias="comment" type="bean.CommentBean"/>
 	
 	<resultMap id="boardRes" class="board">
-		<result property="no" column="no" />
-		<result property="subject" column="subject" />
-		<result property="name" column="name" />
-		<result property="password" column="password" />
-		<result property="content" column="content" />
-		<result property="file_orgname" column="file_orgname" />
-		<result property="file_savname" column="file_savname" />
-		<result property="readhit" column="readhit" />
-		<result property="regdate" column="regdate" />
-		<result property="ref" column="ref" />
-		<result property="re_step" column="re_step" />
-		<result property="re_level" column="re_level" />
+		<result property ="b_idx" column="b_idx" />
+		<result property ="b_title" column="b_title" />
+		<result property ="b_content" column="b_content" />
+		<result property ="b_pwd" column="b_pwd" />
+		<result property ="b_regdate" column="b_regdate" />
+		<result property ="b_readCount" column="b_readCount" />
+ 		<result property ="member_id" column="member_id" />
 	</resultMap>
 	
 	<resultMap id="commentRes" class="comment">
-		<result property="no" column="no" />
-		<result property="originno" column="originno" />
-		<result property="name" column="name" />
-		<result property="password" column="password" />
-		<result property="content" column="content" />
-		<result property="regdate" column="regdate" />
+	
+		<!-- bean.CommentBean과 매칭 -->
+		<result property="c_idx" column="c_idx" />
+		<result property="b_idx" column="b_idx" />
+		<result property="c_content" column="c_content" />
+		<result property="c_regdate" column="c_regdate" />
 	</resultMap>
 
 
 	
 	
 	<!-- 공통으로 사용할 select 절 정의 -->
-	<sql id="select-all">
+	<sql id="qboard-select-all">
 		SELECT * FROM QNABOARD
 	</sql>
 	
-	<sql id="select-com">
+	<sql id="qboard-select-com">
 		SELECT * FROM COMMENTBOARD
 	</sql>
 	
-	<!-- 공통으로 사용할 where-no 절 정의 -->
-	<sql id="where-no">
-		WHERE no = #no#
+	<!-- 공통으로 사용할 where-b_idx 절 정의 -->
+	<sql id="qboard-where-b_idx">
+		WHERE b_idx = #b_idx#
+	</sql>
+	
+	<!-- 요 주의 -->
+	<!-- where-c_idx 절 정의 -->
+	<sql id="qboard-where-c_idx">
+		WHERE c_idx = #c_idx#
 	</sql>	
 	
 	
+	<!--게시판 리스트 보기 정의 -->
 	
-	
-	
-	<!-- select 쿼리문 정의 -->	
-	<select id="test" resultClass="bean.PositionBean">
-		select * from MEMBER_POSITION where p_idx=1
-	</select>
-	
-	
-	
-	<select id="selectAll" resultMap="boardRes" parameterClass="int">
-		<include refid="select-all" />
-		 ORDER BY ref DESC, re_step ASC
-	</select>
-	<select id="commentSelectAll" resultMap="commentRes" parameterClass="int">
-		SELECT * FROM COMMENTBOARD
-		 WHERE originno = #no#
-		 ORDER BY no DESC
-	</select>
-	<select id="selectOne" resultMap="boardRes" parameterClass="int">
-		<include refid="select-all" />
-		<include refid="where-no" />
-	</select>
-	<select id="selectSearchW" resultMap="boardRes" parameterClass="string">
-		<include refid="select-all" />
-		 WHERE name like #searchKeyword#
-		 ORDER BY no DESC
-	</select>
-	<select id="selectSearchS" resultMap="boardRes" parameterClass="string">
-		<include refid="select-all" />
-		 WHERE subject like #searchKeyword#
-		 ORDER BY no DESC
-	</select>
-	<select id="selectSearchC" resultMap="boardRes" parameterClass="string">
-		<include refid="select-all" />
-		 WHERE content like #searchKeyword#
-		 ORDER BY no DESC
-	</select>
-	<select id="selectLastNo" resultClass="board" parameterClass="int">
-		SELECT max(no) as no FROM QNABOARD
+	<select id="qboard-selectAll" resultMap="boardRes" >
+		<include refid="qboard-select-all" />
+		 ORDER BY b_idx DESC
 	</select>
 	
-	<select id="selectPassword" resultMap="boardRes">
-		<include refid="select-all"/>
-		<include refid="where-no" />
-		AND password = #password#
+	<!-- 글 상세보기 정의 -->
+	<select id="qboard-selectOne" resultMap="boardRes" parameterClass="int">
+		<include refid="qboard-select-all" />
+		<include refid="qboard-where-b_idx" />
 	</select>
 	
-	<select id="selectPassword2" resultMap="commentRes">
-		<include refid="select-com"/>
-		<include refid="where-no" />
-		AND password = #password#
-	</select>
 	
 	<!-- insert 쿼리문 정의 -->
 	<insert id="insertBoard" parameterClass="board">
-		INSERT INTO QNABOARD(NO, SUBJECT, NAME, PASSWORD, CONTENT, REGDATE,RE_STEP,RE_LEVEL,REF)
-		VALUES (QNABOARD_NO_SEQ.NEXTVAL, #subject#, #name#, #password#, #content#, #regdate#, #re_step#, #re_level#,QNABOARD_NO_SEQ.CURRVAL)
+		INSERT INTO QNABOARD(B_IDX, B_TITLE,MEMBER_ID,B_CONTENT, B_REGDATE,B_PWD)
+		VALUES (QNABOARD_NO_SEQ.NEXTVAL, #b_title#, #member_id#,#b_content#, #b_regdate#,#b_pwd#)
 	</insert>
 	
-	<insert id="insertBoardReply" parameterClass="board">
-		INSERT INTO QNABOARD(NO, SUBJECT, NAME, PASSWORD, CONTENT, REGDATE,RE_STEP,RE_LEVEL,REF)
-		VALUES (QNABOARD_NO_SEQ.NEXTVAL, #subject#, #name#, #password#, #content#, #regdate#, #re_step#, #re_level#,#ref#)
-	</insert>
-	
-	<insert id="insertComment" parameterClass="comment">
-		INSERT INTO COMMENTBOARD(NO, ORIGINNO, NAME, PASSWORD, CONTENT, REGDATE)
-		VALUES (COMMENTBOARD_NO_SEQ.NEXTVAL, #originno#, #name#, #password#, #content#, #regdate#)
-	</insert>
-	
-	<!-- update 쿼리문 정의 -->
-	<update id="updateBoard" parameterClass="board">
-	UPDATE QNABOARD SET SUBJECT = 	#subject#, 
-					NAME = #name#,
-					PASSWORD = #password#,
-					CONTENT = #content#
-	<include refid = "where-no" />
-	</update>
-	
-	<update id="updateFile" parameterClass="board">
-			UPDATE QNABOARD SET FILE_ORGNAME = #file_orgname#
-				,FILE_SAVNAME = #file_savname#
-			<include refid="where-no" />
-	</update>
-	
-	<update id="updateReadHit" parameterClass="board">
-		UPDATE QNABOARD SET READHIT = readHit + 1
-		<include refid="where-no" />
-	</update>
-	
-	<update id="updateReplyStep" parameterClass="board">
-		UPDATE QNABOARD SET re_step=re_step+1 WHERE ref=#ref# AND re_step>#re_step#
-		
-	</update>
 	
 	
-	
-	<!-- delete 쿼리문 정의 -->
-	<delete id="deleteBoard" parameterClass="board">
-		DELETE FROM QNABOARD
-		<include refid="where-no" />
-	</delete>
-	
-	<delete id="deleteComment" parameterClass="comment">
-		DELETE FROM COMMENTBOARD
-		<include refid="where-no" />
-	</delete>
 </sqlMap>
+
+
+
+
+
+
+
+
+
+
+
+
