@@ -20,18 +20,11 @@
 	 </transactionManager>
 	 
 	<sqlMap resource="/sql/memberSQL.xml" />
-<<<<<<< HEAD
-
-	<sqlMap resource="/sql/adminSQL.xml" />
-=======
 	<sqlMap resource="/sql/adminSQL.xml" />
 	<sqlMap resource="/sql/qboardSQL.xml" />
->>>>>>> branch 'master' of https://github.com/hyeonjun90/Taster
 	<sqlMap resource="/sql/rboardSQL.xml" />
-<<<<<<< HEAD
+
+
 
 </sqlMapConfig>
-=======
-	
-</sqlMapConfig>
->>>>>>> branch 'master' of https://github.com/hyeonjun90/Taster
+
