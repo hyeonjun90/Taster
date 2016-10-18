@@ -7,14 +7,22 @@
 			<result type="tiles">member_food_write</result>
 		</action>
 		
+		<!-- 문의하기 맵핑 -->
 		<action name="qWrite" class="qboard.QWriteAction" method="execute">
 			<result type="tiles">qboard_write</result>
 		</action>
-
+		
+		<!-- 사진 눌렀을 때 식당 상세보기로 가는 액션 -->
 		<action name="foodDatail" class="foods.FoodsDetailAction" method="execute">
 			<result type="tiles">foods_detail</result>
 		</action>
 		
+		<!-- 식당등록 맵핑 -->
+		<action name="shopAdd" class="member.ShopAddAction" method="execute">
+			<result type="tiles">member_foods_write</result>
+		</action>
+		
+		<!-- 마이페이지 액션 -->
 		<action name="memberMypage" class="member.MemberMyPageAction" method="execute">
 			<result type="tiles">member_my_page</result>
 		</action>
