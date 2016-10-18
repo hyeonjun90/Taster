@@ -3,34 +3,34 @@
 <struts>
 	<package name="memberJoin" extends="struts-default">
 		<action name="memberJoin" class="member.MemberJoinAction" method="form">
-			<result>/member/member_join.jsp</result>
+			<result type="tiles">member_join</result>
 		</action>
 		
 		<action name="memberJoinOk" class="member.MemberJoinAction" method="execute">
-			<result>/member/member_join_success.jsp</result>
+			<result type="tiles">member_join_success</result>
 		</action>
 		
 		<action name="idCheck" class="member.MemberJoinAction" method="idCheck">
-			<result>/member/member_idCheck.jsp</result>
+			<result type="tiles">member_idCheck</result>
 		</action>
 		
 		<action name="zipCode" class="member.MemberZipcodeAction" method="zipcode">
-			<result>/member/member_zipcode.jsp</result>
+			<result type="tiles">member_zipcode</result>
 		</action>
 		
 		<action name="zipcodeSearch" class="member.MemberZipcodeAction" method="zipcodeSearch">
-			<result>/member/member_zipcode_search.jsp</result>
+			<result type="tiles">member_zipcode_search</result>
 		</action>
 	</package>  
 	
 	<package name="memberLogin" extends="struts-default">
 		<action name="memberLogin" class="member.MemberLoginAction" method="execute" >
-			<result>/common/main.jsp</result>
+			<result type="tiles">/common/main.jsp</result>
 			<result name="error">/member/member_login_fail.jsp</result>
 		</action>
 		
 		<action name="memberLogout" class="member.MemberLoginAction" method="logout">
-			<result>/common/main.jsp</result>
+			<result type="tiles">/common/main.jsp</result>
 		</action>
 	</package>
 </struts>

@@ -109,9 +109,8 @@ public class MemberMyPageAction extends ActionSupport {
 		return SUCCESS;
 	}
 	
+//---------- 즐겨찾기 List---------------------------------------------------------------
 	
-	
-	/////////////////////////////////////////////////////
 	public String bookmarkListForm() throws Exception{
 		
 		bookmarkList=sqlMapper.queryForList("bookmarkList-selectAll", "1234");
@@ -120,8 +119,10 @@ public class MemberMyPageAction extends ActionSupport {
 		
 		//해당 리뷰의 첫번째 사진만 뽑아 오기 위한 for구문(image는 주소기 떄문에 ,로 나누어서 첫번째 이비지 주소값만 가져온다) 
 		for(int i=0; i<bookmarkList.size(); i++){
+			
 			String image = bookmarkList.get(i).getR_image();
 			String[] imageValues = image.split(","); 
+			
 			if(imageValues.length == 0) {
 				image = "등록된 사진 없음.";
 			} else {
@@ -133,6 +134,7 @@ public class MemberMyPageAction extends ActionSupport {
 			if(image ==""){
 			continue;
 			}
+			
 		}
 		
 		page2= new PagingAction(currentPage2, totalCount2, blockCount2, blockPage2);
