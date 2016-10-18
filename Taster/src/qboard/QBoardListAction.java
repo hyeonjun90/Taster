@@ -11,28 +11,28 @@ import java.io.IOException;
 
 import java.net.*;
 import bean.QnABoardBean;
-import common.PagingAction;
 
 
 public class QBoardListAction extends ActionSupport{
 
-	public static Reader reader;
-	public static SqlMapClient sqlMapper;
+   public static Reader reader;
+   public static SqlMapClient sqlMapper;
 
-	
-	private List<QnABoardBean> list = new ArrayList<QnABoardBean>();
-	
-	
-	private String searchKeyword;
-	private int searchNum;
-	
+   
+   private List<QnABoardBean> list = new ArrayList<QnABoardBean>();
+   
+   
+   private String searchKeyword;
+   private int searchNum;
+   
+
 
 	private int currentPage = 1;
 	private int totalCount;
 	private int blockCount = 10;
 	private int blockPage = 5;
 	private String pagingHtml;
-	private PagingAction page;
+	private QPagingAction page;
 	private int num = 0;
 
 
@@ -57,7 +57,7 @@ public class QBoardListAction extends ActionSupport{
 		list = sqlMapper.queryForList("qboard-selectAll");
 		
 		totalCount = list.size();
-		page = new PagingAction(currentPage, totalCount, blockCount, blockPage, num, "");
+		page = new QPagingAction(currentPage, totalCount, blockCount, blockPage, num, "");
 		pagingHtml = page.getPagingHtml().toString();
 		
 		int lastCount = totalCount;
@@ -87,7 +87,7 @@ public class QBoardListAction extends ActionSupport{
 		*/
 		
 		totalCount = list.size();
-		page = new PagingAction(currentPage, totalCount, blockCount, blockPage, searchNum, getSearchKeyword());
+		page = new QPagingAction(currentPage, totalCount, blockCount, blockPage, searchNum, getSearchKeyword());
 		pagingHtml = page.getPagingHtml().toString();
 		
 		int lastCount = totalCount;
@@ -101,72 +101,73 @@ public class QBoardListAction extends ActionSupport{
 
 
 
-	public List<QnABoardBean> getList() {
-		return list;
-	}
 
-	public void setList(List<QnABoardBean> list) {
-		this.list = list;
-	}
+   public List<QnABoardBean> getList() {
+      return list;
+   }
 
-	public int getCurrentPage() {
-		return currentPage;
-	}
+   public void setList(List<QnABoardBean> list) {
+      this.list = list;
+   }
 
-	public void setCurrentPage(int currentPage) {
-		this.currentPage = currentPage;
-	}
+   public int getCurrentPage() {
+      return currentPage;
+   }
 
-	public int getTotalCount() {
-		return totalCount;
-	}
+   public void setCurrentPage(int currentPage) {
+      this.currentPage = currentPage;
+   }
 
-	public void setTotalCount(int totalCount) {
-		this.totalCount = totalCount;
-	}
+   public int getTotalCount() {
+      return totalCount;
+   }
 
-	public int getBlockCount() {
-		return blockCount;
-	}
+   public void setTotalCount(int totalCount) {
+      this.totalCount = totalCount;
+   }
 
-	public void setBlockCount(int blockCount) {
-		this.blockCount = blockCount;
-	}
+   public int getBlockCount() {
+      return blockCount;
+   }
 
-	public int getBlockPage() {
-		return blockPage;
-	}
+   public void setBlockCount(int blockCount) {
+      this.blockCount = blockCount;
+   }
 
-	public void setBlockPage(int blockPage) {
-		this.blockPage = blockPage;
-	}
+   public int getBlockPage() {
+      return blockPage;
+   }
 
-	public String getPagingHtml() {
-		return pagingHtml;
-	}
+   public void setBlockPage(int blockPage) {
+      this.blockPage = blockPage;
+   }
 
-	public void setPagingHtml(String pagingHtml) {
-		this.pagingHtml = pagingHtml;
-	}
-	
-	
-	
-	public String getSearchKeyword() {
-		return searchKeyword;
-	}
-	
-	public void setSearchKeyword(String searchKeyword) {
-		this.searchKeyword = searchKeyword;
-	}
+   public String getPagingHtml() {
+      return pagingHtml;
+   }
 
-	public int getSearchNum() {
-		return searchNum;
-	}
+   public void setPagingHtml(String pagingHtml) {
+      this.pagingHtml = pagingHtml;
+   }
+   
+   
+   
+   public String getSearchKeyword() {
+      return searchKeyword;
+   }
+   
+   public void setSearchKeyword(String searchKeyword) {
+      this.searchKeyword = searchKeyword;
+   }
 
-	public void setSearchNum(int searchNum) {
-		this.searchNum = searchNum;
-	}
-	
-	
+   public int getSearchNum() {
+      return searchNum;
+   }
+
+   public void setSearchNum(int searchNum) {
+      this.searchNum = searchNum;
+   }
+   
+   
 
 }

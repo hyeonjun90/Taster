@@ -42,7 +42,7 @@
 		</tr>
 		
 		<tr>
-			<Td bgcolor="#F4F4F4"> 작성일</Td>
+			<Td bgcolor="#F4F4F4"> 작성일</Td>   
 			<td bgcolor="#FFFFFF">&nbsp; &nbsp; <s:property value="resultClass.r_regdate"/></td>
 		</tr>
 		
@@ -165,9 +165,9 @@
 					</s:param>
 				</s:url>
 				
-			<input type="button" value="승인하기" class="inputb" onClick="javascript:location.href='writeForm.action?currentpage=<s:property value="currentPage"/>';">
-			<input type="button" value="거부하기" class="inputb" onClick="javascript:location.href='writeForm.action?currentpage=<s:property value="currentPage"/>';">
-			<input name="list" type="button" value=" 목 록 " class="inputb" onClick="javascript:location.href='listAction.action?currentPage=<s:property value="currentPage"/>'">
+			<input type="button" value="승인하기" class="inputb" onClick="javascript:location.href='ApprovalRequestOk.action?currentpage=<s:property value="currentPage"/>';">
+			<input type="button" value="거부하기" class="inputb" onClick="javascript:location.href='ApprovalRequestNok.action?currentpage=<s:property value="currentPage"/>';">
+			<input name="list" type="button" value=" 목 록 " class="inputb" onClick="javascript:location.href='approvalRequestList.action?currentPage=<s:property value="currentPage"/>'">
  			</td>
  		</tr>
  	</table>

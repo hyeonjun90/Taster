@@ -1,6 +1,6 @@
 package bean;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class ReviewBean { //식당 리뷰 bean
 	private int review_idx;		// 기본키
