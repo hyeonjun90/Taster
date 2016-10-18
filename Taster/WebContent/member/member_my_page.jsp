@@ -25,7 +25,8 @@
 		<td align="center">My BOOKMARK RESTAURANT</td>
 	</tr>
 	
-	
+	<tr style="vertical-align">
+		<td style="width:50% ; border-right:1px solid red; padding :50px; align:center">
 			<c:forEach var="reviewList" items="${reviewList}">
 				<tr>
 					<td>${reviewList.r_image}</td>
@@ -37,9 +38,12 @@
 					<td>${reviewList.shop_name}</td>
 				</tr>
 			</c:forEach>
+			
 			<c:if test="${empty reviewList }">
 				등록된 식당이 없습니다
 			</c:if>
+		</td>
+		<td align="center">
 			<c:forEach var="bookmarkList" items="${bookmarkList}">
 				<tr>
 					<td>${bookmarkList.r_image2}</td>
@@ -48,6 +52,12 @@
 					<td>${bookmarkList.shop_name2}</td>
 				</tr>
 			</c:forEach>
+			
+			<c:if test="${empty reviewList }">
+				등록된 식당이 없습니다
+			</c:if>
+		</td>
+	</tr>
 	
 </table>
 
