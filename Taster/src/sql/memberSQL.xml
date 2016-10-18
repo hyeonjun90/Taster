@@ -28,45 +28,17 @@
 		<result property="shop_new" column="shop_new"/>
 	</resultMap>
 	
-<<<<<<< HEAD
+
 	<!--reviewList select문 선언 -->
 	<select id="reviewList-selectAll" resultMap="myPageRes" parameterClass="String">
 		select r_image, shop_name from review r inner join shop s on r.shop_idx=s.shop_idx
 		where member_id=#member_id# order by review_idx desc
-=======
-<!-- 공통으로 사용할  myshop select-->
-	<sql id="myshop-select-all">
-		SELECT*FROM REVIEW
-	</sql>
-	
-<!--공통으로 사용할 myshop where-->
-		<!--회원 아이디  -->
-	<sql id="myshop-where-m-id">
-		WHERE member_id=#member_idx#
-	</sql>
-		<!--리뷰 인덱스  -->
-	<sql id="myshop-where-r-idx">
-		WHERE review_idx=#review_idx#
-	</sql>
-		<!-- 식당 인덱스 -->
-	<sql id="myshop-where-s-idx">
-		WHERE shop_idx=#shop_idx#
-	</sql>
-
 	
 	<!-- 테스트 코드 -->
 	<select id="test" resultClass="bean.PositionBean">
 		select * from Member_Position where p_idx=1
 	</select>
-	
-	<!-- myshop select 회원 아이디에 해당하는 리뷰 전체 검색 -->
-	<select id="myshop-m-selectAll" resultMap="reviewRes" parameterClass="int">
-		<include refid="myshop-select-all"/>
-		<include refid="myshop-where-m-id"/>
-		ORDER BY review_idx DESC
->>>>>>> branch 'master' of https://github.com/hyeonjun90/Taster
-	</select>
-	
+
 	<!-- bookmarkList select문 선언 -->
 	<select id="bookmarkList-selectAll" resultMap="myPageRes" parameterClass="String">
 		select r_image, shop_name from review r left join shop s on r.shop_idx=s.shop_idx
