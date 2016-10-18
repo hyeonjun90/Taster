@@ -18,17 +18,20 @@ public static SqlMapClient sqlMapper;
 private ShopBean paramClass; //파라미터를 저장 할 객체
 private ShopBean resultClass;// 쿼리 결과 값 저장 객체
 	
-//private String message;
-//private String message1;
-//private String message2;
-//private String message3;
-//private String message4;
+
 
 private String shop_name;
 private String shop_tel;
 private String shop_price;
-//private String shop_addr;
-//private String korean;
+private String shop_kind;		// 업종
+private String shop_addr1;		// 식당주소1(특별시, 광역시, 도)
+//private String shop_addr2;		// 식당주소2(시, 구, 군)
+//private String shop_addr3;		// 식당주소3(동)
+//private String shop_addr4;		// 식당주소4(나머지)
+private String shop_holiday;	// 휴일
+private int shop_readCount;		// 조회수
+private int shop_new; 			// 신규 여부(1.신규, 2.비신규)
+
 
 public AdminShopAddAction() throws IOException {
 	
@@ -50,15 +53,17 @@ public String execute() throws Exception  {
 	paramClass.setShop_name(shop_name);
 	paramClass.setShop_tel(shop_tel);
 	paramClass.setShop_price(shop_price);
+	paramClass.setShop_kind(shop_kind);
+	paramClass.setShop_addr1(shop_addr1);
+	//paramClass.setShop_addr2(shop_addr2);
+	//paramClass.setShop_addr3(shop_addr3);
+	//paramClass.setShop_addr4(shop_addr4);
+	paramClass.setShop_holiday(shop_holiday);
+	paramClass.setShop_readCount(shop_readCount);
+	paramClass.setShop_new(shop_new);
+	
 	
 	sqlMapper.insert("Shop-insertAshop",paramClass);
-	
-
-	//message = shop_name + "";
-	//message1 = shop_tel + "";
-	//message2 = shop_price + "";
-	//message3 = shop_addr + "";
-	//message4 = korean + "";
 	
 	return "success";
 }
@@ -111,6 +116,78 @@ public String getShop_price() {
 
 public void setShop_price(String shop_price) {
 	this.shop_price = shop_price;
+}
+
+public static Reader getReader() {
+	return reader;
+}
+
+public static void setReader(Reader reader) {
+	AdminShopAddAction.reader = reader;
+}
+
+public String getShop_kind() {
+	return shop_kind;
+}
+
+public void setShop_kind(String shop_kind) {
+	this.shop_kind = shop_kind;
+}
+
+public String getShop_addr1() {
+	return shop_addr1;
+}
+
+public void setShop_addr1(String shop_addr1) {
+	this.shop_addr1 = shop_addr1;
+}
+/**
+public String getShop_addr2() {
+	return shop_addr2;
+}
+
+public void setShop_addr2(String shop_addr2) {
+	this.shop_addr2 = shop_addr2;
+}
+
+public String getShop_addr3() {
+	return shop_addr3;
+}
+
+public void setShop_addr3(String shop_addr3) {
+	this.shop_addr3 = shop_addr3;
+}
+
+public String getShop_addr4() {
+	return shop_addr4;
+}
+
+public void setShop_addr4(String shop_addr4) {
+	this.shop_addr4 = shop_addr4;
+}
+**/
+public String getShop_holiday() {
+	return shop_holiday;
+}
+
+public void setShop_holiday(String shop_holiday) {
+	this.shop_holiday = shop_holiday;
+}
+
+public int getShop_readCount() {
+	return shop_readCount;
+}
+
+public void setShop_readCount(int shop_readCount) {
+	this.shop_readCount = shop_readCount;
+}
+
+public int getShop_new() {
+	return shop_new;
+}
+
+public void setShop_new(int shop_new) {
+	this.shop_new = shop_new;
 }
 
 

@@ -28,23 +28,40 @@
 
 <tr>
 <td width="100">전화번호:</td>
-<td>${message1}</td>
+<td>${shop_tel}</td>
 </tr>
 
 <tr>
 <td width="100" >가격:</td>
-<td>${message2}</td>
+<td>${shop_price}</td>
 </tr>
 
 <tr>
 <td width="100">주소:</td>
-<td>${message3}</td>
+<td>${shop_addr1}</td>
 </tr>
+
 
 <tr>
 <td width="100">업종:</td>
-<td>${message4}</td>
+<td>${shop_kind}</td>
 </tr>
+
+<tr>
+<td width="100">신규:</td>
+<td>${shop_new}</td>
+</tr>
+
+<tr>
+<td width="100">휴일:</td>
+<td>${shop_holiday}</td>
+</tr>
+
+<tr>
+<td width="100">조회수:</td>
+<td>${shop_readCount}</td>
+</tr>
+
 </table>
 
 <s:submit align="center" value="목록보기"/>

@@ -30,12 +30,6 @@
 		</tr>
 	
 	</table>
-	
-<br>
-
-
-
-
 <s:form action="AshopWriteAction" theme="simple">
 		<tr>
 			<td width="100">
@@ -44,7 +38,8 @@
 			<td width="500">
 				<s:textfield name="shop_name" theme="simple" value="%{resultClass.shop_name}" cssStyle="width:370px"/>
 			</td>
-		</tr>
+		</tr> 
+		
 		<br>
        <tr>
 		<td width="100">
@@ -60,42 +55,66 @@
 				<font color="#FF0000">*</font> 가격대:
 			</td>
 			<td width="500">
-			&nbsp;&nbsp;&nbsp;<s:textfield name="shop_price" theme="simple" value="%{resultClass.shop_price}"   cssStyle="width:370px"  />
+			<s:textfield name="shop_price" theme="simple" value="%{resultClass.shop_price}"   cssStyle="width:370px"  />
 			</td>
 		</tr>
-		<br>
+		  <br>
 		<tr>
 		<td width="100">
 				<font color="#FF0000">*</font> 주소:
 			</td>
 			<td width="500">
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <s:textfield name="shop_addr" theme="simple"  cssStyle="width:370px"  />
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <s:textfield name="shop_addr1" theme="simple" value="%{resultClass.shop_addr1}" cssStyle="width:370px"/>
+			<input type="button" name="zipcodea" class="input" value="주소 검색"  onclick="openZipcode(this.form)"/><br>
+			</td>
+			
+		</tr>
+		
+		<br>
+		<tr>
+		<td width="100">
+				<font color="#FF0000">*</font> 휴일:
+			</td>
+			<td width="500">
+			<s:textfield name="shop_holiday" theme="simple" value="%{resultClass.shop_holiday}"  cssStyle="width:370px"  />
+			</td>
+			
+		</tr>
+		
+		<br>
+		<tr>
+		<td width="100">
+				<font color="#FF0000">*</font> 신규:
+			</td>
+			<td width="500">
+			<s:textfield name="shop_new" theme="simple" value="%{resultClass.shop_new}"  cssStyle="width:370px"  />
+			</td>
+		</tr>
+		
+		<br>
+		<tr>
+		<td width="100">
+				<font color="#FF0000">*</font> 조회수:
+			</td>
+			<td width="500">
+			<s:textfield name="shop_readCount" theme="simple" value="%{resultClass.shop_readCount}"  cssStyle="width:370px"  />
 			</td>
 			
 		</tr>
 		<tr>
 			<td colspan="2">
-			 <input type="radio" name="korean" value="한식"> 한식 
+			 <input type="radio" name="shop_kind" value="한식"> 한식 
 		    &nbsp;
 			
-			<input type="radio" name="korean" value="중식"> 중식
+			<input type="radio" name="shop_kind" value="중식"> 중식
 		    &nbsp;
 			
-			<input type="radio" name="korean" value="양식"> 양식 
+			<input type="radio" name="shop_kind" value="양식"> 양식 
 		    &nbsp;
 			<br>
 			<s:submit value="등록하기" align="center" />
 			</td>
 		</tr>
 		</s:form>
-		
-		
-		
-		
-		
-
-
-	    
-		
 </body>
 </html>
