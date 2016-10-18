@@ -10,8 +10,8 @@ import java.io.Reader;
 import java.io.IOException;
 
 import java.net.*;
-
 import bean.QnABoardBean;
+
 
 public class QBoardListAction extends ActionSupport{
 
@@ -26,77 +26,79 @@ public class QBoardListAction extends ActionSupport{
    private int searchNum;
    
 
-   private int currentPage = 1;
-   private int totalCount;
-   private int blockCount = 10;
-   private int blockPage = 5;
-   private String pagingHtml;
-   private QpagingAction page;
-   private int num = 0;
+
+	private int currentPage = 1;
+	private int totalCount;
+	private int blockCount = 10;
+	private int blockPage = 5;
+	private String pagingHtml;
+	private QPagingAction page;
+	private int num = 0;
 
 
-   public QBoardListAction() throws IOException
-   {
-      reader = Resources.getResourceAsReader("sqlMapConfig.xml");
-      sqlMapper = SqlMapClientBuilder.buildSqlMapClient(reader);
-      reader.close();      
-      
-   }
-   
-   public String execute() throws Exception {
-      
-      
-      if(getSearchKeyword() != null)
-      {
-         return search();
-      }
-      
-      // 차근차근 살펴볼것
-      
-      list = sqlMapper.queryForList("qboard-selectAll");
-      
-      totalCount = list.size();
-      page = new QpagingAction(currentPage, totalCount, blockCount, blockPage, num, "");
-      pagingHtml = page.getPagingHtml().toString();
-      
-      int lastCount = totalCount;
-      
-      if(page.getEndCount() < totalCount)
-         lastCount = page.getEndCount() + 1;
-      
-      list = list.subList(page.getStartCount(), lastCount);
-      return SUCCESS;
-   }
-   
-   public String search() throws Exception {
-      
-      searchKeyword = new String(searchKeyword.getBytes("iso-8859-1"),"euc-kr") ;
-      System.out.println(searchKeyword);
-      System.out.println(searchNum);
-      if(searchNum == 0){
-         list = sqlMapper.queryForList("qboard-selectSearchW", "%"+getSearchKeyword()+"%");
-      }
-      if(searchNum == 1){
-         list = sqlMapper.queryForList("qboard-selectSearchS", "%"+getSearchKeyword()+"%");
-      }
-      /*
-      if(searchNum == 2){
-         list = sqlMapper.queryForList("qboard-selectSearchC", "%"+getSearchKeyword()+"%");   
-      }
-      */
-      
-      totalCount = list.size();
-      page = new QpagingAction(currentPage, totalCount, blockCount, blockPage, searchNum, getSearchKeyword());
-      pagingHtml = page.getPagingHtml().toString();
-      
-      int lastCount = totalCount;
-      
-      if(page.getEndCount() < totalCount)
-         lastCount = page.getEndCount() + 1;
-      
-      list = list.subList(page.getStartCount(), lastCount);
-      return SUCCESS;
-   }
+	public QBoardListAction() throws IOException
+	{
+		reader = Resources.getResourceAsReader("sqlMapConfig.xml");
+		sqlMapper = SqlMapClientBuilder.buildSqlMapClient(reader);
+		reader.close();		
+		
+	}
+	
+	public String execute() throws Exception {
+		
+		
+		if(getSearchKeyword() != null)
+		{
+			return search();
+		}
+		
+		// 차근차근 살펴볼것
+		
+		list = sqlMapper.queryForList("qboard-selectAll");
+		
+		totalCount = list.size();
+		page = new QPagingAction(currentPage, totalCount, blockCount, blockPage, num, "");
+		pagingHtml = page.getPagingHtml().toString();
+		
+		int lastCount = totalCount;
+		
+		if(page.getEndCount() < totalCount)
+			lastCount = page.getEndCount() + 1;
+		
+		list = list.subList(page.getStartCount(), lastCount);
+		return SUCCESS;
+	}
+	
+	public String search() throws Exception {
+		
+		searchKeyword = new String(searchKeyword.getBytes("iso-8859-1"),"euc-kr") ;
+		System.out.println(searchKeyword);
+		System.out.println(searchNum);
+		if(searchNum == 0){
+			list = sqlMapper.queryForList("qboard-selectSearchW", "%"+getSearchKeyword()+"%");
+		}
+		if(searchNum == 1){
+			list = sqlMapper.queryForList("qboard-selectSearchS", "%"+getSearchKeyword()+"%");
+		}
+		/*
+		if(searchNum == 2){
+			list = sqlMapper.queryForList("qboard-selectSearchC", "%"+getSearchKeyword()+"%");	
+		}
+		*/
+		
+		totalCount = list.size();
+		page = new QPagingAction(currentPage, totalCount, blockCount, blockPage, searchNum, getSearchKeyword());
+		pagingHtml = page.getPagingHtml().toString();
+		
+		int lastCount = totalCount;
+		
+		if(page.getEndCount() < totalCount)
+			lastCount = page.getEndCount() + 1;
+		
+		list = list.subList(page.getStartCount(), lastCount);
+		return SUCCESS;
+	}
+
 
 
 

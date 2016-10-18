@@ -9,8 +9,16 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="/Taster/css/style.css" />
 </head>
+  
 <body>
+
+
 <div style="width:100%; height:300px; background-color:#fff">
+<<<<<<< HEAD
+	회원 등급 : <s:property value="testBean.member_level"/>
+=======
+>>>>>>> branch 'master' of https://github.com/hyeonjun90/Taster
 </div>
+
 </body>
-</html> 
+</html>

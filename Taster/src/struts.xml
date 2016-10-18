@@ -15,10 +15,6 @@
 	<include file="mypage.xml" />
 	<include file="qboard.xml" />
 	 
-	
-	
-
-	
 </struts>
 
 
