@@ -10,9 +10,7 @@
 <link rel="stylesheet" href="/Taster/css/style.css"/>
 </head>
 <body>
-<div class="top_module">
-<jsp:include page="/common/top2.jsp"></jsp:include>
-</div>
+<div class="top_module"></div>
 
 <table style="width:100%;" class="top_table">
 	<tr>
@@ -21,14 +19,39 @@
 	</tr>
 </table>
 	
-<table style="width:100%; margin-top:-50px">
+<table style="width:100%; margin-top:10px">
 	<tr>
-		<td>MY REVIEW RESTAURANT</td>
-		<td>My BOOKMARK RESTAURANT</td>
+		<td align="center">MY REVIEW RESTAURANT</td>
+		<td align="center">My BOOKMARK RESTAURANT</td>
 	</tr>
+	
+	
+			<c:forEach var="reviewList" items="${reviewList}">
+				<tr>
+					<td>${reviewList.r_image}</td>
+					<c:if test="${empty reviewList.r_image}">
+						<img src="/Taster/images/1.jpg"/>
+					</c:if>
+				</tr>
+				<tr>
+					<td>${reviewList.shop_name}</td>
+				</tr>
+			</c:forEach>
+			<c:if test="${empty reviewList }">
+				등록된 식당이 없습니다
+			</c:if>
+			<c:forEach var="bookmarkList" items="${bookmarkList}">
+				<tr>
+					<td>${bookmarkList.r_image2}</td>
+				</tr>
+				<tr>
+					<td>${bookmarkList.shop_name2}</td>
+				</tr>
+			</c:forEach>
+	
 </table>
 
-<jsp:include page="/common/bottom.jsp"></jsp:include>
+
 
 </body>
 </html>
