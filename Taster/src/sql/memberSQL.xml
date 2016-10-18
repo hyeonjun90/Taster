@@ -46,14 +46,4 @@
 		where member_id = #member_id#
 		order by bookmark_idx DESC, review_idx desc
 	</select>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
 </sqlMap>

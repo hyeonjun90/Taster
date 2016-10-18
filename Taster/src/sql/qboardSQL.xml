@@ -49,6 +49,7 @@
 	
 	
 	<!--게시판 리스트 보기 정의 -->
+	
 	<select id="qboard-selectAll" resultMap="boardRes" >
 		<include refid="qboard-select-all" />
 		 ORDER BY b_idx DESC
