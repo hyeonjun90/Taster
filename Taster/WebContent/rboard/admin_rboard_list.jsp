@@ -20,7 +20,7 @@
 	<table width="1000" border="1" cellspacing="1" cellpadding="2">
 	<tr align="right">
 			<td colspan="9">
-			<input type="button" value="새글 작성하기" class="inputb" onClick="javascript:location.href='writeForm.action?currentpage=<s:property value="currentPage"/>';">
+			<input type="button" value="새글 작성하기" class="inputb" onClick="javascript:location.href='rboardWriteForm.action?currentpage=<s:property value="currentPage"/>';">
 			</td>
 		</tr>
 		
@@ -74,20 +74,10 @@
 		</tr>
 		</s:if>
 		
-		<tr align="right">
-			<td colspan="9">
-			<input type="button" value="승인하기" class="inputb" onClick="javascript:location.href='writeForm.action?currentpage=<s:property value="currentPage"/>';">
-			<input type="button" value="거부하기" class="inputb" onClick="javascript:location.href='writeForm.action?currentpage=<s:property value="currentPage"/>';">
-			</td>
-		</tr>
-		
 		<tr align="center">
 			<td colspan="9"><s:property value="pagingHtml" escape="false"/></td>
 		</tr>
-		
 
-		
-				
 	</table>
 
 </body>
