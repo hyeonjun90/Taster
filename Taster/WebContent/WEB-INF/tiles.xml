@@ -62,25 +62,21 @@
 <!-- 마이페이지 -->
 <!-- 마이페이지 메인페이지 tiles 구성 샘플 -->
 
-	<definition name="mypage_main" template="/common/layout.jsp">
-	<put-attribute name="top" value="/common/top2.jsp"/>
-	<put-attribute name="body" value="/member/member_my_page.jsp"/>
-	<put-attribute name="bottom" value="/common/bottom.jsp"/>
-	</definition>
-
 <!-- 이 아래로 마이페이지 나머지 페이지구성 tiles를 넣어주세요 -->
-	<definition name="shop_add_form" template="/common/layout.jsp">
+	<definition name="member_foods_write" template="/common/layout.jsp">
 	<put-attribute name="top" value="/common/top2.jsp"/>
 	<put-attribute name="body" value="/member/member_food_write.jsp"/>
 	<put-attribute name="bottom" value="/common/bottom.jsp"/>
 	</definition>
 	
+	<!-- 문의하기 -->
 	<definition name="qboard_write" template="/common/layout.jsp">
 	<put-attribute name="top" value="/common/top2.jsp"/>
 	<put-attribute name="body" value="/qboard/qboard_write.jsp"/>
 	<put-attribute name="bottom" value="/common/bottom.jsp"/>
 	</definition>
 	
+	<!-- 마이페이지 메인 -->
 	<definition name="member_my_page" template="/common/layout.jsp">
 	<put-attribute name="top" value="/common/top2.jsp"/>
 	<put-attribute name="body" value="/member/member_my_page.jsp"/>
