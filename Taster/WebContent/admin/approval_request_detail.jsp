@@ -165,9 +165,9 @@
 					</s:param>
 				</s:url>
 				
-			<input type="button" value="승인하기" class="inputb" onClick="javascript:location.href='writeForm.action?currentpage=<s:property value="currentPage"/>';">
-			<input type="button" value="거부하기" class="inputb" onClick="javascript:location.href='writeForm.action?currentpage=<s:property value="currentPage"/>';">
-			<input name="list" type="button" value=" 목 록 " class="inputb" onClick="javascript:location.href='listAction.action?currentPage=<s:property value="currentPage"/>'">
+			<input type="button" value="승인하기" class="inputb" onClick="javascript:location.href='ApprovalRequestOk.action?currentpage=<s:property value="currentPage"/>';">
+			<input type="button" value="거부하기" class="inputb" onClick="javascript:location.href='ApprovalRequestNok.action?currentpage=<s:property value="currentPage"/>';">
+			<input name="list" type="button" value=" 목 록 " class="inputb" onClick="javascript:location.href='approvalRequestList.action?currentPage=<s:property value="currentPage"/>'">
  			</td>
  		</tr>
  	</table>
