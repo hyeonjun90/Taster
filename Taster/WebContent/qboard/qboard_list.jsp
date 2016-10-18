@@ -33,8 +33,8 @@
 
 	<s:iterator value="list" status="stat">
 		<s:url id="viewURL" action="viewAction">
-			<s:param name="no">
-				<s:property value="no" />
+			<s:param name="b_idx">
+				<s:property value="b_idx" />
 			</s:param>
 			<s:param name="currentPage">
 				<s:property value="currentPage" />
@@ -42,16 +42,19 @@
 		</s:url>
 	
 		<tr>
-			<td><s:property value="no" /></td>
+			<td><s:property value="b_idx" /></td>
 			<td align="left">
+				<!--  
 				<s:if test="re_level != 0">
 					<c:forEach var = "i" begin = "${re_level}" end = "0">&nbsp;</c:forEach>→
-				</s:if>	
- 				<s:a href="%{viewURL}"><s:property value="subject" /></s:a>
+				</s:if>
+				-->
+					
+ 				<s:a href="%{viewURL}"><s:property value="b_title" /></s:a>
  			</td>
-			<td><s:property value="name" /></td>
-			<td><s:property value="regdate" /></td>
-			<td><s:property value="readhit" /></td>
+			<td><s:property value="member_id" /></td>
+			<td><s:property value="b_regdate" /></td>
+			<td><s:property value="b_readcount" /></td>
 		</tr>
 
 		<tr bgcolor="#777777">
@@ -72,7 +75,7 @@
 
 	<tr align="right">
 		<td colspan="5">
-			<input type="button" value="글쓰기" class="inputb" onClick="javascript:location.href='writeForm.action?currentPage=<s:property value="currentPage" />';" />
+			<input type="button" value="글쓰기" class="inputb" onClick="javascript:location.href='qWriteForm.action?currentPage=<s:property value="currentPage" />';" />
 		</td>
 	</tr>
 
@@ -82,7 +85,7 @@
 				<select name="searchNum" >
 					<option value="0">작성자</option>
 					<option value="1">제목</option>
-					<option value="2">내용</option>
+					<!--<option value="2">내용</option>-->
 				</select>
 				<s:textfield name="searchKeyword" theme="simple" value="" cssStyle="width:120px" maxlength="20" />
 				<input name="submit" type="submit" value="검색" class="inputb">

@@ -1,6 +1,6 @@
 package bean;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class QnABoardBean { //1:1문의
 	private int b_idx;			// 기본키
