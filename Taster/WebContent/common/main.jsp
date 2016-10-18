@@ -11,7 +11,6 @@
 </head>
 <body>
 <div style="width:100%; height:300px; background-color:#fff">
-	회원 등급 : <s:property value="testBean.member_level"/> <!-- 테스트 코드 -->
 </div>
 </body>
 </html> 
