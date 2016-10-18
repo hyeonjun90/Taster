@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN" "http://struts.apache.org/dtds/struts-2.0.dtd">
 <struts>
-	<package name="memberJoin" extends="struts-default">
+	<package name="memberJoin" extends="struts-default, tiles-default">
 		<action name="memberJoin" class="member.MemberJoinAction" method="form">
 			<result type="tiles">member_join</result>
 		</action>
@@ -23,14 +23,18 @@
 		</action>
 	</package>  
 	
-	<package name="memberLogin" extends="struts-default">
+	<package name="memberLogin" extends="struts-default, tiles-default">
 		<action name="memberLogin" class="member.MemberLoginAction" method="execute" >
-			<result type="tiles">/common/main.jsp</result>
+			<result type="redirect-action">
+				<param name="actionName">main</param>
+			</result> 
 			<result name="error">/member/member_login_fail.jsp</result>
 		</action>
 		
 		<action name="memberLogout" class="member.MemberLoginAction" method="logout">
-			<result type="tiles">/common/main.jsp</result>
+			<result type="redirect-action">
+				<param name="actionName">main</param>
+			</result> 
 		</action>
 	</package>
 </struts>
