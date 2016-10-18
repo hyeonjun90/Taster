@@ -31,7 +31,7 @@ public class QBoardListAction extends ActionSupport{
 	private int blockCount = 10;
 	private int blockPage = 5;
 	private String pagingHtml;
-	private QpagingAction page;
+	private  QpagingAction page;
 	private int num = 0;
 
 
