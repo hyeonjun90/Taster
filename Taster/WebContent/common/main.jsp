@@ -14,4 +14,4 @@
 	회원 등급 : <s:property value="testBean.member_level"/> <!-- 테스트 코드 -->
 </div>
 </body>
-</html> 
+</html>

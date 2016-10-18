@@ -10,8 +10,9 @@ import java.io.Reader;
 import java.io.IOException;
 
 import java.net.*;
-
 import bean.QnABoardBean;
+import common.PagingAction;
+
 
 public class QBoardListAction extends ActionSupport{
 
@@ -31,7 +32,7 @@ public class QBoardListAction extends ActionSupport{
 	private int blockCount = 10;
 	private int blockPage = 5;
 	private String pagingHtml;
-	private QpagingAction page;
+	private PagingAction page;
 	private int num = 0;
 
 
@@ -56,7 +57,7 @@ public class QBoardListAction extends ActionSupport{
 		list = sqlMapper.queryForList("qboard-selectAll");
 		
 		totalCount = list.size();
-		page = new QpagingAction(currentPage, totalCount, blockCount, blockPage, num, "");
+		page = new PagingAction(currentPage, totalCount, blockCount, blockPage, num, "");
 		pagingHtml = page.getPagingHtml().toString();
 		
 		int lastCount = totalCount;
@@ -86,7 +87,7 @@ public class QBoardListAction extends ActionSupport{
 		*/
 		
 		totalCount = list.size();
-		page = new QpagingAction(currentPage, totalCount, blockCount, blockPage, searchNum, getSearchKeyword());
+		page = new PagingAction(currentPage, totalCount, blockCount, blockPage, searchNum, getSearchKeyword());
 		pagingHtml = page.getPagingHtml().toString();
 		
 		int lastCount = totalCount;
