@@ -21,9 +21,7 @@
 	 
 	<sqlMap resource="/sql/memberSQL.xml" />
 	<sqlMap resource="/sql/adminSQL.xml" />
-<<<<<<< HEAD
 	<sqlMap resource="/sql/qboardSQL.xml" />
-=======
 	<sqlMap resource="/sql/rboardSQL.xml" />
->>>>>>> branch 'master' of https://github.com/hyeonjun90/Taster
+	
 </sqlMapConfig>

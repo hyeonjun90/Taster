@@ -13,13 +13,11 @@
 	<include file="admin.xml" />
 	<include file="member.xml" />
 	<include file="mypage.xml" />
-<<<<<<< HEAD
 	<include file="qboard.xml" />
-=======
 	 
 	
 	
->>>>>>> branch 'master' of https://github.com/hyeonjun90/Taster
+
 	
 </struts>
 
