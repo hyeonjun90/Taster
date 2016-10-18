@@ -1,11 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
+<%@ taglib prefix="s" uri="/struts-tags"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>회원가입</title>
 <link rel="stylesheet" href="/Taster/css/style.css" />
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script type='text/javascript' src='http://code.jquery.com/jquery-1.11.0.min.js'></script>
 <style>
 	#joinTable {
 		width: 800px;
@@ -33,6 +38,8 @@
 	}
 	.zipcode {
 		margin-bottom: 5px;
+		font-size: 10px;
+		font-family : 'Noto Sans', sans-serif;
 	}
 	#joinTable button {
 		font-size: 11px;
@@ -43,6 +50,7 @@
 	}
 	#joinTable img {
 		height: 20px;
+		cursor: pointer;
 	}
 	#joinTable font {
 		font-size: 10px;
@@ -60,21 +68,105 @@
 		font-size: 14px; font-family : 'Noto Sans', sans-serif;
 	}
 </style>
+<script language="javascript">
+
+var checkNum = 0;
+
+function joinConf() {
+	var form = document.joinForm;
+	
+	if(form.member_id.value == "") {
+		alert("아이디를 입력하세요.");
+		return;
+	} else if (form.member_pwd.value == "" || form.member_pwd2.value == "") {
+		alert("비밀번호를 입력하세요.");
+		return;
+	} else if (form.member_pwd.value != form.member_pwd2.value) {
+		alert("비밀번호가 일치하지 않습니다.");
+		return;
+	} else if (form.member_name.value == "") {
+		alert("이름을 입력하세요.");
+		return;
+	} else if (form.member_nicname.value == "") {
+		alert("닉네임을 입력하세요.");
+		return;
+	} else if (form.member_email.value == "") {
+		alert("이메일을 입력하세요.");
+		return;
+	} else if (form.phone1.value == "" || form.phone3.value == "" || form.phone3.value == "") {
+		alert("휴대폰 번호를 정확히 입력해주세요.");
+		return;
+	} else if (checkNum != 1) {
+		alert("아이디 중복확인을 해주세요.");
+		return;
+	} 
+	form.member_phone.value = "" + form.phone1.value + form.phone2.value + form.phone3.value;
+	form.member_zipcode.value = "" + form.member_zipcode1.value + "-" + form.member_zipcode2.value;
+	form.member_addr.value = "" + form.member_addr1.value + form.member_addr2.value;
+	
+	form.submit();
+}
+
+
+function memberIdCheck() {
+	var form = document.joinForm;
+	
+	if(form.member_id.value == "") {
+		alert("아이디를 입력해주세요.");
+		return;
+	}
+	
+	$.ajax({
+		url: "idCheck.action",
+		type: "POST",
+		async:true,
+		dataType: "Text", 
+		data: {"member_id":$("#member_id").val()},
+		success: function(data) {
+			//alert(data);
+			
+			if(data == 0) {
+				$("#checkId").empty();
+				$("#checkId").html("<font color='blue'>사용 가능한 아이디입니다.</font>");
+				checkNum = 1;
+			} else {
+				$("#checkId").empty();
+				$("#checkId").html("<font color='red'>이미 사용중인 아이디 입니다.</font>");
+				checkNum = 0;
+			}
+		}
+		
+	});
+}
+
+function openZipcode(){			
+	var url="zipCode.action";
+	open(url, "confirm", "toolbar=no,location=no,"
+						+"status=no,menubar=no,"
+						+"scrollbars=yes,resizable=no,"
+						+"width=610,height=400");
+}
+</script>
 </head>
 <body>
 
 <center>
 <div id="joinDiv">
 <div><strong>회원가입</strong></div>
-
+<form method="post" action="memberJoinOk.action" name="joinForm">
+<input type="hidden" name="member_zipcode" />
+<input type="hidden" name="member_phone" />
+<input type="hidden" name="member_addr" />
 <table id="joinTable">
 	<tr>
 		<th>아이디</th>
 		<td>
 			
-			<input type="text" name="member_id" id="member_id" />
-			<img src="/Taster/images/bt_check.gif" alt="" />
-			<font>(영문소문자, 숫자 조합으로 4~12자)</font>
+			<input type="text" name="member_id" id="member_id" style="margin-bottom:5px;"/>
+			<img src="/Taster/images/bt_check.gif" alt="" onclick="memberIdCheck();" />
+			<font>(영문소문자, 숫자 조합으로 4~12자)</font><br />
+			<p id="checkId"></p>
+			
 		</td>
 	</tr>
 	<tr>
@@ -110,9 +202,9 @@
 	<tr>
 		<th style="background-image: url('/Taster/images/bg_01.gif');">주소</th>
 		<td>
-			<input type="text" name="member_zipcode1" id="member_zipcode1" size="5" class="zipcode"/>
-			- <input type="text" name="member_zipcode2" id="member_zipcode2" size="5" class="zipcode"/> 
-			<img src="/Taster/images/bt_zipcode.gif" alt="" /> <br />
+			<input type="text" name="member_zipcode1" id="member_zipcode1" size="5" class="zipcode" onclick="openZipcode();"/>
+			- <input type="text" name="member_zipcode2" id="member_zipcode2" size="5" class="zipcode" onclick="openZipcode();"/> 
+			<img src="/Taster/images/bt_zipcode.gif" alt="" onclick="openZipcode();" /> <br />
 			<input type="text" name="member_addr1" id="member_addr1" class="zipcode" size="50"/>  <br />
 			<input type="text" name="member_addr2" id="member_addr2" class="zipcode" size="50"/>
 		</td>
@@ -133,11 +225,12 @@
 	</tr>
 	<tr>
 		<td colspan="2" align="center" style="height:50px;border:1px solid white;">
-		<img src="/Taster/images/bt_ok.gif" alt="" style="margin-right:10px;"/>
+		<img src="/Taster/images/bt_ok.gif" alt="" style="margin-right:10px;" onclick="joinConf();"/>
 		<img src="/Taster/images/bt_cancel.gif" alt="" /> 
 		</td>
 	</tr>
 </table>
+</form>
 </div>
 </center>
 <jsp:include page="../common/bottom.jsp"></jsp:include>

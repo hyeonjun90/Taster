@@ -42,7 +42,7 @@
 		</tr>
 		
 		<tr>
-			<Td bgcolor="#F4F4F4"> 累己老</Td>
+			<Td bgcolor="#F4F4F4"> 累己老</Td>   
 			<td bgcolor="#FFFFFF">&nbsp; &nbsp; <s:property value="resultClass.r_regdate"/></td>
 		</tr>
 		
