@@ -1,11 +1,18 @@
 package admin;
 
 import com.opensymphony.xwork2.ActionSupport;
+import com.ibatis.common.resources.Resources;
 import com.ibatis.sqlmap.client.SqlMapClient;
+import com.ibatis.sqlmap.client.SqlMapClientBuilder;
+
+import java.util.*;
+import java.io.Reader;
+import java.io.IOException;
+
 import bean.ShopBean;
 
 public class AdminShopAddAction extends ActionSupport{
-
+public static Reader reader;
 public static SqlMapClient sqlMapper;
 	
 private ShopBean paramClass; //파라미터를 저장 할 객체
@@ -23,6 +30,12 @@ private String shop_price;
 //private String shop_addr;
 //private String korean;
 
+public AdminShopAddAction() throws IOException {
+	
+	reader = Resources.getResourceAsReader("sqlMapConfig.xml");
+	sqlMapper = SqlMapClientBuilder.buildSqlMapClient(reader);
+	reader.close();
+}
 
 public String form() throws Exception {
 	//등록 폼.

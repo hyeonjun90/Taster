@@ -22,7 +22,7 @@
 
 <tr>
 <td width="100">식당 이름: </td>
-<td>${message}</td>
+<td>${shop_name}</td>
 </tr>
 
 
