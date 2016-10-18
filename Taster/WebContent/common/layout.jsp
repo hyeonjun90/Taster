@@ -9,7 +9,7 @@
 </head>
 <body>
 
-<table width="100%" border="1" cellpadding="0" cellspacing="0">
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
 <tr>
 	<td colspan="2"><tiles:insertAttribute name="top"/></td>
 </tr>
