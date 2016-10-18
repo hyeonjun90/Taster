@@ -57,6 +57,10 @@
 		select member_id, member_nicname, member_level from member where member_id=#member_id#
 	</select>
 
+   <!-- 테스트 코드 -->
+   <select id="test" resultClass="bean.PositionBean">
+      select * from Member_Position where p_idx=1
+   </select>
    
 	<!-- bookmarkList select문 선언 -->
 	<select id="bookmarkList-selectAll" resultMap="myPageRes" parameterClass="String">
