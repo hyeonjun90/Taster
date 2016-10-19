@@ -115,13 +115,12 @@ function memberIdCheck() {
 		alert("아이디를 입력해주세요.");
 		return;
 	}
-	
 	$.ajax({
 		url: "idCheck.action",
 		type: "POST",
 		async:true,
 		dataType: "Text", 
-		data: {"member_id":$("#member_id").val()},
+		data: {"member_id": form.member_id.value},
 		success: function(data) {
 			//alert(data);
 			
@@ -205,7 +204,7 @@ function openZipcode(){
 			<input type="text" name="member_zipcode1" id="member_zipcode1" size="5" class="zipcode" onclick="openZipcode();"/>
 			- <input type="text" name="member_zipcode2" id="member_zipcode2" size="5" class="zipcode" onclick="openZipcode();"/> 
 			<img src="/Taster/images/bt_zipcode.gif" alt="" onclick="openZipcode();" /> <br />
-			<input type="text" name="member_addr1" id="member_addr1" class="zipcode" size="50"/>  <br />
+			<input type="text" name="member_addr1" id="member_addr1" class="zipcode" size="50" onclick="openZipcode();"/>  <br />
 			<input type="text" name="member_addr2" id="member_addr2" class="zipcode" size="50"/>
 		</td>
 	</tr>

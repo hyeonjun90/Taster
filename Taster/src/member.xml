@@ -14,15 +14,15 @@
       
       <!-- 아이디 중복체크 -->
       <action name="idCheck" class="member.MemberJoinAction" method="idCheck">
-         <result type="tiles">member_idCheck</result>
+         <result>/member/member_idCheck.jsp</result>
       </action>
       
       <!-- 우편번호 검색 -->
       <action name="zipCode" class="member.MemberZipcodeAction" method="zipcode">
-         <result type="tiles">member_zipcode</result>
+         <result>/member/member_zipcode.jsp</result>
       </action>
       <action name="zipcodeSearch" class="member.MemberZipcodeAction" method="zipcodeSearch">
-         <result type="tiles">member_zipcode_search</result>
+         <result>/member/member_zipcode_search.jsp</result>
       </action>
    </package>  
    

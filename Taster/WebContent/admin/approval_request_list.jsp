@@ -75,8 +75,8 @@
 		
 		<tr align="right">
 			<td colspan="9">
-			<input type="button" value="승인하기" class="inputb" onClick="javascript:location.href='writeForm.action?currentpage=<s:property value="currentPage"/>';">
-			<input type="button" value="거부하기" class="inputb" onClick="javascript:location.href='writeForm.action?currentpage=<s:property value="currentPage"/>';">
+			<input type="button" value="승인하기" class="inputb" onClick="javascript:location.href='ApprovalRequestOk.action?currentpage=<s:property value="currentPage"/>';">
+			<input type="button" value="거부하기" class="inputb" onClick="javascript:location.href='ApprovalRequestNok.action?currentpage=<s:property value="currentPage"/>';">
 			</td>
 		</tr>
 		

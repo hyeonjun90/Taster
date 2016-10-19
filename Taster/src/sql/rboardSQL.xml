@@ -8,6 +8,7 @@
 			<result property="rec_idx" column="rec_idx"/>
 			<result property="rec_date" column="rec_date"/>
 			<result property="rec_subject" column="rec_subject"/>
+			<result property="rec_content" column="rec_content"/>
 			<result property="rec_image" column="rec_image"/>
 		</resultMap>
 		
@@ -45,8 +46,8 @@
 		
 		<!-- insert 쿼리문 정의 -->
 		<insert id="rboard-insertRboard" parameterClass="rboard">
-		INSERT INTO RECOMBOARD(rec_idx, rec_date, rec_subject, rec_image)
-		VALUES (recomBoard_no_seq.NEXTVAL, #rec_date#, #rec_subject#, #rec_image#)
+		INSERT INTO RECOMBOARD(rec_idx, rec_date, rec_subject, rec_content, rec_image)
+		VALUES (recomBoard_no_seq.NEXTVAL, #rec_date#, #rec_subject#, #rec_content#, #rec_image#)
 		</insert>
 		
 </sqlMap>

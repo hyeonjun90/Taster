@@ -1,12 +1,13 @@
 package bean;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class RecomBoardBean { // 추천맛집 게시판 bean
 
 	private int rec_idx; //인덱스 기본키
 	private Date rec_date; //작성일
 	private String rec_subject; //제목
+	private String rec_content; //내용
 	private String rec_image; //사진미리보기
 
 	public int getRec_idx() {
@@ -26,6 +27,13 @@ public class RecomBoardBean { // 추천맛집 게시판 bean
 	}
 	public void setRec_subject(String rec_subject) {
 		this.rec_subject = rec_subject;
+	}
+	
+	public String getRec_content() {
+		return rec_content;
+	}
+	public void setRec_content(String rec_content) {
+		this.rec_content = rec_content;
 	}
 	public String getRec_image() {
 		return rec_image;
