@@ -15,7 +15,7 @@
       <!-- 아이디 중복체크 -->
       <action name="idCheck" class="member.MemberJoinAction" method="idCheck">
          <result>/member/member_idCheck.jsp</result>
-      </action>
+      </action> 
       <!-- 닉네임 중복체크 -->
       <action name="nicCheck" class="member.MemberJoinAction" method="nicCheck">
       	 <result>/member/member_nicCheck.jsp</result>
