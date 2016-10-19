@@ -121,8 +121,8 @@ function loginCheck() {
 	    <div class="close" >
 		    <table width="100%" id="loginTbl" >
 		    	<tr>
-		    		<td width="30%" align="left" onclick="memberJoin.action">회원가입</td>
-		    		<td width="50%;" align="left">아이디/비밀번호 찾기</td>
+		    		<td width="30%" align="left" onclick="location.href='memberJoin.action'">회원가입</td>
+		    		<td width="50%;" align="left" onclick="location.href='findMemberInfo.action'">아이디/비밀번호 찾기</td>
 		    		<td width="20%" align="right">
 		    		 	<a href="#layer_anchor" title="레이어 닫기" class="close">닫기</a>
 		    		</td>

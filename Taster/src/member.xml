@@ -16,6 +16,10 @@
       <action name="idCheck" class="member.MemberJoinAction" method="idCheck">
          <result>/member/member_idCheck.jsp</result>
       </action>
+      <!-- 닉네임 중복체크 -->
+      <action name="nicCheck" class="member.MemberJoinAction" method="nicCheck">
+      	 <result>/member/member_nicCheck.jsp</result>
+      </action>
       
       <!-- 우편번호 검색 -->
       <action name="zipCode" class="member.MemberZipcodeAction" method="zipcode">
@@ -23,6 +27,14 @@
       </action>
       <action name="zipcodeSearch" class="member.MemberZipcodeAction" method="zipcodeSearch">
          <result>/member/member_zipcode_search.jsp</result>
+      </action>
+      <action name="emailAction" class="member.SendEmail" method="execute">
+      	 <result>/member/email_confirm.jsp</result> 
+      </action>
+      
+      <!-- 아이디/비밀번호 찾기 -->
+      <action name="findMemberInfo" class="member.MemberFindAction" method="form">
+      		<result type="tiles">member_find</result>
       </action>
    </package>  
    
