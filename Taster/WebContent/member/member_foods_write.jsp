@@ -92,6 +92,15 @@ function joinConf(){
 	
 }
 
+function setShopPhone(){
+	var shop_phone=""+shop_phone1+" "+shop_phone2+" "+shop_phone3;
+	
+	document.joinForm.shop_phone = shop_phone;
+	
+	document.joinForm.shop_phone.submit();
+	
+}
+
 function openZipcode(){
 	var url="shopZipcode.action";
 	open(url, "toolbar=no,location=no,"
@@ -107,11 +116,16 @@ function openZipcode(){
 <center>
 <div id="joinDiv">
 <div><strong>식당 등록</strong></div>
+
 <form method="post" action="shopAdd.action" name="joinForm">
+
 <input type="hidden" name="shop_addr1"/>
 <input type="hidden" name="shop_addr2"/>
 <input type="hidden" name="shop_addr3"/>
-<input type="hidden" name="shop_tel" />
+<input type="hidden" name="shop_addr4"/>
+
+<input type="hidden" name="shop_phon" />
+
 <table id="joinTable">
 	<tr>
 		<th>식당 이름</th>

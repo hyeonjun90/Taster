@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.struts2.interceptor.SessionAware;
+
 import bean.*;
 import member.*;
 import common.*;
@@ -17,7 +19,7 @@ import com.opensymphony.xwork2.ActionSupport;
 
 import common.PagingAction;
 
-public class MemberMyPageAction extends ActionSupport {
+public class MemberMyPageAction extends ActionSupport implements SessionAware{
 	
 	public static Reader reader;
 	public static SqlMapClient sqlMapper;
@@ -47,6 +49,16 @@ public class MemberMyPageAction extends ActionSupport {
 	private String shop_name2;
 
 	private Map session;
+	
+	@Override
+	public void setSession(Map arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+	public Map getSession() {
+		return session;
+	}
+
 	
 	public MemberMyPageAction() throws IOException {
 		reader = Resources.getResourceAsReader("sqlMapConfig.xml"); //sqlMapConfig.xml 파일의 설정내용을 가져온다.
@@ -217,13 +229,6 @@ public class MemberMyPageAction extends ActionSupport {
 		this.page = page;
 	}
 
-	public Map getSession() {
-		return session;
-	}
-
-	public void setSession(Map session) {
-		this.session = session;
-	}
 	public String getR_image() {
 		return r_image;
 	}
