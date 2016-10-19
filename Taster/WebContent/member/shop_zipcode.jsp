@@ -43,7 +43,9 @@
 <br>
 <table width="370" border="0" cellspacing="0" cellpadding="5">
 	<tr>
-		<td width="100%" colspan="2" id="zipcode"></td>
+		<td width="100%" colspan="2" id="zipcode">
+		${zipList.sido } ${zipList.gugun }
+		</td>
 	</tr>
 
 </table>

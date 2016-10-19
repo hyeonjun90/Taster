@@ -28,7 +28,7 @@
 		</action>
 		
 		<action name="shopZipcode" class="member.ShopAddAction" method="zipcode">
-			<result></result>
+			<result>/member/shop_zi</result>
 		</action>
 		
 	</package>  

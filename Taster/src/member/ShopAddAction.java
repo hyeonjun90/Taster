@@ -89,11 +89,7 @@ public class ShopAddAction extends ActionSupport implements SessionAware{
 		return SUCCESS;
 	}
 	
-	public void shopArrCheck() throws Exception{
-		
-		
-		
-	}
+
 	
 	public String zipcode() throws Exception {
 		return SUCCESS;
