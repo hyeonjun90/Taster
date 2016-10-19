@@ -18,6 +18,8 @@ public class RequestListBean {
 	private String r_shop_price; //가격대
 	private String r_shop_holiday; //휴일
 	private String r_shop_content; //입력내용
+	private String r_shop_file_orgname; //파일원본이름
+	private String r_shop_file_savname; //파일저장명
 	
 	public int getR_idx() {
 		return r_idx;
@@ -102,6 +104,18 @@ public class RequestListBean {
 	}
 	public void setR_shop_content(String r_shop_content) {
 		this.r_shop_content = r_shop_content;
+	}
+	public String getR_shop_file_orgname() {
+		return r_shop_file_orgname;
+	}
+	public void setR_shop_file_orgname(String r_shop_file_orgname) {
+		this.r_shop_file_orgname = r_shop_file_orgname;
+	}
+	public String getR_shop_file_savname() {
+		return r_shop_file_savname;
+	}
+	public void setR_shop_file_savname(String r_shop_file_savname) {
+		this.r_shop_file_savname = r_shop_file_savname;
 	}
 	
 	
