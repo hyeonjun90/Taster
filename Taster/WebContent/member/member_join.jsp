@@ -163,7 +163,7 @@ function openZipcode(){
 			
 			<input type="text" name="member_id" id="member_id" style="margin-bottom:5px;"/>
 			<img src="/Taster/images/bt_check.gif" alt="" onclick="memberIdCheck();" />
-			<font>(영문소문자, 숫자 조합으로 4~12자)</font><br />
+			<font>(영문소문자, 숫자 조합으로 4~12자)</font><br/>
 			<p id="checkId"></p>
 			
 		</td>

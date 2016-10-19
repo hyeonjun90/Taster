@@ -19,14 +19,14 @@
 	</tr>
 </table>
 	
-<table style="width:100%; margin-top:10px">
+<table style="width:100%; margin-top:15px" border="1px">
 	<tr>
 		<td align="center">MY REVIEW RESTAURANT</td>
 		<td align="center">My BOOKMARK RESTAURANT</td>
 	</tr>
 	
 	<tr style="vertical-align">
-		<td style="width:50% ; border-right:1px solid red; padding :50px; align:center">
+		<td style="width:50%; padding :50px; align:center">
 			<c:forEach var="reviewList" items="${reviewList}">
 				<tr>
 					<td>${reviewList.r_image}</td>
@@ -39,11 +39,11 @@
 				</tr>
 			</c:forEach>
 			
-			<c:if test="${empty reviewList }">
+			<c:if test="${empty reviewList}">
 				등록된 식당이 없습니다
 			</c:if>
 		</td>
-		<td align="center">
+		<td style="width:50%; padding :50px; align:center">
 			<c:forEach var="bookmarkList" items="${bookmarkList}">
 				<tr>
 					<td>${bookmarkList.r_image2}</td>
@@ -53,7 +53,7 @@
 				</tr>
 			</c:forEach>
 			
-			<c:if test="${empty reviewList }">
+			<c:if test="${empty reviewList}">
 				등록된 식당이 없습니다
 			</c:if>
 		</td>
