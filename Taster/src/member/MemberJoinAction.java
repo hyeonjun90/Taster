@@ -34,7 +34,7 @@ public class MemberJoinAction extends ActionSupport {
 	private int p_idx;  // 회원 등급 1.유저 2.에디터 3.관리자
 	
 	private int chk; // 아이디 중복체크 변수
-	private int chk2; //닉네임 중복체크 변수
+	private int chk2; //닉네임 중복체크 변수 
 	
 	private MemberBean memberBean;
 	Calendar cal = Calendar.getInstance();

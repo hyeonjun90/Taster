@@ -8,7 +8,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>회원가입</title>
 <link rel="stylesheet" href="/Taster/css/style.css" />
-
+ 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script type='text/javascript' src='http://code.jquery.com/jquery-1.11.0.min.js'></script>
 <style>
