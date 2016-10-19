@@ -56,16 +56,18 @@
 		<tr>
 			<td width="100">조회수</td>
 			<td width="500">
-				<s:property value="resultClass.readcount" />
+				<s:property value="resultClass.b_readCount" />
 			</td>
 		</tr>
 		<tr>
 			<td width="100">등록날짜</td>
 			<td width="500">
-				<s:property value="resultClass.regdate" />
+				<s:property value="resultClass.b_regdate" />
 			</td>
 		</tr>
 		
+		
+	<!--  
 		<tr>
 			<td width="100">첨부파일</td>
 			<td width="500">
@@ -81,7 +83,7 @@
 				</s:a>
 			</td>
 		</tr>
-
+-->
 		
 		
 		<tr bgcolor="#777777">
@@ -92,12 +94,12 @@
 		</tr>
 		<tr>
 			<td colspan="2" height="10">
-				<form action="writeCommentAction.action" method="post">
+				<form action="AdminComment.action" method="post">
 					<table>
 						<tr>
 							<td width="170">
-								이&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;름 <s:textfield name="member_id" theme="simple" value="" cssStyle="width:100px" maxlength="20" /><br>
-								비밀번호 <s:textfield name="c_pwd" theme="simple" value="" cssStyle="width:100px" maxlength="20" />
+								이&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;름 <!--<s:textfield name="member_id" theme="simple" value="" cssStyle="width:100px" maxlength="20" /><br>--><input type="text" value="${session.member_id }" name="member_id" cssStyle="width:100px" maxlength="20"/>
+								<!-- 비밀번호 <s:textfield name="c_pwd" theme="simple" value="" cssStyle="width:100px" maxlength="20" /> -->
 							</td>
 							<s:hidden name="b_idx" value="%{resultClass.b_idx}" />
 					<!-- !!!!!!!!!!!!!!!!!!!!!!!!수정!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
@@ -126,13 +128,15 @@
 		<s:iterator value="commentlist" status="stat">
 		<tr>
 			<td height="10" width="130" align="center">
-				<s:property value="member_id" /><br>
+			
+				<s:property value="resultClass.member_id"/>
+			<br>			
 				<s:property value="c_regdate" /><br><br>
 			</td>
 			<td>
 			<!-- @@@@@@@@@@@@코멘트 삭제@@@@@@@@@@@@ -->
 				<s:property value="c_content" /> 
-				<a href="javascript:open_win_noresizable('checkForm2.action?no=<s:property value="no" />&originno=<s:property value="originno" />&currentPage=<s:property value="currentPage" />','cdelete')">x</a>
+				<a href="javascript:open_win_noresizable('checkForm2.action?c_idx=<s:property value="c_idx" />&b_idx=<s:property value="b_idx" />&currentPage=<s:property value="currentPage" />','cdelete')">x</a>
 			</td>
 		</tr>
 		<tr bgcolor="#777777">
@@ -167,10 +171,10 @@
 						<s:property value="no" />
 					</s:param>
 				</s:url>
-				<input name="list" type="button" value="답변달기" class="inputb" onClick="javascript:location.href='replyForm.action?no=<s:property value="no" />'">
+				<!--<input name="list" type="button" value="답변달기" class="inputb" onClick="javascript:location.href='replyForm.action?no=<s:property value="no" />'"> -->
 				<input name="list" type="button" value="수정" class="inputb" onClick="javascript:open_win_noresizable('checkForm.action?no=<s:property value="resultClass.no" />&currentPage=<s:property value="currentPage" />','modify')">
 				<input name="list" type="button" value="삭제" class="inputb" onClick="javascript:open_win_noresizable('checkForm.action?no=<s:property value="resultClass.no" />&currentPage=<s:property value="currentPage" />','delete')">
-				<input name="list" type="button" value="목록" class="inputb" onClick="javascript:location.href='listAction.action?currentPage=<s:property value="currentPage" />'">
+				<input name="list" type="button" value="목록" class="inputb" onClick="javascript:location.href='qboardList.action?currentPage=<s:property value="currentPage" />'">
 			</td>
 		</tr>
 	</table>
