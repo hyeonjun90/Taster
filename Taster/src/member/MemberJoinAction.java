@@ -34,11 +34,12 @@ public class MemberJoinAction extends ActionSupport {
 	private int p_idx;  // 회원 등급 1.유저 2.에디터 3.관리자
 	
 	private int chk; // 아이디 중복체크 변수
-	private int chk2; //닉네임 중복체크 변수
+	private int chk2; //닉네임 중복체크 변수 
+
 	
 	private MemberBean memberBean;
 	Calendar cal = Calendar.getInstance();
-	
+	 
 	//생성자
 	public MemberJoinAction() throws IOException {
 		reader = Resources.getResourceAsReader("sqlMapConfig.xml"); //sqlMapConfig.xml 파일의 설정내용을 가져온다.
@@ -70,15 +71,11 @@ public class MemberJoinAction extends ActionSupport {
 	}
 
 	public String idCheck() throws Exception { // 아이디 중복체크
+		
 		chk = (int) sqlMapper.queryForObject("idCheck", getMember_id());
+		
 		return SUCCESS;
 	}
-	
-	public String nicCheck() throws Exception { // 닉네임 중복체크
-		chk2 = (int) sqlMapper.queryForObject("nicCheck", getMember_nicname());
-		return SUCCESS;
-	}
-
 	public String getMember_id() {
 		return member_id;
 	}
@@ -180,14 +177,6 @@ public class MemberJoinAction extends ActionSupport {
 	}
 	public void setChk(int chk) {
 		this.chk = chk;
-	}
-
-	public int getChk2() {
-		return chk2;
-	}
-
-	public void setChk2(int chk2) {
-		this.chk2 = chk2;
 	}
 	
 	
