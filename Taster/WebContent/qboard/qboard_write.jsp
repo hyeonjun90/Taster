@@ -99,7 +99,8 @@
           <td bgcolor="#F4F4F4"><font color="#FF0000">*</font>  이름 </td>
           <td bgcolor="#FFFFFF">
           <!-- 이름 -->
-            <s:textfield name="member_id" theme="simple" value="%{resultClass.member_id}" cssStyle="width:100px" maxlength="20"/>
+            <%-- <s:textfield name="member_id" theme="simple" value="${session.member_id}" cssStyle="width:100px" maxlength="20"/> --%>
+            <input type="text" value="${session.member_id }" name="member_id" cssStyle="width:100px" maxlength="20"/>
           </td>
         </tr>
         <tr bgcolor="#777777">
@@ -156,7 +157,7 @@
         <tr>
           <td align="right" colspan="2">
           	<input name="submit" type="submit" value="작성완료" class="inputb">
-            <input name="list" type="button" value="목록" class="inputb" onClick="javascript:location.href='qboardlist.action?currentPage=<s:property value="currentPage" />'">
+            <input name="list" type="button" value="목록" class="inputb" onClick="javascript:location.href='qboardList.action?currentPage=<s:property value="currentPage" />'">
           </td>
         </tr>
 

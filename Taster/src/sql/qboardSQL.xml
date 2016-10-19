@@ -48,12 +48,29 @@
 	</sql>	
 	
 	
-	<!--게시판 리스트 보기 정의 -->
+	<!--select 쿼리문 정의 -->
 	
+	<!--게시판 리스트 보기 정의 -->
 	<select id="qboard-selectAll" resultMap="boardRes" >
 		<include refid="qboard-select-all" />
 		 ORDER BY b_idx DESC
 	</select>
+	
+	<!-- 코멘트 관련 -->
+	<select id="qboard-commentSelectAll" resultMap="commentRes" parameterClass="int">
+		SELECT * FROM COMMENTBOARD
+		 WHERE b_idx = #b_idx#
+		 ORDER BY c_idx DESC
+	</select>
+	
+	
+	
+	<!-- insert 쿼리문 정의 -->
+	<insert id="qboard-insertBoard" parameterClass="board">
+		INSERT INTO QNABOARD(B_IDX, B_TITLE,MEMBER_ID,B_CONTENT, B_REGDATE,B_PWD)
+		VALUES (QNABOARD_NO_SEQ.NEXTVAL, #b_title#, #member_id#,#b_content#, #b_regdate#,#b_pwd#)
+	</insert>
+	
 	
 	<!-- 글 상세보기 정의 -->
 	<select id="qboard-selectOne" resultMap="boardRes" parameterClass="int">
@@ -62,11 +79,31 @@
 	</select>
 	
 	
-	<!-- insert 쿼리문 정의 -->
-	<insert id="insertBoard" parameterClass="board">
-		INSERT INTO QNABOARD(B_IDX, B_TITLE,MEMBER_ID,B_CONTENT, B_REGDATE,B_PWD)
-		VALUES (QNABOARD_NO_SEQ.NEXTVAL, #b_title#, #member_id#,#b_content#, #b_regdate#,#b_pwd#)
+	<!-- 코멘트 달기 정의 -->
+	<insert id="qboard-insertComment" parameterClass="comment">
+		INSERT INTO COMMENTBOARD(C_IDX, B_IDX, C_CONTENT, C_REGDATE)
+		VALUES (COMMENTBOARD_NO_SEQ.NEXTVAL, #b_idx#, #c_content#, #c_regdate#)
 	</insert>
+	
+	
+	<!-- update 쿼리문 정의 -->
+	<update id="qboard-updateBoard" parameterClass="board">
+	UPDATE QNABOARD SET B_TITLE = 	#b_title#, 
+					MEMBER_ID = #member_id#,
+					B_PWD = #b_pwd#,
+					B_CONTENT = #b_content#
+	<include refid = "qboard-where-b_idx" />
+	</update>
+	
+	
+	<!-- 조회수 업데이트 정의 -->
+	<update id="qboard-updateB_readCount" parameterClass="board">
+		UPDATE QNABOARD SET B_READCOUNT = b_readCount + 1
+		
+		<include refid="qboard-where-b_idx" />
+	</update>
+	
+	
 	
 	
 	
