@@ -8,14 +8,18 @@
 	<!-- 관리자의 식당등록 액션 -->
 		<action name="AshopWriteForm" class="admin.AdminShopAddAction" method="form">
 			<result type="tiles">AshopWrite</result>
-
 			</action>
 
 		<action name="AshopWriteAction" class="admin.AdminShopAddAction">
      	  	 <result type="tiles">AshopWriteResult</result>
      	</action>
 		
-		
+	<!-- 관리자의 식당등록 목록 보기 액션 -->
+	 
+	<action name="AshoplistAction" class="admin.AdminShopListAction">
+	<result type="tiles">AshopList</result>
+	</action>
+	
 		<!-- 신규가게 등록 요청글 관련 -->
 		<!-- 신규가게등록 승인 요청 리스트 보기 -->
 		<action name="approvalRequestList" class="admin.ApprovalRequestListAction" method="execute">

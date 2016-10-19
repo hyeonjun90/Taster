@@ -58,6 +58,7 @@
 			<s:textfield name="shop_price" theme="simple" value="%{resultClass.shop_price}"   cssStyle="width:370px"  />
 			</td>
 		</tr>
+		<!--  
 		  <br>
 		<tr>
 		<td width="100">
@@ -65,10 +66,14 @@
 			</td>
 			<td width="500">
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <s:textfield name="shop_addr1" theme="simple" value="%{resultClass.shop_addr1}" cssStyle="width:370px"/>
-			<input type="button" name="zipcodea" class="input" value="주소 검색"  onclick="openZipcode(this.form)"/><br>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <s:textfield name="shop_addr2" theme="simple" value="%{resultClass.shop_addr2}" cssStyle="width:370px"/>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <s:textfield name="shop_addr3" theme="simple" value="%{resultClass.shop_addr3}" cssStyle="width:370px"/>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <s:textfield name="shop_addr4" theme="simple" value="%{resultClass.shop_addr4}" cssStyle="width:370px"/>
+			
 			</td>
 			
 		</tr>
+		-->
 		
 		<br>
 		<tr>

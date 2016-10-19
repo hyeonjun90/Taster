@@ -122,6 +122,7 @@
 	
 	<!-- 신규가게 등록 요청글 관련 -->
 	<!-- 신규가게 등록 쓰기화면 -->
+	<!-- 신규가게 등록 목록 보기 화면 -->
 	<definition name="AshopWrite" template="/common/layout.jsp">
 	<put-attribute name="top" value="/common/top2.jsp"/>
 	<put-attribute name="body" value="/admin/admin_foods_write.jsp"/>
@@ -133,7 +134,12 @@
 	<put-attribute name="body" value="/admin/admin_foods_writeResult.jsp"/>
 	<put-attribute name="bottom" value="/common/bottom.jsp"/>
 	</definition>
-	
+	   
+	<definition name="AshopList" template="/common/layout.jsp">
+	<put-attribute name="top" value="/common/top2.jsp"/>
+	<put-attribute name="body" value="/admin/admin_foods_list.jsp"/>
+	<put-attribute name="bottom" value="/common/bottom.jsp"/>
+	</definition>
 	
 
 	<!-- 신규가게 등록 요청 리스트 조회-->

@@ -53,6 +53,7 @@
 		</sql>
 		
 		<!-- select 쿼리문 정의-->
+		<!-- 리스트보기 정의 -->
 		<select id="Shop-selectAll" resultMap="AshopRes" parameterClass="int">
 			<include refid="Shop-select-all"/>
 			ORDER BY shop_idx DESC
@@ -66,6 +67,8 @@
 		<select id="Shop-selectLastNo" resultClass="admin_shop" parameterClass="int">
 			SELECT max(shop_idx) as shop_idx FROM SHOP
 		</select>
+		
+		
 		
 		<select id="Shop-selectName" resultMap="AshopRes">
 			<include refid="Shop-select-all"/>
