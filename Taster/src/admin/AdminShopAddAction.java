@@ -24,7 +24,7 @@ private String shop_name;
 private String shop_tel;
 private String shop_price;
 private String shop_kind;		// 업종
-private String shop_addr1;		// 식당주소1(특별시, 광역시, 도)
+//private String shop_addr1;		// 식당주소1(특별시, 광역시, 도)
 //private String shop_addr2;		// 식당주소2(시, 구, 군)
 //private String shop_addr3;		// 식당주소3(동)
 //private String shop_addr4;		// 식당주소4(나머지)
@@ -54,7 +54,7 @@ public String execute() throws Exception  {
 	paramClass.setShop_tel(shop_tel);
 	paramClass.setShop_price(shop_price);
 	paramClass.setShop_kind(shop_kind);
-	paramClass.setShop_addr1(shop_addr1);
+	//paramClass.setShop_addr1(shop_addr1);
 	//paramClass.setShop_addr2(shop_addr2);
 	//paramClass.setShop_addr3(shop_addr3);
 	//paramClass.setShop_addr4(shop_addr4);
@@ -133,7 +133,7 @@ public String getShop_kind() {
 public void setShop_kind(String shop_kind) {
 	this.shop_kind = shop_kind;
 }
-
+/**
 public String getShop_addr1() {
 	return shop_addr1;
 }
@@ -141,7 +141,7 @@ public String getShop_addr1() {
 public void setShop_addr1(String shop_addr1) {
 	this.shop_addr1 = shop_addr1;
 }
-/**
+
 public String getShop_addr2() {
 	return shop_addr2;
 }

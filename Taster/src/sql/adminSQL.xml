@@ -36,6 +36,8 @@
 			<result property="r_shop_price" column="r_shop_price"/>
 			<result property="r_shop_holiday" column="r_shop_holiday"/>	
 			<result property="r_shop_content" column="r_shop_content"/>	
+			<result property="r_shop_file_orgname" column="r_shop_file_orgname"/>	
+			<result property="r_shop_file_savname" column="r_shop_file_savname"/>	
 			
 		</resultMap>
 		
@@ -53,6 +55,7 @@
 		</sql>
 		
 		<!-- select 쿼리문 정의-->
+		<!-- 리스트보기 정의 -->
 		<select id="Shop-selectAll" resultMap="AshopRes" parameterClass="int">
 			<include refid="Shop-select-all"/>
 			ORDER BY shop_idx DESC
@@ -66,6 +69,8 @@
 		<select id="Shop-selectLastNo" resultClass="admin_shop" parameterClass="int">
 			SELECT max(shop_idx) as shop_idx FROM SHOP
 		</select>
+		
+		
 		
 		<select id="Shop-selectName" resultMap="AshopRes">
 			<include refid="Shop-select-all"/>
@@ -115,8 +120,8 @@
 		
 		<!-- insert 쿼리문 정의 -->
 		<insert id="AprReq-insertReqList" parameterClass="AprReq">
-		INSERT INTO REQUEST_LIST(r_idx, r_regdate, r_id, r_nicname, , r_shop_tel, r_shop_kind, r_shop_addr1, r_shop_addr2, r_shop_addr3, r_shop_addr4, r_shop_price, r_shop_holiday, r_shop_content)
-		VALUES (request_no_seq.NEXTVAL, #r_regdate#, #r_id#, #r_nicname#, #r_shop_name#, #r_shop_kind#, #r_shop_addr1#, #r_shop_addr2#, #r_shop_addr3#, #r_shop_addr4#, #r_shop_price#, #r_shop_holiday#, #r_shop_content#)
+		INSERT INTO REQUEST_LIST(r_idx, r_regdate, r_id, r_nicname, , r_shop_tel, r_shop_kind, r_shop_addr1, r_shop_addr2, r_shop_addr3, r_shop_addr4, r_shop_price, r_shop_holiday, r_shop_content, r_shop_file_orgname, r_shop_file_savname)
+		VALUES (request_no_seq.NEXTVAL, #r_regdate#, #r_id#, #r_nicname#, #r_shop_name#, #r_shop_kind#, #r_shop_addr1#, #r_shop_addr2#, #r_shop_addr3#, #r_shop_addr4#, #r_shop_price#, #r_shop_holiday#, #r_shop_content#, #r_shop_file_orgname#, #r_shop_file_savname#)
 		</insert>
 
 </sqlMap>

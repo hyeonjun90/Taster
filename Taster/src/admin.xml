@@ -8,14 +8,18 @@
 	<!-- 관리자의 식당등록 액션 -->
 		<action name="AshopWriteForm" class="admin.AdminShopAddAction" method="form">
 			<result type="tiles">AshopWrite</result>
-
 			</action>
 
 		<action name="AshopWriteAction" class="admin.AdminShopAddAction">
      	  	 <result type="tiles">AshopWriteResult</result>
      	</action>
 		
-		
+	<!-- 관리자의 식당등록 목록 보기 액션 -->
+	 
+	<action name="AshoplistAction" class="admin.AdminShopListAction">
+	<result type="tiles">AshopList</result>
+	</action>
+	
 		<!-- 신규가게 등록 요청글 관련 -->
 		<!-- 신규가게등록 승인 요청 리스트 보기 -->
 		<action name="approvalRequestList" class="admin.ApprovalRequestListAction" method="execute">
@@ -23,14 +27,14 @@
 		</action>
 		
 		<!-- 신규가게등록 요청 승인액션 -->
-		<action name="ApprovalRequestOk" class="admin.ApprovalRequestOk" method="">
+	<!-- 	<action name="ApprovalRequestOk" class="admin.ApprovalRequestOk" method="">
 			<result></result>
 		</action>
 		
-		<!-- 신규가게등록 요청 반려액션 -->
+		신규가게등록 요청 반려액션
 		<action name="ApprovalRequestNok" class="admin.ApprovalRequestNok" method="">
 			<result></result>
-		</action>
+		</action> -->
 		
 		<!-- 신규가게등록 리스트 글 상세보기 -->
 		<action name="approvalRequestDetailView" class="admin.ApprovalRequestDetailView">
@@ -40,18 +44,18 @@
 	<!-- 맛집추천리스트 관련 -->
 		<!-- 관리자 화면에서 맛집추천리스트 등록글 리스트 조회 -->
 		<action name="adminRboardList" class="rboard.AdminRBoardListAction">
-			<result type="tiles">AdminRBoardList</result>
+			<result type="tiles">AdminRboardList</result>
 		</action>
 		
 		<!-- 관리자 화면에서 맛집추천리스트 포스팅 작성하기 페이지로 이동 -->
 		<action name="rboardWriteForm" class="rboard.AdminRBoardWriteAction" method="form">
-			<result type="tiles">AdminRBoardWrite</result>
+			<result type="tiles">AdminRboardWrite</result>
 		</action>
 		
 		<!-- 관리자 화면에서 맛집추천리스트 작성하기 실행 -->
 		<action name="rboardWriteAction" class="rboard.AdminRBoardWriteAction">
 			<result type="redirect-action">
-			<param name="actionName">AdminRBoardList</param>
+			<param name="actionName">adminRboardList</param>
 			</result>
 		</action>
 		

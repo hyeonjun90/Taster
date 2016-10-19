@@ -36,11 +36,12 @@
 <td>${shop_price}</td>
 </tr>
 
+<!--  
 <tr>
 <td width="100">주소:</td>
-<td>${shop_addr1}</td>
+<td>${shop_addr1 + shop_addr2 + shop_addr3 + shop_addr4}</td>
 </tr>
-
+-->
 
 <tr>
 <td width="100">업종:</td>
@@ -61,13 +62,22 @@
 <td width="100">조회수:</td>
 <td>${shop_readCount}</td>
 </tr>
+ 
+
+
+<!--
+<tr>
+<td>
+<input name="list" type="button" value="목록보기" class="inputb" onClick="javascript:location.href='AshoplistAction.action?currentPage=<s:property value="currentPage" />'">
+</td>
+</tr>
+-->
 
 </table>
 
-<s:submit align="center" value="목록보기"/>
+<s:submit value="목록보기"/>
 
 </body>
-
 </html>
 
 
