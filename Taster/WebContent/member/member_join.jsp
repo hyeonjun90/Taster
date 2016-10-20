@@ -359,7 +359,7 @@ function openZipcode(){
 		<th style="background-image: url('/Taster/images/bg_01.gif');">аж╪р</th>
 		<td>
 			<table width="100%">
-				<tr>
+				<tr> 
 					<td style="width:30px;border-bottom:0px;padding-bottom:2px;padding-left:0px;">
 						<input type="text" name="member_zipcode1" id="member_zipcode1" size="5" class="zipcode" onclick="openZipcode();" readonly/>
 					- <input type="text" name="member_zipcode2" id="member_zipcode2" size="5" class="zipcode" onclick="openZipcode();" readonly/>

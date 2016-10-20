@@ -12,7 +12,7 @@ import com.opensymphony.xwork2.ActionSupport;
 
 import bean.MemberBean;
 
-public class MemberFindAction extends ActionSupport {
+public class MemberFindAction extends ActionSupport { 
 	public static Reader reader; //파일 스트림을 위한 reader
 	public static SqlMapClient sqlMapper; //SqlMapClient API를 사용하기 위한 sqlMapper 객체
 	

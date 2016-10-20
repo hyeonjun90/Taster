@@ -3,7 +3,7 @@
 
 <sqlMap>
 	<typeAlias alias="myPageList" type="bean.JoinR_B_S"/>
-	
+	 
 	<resultMap id="myPageRes" class="myPageList">
 		<result property="review_idx" column="review_idx"/>
 		<result property="r_title" column="r_title"/>

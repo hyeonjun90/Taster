@@ -110,7 +110,7 @@ function loginCheck() {
 	 <div id="layer">
 	 	<h2 style="border-bottom:1px solid black;">LOGIN</h2>
 		 <div class="login_line">
-		 	<div class="box_in">
+		 	<div class="box_in"> 
 		 		<input type="text" name="member_id" id="member_id"  size="23" placeholder="아이디">
 				<input type="password" name="member_pwd" id="member_pwd" size="23" placeholder="비밀번호"
 					 onkeydown="javascript:if(event.keyCode==13){ loginCheck(); return false; }">

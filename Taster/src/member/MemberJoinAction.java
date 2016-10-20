@@ -66,7 +66,7 @@ public class MemberJoinAction extends ActionSupport {
 		memberBean.setMember_joinDate(cal.getTime());
 		
 		sqlMapper.insert("insertMember", memberBean);
-		
+		 
 		return SUCCESS;
 	}
 

@@ -35,7 +35,7 @@
       <!-- 아이디/비밀번호 찾기 -->
       <action name="findMemberInfo" class="member.MemberFindAction" method="form">
       		<result type="tiles">member_find</result>
-      </action>
+      </action> 
    </package>  
    
    <package name="memberLogin" extends="struts-default, tiles-default">
