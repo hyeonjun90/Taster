@@ -3,7 +3,7 @@
 <div style="width:100%; height:200px; background-color:">
 
 <div style="background:#eee; margin-top:20px;">
-	<div class="frame">
+	<div class="frame"> 
 		<img src="http://koreamz.com/img/bottom_benner.png" style="height: 60px; margin:4px 0px;">
 		<div style="float:right; height:68px; padding: 11px 0px;">
 			<a href="http://www.naver.com" target="_blank"><img src="http://koreamz.com/img/sns_icon01.png"  class="foot_img"/></a>
