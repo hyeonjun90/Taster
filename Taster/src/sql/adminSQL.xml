@@ -74,7 +74,12 @@
 		
 		<select id="Shop-selectName" resultMap="AshopRes" parameterClass="String">
 			<include refid="Shop-select-all"/>
-			where shop_name like #shop_name#
+			where shop_name like #shop_name# 
+		</select>
+		
+		<select id="Shop-selectKind" resultMap="AshopRes" parameterClass="String">
+			<include refid="Shop-select-all"/>
+			where shop_kind like #shop_kind#
 		</select>
 		
 		<!-- insert 쿼리문 정의 -->

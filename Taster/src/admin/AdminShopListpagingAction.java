@@ -47,9 +47,9 @@ public class AdminShopListpagingAction {
 		if(currentPage > blockPage)
 		{
 			if(isSearch != "")
-				pagingHtml.append("<a href=AdminShopListAction.action?currentPage=" + (startPage - 1) + "&searchKeyword="+isSearch+"&searchNum="+searchNum+">");
+				pagingHtml.append("<a href=AshoplistAction.action?currentPage=" + (startPage - 1) + "&searchKeyword="+isSearch+"&searchNum="+searchNum+">");
 			else
-				pagingHtml.append("<a href=AdminShopListAction.action?currentPage=" + (startPage - 1) + ">");
+				pagingHtml.append("<a href=AshoplistAction.action?currentPage=" + (startPage - 1) + ">");
 			pagingHtml.append("¿Ã¿¸");
 			pagingHtml.append("</a>");
 		}
@@ -70,7 +70,7 @@ public class AdminShopListpagingAction {
 			}
 			else
 			{
-				pagingHtml.append("&nbsp;<a href='AdminShopListAction.action?currentPage=");
+				pagingHtml.append("&nbsp;<a href='AshoplistAction.action?currentPage=");
 				pagingHtml.append(i);
 				if(isSearch != "")
 					pagingHtml.append("&searchKeyword="+isSearch);
@@ -86,7 +86,7 @@ public class AdminShopListpagingAction {
 		
 		if(totalPage - startPage >= blockPage)
 		{
-			pagingHtml.append("&nbsp;<a href='AdminShopListAction?currentPage=");
+			pagingHtml.append("&nbsp;<a href='AshoplistAction.action?currentPage=");
 			pagingHtml.append((endPage+1));
 			if(isSearch != "")
 				pagingHtml.append("&searchKeyword="+isSearch);

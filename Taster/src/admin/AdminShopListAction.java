@@ -74,7 +74,10 @@ public String search() throws Exception {
 		if(searchNum == 0){
 		
 			list = sqlMapper.queryForList("Shop-selectName", "%"+getSearchKeyword()+"%");
+		}
+		if(searchNum == 1){
 			
+			list = sqlMapper.queryForList("Shop-selectKind", "%"+getSearchKeyword()+"%");
 		}
 		
 		totalCount = list.size();

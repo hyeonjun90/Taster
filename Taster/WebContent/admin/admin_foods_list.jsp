@@ -18,7 +18,9 @@
       </tr>
    </table>
    
+   
    <table width="600" border="0" cellspacing="0" cellpadding="2" align="center">
+  
       <tr align="center" bgcolor="#f3f3f3">
          <td width="30"><strong>글번호</strong></td>
          <td width="50"><strong>식당명</strong></td>
@@ -28,8 +30,11 @@
          <td width="50"><strong>휴일</strong></td>
          <td width="50"><strong>신규</strong></td>
          <td width="50"><strong>조회수</strong></td>
+         
       </tr>
+      
 
+      
       <tr bgcolor="#777777">
          <td height="1" colspan="9"></td>
       </tr>
@@ -67,6 +72,12 @@
       </tr>
 
    </s:iterator>
+   
+   <s:if test="list.size() <= 0">
+		<tr>
+			<td colspan="5" align="center">등록된 게시물이 없습니다</td>
+		</tr>
+	</s:if>
 
   <tr align="center">
 		<td colspan="5"><s:property value="pagingHtml" escape="false" /></td>
@@ -84,6 +95,7 @@
 			<form action="AshoplistSearchNAction.action">
 				<select name="searchNum" >
 					<option value="0">식당명</option>
+					<option value="1">업종</option>
 					
 				</select>
 				<s:textfield name="searchKeyword" theme="simple" value="" cssStyle="width:120px" maxlength="20" />
