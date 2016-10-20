@@ -9,9 +9,10 @@ import java.util.*;
 import java.io.Reader;
 import java.io.IOException;
 
-import common.PagingAction;
-import bean.RequestListBean;
+
 import bean.ShopBean;
+import common.PagingAction;
+import qboard.QPagingAction;
 
 
 public class AdminShopListAction extends ActionSupport {
@@ -21,12 +22,17 @@ public class AdminShopListAction extends ActionSupport {
 	
 	private List<ShopBean> list = new ArrayList<ShopBean>();
 	
+	private String searchKeyword;
+	private int searchNum;
+
+
 	private int currentPage = 1;
 	private int totalCount;
 	private int blockCount = 10;
 	private int blockPage = 5;
 	private String pagingHtml;
-	private PagingAction page;
+	private AdminShopListpagingAction page;
+	private int num = 0;
 	
 	public AdminShopListAction() throws IOException {
 		reader = Resources.getResourceAsReader("sqlMapConfig.xml");
@@ -35,11 +41,17 @@ public class AdminShopListAction extends ActionSupport {
 	}
 	
 	public String execute() throws Exception {
+		
+		if(getSearchKeyword() != null)
+		{
+			return search();
+		}
+		
 		list = sqlMapper.queryForList("Shop-selectAll");
 		
 		totalCount = list.size();
 		
-		page = new PagingAction(currentPage, totalCount, blockCount, blockPage);
+		page = new AdminShopListpagingAction(currentPage, totalCount, blockCount, blockPage, num, "");
 		pagingHtml = page.getPagingHtml().toString();
 		
 		int lastCount = totalCount;
@@ -51,6 +63,33 @@ public class AdminShopListAction extends ActionSupport {
 		
 		return SUCCESS;
 	}
+	
+public String search() throws Exception {
+	
+	searchKeyword = new String(searchKeyword.getBytes("iso-8859-1"),"euc-kr") ;
+	//System.out.println(searchKeyword);
+    //System.out.println(searchNum);
+
+		
+		if(searchNum == 0){
+		
+			list = sqlMapper.queryForList("Shop-selectName", "%"+getSearchKeyword()+"%");
+			
+		}
+		
+		totalCount = list.size();
+		page = new AdminShopListpagingAction(currentPage, totalCount, blockCount, blockPage, searchNum, getSearchKeyword());
+		pagingHtml = page.getPagingHtml().toString();
+		
+		int lastCount = totalCount;
+		
+		if(page.getEndCount() < totalCount)
+			lastCount = page.getEndCount() + 1;
+		
+		list = list.subList(page.getStartCount(), lastCount);
+		return SUCCESS;
+	}
+
 
 	public static Reader getReader() {
 		return reader;
@@ -116,12 +155,36 @@ public class AdminShopListAction extends ActionSupport {
 		this.pagingHtml = pagingHtml;
 	}
 
-	public PagingAction getPage() {
+	public String getSearchKeyword() {
+		return searchKeyword;
+	}
+
+	public void setSearchKeyword(String searchKeyword) {
+		this.searchKeyword = searchKeyword;
+	}
+
+	public int getSearchNum() {
+		return searchNum;
+	}
+
+	public void setSearchNum(int searchNum) {
+		this.searchNum = searchNum;
+	}
+
+	public AdminShopListpagingAction getPage() {
 		return page;
 	}
 
-	public void setPage(PagingAction page) {
+	public void setPage(AdminShopListpagingAction page) {
 		this.page = page;
 	}
-	
+
+	public int getNum() {
+		return num;
+	}
+
+	public void setNum(int num) {
+		this.num = num;
+	}
+    
 }

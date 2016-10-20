@@ -12,51 +12,35 @@
 
 <table width="600" border="0" cellspacing="0" cellpadding="2">
 		<tr>
-			<td align="center"><h2>식당등록 게시판</h2></td>
+			<td align="right"><h2>식당등록 게시판</h2></td>
 		</tr>
 </table>
 
-<table width="600" border="0" cellspacing="0" cellpadding="0">
-	
-		<tr>
-			<td align="right" colspan="2">
-				<font color="#FF0000">*</font>는 필수 입력 사항.
-				
-			</td>
-		</tr>
-		<tr bgcolor="#777777">
-			<td colspan="2" height="1"></td>
 
-		</tr>
-	
-	</table>
 <s:form action="AshopWriteAction" theme="simple">
 		<tr>
-			<td width="100">
+			<td align="center" width="100">
 				<font color="#FF0000">*</font> 식당이름:
-			</td>
-			<td width="500">
 				<s:textfield name="shop_name" theme="simple" value="%{resultClass.shop_name}" cssStyle="width:370px"/>
 			</td>
+			
 		</tr> 
 		
 		<br>
        <tr>
-		<td width="100">
+		<td align="center" width="100">
 				<font color="#FF0000">*</font> 전화번호:
-			</td>
-			<td width="500">
 				<s:textfield name="shop_tel" theme="simple"  value="%{resultClass.shop_tel}" cssStyle="width:370px" />
 			</td>
+			
 		</tr>
 		<br>
 		<tr>
-		<td width="100">
-				<font color="#FF0000">*</font> 가격대:
+		<td align="center"  width="100">
+				<font color="#FF0000">*</font> 가 격 대:
+				&nbsp;<s:textfield name="shop_price" theme="simple" value="%{resultClass.shop_price}"   cssStyle="width:370px"  />
 			</td>
-			<td width="500">
-			<s:textfield name="shop_price" theme="simple" value="%{resultClass.shop_price}"   cssStyle="width:370px"  />
-			</td>
+			
 		</tr>
 		<!--  
 		  <br>
@@ -77,37 +61,32 @@
 		
 		<br>
 		<tr>
-		<td width="100">
-				<font color="#FF0000">*</font> 휴일:
-			</td>
-			<td width="500">
-			<s:textfield name="shop_holiday" theme="simple" value="%{resultClass.shop_holiday}"  cssStyle="width:370px"  />
+		<td align="center" width="100">
+				<font color="#FF0000">*</font> 휴   일:
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<s:textfield name="shop_holiday" theme="simple" value="%{resultClass.shop_holiday}"  cssStyle="width:370px"  />
 			</td>
 			
 		</tr>
 		
 		<br>
 		<tr>
-		<td width="100">
-				<font color="#FF0000">*</font> 신규:
+		<td  align="center" width="100">
+				<font color="#FF0000">*</font> 신   규:
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<s:textfield name="shop_new" theme="simple" value="%{resultClass.shop_new}"  cssStyle="width:370px"  />
 			</td>
-			<td width="500">
-			<s:textfield name="shop_new" theme="simple" value="%{resultClass.shop_new}"  cssStyle="width:370px"  />
-			</td>
+		
 		</tr>
 		
 		<br>
 		<tr>
-		<td width="100">
-				<font color="#FF0000">*</font> 조회수:
-			</td>
-			<td width="500">
-			<s:textfield name="shop_readCount" theme="simple" value="%{resultClass.shop_readCount}"  cssStyle="width:370px"  />
+		<td  align="center" width="100">
+				<font color="#FF0000">*</font> 조 회 수:
+				&nbsp;<s:textfield name="shop_readCount" theme="simple" value="%{resultClass.shop_readCount}"  cssStyle="width:370px"  />
 			</td>
 			
 		</tr>
 		<tr>
-			<td colspan="2">
+			<td align="center" colspan="2">
 			 <input type="radio" name="shop_kind" value="한식"> 한식 
 		    &nbsp;
 			
@@ -121,5 +100,6 @@
 			</td>
 		</tr>
 		</s:form>
+	  
 </body>
 </html>
