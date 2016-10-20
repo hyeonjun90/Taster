@@ -15,10 +15,19 @@
      	</action>
 		
 	<!-- 관리자의 식당등록 목록 보기 액션 -->
-	 
 	<action name="AshoplistAction" class="admin.AdminShopListAction">
 	<result type="tiles">AshopList</result>
 	</action>
+	<!-- 관리자의 식당리스트 검색 액션 -->
+	<action name="AshoplistSearchNAction" class="admin.AdminShopListAction" method="search">
+	<result type="tiles">AshopList</result>
+	</action>
+	
+	
+	<!-- 관리자의 식당등록리스트 상세보기 액션 -->
+	<action name="AdminShopListDetailView" class="admin.AdminShopListDetailView">
+			<result type="tiles">AdminShopListDetail</result>
+		</action>
 	
 		<!-- 신규가게 등록 요청글 관련 -->
 		<!-- 신규가게등록 승인 요청 리스트 보기 -->
@@ -26,8 +35,14 @@
 			<result type="tiles">ApprovalRequestList</result>
 		</action>
 		
-		<!-- 신규가게등록 요청 승인/반려액션 -->
-		<action name="ApprovalAction" class="admin.ApprovalAction" method="approvalAction">
+		<!-- 신규가게등록 요청 승인액션 -->
+		<action name="approvalActionOk" class="admin.ApprovalRequestDetailView" method="approvalActionOk">
+			<result type="redirect-action"></result>
+			<param name="actionName">approvalRequestList</param>
+		</action>
+		
+		<!-- 신규가게등록 요청 반려액션 -->
+		<action name="approvalActionNok" class="admin.ApprovalRequestDetailView" method="approvalActionNok">
 			<result type="redirect-action"></result>
 			<param name="actionName">approvalRequestList</param>
 		</action>

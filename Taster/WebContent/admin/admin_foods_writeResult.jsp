@@ -64,18 +64,14 @@
 </tr>
  
 
-
-<!--
-<tr>
-<td>
-<input name="list" type="button" value="목록보기" class="inputb" onClick="javascript:location.href='AshoplistAction.action?currentPage=<s:property value="currentPage" />'">
-</td>
-</tr>
--->
-
 </table>
 
-<s:submit value="목록보기"/>
+
+<input name="list" align="right" type="button" value="목록보기" class="inputb" onClick="javascript:location.href='AshoplistAction.action?currentPage=<s:property value="currentPage" />'">
+
+
+
+
 
 </body>
 </html>
