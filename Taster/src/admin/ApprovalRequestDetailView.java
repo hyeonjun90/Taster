@@ -69,6 +69,8 @@ public class ApprovalRequestDetailView extends ActionSupport {
 	//신규식당등록 요청 글 승인
 	public String approvalActionOk() throws Exception {
 		
+		resultClass = (RequestListBean) sqlMapper.queryForObject("AprReq-selectOne", getR_idx());
+		
 		approvedClass.setShop_idx(resultClass.getR_idx());
 		System.out.println(resultClass.getR_idx());
 		approvedClass.setShop_name(resultClass.getR_shop_name());
@@ -86,7 +88,7 @@ public class ApprovalRequestDetailView extends ActionSupport {
 		approvedClass.setShop_file_savname(resultClass.getR_shop_file_savname());
 		*/
 		sqlMapper.insert("Shop-insertAshop", approvedClass);
-
+		/*sqlMapper.update("AprReq-DeleteReqList", resultClass);*/
 			return SUCCESS;
 			
 		} 
