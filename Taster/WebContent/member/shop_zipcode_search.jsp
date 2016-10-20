@@ -25,17 +25,20 @@
 
 <script>
 function setZipcode(sido, gugun, dong){
-	var juso=""+sido+""+gugun+""+dong;
+	var juso=""+sido+" "+gugun+" "+dong;
 	
 	//alert(juso + "//" + zipcode1 + "//" + zipcode2);
 	//member_food_wirte 의 joinForm의 값으로 전송 
 	opener.document.joinForm.shop_addr.value=juso;  //보여주기위한 합쳐진 주소 
-	opener.document.joinForm.shop_addr1.value = sido; //shopAddAction에 hidden값으로 넘겨주기 위한 값
-	opener.document.joinForm.shop_addr2.value = gugun;
-	opener.document.joinForm.shop_addr3.value = dong;
+	
+	document.joinForm.shop_addr1.value = sido; //shopAddAction에 hidden값으로 넘겨주기 위한 값
+	document.joinForm.shop_addr2.value = gugun;
+	document.joinForm.shop_addr3.value = dong;
 	
 	self.close();
 }
+
+
 </script>
 </head>
 <body>

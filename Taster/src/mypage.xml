@@ -12,23 +12,30 @@
 			<result type="tiles">qboard_write</result>
 		</action>
 		
-		<!-- 사진 눌렀을 때 식당 상세보기로 가는 액션 -->
+		<!-- 식당 상세보기로 가는 액션 -->
 		<action name="foodDatail" class="foods.FoodsDetailAction" method="execute">
 			<result type="tiles">foods_detail</result>
 		</action>
 		
-		<!-- 식당등록 맵핑 -->
-		<action name="shopAdd" class="member.ShopAddAction" method="execute">
-			<result type="tiles">member_foods_write</result>
-		</action>
-		
-		<!-- 마이페이지 액션 -->
+		<!-- 마이페이지 메인 액션 -->
 		<action name="memberMypage" class="member.MemberMyPageAction" method="execute">
 			<result type="tiles">member_my_page</result>
 		</action>
 		
-		<action name="shopZipcode" class="member.ShopAddAction" method="zipcode">
-			<result>/member/shop_zi</result>
+		<!-- 식당등록 폼 이동 -->
+		<action name="shopAdd" class="member.ShopAddAction" method="execute">
+			<result type="tiles">member_foods_write</result>
+		</action>
+		
+		<!-- 식당 등록 완료  -->
+		
+		<!-- 식당 위치 검색 -->
+		<action name="shopZipcode" class="member.ShopZipcodeAction" method="shopZipcode">
+			<result>/member/shop_zipcode.jsp</result>
+		</action>
+		
+		<action name="shopSearchZipcode" class="member.ShopZipcodeAction" method="shopZipcodeSearh">
+			<result>/member/shop_zipcode_search.jsp</result>
 		</action>
 		
 	</package>  
