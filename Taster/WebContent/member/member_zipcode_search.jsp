@@ -40,7 +40,7 @@ function setZipcode(zipcode, sido, gugun, dong, ri, bldg, bunji){
 	<center><h3>검색 된 결과가 없습니다.</h3></center>
 </c:if>
 
-<c:forEach var="zip" items="${zipList }">
+<c:forEach var="zip" items="${zipList}">  <!-- ShopZipAction에 선언된 zipList -->
 <ul>
 	<li>	
 	<a href="javascript:setZipcode('${zip.zipcode}', '${zip.sido}', '${zip.gugun }','${zip.dong }', '${zip.ri }', '${zip.bldg }', '${zip.bunji }');">

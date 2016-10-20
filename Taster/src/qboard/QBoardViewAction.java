@@ -35,7 +35,7 @@ public class QBoardViewAction extends ActionSupport{
 	
 	private int b_idx;
 	
-	//private String b_pwd;
+	private String b_pwd;
 	
 	//private String fileUploadPath = "C:\\Java\\Framework02\\upload\\";
 	
@@ -52,11 +52,11 @@ public class QBoardViewAction extends ActionSupport{
 
 	public String execute() throws Exception {
 		paramClass.setB_idx(getB_idx());
-		sqlMapper.update("updateB_readCount",paramClass);
+		sqlMapper.update("qboard-updateB_readCount",paramClass);
 		
-		resultClass = (QnABoardBean) sqlMapper.queryForObject("selectOne", getB_idx());
+		resultClass = (QnABoardBean) sqlMapper.queryForObject("qboard-selectOne", getB_idx());
 		
-		commentlist = sqlMapper.queryForList("commentSelectAll", getB_idx());
+		commentlist = sqlMapper.queryForList("qboard-commentSelectAll", getB_idx());
 		
 		return SUCCESS;
 	}
@@ -71,9 +71,9 @@ public class QBoardViewAction extends ActionSupport{
 	public String checkAction()	throws Exception
 	{
 		paramClass.setB_idx(getB_idx());
-		//paramClass.setB_pwd(getB_pwd());
+		paramClass.setB_pwd(getB_pwd());
 		
-		//resultClass = (QnABoardBean) sqlMapper.queryForObject("selectB_pwd", paramClass);
+		resultClass = (QnABoardBean) sqlMapper.queryForObject("selectB_pwd", paramClass);
 		
 		if(resultClass == null)
 			return ERROR;
@@ -86,7 +86,7 @@ public class QBoardViewAction extends ActionSupport{
 		cClass.setB_idx(getB_idx());
 		//cClass.setB_pwd(getB_pwd());
 		
-		//cResult = (CommentBean) sqlMapper.queryForObject("selectB_pwd2", cClass);
+		cResult = (CommentBean) sqlMapper.queryForObject("selectB_pwd2", cClass);
 		
 		if(cResult == null)
 			return ERROR;
@@ -155,15 +155,15 @@ public class QBoardViewAction extends ActionSupport{
 	
 
 	
-	/*
+	
 	public String getB_pwd() {
 		return b_pwd;
-	}*/
-	/*
+	}
+	
 	public void setB_pwd(String b_pwd) {
 		this.b_pwd = b_pwd;
 	}
-	 */
+	 
 	/*
 	public String getFileUploadPath() {
 		return fileUploadPath;
@@ -171,8 +171,8 @@ public class QBoardViewAction extends ActionSupport{
 
 	public void setFileUploadPath(String fileUploadPath) {
 		this.fileUploadPath = fileUploadPath;
-	}
-	*/
+	}*/
+	
 	public InputStream getInputStream() {
 		return inputStream;
 	}

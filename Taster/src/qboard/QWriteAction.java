@@ -29,7 +29,7 @@ public class QWriteAction extends ActionSupport{
 	
 	private int b_idx;
 	private String b_title;
-	//private String name;
+	private String member_id;
 	private String b_pwd;
 	private String b_content;
 	//private String file_orgName;
@@ -110,15 +110,16 @@ public class QWriteAction extends ActionSupport{
 			paramClass.setRef(getRef());
 		}
 		*/
+		//System.out.println(getMember_id());
 		paramClass.setB_title(getB_title());
-		//paramClass.setName(getName());
+		paramClass.setMember_id(getMember_id());
 		paramClass.setB_pwd(getB_pwd());
 		paramClass.setB_content(getB_content());
 		paramClass.setB_regdate(today.getTime());
 		
 		
 		//등록쿼리 수행
-		sqlMapper.insert("insertBoard", paramClass);
+		sqlMapper.insert("qboard-insertBoard", paramClass);
 		
 		/*
 		if(ref == 0)
@@ -194,15 +195,15 @@ public class QWriteAction extends ActionSupport{
 		this.b_title = b_title;
 	}
 	
-	/*
-	public String getName() {
-		return name;
+	
+	public String getMember_id() {
+		return member_id;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setMember_id(String member_id) {
+		this.member_id = member_id;
 	}
-	 */
+	
 	
 	public String getB_pwd() {
 		return b_pwd;

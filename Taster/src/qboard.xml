@@ -39,6 +39,16 @@
 		</result>
 	</action>
 	
+	<!-- 코멘트작성 관련 액션 -->
+	
+	<action name="AdminComment" class="qboard.AdminCommentAction">
+		<result type="chain">
+		qboardViewForm
+		</result>
+	</action>
+	
+	
+	
 	
 	<!-- 게시판 답변글쓰기 액션 -->
 	<!--  
@@ -114,14 +124,7 @@
 	
 	-->
 	
-	<!-- 코멘트작성 관련 액션 -->
-	<!--
-	<action name="writeCommentAction" class="qboard.AdminCommentAction">
-		<result type="chain">
-		viewAction
-		</result>
-	</action>
-	-->
+	
 	
 	
 	

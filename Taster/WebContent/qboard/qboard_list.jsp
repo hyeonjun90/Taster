@@ -20,11 +20,11 @@
 	
 	<table width="600" border="0" cellspacing="0" cellpadding="2">
 		<tr align="center" bgcolor="#f3f3f3">
-			<td width="50"><strong>번호</strong></td>
-			<td width="350"><strong>제목</strong></td>
+			<td width="30"><strong>번호</strong></td>
+			<td width="300"><strong>제목</strong></td>
 			<td width="70"><strong>글쓴이</strong></td>
-			<td width="80"><strong>날짜</strong></td>
-			<td width="50"><strong>조회</strong></td>
+			<td width="50"><strong>날짜</strong></td>
+			<td width="30"><strong>조회</strong></td>
 		</tr>
 
 		<tr bgcolor="#777777">
@@ -32,7 +32,7 @@
 		</tr>
 
 	<s:iterator value="list" status="stat">
-		<s:url id="viewURL" action="viewAction">
+		<s:url id="viewURL" action="qboardViewForm">
 			<s:param name="b_idx">
 				<s:property value="b_idx" />
 			</s:param>
@@ -42,19 +42,22 @@
 		</s:url>
 	
 		<tr>
+			<!-- 글 번호 -->
 			<td><s:property value="b_idx" /></td>
-			<td align="left">
-				<!--  
+				<td align="center">
+				<!--				  
 				<s:if test="re_level != 0">
 					<c:forEach var = "i" begin = "${re_level}" end = "0">&nbsp;</c:forEach>→
 				</s:if>
 				-->
-					
+				
+				
+			<!-- 글 제목 -->
  				<s:a href="%{viewURL}"><s:property value="b_title" /></s:a>
  			</td>
 			<td><s:property value="member_id" /></td>
 			<td><s:property value="b_regdate" /></td>
-			<td><s:property value="b_readcount" /></td>
+			<td><s:property value="b_readCount" /></td>
 		</tr>
 
 		<tr bgcolor="#777777">
@@ -63,6 +66,7 @@
 
 	</s:iterator>
 
+	<!-- 게시물 없을때 -->
 	<s:if test="list.size() <= 0">
 		<tr>
 			<td colspan="5" align="center">등록된 게시물이 없습니다</td>
@@ -73,12 +77,15 @@
 		<td colspan="5"><s:property value="pagingHtml" escape="false" /></td>
 	</tr>
 
+	<!-- 글쓰기 버튼 -->
 	<tr align="right">
 		<td colspan="5">
 			<input type="button" value="글쓰기" class="inputb" onClick="javascript:location.href='qWriteForm.action?currentPage=<s:property value="currentPage" />';" />
 		</td>
 	</tr>
 
+
+	<!-- 검색메뉴 -->
 	<tr align="center">
 		<td colspan="5">
 			<form>
