@@ -110,7 +110,7 @@ function loginCheck() {
 	 <div id="layer">
 	 	<h2 style="border-bottom:1px solid black;">LOGIN</h2>
 		 <div class="login_line">
-		 	<div class="box_in">
+		 	<div class="box_in"> 
 		 		<input type="text" name="member_id" id="member_id"  size="23" placeholder="아이디">
 				<input type="password" name="member_pwd" id="member_pwd" size="23" placeholder="비밀번호"
 					 onkeydown="javascript:if(event.keyCode==13){ loginCheck(); return false; }">
@@ -121,8 +121,8 @@ function loginCheck() {
 	    <div class="close" >
 		    <table width="100%" id="loginTbl" >
 		    	<tr>
-		    		<td width="30%" align="left" onclick="memberJoin.action">회원가입</td>
-		    		<td width="50%;" align="left">아이디/비밀번호 찾기</td>
+		    		<td width="30%" align="left" onclick="location.href='memberJoin.action'">회원가입</td>
+		    		<td width="50%;" align="left" onclick="location.href='findMemberInfo.action'">아이디/비밀번호 찾기</td>
 		    		<td width="20%" align="right">
 		    		 	<a href="#layer_anchor" title="레이어 닫기" class="close">닫기</a>
 		    		</td>

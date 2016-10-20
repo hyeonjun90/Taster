@@ -3,7 +3,7 @@
 
 <sqlMap>
 	<typeAlias alias="myPageList" type="bean.JoinR_B_S"/>
-	
+	 
 	<resultMap id="myPageRes" class="myPageList">
 		<result property="review_idx" column="review_idx"/>
 		<result property="r_title" column="r_title"/>
@@ -37,12 +37,15 @@
 	<select id="idCheck" parameterClass="String" resultClass="Integer">
 		select count(*) from Member where member_id=#member_id#
 	</select>
+	<select id="nicCheck" parameterClass="String" resultClass="Integer">
+		select count(*) from Member where member_nicname=#member_nicname#
+	</select>
 	
 	<insert id="insertMember" parameterClass="bean.MemberBean">
 		insert into MEMBER(member_id, member_pwd, member_nicname, member_name, member_phone,
-				member_addr, member_zipcdoe, member_image, member_joindate, member_level)
+				member_addr, member_zipcdoe, member_image, member_joindate, member_level, member_email)
 			values(#member_id#, #member_pwd#, #member_nicname#, #member_name#, #member_phone#,
-				#member_addr#, #member_zipcode#, #member_image#, #member_joinDate#, default)
+				#member_addr#, #member_zipcode#, #member_image#, #member_joinDate#, default, #member_email#)
 	</insert>
 	
 	<select id="zipcodeSearch" parameterClass="String" resultClass="bean.ZipcodeBean">
@@ -55,6 +58,10 @@
 	
 	<select id="getMemberInfo" parameterClass="String" resultClass="bean.MemberBean">
 		select member_id, member_nicname, member_level from member where member_id=#member_id#
+	</select>
+	<!-- 아이디 찾기 -->
+	<select id="findMemberId" parameterClass="String" resultClass="String">
+		select member_phone from member where member_name=#member_name#
 	</select>
 
    <!-- 테스트 코드 -->

@@ -36,19 +36,32 @@
 		</action>
 		
 		<!-- 신규가게등록 요청 승인액션 -->
-	<!-- 	<action name="ApprovalRequestOk" class="admin.ApprovalRequestOk" method="">
-			<result></result>
+		<action name="approvalActionOk" class="admin.ApprovalRequestDetailView" method="approvalActionOk">
+			<result type="redirect-action"></result>
+			<param name="actionName">approvalRequestList</param>
 		</action>
 		
-		신규가게등록 요청 반려액션
-		<action name="ApprovalRequestNok" class="admin.ApprovalRequestNok" method="">
-			<result></result>
-		</action> -->
+		<!-- 신규가게등록 요청 반려액션 -->
+		<action name="approvalActionNok" class="admin.ApprovalRequestDetailView" method="approvalActionNok">
+			<result type="redirect-action"></result>
+			<param name="actionName">approvalRequestList</param>
+		</action>
 		
 		<!-- 신규가게등록 리스트 글 상세보기 -->
 		<action name="approvalRequestDetailView" class="admin.ApprovalRequestDetailView">
 			<result type="tiles">ApprovalRequestDetail</result>
 		</action>
+		
+		<!-- 신규가게등록 요청 글 파일 다운로드 액션 -->
+		<action name="AprReq_fileDownloadAction" class="admin.ApprovalRequestDetailView" method="download">
+    	<result name="success" type="stream">
+                <param name="contentType">binary/octet-stream</param>
+                <param name="inputName">inputStream</param>
+                <param name="contentDisposition">${contentDisposition}</param>
+                <param name="contentLength">${contentLength}</param> 
+                <param name="bufferSize">4096</param>
+         </result>
+</action>
 
 	<!-- 맛집추천리스트 관련 -->
 		<!-- 관리자 화면에서 맛집추천리스트 등록글 리스트 조회 -->

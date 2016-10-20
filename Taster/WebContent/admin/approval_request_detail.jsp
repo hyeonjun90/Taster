@@ -8,9 +8,18 @@
 <title>관리자페이지입니다.</title>
 <link rel="stylesheet" href="/StrutsBoard/board/common/css/css.css" type="text/css">
 <script type="text/javascript">
-	function open_win_noresizable (url, name) {
-		var oWin = window.open(url, name, "scrollbars=no, status=no, resizable=no, width=300, height=150");		
+	function ApprovalOk () {
+		window.opener.parent.location.href='approvalActionOk.action?r_idx=<s:property value="r_idx"/>&currentPage=<s:property value="currentPage"/>';
+		alert('승인되었습니다.');
+		/* var oWin = window.open(url, name, "scrollbars=no, status=no, resizable=no, width=300, height=150");		 */
 	}
+	
+	function ApprovalNok () {
+		alert('승인거부 되었습니다.');
+		window.opener.parent.location.href='approvalActionNok.action?r_idx=<s:property value="r_idx"/>&currentPage=<s:property value="currentPage"/>';
+		window.close();
+	}
+
 </script>
 
 </head>
@@ -135,23 +144,23 @@
 			<td height="1" colspan="2"></td>
 		</tr>
 		
-		<%-- <tr>
+		<tr>
 			<td bgcolor="#F4F4F4"> 첨부파일</td>
 			<td bgcolor="#FFFFFF"> &nbsp; &nbsp; 
 			
-			<s:url id="download" action="fileDownloadAction">
+			<s:url id="download" action="AprReq_fileDownloadAction">
 			<s:param name="no">
 				<s:property value="no"/>
 			</s:param>
 			</s:url>
 			
-			<s:a href="%{download}"><s:property value="resultClass.file_orgname"/></s:a>
+			<s:a href="%{download}"><s:property value="resultClass.r_shop_file_orgname"/></s:a>
 			</td>
 		</tr>
 		
 		<tr bgcolor="#777777">
 			<td height="1" colspan="2"></td>
-		</tr> --%>
+		</tr>
 		
 		<tr>
 			<td height="10" colspan="2"></td>
@@ -159,15 +168,16 @@
 		
 		<tr>
 			<td align="right" colspan="2">
-				<s:url id="modifyURL" action="modifyForm">
+			<%-- 	<s:url id="modifyURL" action="modifyForm">
 					<s:param name="no">
 						<s:property value="no"/>
 					</s:param>
-				</s:url>
+				</s:url> --%>
 				
-			<input type="button" value="승인하기" class="inputb" onClick="javascript:location.href='ApprovalRequestOk.action?currentpage=<s:property value="currentPage"/>';">
-			<input type="button" value="거부하기" class="inputb" onClick="javascript:location.href='ApprovalRequestNok.action?currentpage=<s:property value="currentPage"/>';">
+			<input name="ApprovalOk"  type="button" value="승인하기" class="inputb" onClick="ApprovalOk()">
+			<input name="ApprovalNok" type="button" value="거부하기" class="inputb" onClick="ApprovalNok()">
 			<input name="list" type="button" value=" 목 록 " class="inputb" onClick="javascript:location.href='approvalRequestList.action?currentPage=<s:property value="currentPage"/>'">
+ 			
  			</td>
  		</tr>
  	</table>
