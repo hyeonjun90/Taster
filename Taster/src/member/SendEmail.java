@@ -21,7 +21,7 @@ public class SendEmail extends ActionSupport {
    private String to;
    private String subject;
    private String body;
-   private String member_email; 
+   private String member_email;
    private String result;
 
    static Properties properties = new Properties();
