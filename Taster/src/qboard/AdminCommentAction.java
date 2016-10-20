@@ -22,11 +22,11 @@ public class AdminCommentAction extends ActionSupport{
 	private CommentBean paramClass;
 	private CommentBean resultClass;
 
-	private int C_IDX;
+	private int c_idx;
 	private int currentPage;
 	
-	private String C_CONTENT;
-	private int B_IDX;
+	private String c_content;
+	private int b_idx;
 
 	Calendar today = Calendar.getInstance();
 
@@ -49,16 +49,16 @@ public class AdminCommentAction extends ActionSupport{
 		paramClass = new CommentBean();
 		resultClass = new CommentBean();
 		
-		paramClass.setB_idx(getB_IDX());
+		paramClass.setB_idx(getB_idx());
 
-		paramClass.setC_idx(getC_IDX());
-		System.out.print(getC_CONTENT()); 
-		paramClass.setC_content(getC_CONTENT());
+		paramClass.setC_idx(getC_idx());
+		System.out.print(getC_content()); 
+		paramClass.setC_content(getC_content());
 		paramClass.setC_regdate(today.getTime());
 		
-		sqlMapper.insert("insertComment", paramClass);
+		sqlMapper.insert("qboard-insertComment", paramClass);
 		
-
+		System.out.println(getC_idx());
 		return SUCCESS;
 	}
 
@@ -80,12 +80,12 @@ public class AdminCommentAction extends ActionSupport{
 
 
 
-	public int getC_IDX() {
-		return C_IDX;
+	public int getC_idx() {
+		return c_idx;
 	}
 
-	public void setC_IDX(int C_IDX) {
-		this.C_IDX = C_IDX;
+	public void setC_idx(int c_idx) {
+		this.c_idx = c_idx;
 	}
 
 
@@ -98,12 +98,12 @@ public class AdminCommentAction extends ActionSupport{
 	}
 
 
-	public String getC_CONTENT() {
-		return C_CONTENT;
+	public String getC_content() {
+		return c_content;
 	}
 
-	public void setC_CONTENT(String C_CONTENT) {
-		this.C_CONTENT = C_CONTENT;
+	public void setC_content(String c_content) {
+		this.c_content = c_content;
 	}
 
 
@@ -115,12 +115,12 @@ public class AdminCommentAction extends ActionSupport{
 		this.today = today;
 	}
 
-	public int getB_IDX() {
-		return B_IDX;
+	public int getB_idx() {
+		return b_idx;
 	}
 
-	public void setB_IDX(int B_IDX) {
-		this.B_IDX = B_IDX;
+	public void setB_idx(int b_idx) {
+		this.b_idx = b_idx;
 	}
 
 	

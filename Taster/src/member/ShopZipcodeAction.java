@@ -13,42 +13,36 @@ import com.opensymphony.xwork2.ActionSupport;
 
 import bean.ZipcodeBean;
 
-public class MemberZipcodeAction extends ActionSupport {
+public class ShopZipcodeAction extends ActionSupport {
+	
 	public static Reader reader; //파일 스트림을 위한 reader
 	public static SqlMapClient sqlMapper; //SqlMapClient API를 사용하기 위한 sqlMapper 객체
 	
-	private int idx; 			// 기본키
-	private String zipcode;		// 우편번호
-	private String sido;		// 특별시, 광역시, 도
-	private String gugun;		// 시, 구, 군
-	private String dong;		// 동
-	private String ri;			// 리
-	private String bldg;		// 건물명
-	private String bunji;		// 번지
+	private int idx;
+
+
+	private String sido; //주소1(도/시)
+	private String gugun; //주소2(시,구,군)
+	private String dong; //주소3(동)
+	private String shop_addr4; //주소4(나머지)
 	
 	private ArrayList<ZipcodeBean> zipList;
 	
-	//생성자
-	public MemberZipcodeAction() throws IOException {
-		reader = Resources.getResourceAsReader("sqlMapConfig.xml"); //sqlMapConfig.xml 파일의 설정내용을 가져온다.
-		sqlMapper = SqlMapClientBuilder.buildSqlMapClient(reader); //sqlMapConfig.xml의 내용을 적용한 sqlMapper 객체 생성
-		reader.close();
-	}
-	
-	public String zipcode() throws Exception { //우편번호 검색 폼 열기
+	public String shopZipcode() throws Exception{ //우편번호 검색 폼 열기
+
 		return SUCCESS;
 	}
 	
-	public String zipcodeSearch() throws Exception { //우편번호 검색 결과
+	public String shopZipcodeSearh() throws Exception{
 		zipList = new ArrayList<>();
 		
 		String keyword = "%"+URLDecoder.decode(getDong(), "utf-8")+"%";
 		System.out.println(keyword);
-		zipList = (ArrayList<ZipcodeBean>) sqlMapper.queryForList("zipcodeSearch", keyword);
-		
+		zipList = (ArrayList<ZipcodeBean>)sqlMapper.queryForList("zipcodeSearch",keyword);
 		
 		return SUCCESS;
 	}
+ 	
 
 	public int getIdx() {
 		return idx;
@@ -56,14 +50,6 @@ public class MemberZipcodeAction extends ActionSupport {
 
 	public void setIdx(int idx) {
 		this.idx = idx;
-	}
-
-	public String getZipcode() {
-		return zipcode;
-	}
-
-	public void setZipcode(String zipcode) {
-		this.zipcode = zipcode;
 	}
 
 	public String getSido() {
@@ -90,28 +76,12 @@ public class MemberZipcodeAction extends ActionSupport {
 		this.dong = dong;
 	}
 
-	public String getRi() {
-		return ri;
+	public String getR_shop_addr4() {
+		return shop_addr4;
 	}
 
-	public void setRi(String ri) {
-		this.ri = ri;
-	}
-
-	public String getBldg() {
-		return bldg;
-	}
-
-	public void setBldg(String bldg) {
-		this.bldg = bldg;
-	}
-
-	public String getBunji() {
-		return bunji;
-	}
-
-	public void setBunji(String bunji) {
-		this.bunji = bunji;
+	public void setR_shop_addr4(String shop_addr4) {
+		this.shop_addr4 = shop_addr4;
 	}
 
 	public ArrayList<ZipcodeBean> getZipList() {
@@ -122,22 +92,4 @@ public class MemberZipcodeAction extends ActionSupport {
 		this.zipList = zipList;
 	}
 	
-	
-	
-	
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

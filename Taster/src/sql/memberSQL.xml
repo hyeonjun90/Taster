@@ -37,9 +37,6 @@
 	<select id="idCheck" parameterClass="String" resultClass="Integer">
 		select count(*) from Member where member_id=#member_id#
 	</select>
-	<select id="nicCheck" parameterClass="String" resultClass="Integer">
-		select count(*) from Member where member_nicname=#member_nicname#
-	</select>
 	
 	<insert id="insertMember" parameterClass="bean.MemberBean">
 		insert into MEMBER(member_id, member_pwd, member_nicname, member_name, member_phone,

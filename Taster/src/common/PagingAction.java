@@ -49,7 +49,7 @@ public class PagingAction {
       
       //pagingHtml 이전 테그와 액션을 html로 맵핑(이전을 누르면 현재 페이지의 전페이지로 이동) 
       if(currentPage>blockPage){
-         pagingHtml.append("<a href=memberMyPage.action?currentPage=" + (startPage-1)+">");
+         pagingHtml.append("<a href='memberMyPage.action?currentPage=" + (startPage-1)+"'>");
          pagingHtml.append("이전");
          pagingHtml.append("</a>");
       }

@@ -27,6 +27,10 @@
 			<result type="tiles">member_my_page</result>
 		</action>
 		
+		<action name="shopZipcode" class="member.ShopAddAction" method="zipcode">
+			<result>/member/shop_zi</result>
+		</action>
+		
 	</package>  
 	
 </struts>
