@@ -3,8 +3,18 @@ package member;
 import java.io.IOException;
 import java.io.Reader;
 import java.sql.Date;
-import java.util.Calendar;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Properties;
+
+import javax.mail.Message;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 
 import com.ibatis.common.resources.Resources;
 import com.ibatis.sqlmap.client.SqlMapClient;
@@ -14,18 +24,31 @@ import com.opensymphony.xwork2.ActionSupport;
 import bean.MemberBean;
 
 public class MemberFindAction2 extends ActionSupport {
-	private String member_id;
-	private String member_pwd;
-	private String member_nicname;
+	
 	private String member_name;
-	private String member_phone;
-	private String member_addr;
-	private String member_zipcode;
-	private String member_image;
+	private String member_id;
 	private String member_email;
-	private Date member_joinDate; //가입일
-	private Date member_loginDate; // 최근 로그인
-	private int member_level;  // 회원 등급 1.유저 2.에디터 3.관리자
+	private String emailOk;
+	private String member_pwd;
+	
+	private String from;
+    private String password;
+    private String to;
+    private String subject;
+    private String body;
+    private String result;
+    
+    static Properties properties = new Properties();
+    static
+    {
+       properties.put("mail.smtp.host", "smtp.gmail.com");
+       properties.put("mail.smtp.socketFactory.port", "465");
+       properties.put("mail.smtp.socketFactory.class",
+                      "javax.net.ssl.SSLSocketFactory");
+       properties.put("mail.smtp.auth", "true");
+       properties.put("mail.smtp.port", "465");
+    }
+
 	
 	private MemberBean resultClass;
 	
@@ -40,32 +63,64 @@ public class MemberFindAction2 extends ActionSupport {
 		reader.close();
 	}
 	
-	public String findId() throws Exception {
-		resultClass = new MemberBean();
-		HashMap<String, Object> map = new HashMap<>();
-		map.put("member_name", getMember_name());
-		map.put("member_email", getMember_email());
-		
-		System.out.println("getName : " + getMember_name());
-		System.out.println("getemail : " + getMember_email());
-		String test = (String) sqlMapper.queryForObject("findMemberId", getMember_name());
-		System.out.println("test : " + test);
-		
+	public String findMemberId() throws Exception {
+		member_id = (String) sqlMapper.queryForObject("findMemberId", getMember_email());
+		if(member_id == null) {
+			member_id = "false";
+		}
 		return SUCCESS;
 	}
-	
+	public String findMemberPwd() throws Exception {
+		member_pwd = (String) sqlMapper.queryForObject("findMemberPwd", getMember_email());
+		if(member_email == null) {
+			emailOk = "false";
+		} else {
+			emailOk = getMember_email();
+			
+			String ret = SUCCESS;
+		      try {
+		    	  
+		    	    from = "khstudy3@gmail.com";
+		    	    password = "1234qazwsx";
+		    	    to = member_email;
+		    	  	subject = "맛객 비밀번호입니다.";
+		    	  	body = "요청하신 비밀번호를 발송해드립니다.\n\n"
+		    	  			+ "아래의 비밀번호로 로그인 해주세요.\n\n\n"
+		    	  			+ "비밀번호 : "+member_pwd+"\n\n\n"
+		    	  			+ ""
+		    	  			+ "맛객을 이용해 주셔서 감사합니다.\n더욱 편리한 서비스를 제공하기 위해 항상 최선을 다하겠습니다."
+		    	  			+ "";
+		    	  	
+		         Session session = Session.getDefaultInstance(properties,  
+		            new javax.mail.Authenticator() {
+		            protected PasswordAuthentication 
+		            getPasswordAuthentication() {
+		            return new 
+		            PasswordAuthentication(from, password);
+		            }});
+
+		         Message message = new MimeMessage(session);
+		         message.setFrom(new InternetAddress(from));
+		         message.setRecipients(Message.RecipientType.TO, 
+		            InternetAddress.parse(to));
+		         message.setSubject(subject);
+		         message.setText(body);
+		         Transport.send(message);
+		      }
+		      catch(Exception e)
+		      {
+		         ret = SUCCESS;
+		         e.printStackTrace();
+		      }
+		      return ret;
+		}
+		return SUCCESS;
+	}
 	public String form() throws Exception { //회원가입 폼 이동
 		
 		return SUCCESS;
 	}
 
-	public String getMember_id() {
-		return member_id;
-	}
-
-	public void setMember_id(String member_id) {
-		this.member_id = member_id;
-	}
 
 	public String getMember_name() {
 		return member_name;
@@ -91,6 +146,22 @@ public class MemberFindAction2 extends ActionSupport {
 		this.resultClass = resultClass;
 	}
 
+	public String getMember_id() {
+		return member_id;
+	}
+
+	public void setMember_id(String member_id) {
+		this.member_id = member_id;
+	}
+
+	public String getEmailOk() {
+		return emailOk;
+	}
+
+	public void setEmailOk(String emailOk) {
+		this.emailOk = emailOk;
+	}
+
 	public String getMember_pwd() {
 		return member_pwd;
 	}
@@ -99,71 +170,55 @@ public class MemberFindAction2 extends ActionSupport {
 		this.member_pwd = member_pwd;
 	}
 
-	public String getMember_nicname() {
-		return member_nicname;
+	public String getFrom() {
+		return from;
 	}
 
-	public void setMember_nicname(String member_nicname) {
-		this.member_nicname = member_nicname;
+	public void setFrom(String from) {
+		this.from = from;
 	}
 
-	public String getMember_phone() {
-		return member_phone;
+	public String getPassword() {
+		return password;
 	}
 
-	public void setMember_phone(String member_phone) {
-		this.member_phone = member_phone;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
-	public String getMember_addr() {
-		return member_addr;
+	public String getTo() {
+		return to;
 	}
 
-	public void setMember_addr(String member_addr) {
-		this.member_addr = member_addr;
+	public void setTo(String to) {
+		this.to = to;
 	}
 
-	public String getMember_zipcode() {
-		return member_zipcode;
+	public String getSubject() {
+		return subject;
 	}
 
-	public void setMember_zipcode(String member_zipcode) {
-		this.member_zipcode = member_zipcode;
+	public void setSubject(String subject) {
+		this.subject = subject;
 	}
 
-	public String getMember_image() {
-		return member_image;
+	public String getBody() {
+		return body;
 	}
 
-	public void setMember_image(String member_image) {
-		this.member_image = member_image;
+	public void setBody(String body) {
+		this.body = body;
 	}
 
-	public Date getMember_joinDate() {
-		return member_joinDate;
+	public String getResult() {
+		return result;
 	}
 
-	public void setMember_joinDate(Date member_joinDate) {
-		this.member_joinDate = member_joinDate;
+	public void setResult(String result) {
+		this.result = result;
 	}
 
-	public Date getMember_loginDate() {
-		return member_loginDate;
-	}
 
-	public void setMember_loginDate(Date member_loginDate) {
-		this.member_loginDate = member_loginDate;
-	}
-
-	public int getMember_level() {
-		return member_level;
-	}
-
-	public void setMember_level(int member_level) {
-		this.member_level = member_level;
-	}
-	
-	
 }
 
 

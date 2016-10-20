@@ -5,7 +5,7 @@
 <script type='text/javascript' src='http://code.jquery.com/jquery-1.11.0.min.js'></script>
 <script>
 	function zipSearch() {
-		$("#zipcode").html("<center><h3>LOADING...</h3></center>");
+		$("#zipcode").html("<center><img src='/Taster/images/loader.gif'/></center>");
 		$.ajax({
 			url: "zipcodeSearch.action", 
 			method: "post",
