@@ -27,10 +27,13 @@
 		height: 30px;
 		font-size: 13px;
 		width: 300px;
+		border: 1.5px solid #a6a6a6;
+		font-family : 'Noto Sans', sans-serif;
+		font-weight: bold;
 	}
 	.findTbl tr td {
 		width: 100%;
-		text-align: center;
+		margin: 5px;
 	}
 	
 </style>
@@ -38,24 +41,42 @@
 <body>
 <center>
 <div id="findDiv">
+<form action="findMemberId.action" method="post" name="idForm">
 	<div id="idDiv">
 		<table class="findTbl">
 			<tr>
-				<td>
-					<img src="/Taster/images/find_id.gif" alt="" />
-					<hr />
+				<td style="margin:10px;">
+					<img src="/Taster/images/find_id.gif" alt="" style="margin:10px;"/>
+					<hr style="width:450px;" />
 				</td>
 			</tr>
 		</table>
+		<p height="50px"></p>
 		<table style="clear:both;">
 			<tr>
-				<td style="text-align:center;">
-					<input type="text" name="member_name" id="member_name" placeholder="이름"/>
-					<input type="text" name="member_email" id="member_email" placeholder="이메일"/>
+				<td style="text-align:center;" class="findTbl">
+					<input type="text" name="member_name" id="member_name" placeholder="이름" style="padding-left:5px;"/>
+				</td>
+			</tr>
+		</table>
+		<p height="10px"></p>
+		<table style="clear:both;">
+			<tr>
+				<td style="text-align:center;" class="findTbl">
+					<input type="text" name="member_email" id="member_email" placeholder="이메일" style="padding-left:5px;"/>
+				</td>
+			</tr>
+		</table>
+		<p height="10px"></p>
+		<table style="clear:both;">
+			<tr>
+				<td style="text-align:center;" class="findTbl">
+					<input type="submit" value="확 인" style="width:80px;"/>
 				</td>
 			</tr>
 		</table>
 	</div>
+</form>
 	<div id="pwDiv"></div>
 </div>
 </center>
