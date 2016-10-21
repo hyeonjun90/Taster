@@ -6,8 +6,14 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<<<<<<< HEAD
+<title>업종별 맛집 리스트</title>
+<link rel="stylesheet" href="/Taster/css/style.css" />
+
+=======
 <title>Insert title here</title>
 <link rel="stylesheet" href="/Taster/css/style.css" />
+>>>>>>> branch 'master' of https://github.com/hyeonjun90/Taster
 <style>
 	.clearDiv{	clear:both;	}
 	.c1 {background:url('http://itvplus5.cafe24.com/img/category/c01.png');}
@@ -31,6 +37,29 @@
 		background-repeat: no-repeat;
 		cursor: pointer;
 	}
+<<<<<<< HEAD
+	#topMenu ul li{  			
+		color: white;
+		background-color:FF9900; 
+		float: left;    		
+		line-height: 30px;   
+		vertical-align: middle; 
+		text-align:center;		
+ 	} 
+ 	#topMenu .menuLink{       
+ 		text-decoration:none; 
+ 		color: white;              
+        display: block;         
+        width: 150px;          
+        font-size: 12px;       
+        font-weight: bold;     
+        font-family: "Trebuchet MS", Dotum, Arial; 
+ 	}
+ 	#topMenu .menuLink:hover{   
+ 		color:red;
+ 		background-color: FF6600;
+ 	}
+=======
 	.category_bt{
 		width: 80px;
 		height: 80px;
@@ -58,11 +87,23 @@
 		padding-top: 0px;
 	}
 		
+>>>>>>> branch 'master' of https://github.com/hyeonjun90/Taster
 </style>
 </head>
   
 <body>
+       <nav id="topMenu" >
+                <ul>
+                        <li><a class="menuLink" href="#">한식</a></li>
+                        <li><a class="menuLink" href="#">양식</a></li>
+                        <li><a class="menuLink" href="#">일식</a></li>
+                        <li><a class="menuLink" href="#">중식</a></li>
+                        <li><a class="menuLink" href="#">고기</a></li>
+                </ul>
+        </nav>
 
+<<<<<<< HEAD
+=======
 <center>
 <div style="width:100%;min-height:500px;margin-top:40px;">
 
@@ -125,6 +166,7 @@
 </div>
 </div>
 </center>
+>>>>>>> branch 'master' of https://github.com/hyeonjun90/Taster
 </body>
 </html>
 
