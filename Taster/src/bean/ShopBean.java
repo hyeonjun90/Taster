@@ -1,5 +1,7 @@
 package bean;
 
+import java.util.Date;
+
 public class ShopBean { //맛집 bean
 	private int shop_idx;			// 기본키
 	private String shop_name;		// 식당명
@@ -12,7 +14,7 @@ public class ShopBean { //맛집 bean
 	private String shop_price;		// 가격대
 	private String shop_holiday;	// 휴일
 	private int shop_readCount;		// 조회수
-	private int shop_new; 			// 신규 여부(1.신규, 2.비신규)
+	private Date shop_regDate; //
 	private String file_orgname;
 	private String file_savname;
 
@@ -83,12 +85,7 @@ public class ShopBean { //맛집 bean
 	public void setShop_readCount(int shop_readCount) {
 		this.shop_readCount = shop_readCount;
 	}
-	public int getShop_new() {
-		return shop_new;
-	}
-	public void setShop_new(int shop_new) {
-		this.shop_new = shop_new;
-	}
+	
 	public String getFile_orgname() {
 		return file_orgname;
 	}
@@ -100,6 +97,12 @@ public class ShopBean { //맛집 bean
 	}
 	public void setFile_savname(String file_savname) {
 		this.file_savname = file_savname;
+	}
+	public Date getShop_regDate() {
+		return shop_regDate;
+	}
+	public void setShop_regDate(Date shop_regDate) {
+		this.shop_regDate = shop_regDate;
 	}
 	
 	
