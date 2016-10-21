@@ -11,8 +11,8 @@
 	</sql>
 	
 	<!--  -->
-	<select id="newShop-selectAll" parameterClass="integer" resultClass ="been.ShopBean">
-		<include refid="newshop-select-all"/>
+	<select id="newShop-selectAll" parameterClass="Integer" resultClass ="bean.ShopBean">
+		<include refid="newShop-select-all"/>
 	</select>
 	
 </sqlMap>
