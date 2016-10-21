@@ -56,7 +56,7 @@ function logout() {
 		<td onclick="location.href='foodsMenuList.action'">업종별 맛집</td>
 		<td onclick="location.href='foodsAreaList.action'">지역별 맛집</td>
 		<td onclick="location.href='foodsHotList.action'">뜨는 맛집</td>
-		<td onclick="location.href='#'">신규 맛집</td>
+		<td onclick="location.href='foodsNewList.action'">신규 맛집</td>
 		<td onclick="location.href='foodsRecommendList.action'">추천 맛집</td>
 		<td onclick="">전체 보기</td>
 	</tr>
