@@ -29,6 +29,7 @@ public class MemberJoinAction extends ActionSupport {
 	private String member_addr;
 	private String member_zipcode;
 	private String member_image;
+	private String member_email;
 	private Date member_joinDate; //가입일
 	private Date member_loginDate; // 최근 로그인
 	private int p_idx;  // 회원 등급 1.유저 2.에디터 3.관리자
@@ -63,6 +64,7 @@ public class MemberJoinAction extends ActionSupport {
 		memberBean.setMember_addr(member_addr);
 		memberBean.setMember_zipcode(member_zipcode);
 		memberBean.setMember_image(member_image);
+		memberBean.setMember_email(member_email);
 		memberBean.setMember_joinDate(cal.getTime());
 		
 		sqlMapper.insert("insertMember", memberBean);
@@ -189,6 +191,14 @@ public class MemberJoinAction extends ActionSupport {
 
 	public void setChk2(int chk2) {
 		this.chk2 = chk2;
+	}
+
+	public String getMember_email() {
+		return member_email;
+	}
+
+	public void setMember_email(String member_email) {
+		this.member_email = member_email;
 	}
 	
 	

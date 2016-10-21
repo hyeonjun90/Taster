@@ -11,6 +11,7 @@ public class MemberBean {
 	private String member_addr;
 	private String member_zipcode;
 	private String member_image;
+	private String member_email;
 	private Date member_joinDate; //가입일
 	private Date member_loginDate; // 최근 로그인
 	private int member_level;  // 회원 등급 1.유저 2.에디터 3.관리자
@@ -80,6 +81,12 @@ public class MemberBean {
 	}
 	public void setMember_level(int member_level) {
 		this.member_level = member_level;
+	}
+	public String getMember_email() {
+		return member_email;
+	}
+	public void setMember_email(String member_email) {
+		this.member_email = member_email;
 	}
 	
 	

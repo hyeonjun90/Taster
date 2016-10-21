@@ -43,9 +43,9 @@
 	
 	<insert id="insertMember" parameterClass="bean.MemberBean">
 		insert into MEMBER(member_id, member_pwd, member_nicname, member_name, member_phone,
-				member_addr, member_zipcdoe, member_image, member_joindate, member_level)
+				member_addr, member_zipcdoe, member_image, member_joindate, member_level, member_email)
 			values(#member_id#, #member_pwd#, #member_nicname#, #member_name#, #member_phone#,
-				#member_addr#, #member_zipcode#, #member_image#, #member_joinDate#, default)
+				#member_addr#, #member_zipcode#, #member_image#, #member_joinDate#, default, #member_email#)
 	</insert>
 	
 	<select id="zipcodeSearch" parameterClass="String" resultClass="bean.ZipcodeBean">
@@ -58,6 +58,13 @@
 	
 	<select id="getMemberInfo" parameterClass="String" resultClass="bean.MemberBean">
 		select member_id, member_nicname, member_level from member where member_id=#member_id#
+	</select>
+	<!-- 아이디/비번 찾기 -->
+	<select id="findMemberId" parameterClass="String" resultClass="String">
+		select member_id from member where member_email=#member_email#
+	</select>
+	<select id="findMemberPwd" parameterClass="String" resultClass="String">
+		select member_pwd from member where member_email=#member_email#
 	</select>
 
    <!-- 테스트 코드 -->

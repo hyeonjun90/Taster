@@ -72,10 +72,14 @@
 		
 		
 		
-		<select id="Shop-selectName" resultMap="AshopRes">
+		<select id="Shop-selectName" resultMap="AshopRes" parameterClass="String">
 			<include refid="Shop-select-all"/>
-			<include refid="Shop-where-Sidx"/>
-			AND shop_name = #shop_name#
+			where shop_name like #shop_name# 
+		</select>
+		
+		<select id="Shop-selectKind" resultMap="AshopRes" parameterClass="String">
+			<include refid="Shop-select-all"/>
+			where shop_kind like #shop_kind#
 		</select>
 		
 		<!-- insert 쿼리문 정의 -->
@@ -123,5 +127,12 @@
 		INSERT INTO REQUEST_LIST(r_idx, r_regdate, r_id, r_nicname, r_shop_tel, r_shop_name , r_shop_kind, r_shop_addr1, r_shop_addr2, r_shop_addr3, r_shop_addr4, r_shop_price, r_shop_holiday, r_shop_content, r_shop_file_orgname, r_shop_file_savname)
 		VALUES (request_no_seq.NEXTVAL, #r_regdate#, #r_id#, #r_nicname#, #r_shop_tel#, #r_shop_name#, #r_shop_kind#, #r_shop_addr1#, #r_shop_addr2#, #r_shop_addr3#, #r_shop_addr4#, #r_shop_price#, #r_shop_holiday#, #r_shop_content#, #r_shop_file_orgname#, #r_shop_file_savname#)
 		</insert>
+		
+		
+		<!-- delete 쿼리문 정의 -->
+		<delete id="AprReq-DeleteReqList" parameterClass="AprReq">
+			DELETE FROM REQUEST_LIST
+		<include refid="AprReq-where-Ridx"/>
+		</delete>
 
 </sqlMap>
