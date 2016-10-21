@@ -406,7 +406,6 @@ function openZipcode(){
 </form>
 </div>
 </center>
-<jsp:include page="../common/bottom.jsp"></jsp:include>
 </body>
 </html>
 
