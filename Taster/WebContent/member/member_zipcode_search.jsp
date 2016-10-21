@@ -16,7 +16,7 @@
 		text-decoration: none;
 	}
 	li {
-		height: 12px;
+		height: 12px; 
 		font-size: 0.5em;
 	}
 </style>

@@ -13,7 +13,7 @@
 			success: function(data) {
 				
 				$("#zipcode").html(data);
-				
+				 
 			}
 		});
 	}
