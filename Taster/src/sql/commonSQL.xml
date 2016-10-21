@@ -3,7 +3,8 @@
 
 <sqlMap>
 	<select id="newShopList" resultClass="bean.ShopBean">
-		select * from (select * from shop where shop_new='1' order by shop_idx desc)
-			where <![CDATA[rownum<5]]>
+		select * from (select * from shop order by shop_idx desc)  
+			where <![CDATA[shop_regDate > add_months(sysdate, -1)]]>
+														and <![CDATA[rownum<5]]>
 	</select>
 </sqlMap>

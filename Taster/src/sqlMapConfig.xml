@@ -24,5 +24,9 @@
 	<sqlMap resource="/sql/qboardSQL.xml" />
 	<sqlMap resource="/sql/rboardSQL.xml" />
 	<!--  <sqlMap resource="/sql/commonSQL.xml" />-->
+=======
+	<sqlMap resource="/sql/commonSQL.xml" />
+	<sqlMap resource="/sql/foodsSQL.xml" />
+>>>>>>> branch 'master' of https://github.com/hyeonjun90/Taster
 </sqlMapConfig>
 	 

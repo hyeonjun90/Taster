@@ -1,6 +1,6 @@
 package bean;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class JoinR_B_S {
 	
@@ -19,7 +19,7 @@ public class JoinR_B_S {
 	private String shop_price;		// 가격대
 	private String shop_holiday;	// 휴일
 	private int shop_readCount;		// 조회수
-	private int shop_new; 			// 신규 여부(1.신규, 2.비신규)
+	private Date shop_regDate; 			// 식당 등록일
 	
 	private int review_idx;		// 기본키
 	
@@ -153,12 +153,13 @@ public class JoinR_B_S {
 	public void setShop_readCount(int shop_readCount) {
 		this.shop_readCount = shop_readCount;
 	}
-	public int getShop_new() {
-		return shop_new;
+	public Date getShop_regDate() {
+		return shop_regDate;
 	}
-	public void setShop_new(int shop_new) {
-		this.shop_new = shop_new;
+	public void setShop_regDate(Date shop_regDate) {
+		this.shop_regDate = shop_regDate;
 	}
+	
 	
 
 }
