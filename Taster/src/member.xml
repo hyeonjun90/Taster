@@ -31,15 +31,20 @@
       <action name="emailAction" class="member.SendEmail" method="execute">
       	 <result>/member/email_confirm.jsp</result> 
       </action>
-      
-      <!-- 아이디/비밀번호 찾기 -->
+   </package>  
+   
+   <package name="memberInfo" extends="struts-default, tiles-default">
+     <!-- 아이디,비밀번호 찾기 -->
       <action name="findMemberInfo" class="member.MemberFindAction2" method="form">
       		<result type="tiles">member_find</result>
       </action> 
-       <action name="findMemberId" class="member.MemberFindAction2" method="findId">
-      		<result type="tiles">member_find</result>
+      <action name="findMemberId" class="member.MemberFindAction2" method="findMemberId">
+      		<result>/member/member_findId.jsp</result>
       </action> 
-   </package>  
+      <action name="findMemberPwd" class="member.MemberFindAction2" method="findMemberPwd">
+      		<result>/member/member_findPwd.jsp</result>
+      </action>
+   </package>
    
    <package name="memberLogin" extends="struts-default, tiles-default">
       <!-- 로그인 -->

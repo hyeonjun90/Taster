@@ -59,9 +59,12 @@
 	<select id="getMemberInfo" parameterClass="String" resultClass="bean.MemberBean">
 		select member_id, member_nicname, member_level from member where member_id=#member_id#
 	</select>
-	<!-- 아이디 찾기 -->
+	<!-- 아이디/비번 찾기 -->
 	<select id="findMemberId" parameterClass="String" resultClass="String">
-		select member_phone from member where member_name=#member_name#
+		select member_id from member where member_email=#member_email#
+	</select>
+	<select id="findMemberPwd" parameterClass="String" resultClass="String">
+		select member_pwd from member where member_email=#member_email#
 	</select>
 
    <!-- 테스트 코드 -->
