@@ -8,14 +8,39 @@
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>Insert title here</title>
 <link rel="stylesheet" href="/Taster/css/style.css" />
+<style>
+	.clearDiv{	clear:both;	}
+	.shopInfo {	border:1px solid #d5d5d5; width:300px; height:150px; margin:20px; float:left; text-align:center; box-sizing:border-box; }
+	.shopKind {width:98%;margin-top:25px;margin-left:10px;text-align:left;font-size:14px;color:#ff792a;font-weight:bold;}
+</style>
 </head>
   
 <body>
 
-
-<div style="width:100%; height:300px; background-color:#fff">
-
+<center>
+<div style="width:100%;">
+<div class="shopKind">신규 맛집</div>
+<div style="width:1040px; height:300px;text-align:center; margin:0px auto;">
+	<div class="shopInfo"></div>
+	<div class="shopInfo"></div>
+	<div class="shopInfo"></div>
+	<div class="clearDiv"></div>
+	
+	<div class="shopInfo"></div>
+	<div class="shopInfo"></div>
+	<div class="shopInfo"></div>
+	<div class="clearDiv"></div>
 </div>
-
+</div>
+</center>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
