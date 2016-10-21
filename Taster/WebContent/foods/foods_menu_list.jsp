@@ -8,6 +8,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>Insert title here</title>
 <link rel="stylesheet" href="/Taster/css/style.css" />
+<<<<<<< HEAD
 <style>
 	.clearDiv{	clear:both;	}
 	.shopInfo {	border:1px solid #d5d5d5; width:300px; height:150px; margin:20px; float:left; text-align:center;
@@ -44,6 +45,8 @@
 	
 	
 </style>
+=======
+>>>>>>> branch 'master' of https://github.com/hyeonjun90/Taster
 </head>
   
 <body>
