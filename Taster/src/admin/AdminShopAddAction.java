@@ -9,9 +9,16 @@ import java.util.*;
 import java.io.Reader;
 import java.io.IOException;
 
+import java.io.File;
+import org.apache.commons.io.FileUtils;
+
 import bean.ShopBean;
 
+
+import org.apache.commons.io.FileUtils;
+
 public class AdminShopAddAction extends ActionSupport{
+	
 public static Reader reader;
 public static SqlMapClient sqlMapper;
 	
@@ -19,11 +26,12 @@ private ShopBean paramClass; //파라미터를 저장 할 객체
 private ShopBean resultClass;// 쿼리 결과 값 저장 객체
 	
 
-
+private int shop_idx;
 private String shop_name;
 private String shop_tel;
 private String shop_price;
 private String shop_kind;		// 업종
+
 //private String shop_addr1;		// 식당주소1(특별시, 광역시, 도)
 //private String shop_addr2;		// 식당주소2(시, 구, 군)
 //private String shop_addr3;		// 식당주소3(동)
@@ -31,6 +39,17 @@ private String shop_kind;		// 업종
 private String shop_holiday;	// 휴일
 private int shop_readCount;		// 조회수
 private int shop_new; 			// 신규 여부(1.신규, 2.비신규)
+private String file_orgname;
+private String file_savname;
+
+private File upload; //파일 객체
+private String uploadContentType; //컨텐츠 타입
+private String uploadFileName; //파일 이름
+
+private String fileUploadPath="C:\\git2\\Taster2\\Taster\\Taster\\WebContent\\images\\shop\\";
+
+
+
 
 
 public AdminShopAddAction() throws IOException {
@@ -49,6 +68,7 @@ public String execute() throws Exception  {
 	
 	paramClass = new ShopBean();
 	resultClass = new ShopBean();
+	HashMap<String, Object> map = new HashMap<>();
 	
 	paramClass.setShop_name(shop_name);
 	paramClass.setShop_tel(shop_tel);
@@ -64,11 +84,62 @@ public String execute() throws Exception  {
 	
 	
 	sqlMapper.insert("Shop-insertAshop",paramClass);
+	shop_idx = (int) sqlMapper.queryForObject("Shop-getIdx");
 	
-	return "success";
+	if(getUpload() !=null) {
+		
+		//실제 서버에 저장될 파일 이름과 확장자 설정.
+		String file_name = "file_" + shop_idx;
+		file_orgname = getUploadFileName();
+		file_savname = "file_" + shop_idx;
+		
+		String file_ext = getUploadFileName().substring(
+				getUploadFileName().lastIndexOf('.') + 1,
+				getUploadFileName().length());
+		
+		map.put("shop_idx", shop_idx);
+		map.put("file_orgname", file_orgname);
+		map.put("file_savname", file_savname);
+		//서버에 파일 저장.
+		File destFile = new File(fileUploadPath + file_name + "."
+				+ file_ext);
+		FileUtils.copyFile(getUpload(), destFile);
+		
+		//파일 정보 업데이트.
+		sqlMapper.update("updateFileUpload", map);
+		System.out.println("업로드 완료");
+		
+	}
+	
+	return SUCCESS;
 }
 
 
+
+
+public String getFile_orgname() {
+	return file_orgname;
+}
+
+public void setFile_orgname(String file_orgname) {
+	this.file_orgname = file_orgname;
+}
+
+public String getFile_savname() {
+	return file_savname;
+}
+
+public void setFile_savname(String file_savname) {
+	this.file_savname = file_savname;
+}
+
+public String getFileUploadPath() {
+	return fileUploadPath;
+}
+
+public void setFileUploadPath(String fileUploadPath) {
+	this.fileUploadPath = fileUploadPath;
+}
 
 public ShopBean getParamClass() {
 	return paramClass;
@@ -189,6 +260,43 @@ public int getShop_new() {
 public void setShop_new(int shop_new) {
 	this.shop_new = shop_new;
 }
+
+public int getShop_idx() {
+	return shop_idx;
+}
+
+public void setShop_idx(int shop_idx) {
+	this.shop_idx = shop_idx;
+}
+
+public File getUpload() {
+	return upload;
+}
+
+public void setUpload(File upload) {
+	this.upload = upload;
+}
+
+public String getUploadContentType() {
+	return uploadContentType;
+}
+
+public void setUploadContentType(String uploadContentType) {
+	this.uploadContentType = uploadContentType;
+}
+
+public String getUploadFileName() {
+	return uploadFileName;
+}
+
+public void setUploadFileName(String uploadFileName) {
+	this.uploadFileName = uploadFileName;
+}
+
+
+
+
+
 
 
 

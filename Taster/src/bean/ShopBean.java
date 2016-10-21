@@ -13,6 +13,9 @@ public class ShopBean { //맛집 bean
 	private String shop_holiday;	// 휴일
 	private int shop_readCount;		// 조회수
 	private int shop_new; 			// 신규 여부(1.신규, 2.비신규)
+	private String file_orgname;
+	private String file_savname;
+
 	
 	public int getShop_idx() {
 		return shop_idx;
@@ -85,6 +88,18 @@ public class ShopBean { //맛집 bean
 	}
 	public void setShop_new(int shop_new) {
 		this.shop_new = shop_new;
+	}
+	public String getFile_orgname() {
+		return file_orgname;
+	}
+	public void setFile_orgname(String file_orgname) {
+		this.file_orgname = file_orgname;
+	}
+	public String getFile_savname() {
+		return file_savname;
+	}
+	public void setFile_savname(String file_savname) {
+		this.file_savname = file_savname;
 	}
 	
 	

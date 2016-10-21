@@ -62,10 +62,19 @@
 <td width="100">조회수:</td>
 <td>${shop_readCount}</td>
 </tr>
- 
+
+
+<tr>
+<td width="100">첨부파일:</td>
+<td>${file_orgname}</td>
+</tr>
+
 
 </table>
 
+          
+					
+          
 
 <input name="list" align="right" type="button" value="목록보기" class="inputb" onClick="javascript:location.href='AshoplistAction.action?currentPage=<s:property value="currentPage" />'">
 

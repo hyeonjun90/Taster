@@ -17,7 +17,7 @@
 </table>
 
 
-<s:form action="AshopWriteAction" theme="simple">
+<s:form action="AshopWriteAction" theme="simple" enctype="multipart/form-data">
 		<tr>
 			<td align="center" width="100">
 				<font color="#FF0000">*</font> 식당이름:
@@ -85,6 +85,37 @@
 			</td>
 			
 		</tr>
+		<br>
+		<br>
+		
+		<tr>
+          <td bgcolor="#F4F4F4">  첨부파일1 </td>
+          <td bgcolor="#FFFFFF">
+              <s:file name="upload" theme="simple"/>
+            
+            <s:if test="resultClass.file_orgname != NULL">
+		&nbsp; * <s:property value="resultClass.file_orgname" /> 파일이 등록되어 있습니다. 다시 업로드하면 기존의 파일은 삭제됩니다.
+	</s:if>
+		</td>
+		</tr>
+		
+		<br>
+		<br>
+		
+		<tr>
+          <td bgcolor="#F4F4F4">  첨부파일2 </td>
+          <td bgcolor="#FFFFFF">
+              <s:file name="upload" theme="simple"/>
+            
+            <s:if test="resultClass.file_orgname != NULL">
+		&nbsp; * <s:property value="resultClass.file_orgname" /> 파일이 등록되어 있습니다. 다시 업로드하면 기존의 파일은 삭제됩니다.
+	</s:if>
+		</td>
+		</tr>
+		
+		<br>
+		<br>
+		
 		<tr>
 			<td align="center" colspan="2">
 			 <input type="radio" name="shop_kind" value="한식"> 한식 

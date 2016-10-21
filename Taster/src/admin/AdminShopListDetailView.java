@@ -1,10 +1,8 @@
 package admin;
 
-
-import com.opensymphony.xwork2.ActionSupport;
-
 import bean.ShopBean;
 
+import com.opensymphony.xwork2.ActionSupport;
 import com.ibatis.common.resources.Resources;
 import com.ibatis.sqlmap.client.SqlMapClient;
 import com.ibatis.sqlmap.client.SqlMapClientBuilder;
@@ -24,8 +22,10 @@ public class AdminShopListDetailView extends ActionSupport {
 	private int currentPage;
 	private int shop_idx;
 	
+	private String fileUploadPath ="C:\\git2\\Taster2\\Taster\\Taster\\WebContent\\images\\shop\\";
+	
 	private InputStream inputStream;
-	private String contentDiposition;
+	private String contentDisposition;
 	private long contentLength;
 	
 	public AdminShopListDetailView() throws IOException {
@@ -42,6 +42,7 @@ public class AdminShopListDetailView extends ActionSupport {
 		
 		return SUCCESS;
 	}
+	
 
 
 	public static Reader getReader() {
@@ -114,13 +115,13 @@ public class AdminShopListDetailView extends ActionSupport {
 	}
 
 
-	public String getContentDiposition() {
-		return contentDiposition;
+	public String getContentDisposition() {
+		return contentDisposition;
 	}
 
 
-	public void setContentDiposition(String contentDiposition) {
-		this.contentDiposition = contentDiposition;
+	public void setContentDisposition(String contentDiposition) {
+		this.contentDisposition = contentDiposition;
 	}
 
 
@@ -131,6 +132,16 @@ public class AdminShopListDetailView extends ActionSupport {
 
 	public void setContentLength(long contentLength) {
 		this.contentLength = contentLength;
+	}
+
+
+	public String getFileUploadPath() {
+		return fileUploadPath;
+	}
+
+
+	public void setFileUploadPath(String fileUploadPath) {
+		this.fileUploadPath = fileUploadPath;
 	}
 
 	

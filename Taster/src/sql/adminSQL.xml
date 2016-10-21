@@ -82,13 +82,25 @@
 			where shop_kind like #shop_kind#
 		</select>
 		
+		<select id="Shop-getIdx" resultClass="Integer">
+			select max(shop_idx) from shop
+		</select>
+		<!--  
+		<select id="selectOne" parameterClass="int" resultMap="boardRes">
+		 SELECT * FROM SBOARD WHERE no = #no# 
+		 </select>
+		-->
+		
 		<!-- insert 쿼리문 정의 -->
 		<insert id="Shop-insertAshop" parameterClass="admin_shop">
 		INSERT INTO SHOP(shop_idx, shop_name, shop_tel, shop_kind, shop_addr1, shop_addr2, shop_addr3, shop_addr4, shop_price, shop_holiday, shop_readCount, shop_new)
 		VALUES (shop_no_seq.NEXTVAL, #shop_name#, #shop_tel#, #shop_kind#, #shop_addr1#, #shop_addr2#, #shop_addr3#, #shop_addr4#, #shop_price#, #shop_holiday#, #shop_readCount#, #shop_new#)
 		</insert>
 		
-		
+		<!-- update 쿼리문 정의 -->
+		<update id="updateFileUpload" parameterClass="HashMap">
+			update shop set file_orgname=#file_orgname#, file_savname=#file_savname# where shop_idx=#shop_idx#
+		</update>
 		
 		
 		<!-- ApprovalRequest(신규등록요청)에서 공통으로 사용할 select-all 명령문 -->

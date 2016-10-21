@@ -23,7 +23,6 @@
 	<result type="tiles">AshopList</result>
 	</action>
 	
-	
 	<!-- 관리자의 식당등록리스트 상세보기 액션 -->
 	<action name="AdminShopListDetailView" class="admin.AdminShopListDetailView">
 			<result type="tiles">AdminShopListDetail</result>

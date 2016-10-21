@@ -93,6 +93,20 @@
 		<tr bgcolor="#777777">
 			<td height="1" colspan="2"></td>
 		</tr>
+		
+		<tr>
+			<td bgcolor="#F4F4F4"> 첨부파일</td>
+			<td bgcolor="#FFFFFF">&nbsp; &nbsp;<s:property value="resultClass.file_orgname"/></td>
+		</tr>
+		
+		<tr bgcolor="#777777">
+			<td height="1" colspan="2"></td>
+		</tr>
+        
+  
+		
+		
+		
  	</table>
 <input name="list" align="right" type="button" value="목록보기" class="inputb" onClick="javascript:location.href='AshoplistAction.action?currentPage=<s:property value="currentPage" />'">
 </body>
