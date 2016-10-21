@@ -22,7 +22,7 @@ public class QBoardListAction extends ActionSupport{
    private List<QnABoardBean> list = new ArrayList<QnABoardBean>();
    
    
-   private String searchKeyword;
+   private String searchKeyword=null;
    private int searchNum;
    
 
@@ -46,7 +46,7 @@ public class QBoardListAction extends ActionSupport{
 	
 	public String execute() throws Exception {
 		
-		
+		System.out.println(getSearchKeyword());
 		if(getSearchKeyword() != null)
 		{
 			return search();
@@ -74,17 +74,17 @@ public class QBoardListAction extends ActionSupport{
 		searchKeyword = new String(searchKeyword.getBytes("iso-8859-1"),"euc-kr") ;
 		System.out.println(searchKeyword);
 		System.out.println(searchNum);
-		if(searchNum == 0){
+		if(searchNum == 1){
 			list = sqlMapper.queryForList("qboard-selectSearchW", "%"+getSearchKeyword()+"%");
 		}
-		if(searchNum == 1){
-			list = sqlMapper.queryForList("qboard-selectSearchS", "%"+getSearchKeyword()+"%");
-		}
-		/*
 		if(searchNum == 2){
+			list = sqlMapper.queryForList("qboard-selectSearchT", "%"+getSearchKeyword()+"%");
+		}
+		
+		if(searchNum == 3){
 			list = sqlMapper.queryForList("qboard-selectSearchC", "%"+getSearchKeyword()+"%");	
 		}
-		*/
+		
 		
 		totalCount = list.size();
 		page = new QPagingAction(currentPage, totalCount, blockCount, blockPage, searchNum, getSearchKeyword());

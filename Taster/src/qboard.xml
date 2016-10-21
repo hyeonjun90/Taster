@@ -7,15 +7,15 @@
 <struts>
 <constant name="struts.multipart.maxSize" value="104857600" />
 
-<package name="qboard" extends="struts-default">
+<package name="qboard" extends="struts-default , tiles-default">
+
 	<!-- 글로벌 예외 처리 화면 설정 -->
 	
 	<!-- 게시판 리스트 액션 -->
 	<action name="qboardList" class="qboard.QBoardListAction">
-		<result>/qboard/qboard_list.jsp</result>
-
-
-		<!-- 참고용 예시 <result type="tiles">FOODS_MENU</result>  이거말고도 밑에 .jsp 써놓은 것들 tiles에 맞게 싹 바꿀 예정입니다.-->
+	<result type="tiles">qboard_list</result>
+		
+		<!-- <result>/qboard/qboard_list.jsp</result> -->
 
 
 	</action>
@@ -23,33 +23,41 @@
 	<!-- 게시판 글쓰기 액션 -->
 	
 	<action name="qWriteForm" class="qboard.QWriteAction" method="form">
-	 	<result>/qboard/qboard_write.jsp</result>
+	 	<result type="tiles">qboard_write</result>
+		
+		<!-- <result>/qboard/qboard_write.jsp</result>-->
+			 	
 	</action>
 	<action name="qWritePro" class="qboard.QWriteAction">
-		<result type="redirect-action">
-			<param name="actionName">qboardList</param>
-		</result>
+		
+	  
+	<result type="redirect-action">
+		<param name="actionName">qboardList</param>
+		<!--  <result type="tiles">qboard_list</result>-->
+	</result>
+		
+		
 	</action>
 	
 	
 	<!-- 게시판 글 상세보기 액션 -->
 	<action name="qboardViewForm" class="qboard.QBoardViewAction" method="execute">
-		<result>
+		<result type="tiles">qboard_view</result>
+		
+		<!--  <result>
 			/qboard/qboard_view.jsp
-		</result>
+		</result>-->
 	</action>
 	
 	
 	<!-- 코멘트작성 관련 액션 -->
 	<action name="AdminComment" class="qboard.AdminCommentAction">
-		<result type="chain">
-		qboardViewForm
-		</result>
+		<result type="chain">qboardViewForm</result>
 	</action>
 	
 	
 	<!-- 게시판글 수정 액션 -->
-	<action name="qModifyForm" class="qboard.QBoardListAction">
+	<action name="qModifyForm" class="qboard.QBoardViewAction">
 		<result type="chain">qWriteForm</result>
 	</action>
 	
@@ -60,10 +68,11 @@
 	
 	<!-- 게시판글 수정시 ID 체크 처리 액션 -->
 	
-	<action name="idCheck" class="qboard.QBoardViewAction" method="checkAction">
+	<action name="idCheck" class="qboard.QBoardViewAction" method="checkAction">	 
 		<result name="error">/qboard/qboard_check_error.jsp</result>
-		<result>/qboard/qboard_check_success.jsp</result>
+		<result>/qboard/qboard_check_success.jsp</result>		
 	</action>
+	
 	
 	<!-- 게시판 글삭제 액션 --> 
 	<action name="qDeletePro" class="qboard.QDeleteAction" method="execute">
@@ -81,12 +90,6 @@
 	<!-- 코멘트 삭제 액션 -->
 	<action name="cDeletePro" class="qboard.QDeleteAction" method="execute2">
 		<result type="chain">qboardList</result>
-		 
-		 
-		 <!--   <result type="redirect-action">
-			<param name="actionName">qboardViewForm</param>
-		</result>
-	-->
 	</action>
 	
 	

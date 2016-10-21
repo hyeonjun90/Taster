@@ -78,7 +78,7 @@
 	<!-- insert 쿼리문 정의 -->
 	<insert id="qboard-insertBoard" parameterClass="board">
 		INSERT INTO QNABOARD(B_IDX, B_TITLE,MEMBER_ID,B_CONTENT, B_REGDATE,B_PWD)
-		VALUES (QNABOARD_NO_SEQ.NEXTVAL, #b_title#, #member_id#,#b_content#, #b_regdate#,#b_pwd#)
+		VALUES (QNABOARD_NO_SEQ.NEXTVAL, #b_title#, #member_id#,#b_content#, #b_regdate#,1)
 	</insert>
 	
 	
@@ -99,8 +99,8 @@
 	<!-- update 쿼리문 정의 -->
 	<update id="qboard-updateBoard" parameterClass="board">
 	UPDATE QNABOARD SET B_TITLE = 	#b_title#, 
+					MEMBER_ID = #member_id#,
 					B_CONTENT = #b_content#
-					MEMBER_ID = #member_id#
 	<include refid = "qboard-where-b_idx" />
 	</update>
 	
@@ -125,18 +125,20 @@
 		<include refid="qboard-where-c_idx" />
 	</delete>
 	
-	
-	
+	<!-- 검색 W=글쓴이,T=글제목.C=글내용 -->
+	<select id="qboard-selectSearchW" resultMap="boardRes" parameterClass="string">
+		<include refid="qboard-select-all" />
+		 WHERE member_id like #searchKeyword#
+		 ORDER BY b_idx DESC
+	</select>
+	<select id="qboard-selectSearchT" resultMap="boardRes" parameterClass="string">
+		<include refid="qboard-select-all" />
+		 WHERE b_title like #searchKeyword#
+		 ORDER BY b_idx DESC
+	</select>
+	<select id="qboard-selectSearchC" resultMap="boardRes" parameterClass="string">
+		<include refid="qboard-select-all" />
+		 WHERE b_content like #searchKeyword#
+		 ORDER BY b_idx DESC
+	</select>
 </sqlMap>
-
-
-
-
-
-
-
-
-
-
-
-

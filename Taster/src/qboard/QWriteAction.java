@@ -30,7 +30,7 @@ public class QWriteAction extends ActionSupport{
 	private int b_idx;
 	private String b_title;
 	private String member_id;
-	private String b_pwd;
+	//private String b_pwd;
 	private String b_content;
 	//private String file_orgName;
 	//private String file_savName;
@@ -113,7 +113,7 @@ public class QWriteAction extends ActionSupport{
 		//System.out.println(getMember_id());
 		paramClass.setB_title(getB_title());
 		paramClass.setMember_id(getMember_id());
-		paramClass.setB_pwd(getB_pwd());
+		//paramClass.setB_pwd(getB_pwd());
 		paramClass.setB_content(getB_content());
 		paramClass.setB_regdate(today.getTime());
 		
@@ -204,14 +204,14 @@ public class QWriteAction extends ActionSupport{
 		this.member_id = member_id;
 	}
 	
-	
+	/*
 	public String getB_pwd() {
 		return b_pwd;
 	}
 
 	public void setB_pwd(String b_pwd) {
 		this.b_pwd = b_pwd;
-	}
+	}*/
 	 
 	public String getB_content() {
 		return b_content;

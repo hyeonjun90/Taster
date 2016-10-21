@@ -41,9 +41,9 @@
 			</td>
 		</tr>
 		<tr>
-			<td width="100">이름</td>
+			<td width="100">닉네임</td>
 			<td width="500">
-				<s:property value="resultClass.member_id" />
+				<s:property value="resultClass.member_nicname" />
 			</td>
 		</tr>
 		
@@ -98,10 +98,13 @@
 					<table>
 						<tr>
 							<td width="170">
-								이&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;름 <!--<s:textfield name="member_id" theme="simple" value="" cssStyle="width:100px" maxlength="20" /><br>--><input type="text" value="${session.member_id }" name="member_id" cssStyle="width:100px" maxlength="20"/>
+								닉&nbsp;&nbsp;&nbsp;네&nbsp;&nbsp;임 <!--<s:textfield name="member_id" theme="simple" value="" cssStyle="width:100px" maxlength="20" /><br>--><input type="text" value="${session.nicname}" name="member_nicname" cssStyle="width:100px" maxlength="20"/>
 								<!-- 비밀번호 <s:textfield name="c_pwd" theme="simple" value="" cssStyle="width:100px" maxlength="20" /> -->
 							</td>
+
+							<!-- 상세보기 페이지에서 숨겨져 있는 값들: 글번호 댓글번호 멤버ID, 현재페이지번호 -->
 							<s:hidden name="b_idx" value="%{resultClass.b_idx}" />
+							<s:hidden name="member_id" value="%{resultClass.member_id}" />							
 					<!-- !!!!!!!!!!!!!!!!!!!!!!!!수정!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
 							<s:hidden name="c_idx" value="%{resultClass.c_idx}" />
 							<s:hidden name="currentPage" value="%{currentPage}" />
@@ -129,7 +132,8 @@
 		<tr>
 			<td height="10" width="130" align="center">
 			
-				<s:property value="resultClass.member_id"/>
+				<s:property value="resultClass.member_nicname"/>
+				<s:hidden name="member_id" value="%{resultClass.member_id}" />
 			<br>			
 				<s:property value="c_regdate" /><br><br>
 			</td>
@@ -161,14 +165,14 @@
 	
 		<tr>
 			<td colspan="2" align="right">
-				<s:url id="modifyURL" action="modifyForm">
-					<s:param name="no">
-						<s:property value="no" />
+				<s:url id="modifyURL" action="qModifyForm">
+					<s:param name="b_idx">
+						<s:property value="b_idx" />
 					</s:param>
 				</s:url>
-				<s:url id="deleteURL" action="deleteAction">
-					<s:param name="no">
-						<s:property value="no" />
+				<s:url id="deleteURL" action="qDeletePro">
+					<s:param name="b_idx">
+						<s:property value="b_idx" />
 					</s:param>
 				</s:url>
 				<!--<input name="list" type="button" value="답변달기" class="inputb" onClick="javascript:location.href='replyForm.action?no=<s:property value="no" />'"> -->
