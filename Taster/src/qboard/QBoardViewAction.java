@@ -39,9 +39,10 @@ public class QBoardViewAction extends ActionSupport implements SessionAware{
 	private int b_idx;
 	private int c_idx;
 	private String member_id;
+	private String member_nicname;
+	
 	private Map session;
 	
-	//private String sid=member_id{session.member_id };
 	//private String fileUploadPath = "C:\\Java\\Framework02\\upload\\";
 	
 	private InputStream inputStream;
@@ -67,9 +68,9 @@ public class QBoardViewAction extends ActionSupport implements SessionAware{
 
     
 	public String execute() throws Exception {
-		System.out.println(b_idx);
+		
 		paramClass.setB_idx(getB_idx());
-		System.out.println(b_idx);
+		
 		
 		sqlMapper.update("qboard-updateB_readCount",paramClass);
 		
@@ -95,16 +96,21 @@ public class QBoardViewAction extends ActionSupport implements SessionAware{
 		paramClass.setB_idx(getB_idx());
 		paramClass.setMember_id(getMember_id());
 
-		System.out.println(getMember_id());
-		System.out.println(session.get("member_id"));
+		System.out.println(getMember_id());//1234
+		System.out.println(session.get("member_id"));//null
 		
+		
+		System.out.println("°¡À§¹ÙÀ§º¸");
 		resultClass = (QnABoardBean) sqlMapper.queryForObject("qboard-selectMember_id", paramClass);
 		
-		if(!session.get("member_id").equals(getMember_id())){
-			System.out.println("error");
+		System.out.println("¹¬");
+		if( !getMember_id().equals(session.get("member_id") ) ){
+			System.out.println("Âî");
+			//System.out.println("error");
 			return ERROR;
 		}
-		return SUCCESS;
+			System.out.println("ºü");
+			return SUCCESS;
 	}
 	
 	public String checkAction2()	throws Exception
@@ -179,6 +185,18 @@ public class QBoardViewAction extends ActionSupport implements SessionAware{
 	
 
 	
+	public String getMember_nicname() {
+		return member_nicname;
+	}
+	public void setMember_nicname(String member_nicname) {
+		this.member_nicname = member_nicname;
+	}
+
+
+
+
+
+
 	public String getMember_id() {
 		return member_id;
 	}
