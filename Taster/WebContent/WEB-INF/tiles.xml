@@ -116,7 +116,7 @@
    <!-- 관리자페이지 -->
 	
 	<!-- 신규가게 등록 요청글 관련 -->
-	<!-- 신규가게 등록 쓰기화면 -->
+
 	<!-- 신규가게 등록 목록 보기 화면 -->
 	<definition name="AshopWrite" template="/common/layout.jsp">
 	<put-attribute name="top" value="/common/top2.jsp"/>
@@ -180,13 +180,7 @@
 	<put-attribute name="bottom" value="/common/bottom.jsp"/>
 	</definition>
 	
-	<!-- 업종별 맛집리스트 -->
-	<definition name="foods_menu_list" template="/common/layout.jsp">
-	<put-attribute name="top" value="/common/top.jsp"/>
-	<put-attribute name="body" value="/food/foods_menu_list.jsp"/>
-	<put-attribute name="bottom" value="/common/bottom.jsp"/>
-	</definition>
-	
+
 
 </tiles-definitions>
 	

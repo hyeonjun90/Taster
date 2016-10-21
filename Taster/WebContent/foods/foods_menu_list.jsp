@@ -6,9 +6,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>Insert title here</title>
+<title>업종별 맛집 리스트</title>
 <link rel="stylesheet" href="/Taster/css/style.css" />
-<<<<<<< HEAD
+
 <style>
 	.clearDiv{	clear:both;	}
 	.shopInfo {	border:1px solid #d5d5d5; width:300px; height:150px; margin:20px; float:left; text-align:center;
@@ -42,35 +42,20 @@
  		color:red;
  		background-color: FF6600;
  	}
-	
-	
 </style>
-=======
->>>>>>> branch 'master' of https://github.com/hyeonjun90/Taster
 </head>
   
 <body>
+       <nav id="topMenu" >
+                <ul>
+                        <li><a class="menuLink" href="#">한식</a></li>
+                        <li><a class="menuLink" href="#">양식</a></li>
+                        <li><a class="menuLink" href="#">일식</a></li>
+                        <li><a class="menuLink" href="#">중식</a></li>
+                        <li><a class="menuLink" href="#">고기</a></li>
+                </ul>
+        </nav>
 
-<center>
-<div style="width:100%;">
-<div class="shopKind">업종별 맛집</div>
-<div style="width:1040px; height:300px;text-align:center; margin:0px auto;">
-<c:forEach items="${newShopList}" var="shopBean" varStatus="status">
-	<div class="shopInfo">
-		<div style="background-image:url('/Taster/images/shop/${shopBean.file_savname}.png');
-				background-repeat: no-repeat; display:block; 
-				width:290px;height:145px;background-size:290px 142px;padding-top:50px;">
-			<span>${shopBean.shop_name}</span>
-		</div>
-	</div>
-	<c:if test="${status.index mod 3 == 0 && status.index != 0}">
-		<div class="clearDiv"></div>
-	</c:if>
-</c:forEach>
-	
-</div>
-</div>
-</center>
 </body>
 </html>
 
