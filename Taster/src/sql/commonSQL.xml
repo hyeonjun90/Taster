@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC '-//ibatis.apache.org//DTD Sql Map 2.0//EN' 'http://ibatis.apache.org/dtd/sql-map-2.dtd'>
+
+<sqlMap>
+	<select id="newShopList" resultClass="bean.ShopBean">
+		select * from (select * from shop where shop_new='1' order by shop_idx desc)
+			where <![CDATA[rownum<5]]>
+	</select>
+</sqlMap>

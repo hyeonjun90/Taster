@@ -29,11 +29,7 @@ public class MainAction extends ActionSupport {
 	public String execute() throws Exception {
 		//신규 맛집 가져오기
 		newShopList = new ArrayList<>();
-		
 		newShopList = (ArrayList<ShopBean>) sqlMapper.queryForList("newShopList");
-		System.out.println("list.size : " + newShopList.size());
-		System.out.println("list.name[0] : " + newShopList.get(0).getShop_name());
-		
 		return SUCCESS;
 	}
 
@@ -45,6 +41,23 @@ public class MainAction extends ActionSupport {
 	public void setTestBean(PositionBean testBean) {
 		this.testBean = testBean;
 	}
+
+	public ShopBean getShopBean() {
+		return shopBean;
+	}
+
+	public void setShopBean(ShopBean shopBean) {
+		this.shopBean = shopBean;
+	}
+
+	public ArrayList<ShopBean> getNewShopList() {
+		return newShopList;
+	}
+
+	public void setNewShopList(ArrayList<ShopBean> newShopList) {
+		this.newShopList = newShopList;
+	}
+	
 	
 	
 }
