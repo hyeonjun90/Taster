@@ -37,8 +37,8 @@
 		
 		<!-- 신규가게등록 요청 승인액션 -->
 		<action name="approvalActionOk" class="admin.ApprovalRequestDetailView" method="approvalActionOk">
-			<result type="redirect-action"></result>
-			<param name="actionName">approvalRequestList</param>
+			<result type="redirect-action">
+			<param name="actionName">approvalRequestList</param></result>
 		</action>
 		
 		<!-- 신규가게등록 요청 반려액션 -->

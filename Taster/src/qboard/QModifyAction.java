@@ -9,9 +9,9 @@ import com.ibatis.sqlmap.client.SqlMapClient;
 import com.ibatis.sqlmap.client.SqlMapClientBuilder;
 
 import java.io.Reader;
-//import java.io.File;
 import java.io.IOException;
 
+//import java.io.File;
 //import org.apache.commons.io.FileUtils;
 
 public class QModifyAction extends ActionSupport{
@@ -26,8 +26,8 @@ public class QModifyAction extends ActionSupport{
 	
 	private int b_idx;
 	private String b_title;
-	private String name;
-	private String b_pwd;
+	private String member_id;
+	//private String b_pwd;	//로그인중인 ID와 동일한가 여부로 글을 수정하게 할것임.
 	private String b_content;
 	//private String old_file;
 	
@@ -51,11 +51,11 @@ public class QModifyAction extends ActionSupport{
 		
 		paramClass.setB_idx(getB_idx());
 		paramClass.setB_title(getB_title());
-		//paramClass.setName(getName());
-		paramClass.setB_pwd(getB_pwd());
+		paramClass.setMember_id(getMember_id());
+		//paramClass.setB_pwd(getB_pwd());
 		paramClass.setB_content(getB_content());
-		
-		sqlMapper.update("updateBoard", paramClass);
+		sqlMapper.update("qboard-updateBoard", paramClass);
+
 		/*
 		if(getUpload() != null)
 		{
@@ -71,13 +71,11 @@ public class QModifyAction extends ActionSupport{
 			paramClass.setFile_orgname(getUploadFileName());
 			paramClass.setFile_savname(file_name + "." + file_ext);
 			
-			sqlMapper.update("updateFile", paramClass);
-			
-			
-			
+			sqlMapper.update("updateFile", paramClass);		
 		}
 		*/
-		resultClass = (QnABoardBean) sqlMapper.queryForObject("selectOne", getB_idx());
+		
+		resultClass = (QnABoardBean) sqlMapper.queryForObject("qboard-selectOne", getB_idx());
 		return SUCCESS;
 		
 		
@@ -123,22 +121,16 @@ public class QModifyAction extends ActionSupport{
 		this.b_title = b_title;
 	}
 
-	public String getName() {
-		return name;
+	public String getMember_id() {
+		return member_id;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setMember_id(String member_id) {
+		this.member_id = member_id;
 	}
-
-	public String getB_pwd() {
-		return b_pwd;
-	}
-
-	public void setB_pwd(String b_pwd) {
-		this.b_pwd = b_pwd;
-	}
-
+	
+	
+	
 	public String getB_content() {
 		return b_content;
 	}
@@ -146,6 +138,22 @@ public class QModifyAction extends ActionSupport{
 	public void setB_content(String b_content) {
 		this.b_content = b_content;
 	}
+	
+	
+	
+	/*
+	public String getB_pwd() {
+		return b_pwd;
+	}
+
+	public void setB_pwd(String b_pwd) {
+		this.b_pwd = b_pwd;
+	}
+	*/
+	
+	
+	
+	
 	/*
 	public String getOld_file() {
 		return old_file;

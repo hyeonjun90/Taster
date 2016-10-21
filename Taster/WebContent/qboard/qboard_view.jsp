@@ -136,7 +136,7 @@
 			<td>
 			<!-- @@@@@@@@@@@@코멘트 삭제@@@@@@@@@@@@ -->
 				<s:property value="c_content" /> 
-				<a href="javascript:open_win_noresizable('checkForm2.action?c_idx=<s:property value="c_idx" />&b_idx=<s:property value="b_idx" />&currentPage=<s:property value="currentPage" />','cdelete')">x</a>
+				<a href="javascript:open_win_noresizable('idCheck2.action?c_idx=<s:property value="c_idx" />&b_idx=<s:property value="b_idx" />&currentPage=<s:property value="currentPage" />','cdelete')">x</a>
 			</td>
 		</tr>
 		<tr bgcolor="#777777">
@@ -172,8 +172,8 @@
 					</s:param>
 				</s:url>
 				<!--<input name="list" type="button" value="답변달기" class="inputb" onClick="javascript:location.href='replyForm.action?no=<s:property value="no" />'"> -->
-				<input name="list" type="button" value="수정" class="inputb" onClick="javascript:open_win_noresizable('checkForm.action?no=<s:property value="resultClass.no" />&currentPage=<s:property value="currentPage" />','modify')">
-				<input name="list" type="button" value="삭제" class="inputb" onClick="javascript:open_win_noresizable('checkForm.action?no=<s:property value="resultClass.no" />&currentPage=<s:property value="currentPage" />','delete')">
+				<input name="list" type="button" value="수정" class="inputb" onClick="javascript:open_win_noresizable('idCheck.action?member_id=<s:property value="resultClass.member_id" />&b_idx=<s:property value="resultClass.b_idx" />&currentPage=<s:property value="currentPage" />','modify')">
+				<input name="list" type="button" value="삭제" class="inputb" onClick="javascript:open_win_noresizable('idCheck.action?member_id=<s:property value="resultClass.member_id" />&b_idx=<s:property value="resultClass.b_idx" />&currentPage=<s:property value="currentPage" />','delete')">
 				<input name="list" type="button" value="목록" class="inputb" onClick="javascript:location.href='qboardList.action?currentPage=<s:property value="currentPage" />'">
 			</td>
 		</tr>
