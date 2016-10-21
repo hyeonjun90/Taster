@@ -63,6 +63,16 @@
 		 ORDER BY c_idx DESC
 	</select>
 	
+	<!-- 글 수정시 id체크 처리하는데 사용되는 액션 정의  -->
+	<select id="qboard-selectMember_id" resultMap="boardRes">
+		<include refid="qboard-select-all" />
+		<include refid="qboard-where-b_idx" />
+		AND member_id = #member_id#
+	</select>
+	
+	
+	
+	
 	
 	
 	<!-- insert 쿼리문 정의 -->
@@ -89,9 +99,8 @@
 	<!-- update 쿼리문 정의 -->
 	<update id="qboard-updateBoard" parameterClass="board">
 	UPDATE QNABOARD SET B_TITLE = 	#b_title#, 
-					MEMBER_ID = #member_id#,
-					B_PWD = #b_pwd#,
 					B_CONTENT = #b_content#
+					MEMBER_ID = #member_id#
 	<include refid = "qboard-where-b_idx" />
 	</update>
 	
@@ -104,6 +113,17 @@
 	</update>
 	
 	
+	<!-- delete 쿼리문 정의 -->
+	<delete id="qboard-deleteBoard" parameterClass="board">
+		DELETE FROM QNABOARD
+		<include refid="qboard-where-b_idx" />
+	</delete>
+	
+	<!-- 코멘트 삭제 -->
+	<delete id="qboard-deleteComment" parameterClass="comment">
+		DELETE FROM COMMENTBOARD
+		<include refid="qboard-where-c_idx" />
+	</delete>
 	
 	
 	

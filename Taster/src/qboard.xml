@@ -33,19 +33,71 @@
 	
 	
 	<!-- 게시판 글 상세보기 액션 -->
-	<action name="qboardViewForm" class="qboard.QBoardViewAction">
+	<action name="qboardViewForm" class="qboard.QBoardViewAction" method="execute">
 		<result>
 			/qboard/qboard_view.jsp
 		</result>
 	</action>
 	
-	<!-- 코멘트작성 관련 액션 -->
 	
+	<!-- 코멘트작성 관련 액션 -->
 	<action name="AdminComment" class="qboard.AdminCommentAction">
 		<result type="chain">
 		qboardViewForm
 		</result>
 	</action>
+	
+	
+	<!-- 게시판글 수정 액션 -->
+	<action name="qModifyForm" class="qboard.QBoardListAction">
+		<result type="chain">qWriteForm</result>
+	</action>
+	
+	<action name="qModifyPro" class="qboard.QModifyAction">
+		<result type="chain">qboardViewForm</result>
+	</action>
+	
+	
+	<!-- 게시판글 수정시 ID 체크 처리 액션 -->
+	
+	<action name="idCheck" class="qboard.QBoardViewAction" method="checkAction">
+		<result name="error">/qboard/qboard_check_error.jsp</result>
+		<result>/qboard/qboard_check_success.jsp</result>
+	</action>
+	
+	<!-- 게시판 글삭제 액션 --> 
+	<action name="qDeletePro" class="qboard.QDeleteAction" method="execute">
+		<result type="chain">qboardList</result>
+	</action>
+	
+	
+	<!-- 코멘트 삭제시 ID 체크 처리 액션 -->
+	<action name="idCheck2" class="qboard.QBoardViewAction" method="checkAction2">
+		<result name="error">/qboard/qboard_check_error.jsp</result>
+		<result>/qboard/qboard_check_success.jsp</result>
+	</action>
+	
+	
+	<!-- 코멘트 삭제 액션 -->
+	<action name="cDeletePro" class="qboard.QDeleteAction" method="execute2">
+		<result type="chain">qboardList</result>
+		 
+		 
+		 <!--   <result type="redirect-action">
+			<param name="actionName">qboardViewForm</param>
+		</result>
+	-->
+	</action>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
@@ -80,49 +132,18 @@
 	
 	-->
 	
-	<!-- 게시판 수정 액션 -->
-	<!--
-	<action name="modifyForm" class="qboard.QBoardViewAction">
-		<result type="chain">writeForm</result>
-	</action>
 	
-	<action name="modifyAction" class="qboard.QModifyAction">
-		<result type="chain">viewAction</result>
-	</action>
 	
-	-->
-	
-	<!-- 비밀번호 체크 액션 -->
-	<!--
-	<action name="checkForm" class="qboard.QBoardViewAction" method="checkForm">
-		<result>/qboard/qboard_check_password.jsp</result>
-	</action>
+	<!-- 코멘트 삭제시 비밀번호 체크 액션 -->
+	<!--  
 	<action name="checkForm2" class="qboard.QBoardViewAction" method="checkForm">
 		<result>/qboard/qboard_check_password2.jsp</result>
 	</action>
-	
-	
-	
-	<action name="checkAction" class="qboard.QBoardViewAction" method="checkAction">
-		<result name="error">/qboard/qboard_check_error.jsp</result>
-		<result>/qboard/qboard_check_success.jsp</result>
-	</action>
-	
-	
-	<action name="checkAction2" class="qboard.QBoardViewAction" method="checkAction2">
-		<result name="error">/qboard/qboard_check_error.jsp</result>
-		<result>/qboard/qboard_check_success.jsp</result>
-	</action>
-	
-	<action name="deleteAction" class="QDeleteAction">
-		<result type="chain">listAction</result>
-	</action>
-	
-	<action name="deleteAction2" class="QDeleteAction" method="execute2">
-		<result type="chain">listAction</result>
-	</action>
-	
 	-->
+	
+	
+	
+	
 	
 	
 	

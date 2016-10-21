@@ -212,7 +212,7 @@ public class QWriteAction extends ActionSupport{
 	public void setB_pwd(String b_pwd) {
 		this.b_pwd = b_pwd;
 	}
-
+	 
 	public String getB_content() {
 		return b_content;
 	}

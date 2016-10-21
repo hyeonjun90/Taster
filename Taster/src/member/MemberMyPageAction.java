@@ -51,9 +51,9 @@ public class MemberMyPageAction extends ActionSupport implements SessionAware{
 	private Map session;
 	
 	@Override
-	public void setSession(Map arg0) {
+	public void setSession(Map session) {
 		// TODO Auto-generated method stub
-		
+		this.session = session;
 	}
 	public Map getSession() {
 		return session;
@@ -81,8 +81,8 @@ public class MemberMyPageAction extends ActionSupport implements SessionAware{
 	}
 	
 	public String reviewListForm() throws Exception{
-		
-		reviewList = sqlMapper.queryForList("reviewList-selectAll", "1234");
+		//System.out.println("¼¼¼Ç : " + session.get("member_id"));
+		reviewList = sqlMapper.queryForList("reviewList-selectAll", session.get("member_id"));
 		
 		totalCount=reviewList.size();
 		
@@ -125,7 +125,7 @@ public class MemberMyPageAction extends ActionSupport implements SessionAware{
 	
 	public String bookmarkListForm() throws Exception{
 		
-		bookmarkList=sqlMapper.queryForList("bookmarkList-selectAll", "1234");
+		bookmarkList=sqlMapper.queryForList("bookmarkList-selectAll", session.get("member_id"));
 		
 		totalCount2 = bookmarkList.size();
 		

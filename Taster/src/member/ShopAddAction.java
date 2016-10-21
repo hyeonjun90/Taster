@@ -25,7 +25,7 @@ public class ShopAddAction extends ActionSupport implements SessionAware{
 	public static SqlMapClient sqlMapper;
 	
 	private RequestListBean paramClass;//파라미터를 저장할 값
-	private RequestListBean reasultClass;//쿼리 값을 저장할 객체
+
 	
 	private Map session; //회원 아이디를 받아올 Map객체 
 	
@@ -65,13 +65,14 @@ public class ShopAddAction extends ActionSupport implements SessionAware{
 	public String execute() throws Exception{   //식당 등록 완료 
 		
 		paramClass= new RequestListBean();
-		reasultClass = new RequestListBean();
 		
 		paramClass.setR_idx(r_idx);
 		paramClass.setR_regdate(today.getTime());
 		
-		paramClass.setR_id((String)session.get("member_id"));
-		paramClass.setR_nicname(r_nicname);
+		System.out.println("세션 : " + session.get("member_id").toString());
+		
+		paramClass.setR_id(session.get("member_id").toString());
+		paramClass.setR_nicname(session.get("member_nicname").toString());
 		paramClass.setR_shop_name(r_shop_name);
 		paramClass.setR_shop_tel(r_shop_tel);
 		paramClass.setR_shop_holiday(r_shop_holiday);
@@ -84,7 +85,14 @@ public class ShopAddAction extends ActionSupport implements SessionAware{
 		paramClass.setR_shop_addr3(r_shop_addr3);
 		paramClass.setR_shop_addr4(r_shop_addr4);
 		
-		sqlMapper.insert("AprReq-insertReqList");
+		System.out.println("paramgetR_id : " + paramClass.getR_id());
+		
+		
+		
+		paramClass.setR_shop_file_orgname(r_shop_file_orgname);
+		paramClass.setR_shop_file_savname(r_shop_file_savname);
+		
+		sqlMapper.insert("AprReq-insertReqList", paramClass);
 		
 		return SUCCESS;
 	}
@@ -103,13 +111,6 @@ public class ShopAddAction extends ActionSupport implements SessionAware{
 
 	public void setParamClass(RequestListBean paramClass) {
 		this.paramClass = paramClass;
-	}
-	public RequestListBean getReasultClass() {
-		return reasultClass;
-	}
-
-	public void setReasultClass(RequestListBean reasultClass) {
-		this.reasultClass = reasultClass;
 	}
 	
 	public int getR_idx() {
@@ -222,9 +223,9 @@ public class ShopAddAction extends ActionSupport implements SessionAware{
 	}
 
 	@Override
-	public void setSession(Map arg0) {
+	public void setSession(Map session) {
 		// TODO Auto-generated method stub
-		
+		this.session = session;
 	}
 
 	public Map getSession() {

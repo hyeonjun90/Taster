@@ -29,6 +29,7 @@ public class QDeleteAction extends ActionSupport{
 	//private String fileUploadPath = "D:\\upload\\";
 	
 	private int b_idx;
+	private int c_idx;
 	
 	public QDeleteAction() throws IOException
 	{
@@ -41,25 +42,33 @@ public class QDeleteAction extends ActionSupport{
 		paramClass = new QnABoardBean();
 		resultClass = new QnABoardBean();
 		
-		resultClass = (QnABoardBean) sqlMapper.queryForObject("selectOne", getB_idx());
+		resultClass = (QnABoardBean) sqlMapper.queryForObject("qboard-selectOne", getB_idx());
 		
 		//File deleteFile = new File(fileUploadPath + resultClass.getFile_savname());
 		//deleteFile.delete();
 		
 		paramClass.setB_idx(getB_idx());
 		
-		sqlMapper.update("deleteBoard",paramClass);
+		sqlMapper.update("qboard-deleteBoard",paramClass);
 		
 		return SUCCESS;
 	}
 	
+	public int getC_idx() {
+		return c_idx;
+	}
+
+	public void setC_idx(int c_idx) {
+		this.c_idx = c_idx;
+	}
+
 	public String execute2() throws Exception {
 		cClass = new CommentBean();
 		cResult = new CommentBean();
 		
-		cClass.setB_idx(getB_idx());
+		cClass.setC_idx(getC_idx());
 		
-		sqlMapper.update("deleteComment",cClass);
+		sqlMapper.update("qboard-deleteComment",cClass);
 		
 		return SUCCESS;
 	}
@@ -102,7 +111,7 @@ public class QDeleteAction extends ActionSupport{
 		return b_idx;
 	}
 
-	public void setNo(int b_idx) {
+	public void setB_idx(int b_idx) {
 		this.b_idx = b_idx;
 	}
 }
