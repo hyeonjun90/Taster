@@ -80,7 +80,6 @@ public String execute() throws Exception  {
 	//paramClass.setShop_addr4(shop_addr4);
 	paramClass.setShop_holiday(shop_holiday);
 	paramClass.setShop_readCount(shop_readCount);
-	paramClass.setShop_new(shop_new);
 	
 	
 	sqlMapper.insert("Shop-insertAshop",paramClass);
