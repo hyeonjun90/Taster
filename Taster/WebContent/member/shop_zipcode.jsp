@@ -6,8 +6,8 @@
 <script>
 	function zipSearch(){
 		$("#zipcode").html("<center><h3>LOADING...</h3></center>")
-		$ajax({
-			url:"shopZipcode.action",
+		$.ajax({
+			url:"shopSearchZipcode.action",
 			method:"post",
 			data: {"dong": encodeURIComponent($("#dong").val())},
 			success:function(data){

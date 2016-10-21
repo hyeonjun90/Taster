@@ -23,11 +23,14 @@
 		</action>
 		
 		<!-- 식당등록 폼 이동 -->
-		<action name="shopAdd" class="member.ShopAddAction" method="execute">
+		<action name="shopAdd" class="member.ShopAddAction" method="form">
 			<result type="tiles">member_foods_write</result>
 		</action>
 		
 		<!-- 식당 등록 완료  -->
+		<action name="memberFoodWriteOk" class="member.ShopAddAction" method="execute">
+			<result type="tiles">food_write_success</result>
+		</action>
 		
 		<!-- 식당 위치 검색 -->
 		<action name="shopZipcode" class="member.ShopZipcodeAction" method="shopZipcode">

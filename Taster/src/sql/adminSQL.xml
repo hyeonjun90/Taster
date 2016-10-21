@@ -120,8 +120,8 @@
 		
 		<!-- insert 쿼리문 정의 -->
 		<insert id="AprReq-insertReqList" parameterClass="AprReq">
-		INSERT INTO REQUEST_LIST(r_idx, r_regdate, r_id, r_nicname, , r_shop_tel, r_shop_kind, r_shop_addr1, r_shop_addr2, r_shop_addr3, r_shop_addr4, r_shop_price, r_shop_holiday, r_shop_content, r_shop_file_orgname, r_shop_file_savname)
-		VALUES (request_no_seq.NEXTVAL, #r_regdate#, #r_id#, #r_nicname#, #r_shop_name#, #r_shop_kind#, #r_shop_addr1#, #r_shop_addr2#, #r_shop_addr3#, #r_shop_addr4#, #r_shop_price#, #r_shop_holiday#, #r_shop_content#, #r_shop_file_orgname#, #r_shop_file_savname#)
+		INSERT INTO REQUEST_LIST(r_idx, r_regdate, r_id, r_nicname, r_shop_tel, r_shop_name , r_shop_kind, r_shop_addr1, r_shop_addr2, r_shop_addr3, r_shop_addr4, r_shop_price, r_shop_holiday, r_shop_content, r_shop_file_orgname, r_shop_file_savname)
+		VALUES (request_no_seq.NEXTVAL, #r_regdate#, #r_id#, #r_nicname#, #r_shop_tel#, #r_shop_name#, #r_shop_kind#, #r_shop_addr1#, #r_shop_addr2#, #r_shop_addr3#, #r_shop_addr4#, #r_shop_price#, #r_shop_holiday#, #r_shop_content#, #r_shop_file_orgname#, #r_shop_file_savname#)
 		</insert>
 
 </sqlMap>
