@@ -57,8 +57,6 @@
 	<put-attribute name="bottom" value="/common/bottom.jsp"/>
 	</definition>
 
-	
-
 <!-- 마이페이지 -->
 
 <!-- 이 아래로 마이페이지 나머지 페이지구성 tiles를 넣어주세요 -->
@@ -182,7 +180,12 @@
 	<put-attribute name="bottom" value="/common/bottom.jsp"/>
 	</definition>
 	
-	
+	<!-- 업종별 맛집리스트 -->
+	<definition name="foods_menu_list" template="/common/layout.jsp">
+	<put-attribute name="top" value="/common/top.jsp"/>
+	<put-attribute name="body" value="/food/foods_menu_list.jsp"/>
+	<put-attribute name="bottom" value="/common/bottom.jsp"/>
+	</definition>
 	
 
 </tiles-definitions>
