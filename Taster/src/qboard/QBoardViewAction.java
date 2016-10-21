@@ -14,11 +14,14 @@ import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
+import java.util.Map;
+import org.apache.struts2.interceptor.SessionAware;
+
 import bean.CommentBean;
 import bean.QnABoardBean;
 //다운로드 메서드 삭제
 
-public class QBoardViewAction extends ActionSupport{
+public class QBoardViewAction extends ActionSupport implements SessionAware{
 	
 	public static Reader reader;
 	public static SqlMapClient sqlMapper;
@@ -34,14 +37,22 @@ public class QBoardViewAction extends ActionSupport{
 	private int currentPage;
 	
 	private int b_idx;
+	private int c_idx;
+	private String member_id;
+	private Map session;
 	
-	private String b_pwd;
-	
+	//private String sid=member_id{session.member_id };
 	//private String fileUploadPath = "C:\\Java\\Framework02\\upload\\";
 	
 	private InputStream inputStream;
 	private String contentDisposition;
 	private long contentLength;
+	
+	
+	
+	
+	
+	
 	
 	public QBoardViewAction() throws IOException
 	{
@@ -49,9 +60,17 @@ public class QBoardViewAction extends ActionSupport{
 		sqlMapper = SqlMapClientBuilder.buildSqlMapClient(reader);
 		reader.close();
 	}
+	
+	
 
+	
+
+    
 	public String execute() throws Exception {
+		System.out.println(b_idx);
 		paramClass.setB_idx(getB_idx());
+		System.out.println(b_idx);
+		
 		sqlMapper.update("qboard-updateB_readCount",paramClass);
 		
 		resultClass = (QnABoardBean) sqlMapper.queryForObject("qboard-selectOne", getB_idx());
@@ -62,35 +81,42 @@ public class QBoardViewAction extends ActionSupport{
 	}
 	
 	
-	
+	/* id체크하는데 폼은 따로 필요 없음.
 	public String checkForm() throws Exception
 	{
 		return SUCCESS;
 	}
-	
+	*/
 	public String checkAction()	throws Exception
 	{
+		//paramClass.setB_idx(getB_idx());
+		//paramClass.setB_pwd(getB_pwd());
+		
 		paramClass.setB_idx(getB_idx());
-		paramClass.setB_pwd(getB_pwd());
+		paramClass.setMember_id(getMember_id());
+
+		System.out.println(getMember_id());
+		System.out.println(session.get("member_id"));
 		
-		resultClass = (QnABoardBean) sqlMapper.queryForObject("selectB_pwd", paramClass);
+		resultClass = (QnABoardBean) sqlMapper.queryForObject("qboard-selectMember_id", paramClass);
 		
-		if(resultClass == null)
+		if(!session.get("member_id").equals(getMember_id())){
+			System.out.println("error");
 			return ERROR;
-		
+		}
 		return SUCCESS;
 	}
 	
 	public String checkAction2()	throws Exception
 	{
+		cClass.setC_idx(getC_idx());
 		cClass.setB_idx(getB_idx());
-		//cClass.setB_pwd(getB_pwd());
 		
-		cResult = (CommentBean) sqlMapper.queryForObject("selectB_pwd2", cClass);
-		
-		if(cResult == null)
+		//cResult = (CommentBean) sqlMapper.queryForObject("selectC_idx", cClass);
+		//if(!session.get("member_id").equals(getMember_id()))		
+		if(!session.get("member_level").equals(3)){
 			return ERROR;
-		
+		}
 		return SUCCESS;
 	}
 
@@ -151,28 +177,16 @@ public class QBoardViewAction extends ActionSupport{
 	}
 
 	
-	
-	
 
 	
-	
-	public String getB_pwd() {
-		return b_pwd;
-	}
-	
-	public void setB_pwd(String b_pwd) {
-		this.b_pwd = b_pwd;
-	}
-	 
-	/*
-	public String getFileUploadPath() {
-		return fileUploadPath;
+	public String getMember_id() {
+		return member_id;
 	}
 
-	public void setFileUploadPath(String fileUploadPath) {
-		this.fileUploadPath = fileUploadPath;
-	}*/
-	
+	public void setMember_id(String member_id) {
+		this.member_id = member_id;
+	}
+
 	public InputStream getInputStream() {
 		return inputStream;
 	}
@@ -197,6 +211,43 @@ public class QBoardViewAction extends ActionSupport{
 		this.contentLength = contentLength;
 	}
 	
+	
+	
+	@Override
+	   public void setSession(Map session) {
+	      // TODO Auto-generated method stub  
+			this.session = session;
+	   }
+	   public Map getSession() {
+	      return session;
+	   }
+
+	public int getC_idx() {
+		return c_idx;
+	}
+
+	public void setC_idx(int c_idx) {
+		this.c_idx = c_idx;
+	}
+	
+	/*	필요 없다고 판단하였음.
+	public String getB_pwd() {
+		return b_pwd;
+	}
+	
+	public void setB_pwd(String b_pwd) {
+		this.b_pwd = b_pwd;
+	}
+	*/
+	 
+	/*
+	public String getFileUploadPath() {
+		return fileUploadPath;
+	}
+
+	public void setFileUploadPath(String fileUploadPath) {
+		this.fileUploadPath = fileUploadPath;
+	}*/
 	
 
 }

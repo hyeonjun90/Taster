@@ -92,7 +92,7 @@
 				<select name="searchNum" >
 					<option value="0">작성자</option>
 					<option value="1">제목</option>
-					<!--<option value="2">내용</option>-->
+					<option value="2">내용</option>
 				</select>
 				<s:textfield name="searchKeyword" theme="simple" value="" cssStyle="width:120px" maxlength="20" />
 				<input name="submit" type="submit" value="검색" class="inputb">

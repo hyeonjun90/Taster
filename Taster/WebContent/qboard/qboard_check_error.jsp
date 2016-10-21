@@ -5,6 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>checkError</title>
+글작성자가 아니므로 이 글을 수정할 수 없습니다.
 </head>
 <body>
 </body>
