@@ -5,21 +5,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>Insert title here</title>
-<script>
-	function locationURL() {
-		//if(window.name == "insert") {
-			alert("회원가입이 완료되었습니다.");
-			location.href='main.action';
-		//} else {
-		//	alert("가입 도중 에러가 발생하였습니다.");
-		//	history.back(-1);
-		//}
-	}
-</script>
-</head> 
+<link rel="stylesheet" href="/Taster/css/style.css" />
+</head>
 <body>
-<script>
-	locationURL();
-</script>
+
 </body>
 </html>

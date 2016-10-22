@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN" "http://struts.apache.org/dtds/struts-2.0.dtd">
 <struts>
-
 	<constant name="struts.multipart.maxSize" value="104857600" />
+	<include file="admin.xml" />
+	<include file="member.xml" />
+	<include file="mypage.xml" />
+	<include file="qboard.xml" />
+	<include file="foods.xml" />
+	
 	
 	<package name="main" extends="struts-default, tiles-default">
 		<action name="main" class="common.MainAction" >
@@ -10,11 +15,6 @@
 		</action>
 	</package>  
 	
-	<include file="admin.xml" />
-	<include file="member.xml" />
-	<include file="mypage.xml" />
-	<include file="qboard.xml" />
-	 
 </struts>
 
 

@@ -57,8 +57,6 @@
 	<put-attribute name="bottom" value="/common/bottom.jsp"/>
 	</definition>
 
-	
-
 <!-- 마이페이지 -->
 
 <!-- 이 아래로 마이페이지 나머지 페이지구성 tiles를 넣어주세요 -->
@@ -95,6 +93,32 @@
 
 	
 <!-- 문의게시판 -->
+<!-- 문의하기 게시판 리스트 이동-->
+	  
+	<definition name="qboard_list" template="/common/layout.jsp">
+	<put-attribute name="top" value="/common/top2.jsp"/>
+	<put-attribute name="body" value="/qboard/qboard_list.jsp"/>
+	<put-attribute name="bottom" value="/common/bottom.jsp"/>
+	</definition>
+	
+	<definition name="qboard_write" template="/common/layout.jsp">
+	<put-attribute name="top" value="/common/top2.jsp"/>
+	<put-attribute name="body" value="/qboard/qboard_write.jsp"/>
+	<put-attribute name="bottom" value="/common/bottom.jsp"/>
+	</definition>
+	
+	<definition name="qboard_view" template="/common/layout.jsp">
+	<put-attribute name="top" value="/common/top2.jsp"/>
+	<put-attribute name="body" value="/qboard/qboard_view.jsp"/>
+	<put-attribute name="bottom" value="/common/bottom.jsp"/>
+	</definition>
+	
+	
+	
+	
+	
+
+
 
 <!-- 회원가입,로그인 -->
  <definition name="member_join" template="/common/layout.jsp">
@@ -118,7 +142,7 @@
    <!-- 관리자페이지 -->
 	
 	<!-- 신규가게 등록 요청글 관련 -->
-	<!-- 신규가게 등록 쓰기화면 -->
+
 	<!-- 신규가게 등록 목록 보기 화면 -->
 	<definition name="AshopWrite" template="/common/layout.jsp">
 	<put-attribute name="top" value="/common/top2.jsp"/>
@@ -182,8 +206,7 @@
 	<put-attribute name="bottom" value="/common/bottom.jsp"/>
 	</definition>
 	
-	
-	
+
 
 </tiles-definitions>
 	

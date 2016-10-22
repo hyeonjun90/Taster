@@ -37,6 +37,8 @@ public class QDeleteAction extends ActionSupport{
 		sqlMapper = SqlMapClientBuilder.buildSqlMapClient(reader);
 		reader.close();
 	}
+	
+	
 
 	public String execute() throws Exception {
 		paramClass = new QnABoardBean();
@@ -66,6 +68,7 @@ public class QDeleteAction extends ActionSupport{
 		cClass = new CommentBean();
 		cResult = new CommentBean();
 		
+		cClass.setB_idx(getB_idx());
 		cClass.setC_idx(getC_idx());
 		
 		sqlMapper.update("qboard-deleteComment",cClass);

@@ -1,7 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE sqlMap PUBLIC '-//ibatis.apache.org//DTD Sql Map 2.0//EN' 'http://ibatis.apache.org/dtd/sql-map-2.dtd'>
 <sqlMap>
-	<select id="test" resultClass="bean.PositionBean">
-		select * from MEMBER_POSITION where p_idx=1
+
+<!-- 식당등록에서  -->
+
+	<!--신규 식당  등록에서 사용할 현재시간에서 한달까지의 전채검색-->
+	<sql id= "newShop-select-all">
+	 	select * from shop 
+        where <![CDATA[shop_regDate > add_months(sysdate, -1)]]> order by shop_idx desc                         
+	</sql>
+	
+	<!--  -->
+	<select id="newShop-selectAll" parameterClass="Integer" resultClass ="bean.ShopBean">
+		<include refid="newShop-select-all"/>
 	</select>
+	
 </sqlMap>
