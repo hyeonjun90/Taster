@@ -6,7 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>Insert title here</title> 
-<style>
+<style> 
 	a {
 		font-size: 11px;
 		font-family : 'NanumGothic';
