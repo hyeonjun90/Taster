@@ -29,7 +29,7 @@
          <result>/member/member_zipcode_search.jsp</result>
       </action>
       <action name="emailAction" class="member.SendEmail" method="execute">
-      	 <result>/member/email_confirm.jsp</result> 
+      	 <result>/member/email_confirm2.jsp</result> 
       </action>
    </package>  
    
@@ -40,7 +40,7 @@
       </action> 
       <action name="findMemberId" class="member.MemberFindAction2" method="findMemberId">
       		<result>/member/member_findId.jsp</result>
-      </action> 
+      </action>  
       <action name="findMemberPwd" class="member.MemberFindAction2" method="findMemberPwd">
       		<result>/member/member_findPwd.jsp</result>
       </action>
