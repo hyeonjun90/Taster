@@ -25,7 +25,7 @@
 		<result property="shop_price" column="shop_price"/>
 		<result property="shop_holiday" column="shop_holiday"/>
 		<result property="shop_readCount" column="shop_readCount"/>
-		<result property="shop_new" column="shop_new"/>
+		<result property="shop_regDate" column="shop_regDate"/>
 	</resultMap>
 	
 	<!--reviewList select문 선언 -->

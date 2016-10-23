@@ -6,7 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>식당 위치 찾기</title>
-
+ 
 <style>
 	a {
 		font-size: 11px;

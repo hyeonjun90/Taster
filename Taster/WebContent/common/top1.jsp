@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <%@ taglib prefix="s" uri="/struts-tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
 <script src="https://code.jquery.com/jquery-latest.js"></script>
 <link rel="stylesheet" href="/Taster/css/login/layout.css" />
@@ -53,7 +54,7 @@ function logout() {
 </div>
 <table style="width:100%;" class="top_table">
 	<tr>
-		<td onclick="location.href='foodsMenuList.action'">업종별 맛집</td>
+		<td onclick="location.href='foodsMenuList.action'" <c:if test="${category=='menu'}">style="background-color:orange;"</c:if>>업종별 맛집</td>
 		<td onclick="location.href='foodsAreaList.action'">지역별 맛집</td>
 		<td onclick="location.href='foodsHotList.action'">뜨는 맛집</td>
 		<td onclick="location.href='foodsNewList.action'">신규 맛집</td>

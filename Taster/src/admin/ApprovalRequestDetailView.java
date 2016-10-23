@@ -85,7 +85,6 @@ public class ApprovalRequestDetailView extends ActionSupport {
 		approvedClass.setShop_addr4(resultClass.getR_shop_addr4());
 		approvedClass.setShop_price(resultClass.getR_shop_price());
 		approvedClass.setShop_holiday(resultClass.getR_shop_holiday());
-		approvedClass.setShop_new(1);
 	/*	approvedClass.setShop_file_orgname(resultClass.getR_shop_file_orgname());
 		approvedClass.setShop_file_savname(resultClass.getR_shop_file_savname());
 		*/

@@ -9,7 +9,7 @@
 <title>문의 게시판</title>
 
 
-<link rel="stylesheet" href="/struts2_board/board/common/css/css.css" type="text/css">
+<link rel="stylesheet" href="/Taster/qboard/css.css" type="text/css">
 
 <script type="text/javascript">
 	function validation()
@@ -35,7 +35,7 @@
 			return false;
 		}
 		 */
-		else if(frm.content.value == "")
+		else if(frm.b_content.value == "")
 		{
 			alert("입력해주세요");
 			return false;
@@ -45,7 +45,7 @@
 	}
 	
 	 $(document).ready(function(){
-		 $("#content").cleditor();
+		 $("#b_content").cleditor();
 	 });
 </script>
 </head>
@@ -69,7 +69,7 @@
 		<form action="qWritePro.action" method="post" enctype="multipart/form-data" onsubmit="return validation();">
 	</s:if>
 	<s:else>
-		<form action="modifyAction.action" method="post" enctype="multipart/form-data">
+		<form action="qModifyPro.action" method="post" enctype="multipart/form-data">
 			<s:hidden name="b_idx" value="%{resultClass.b_idx}" />
 			<s:hidden name="currentPage" value="%{currentPage}" />
 			
@@ -108,7 +108,7 @@
         </tr>
  
  		<!-- 비밀번호  -->
- 		
+ 		<!--  
         <tr>
           <td bgcolor="#F4F4F4"><font color="#FF0000">*</font>  비밀번호 </td>
           <td bgcolor="#FFFFFF">
@@ -118,7 +118,7 @@
         <tr bgcolor="#777777">
           <td height="1" colspan="2"></td>	
         </tr>
-       
+       -->
         
 	<tr>
           <td bgcolor="#F4F4F4"><font color="#FF0000">*</font>  내용 </td>

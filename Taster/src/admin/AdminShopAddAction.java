@@ -14,9 +14,6 @@ import org.apache.commons.io.FileUtils;
 
 import bean.ShopBean;
 
-
-import org.apache.commons.io.FileUtils;
-
 public class AdminShopAddAction extends ActionSupport{
 	
 public static Reader reader;
@@ -32,6 +29,9 @@ private String shop_tel;
 private String shop_price;
 private String shop_kind;		// 업종
 
+private String file_orgname;
+private String file_savname;
+
 //private String shop_addr1;		// 식당주소1(특별시, 광역시, 도)
 //private String shop_addr2;		// 식당주소2(시, 구, 군)
 //private String shop_addr3;		// 식당주소3(동)
@@ -39,17 +39,13 @@ private String shop_kind;		// 업종
 private String shop_holiday;	// 휴일
 private int shop_readCount;		// 조회수
 private int shop_new; 			// 신규 여부(1.신규, 2.비신규)
-private String file_orgname;
-private String file_savname;
+
 
 private File upload; //파일 객체
 private String uploadContentType; //컨텐츠 타입
 private String uploadFileName; //파일 이름
 
 private String fileUploadPath="C:\\git2\\Taster2\\Taster\\Taster\\WebContent\\images\\shop\\";
-
-
-
 
 
 public AdminShopAddAction() throws IOException {
@@ -80,7 +76,9 @@ public String execute() throws Exception  {
 	//paramClass.setShop_addr4(shop_addr4);
 	paramClass.setShop_holiday(shop_holiday);
 	paramClass.setShop_readCount(shop_readCount);
-	paramClass.setShop_new(shop_new);
+	
+	paramClass.setFile_orgname(file_orgname);
+	paramClass.setFile_savname(file_savname);
 	
 	
 	sqlMapper.insert("Shop-insertAshop",paramClass);
@@ -113,9 +111,6 @@ public String execute() throws Exception  {
 	
 	return SUCCESS;
 }
-
-
-
 
 public String getFile_orgname() {
 	return file_orgname;

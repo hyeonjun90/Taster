@@ -325,7 +325,7 @@ function openZipcode(){
 			</p>
 		</td>
 	</tr>
-	<tr>
+	<tr> 
 		<th>¿Ã∏ﬁ¿œ</th>
 		<td style="width:800px;">
 			<table style="width:100%;">
@@ -406,7 +406,6 @@ function openZipcode(){
 </form>
 </div>
 </center>
-<jsp:include page="../common/bottom.jsp"></jsp:include>
 </body>
 </html>
 

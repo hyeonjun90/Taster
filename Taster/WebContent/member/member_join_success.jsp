@@ -16,7 +16,7 @@
 		//}
 	}
 </script>
-</head>
+</head> 
 <body>
 <script>
 	locationURL();

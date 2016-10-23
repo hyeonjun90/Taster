@@ -25,6 +25,7 @@ public class FoodsMenuListAction extends ActionSupport{
 	public static Reader reader;
 	public static SqlMapClient sqlMapper;
 	
+	private String category;
 	//생성자
 	public FoodsMenuListAction() throws IOException{
 		reader=Resources.getResourceAsReader("sqlMapConfig.xml");
@@ -35,7 +36,7 @@ public class FoodsMenuListAction extends ActionSupport{
 	
 	
 	public String form() throws Exception{  //foods_menu_list.jsp로 폼이동
-		
+		setCategory("menu");
 		return SUCCESS;
 	}
 	
@@ -44,5 +45,14 @@ public class FoodsMenuListAction extends ActionSupport{
 		
 		return SUCCESS;
 	}
+
+
+	public String getCategory() {
+		return category;
+	}
+	public void setCategory(String category) {
+		this.category = category;
+	}
+	
 	
 }

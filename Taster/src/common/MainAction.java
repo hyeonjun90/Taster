@@ -30,6 +30,8 @@ public class MainAction extends ActionSupport {
 		//신규 맛집 가져오기
 		newShopList = new ArrayList<>();
 		newShopList = (ArrayList<ShopBean>) sqlMapper.queryForList("newShopList");
+		System.out.println("size : " + newShopList.size());
+		System.out.println("newShopList 사진 : " + newShopList.get(0).getFile_savname());
 		return SUCCESS;
 	}
 
