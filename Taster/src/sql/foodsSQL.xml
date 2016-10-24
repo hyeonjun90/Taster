@@ -60,4 +60,16 @@
 		  				where r1.SHOP_IDX=s.SHOP_IDX) as avg_r_score
 		from shop s where <![CDATA[shop_regDate > add_months(sysdate, -1)]]>
 	</select>
+	
+	
+	
+	
+	<!-- 식당 상세페이지 쿼리문 -->
+	<!--  -->
+	<select id="foodsDetail" parameterClass="int" resultClass="bean.FoodsDetailBean">
+		SELECT shop_idx, shop_name, shop_tel, shop_kind, shop_addr1, shop_addr2, shop_addr3, shop_addr4, shop_price, shop_holiday, shop_readCount, shop_regDate
+		FROM SHOP WHERE shop_idx = #shop_idx#
+	</select>
+
+	
 </sqlMap>

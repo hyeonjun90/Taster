@@ -6,7 +6,7 @@ public class BookMarkBean { // 즐겨찾기
 	private int shop_idx;		//SHOP테이블의 shop_idx
 	
 	public int getBookmark_idx() {
-		return bookmark_idx;
+		return bookmark_idx; 
 	}
 	public void setBookmark_idx(int bookmark_idx) {
 		this.bookmark_idx = bookmark_idx;
