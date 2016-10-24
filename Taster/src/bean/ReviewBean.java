@@ -2,7 +2,7 @@ package bean;
 
 import java.util.Date;
 
-public class ReviewBean { //식당 리뷰 bean
+public class ReviewBean { //식당 리뷰 bean 
 	private int review_idx;		// 기본키
 	private String r_title;		// 제목
 	private String r_content;	// 내용
