@@ -17,7 +17,7 @@
 	 		<property name="JDBC.Username" value="${username}" />
 	 		<property name="JDBC.Password" value="${password}" />
 	 	</dataSource>
-	 </transactionManager>
+	 </transactionManager> 
 	 
 	<sqlMap resource="/sql/memberSQL.xml" />
 	<sqlMap resource="/sql/adminSQL.xml" />

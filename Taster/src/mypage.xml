@@ -29,7 +29,7 @@
 		
 		<!-- 식당 등록 완료  -->
 		<action name="memberFoodWriteOk" class="member.ShopAddAction" method="execute">
-			<result type="tiles">foods_write_success</result>
+			<result type="tiles">food_write_success</result>
 		</action>
 		
 		<!-- 식당 위치 검색 -->

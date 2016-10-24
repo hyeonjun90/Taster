@@ -10,12 +10,36 @@
 <link rel="stylesheet" href="/Taster/css/style.css"/>
 </head>
 <body>
-<table>
-	<tr>
-	</tr>
-	
 
-</table>
+<c:forEach items="${newShopResult}" var="newShopResult" varStatus="status">
+	<table>
+		<tr>
+			<td rowspan="4"><img src="${newShopResult.file_savename}"></td>
+			<td><c:out value="${newShopResult.shop_idx}"/></td>
+			<td><c:out value="${newShopResult.shop_name}"/></td>
+			<td>평점</td>
+		</tr>
+		<tr>
+			<td><c:out value="${newShopResult.shop_addr1}"/>
+				<c:out value="${newShopResult.shop_addr2}"/>
+				<c:out value="${newShopResult.shop_addr3}"/>
+				<c:out value="${newShopResult.shop_addr4}"/>
+			</td>
+		</tr>
+		<tr>
+			<td><c:out value="${newShopResult.member_id}"/></td>
+		</tr>
+		<tr>
+			<td><c:out value="${newShopResult.r_content}"/></td>
+		</tr>
+		<tr>
+			<td>자세히보기</td>
+		</tr>
+	
+		<hr width="500px" color="#FF9900" noshade>
+
+	</table>
+</c:forEach>
 
 </body>
 </html>
