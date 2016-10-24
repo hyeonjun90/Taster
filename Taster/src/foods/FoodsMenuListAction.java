@@ -25,8 +25,9 @@ public class FoodsMenuListAction extends ActionSupport{
 	
 	public static Reader reader;
 	public static SqlMapClient sqlMapper;
-	private FoodsMenuListBean fBean;
-	private ArrayList<FoodsMenuListBean> fList;
+	private FoodsMenuListBean fBean;	//식당 bean
+	private ArrayList<FoodsMenuListBean> fList; // 식당 리스트 담을 배열
+	private int fTotalCount;	// 식당 전체 개수
 	
 	private String category;
 	//생성자
@@ -43,6 +44,7 @@ public class FoodsMenuListAction extends ActionSupport{
 		fBean = new FoodsMenuListBean();
 		fList = new ArrayList<>();
 		
+		fTotalCount = (int)sqlMapper.queryForObject("foodsMenuListCount");
 		fList = (ArrayList<FoodsMenuListBean>) sqlMapper.queryForList("foodsMenuList");
 		System.out.println("fList.size : " + fList.size());
 		return SUCCESS;
@@ -80,6 +82,16 @@ public class FoodsMenuListAction extends ActionSupport{
 
 	public void setfList(ArrayList<FoodsMenuListBean> fList) {
 		this.fList = fList;
+	}
+
+
+	public int getfTotalCount() {
+		return fTotalCount;
+	}
+
+
+	public void setfTotalCount(int fTotalCount) {
+		this.fTotalCount = fTotalCount;
 	}
 	
 	

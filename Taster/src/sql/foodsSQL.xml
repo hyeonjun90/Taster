@@ -31,6 +31,9 @@
 		  				where r1.SHOP_IDX=s.SHOP_IDX) as avg_r_score
 		from shop s order by avg_r_score desc, shop_idx desc
 	</select>
+	<select id="foodsMenuListCount" resultClass="Integer">
+		select count(*) from shop 
+	</select>
 	<!-- 식당 전체 평균 조인  -->
 	<select id="newShop-selectOne" parameterClass="Integer" resultClass="bean.Join_R_S">
 		select shop_idx, shop_name, shop_addr1, shop_addr2, shop_addr3, shop_addr4, 
