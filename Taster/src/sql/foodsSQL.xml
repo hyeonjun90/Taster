@@ -13,7 +13,7 @@
 	<!-- 식당 테이블 전체 검색 -->
 	<select id="newShop-selectAll" parameterClass="Integer" resultClass ="Join_R_S">
 		<include refid="newShop-select-all"/>
-	</select>
+	</select>   
 	
 	<!-- 식당 전체 평균 조인  -->
 	<select id="newShop-selectOne" parameterClass="Integer" resultClass="Join_R_S">
