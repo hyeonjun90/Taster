@@ -3,18 +3,7 @@
 <sqlMap>
 
 <!-- 식당등록에서  -->
-	
-	<!--신규 식당  등록에서 사용할 현재시간에서 한달까지의 전채검색-->
-	<sql id= "newShop-select-all">
-	 	select * from shop s1 inner join review r1 on r1.shop_idx = s1.shop_idx
-        where <![CDATA[shop_regDate > add_months(sysdate, -1)]]> order by shop_idx desc                         
-	</sql>
-	<!-- 식당 테이블 전체 검색 -->
-	<select id="newShop-selectAll" parameterClass="Integer" resultClass ="bean.Join_R_S">
-		<include refid="newShop-select-all"/>
-	</select>   
-	
-	
+		
 	<select id="foodsMenuList" resultClass="bean.FoodsMenuListBean" remapResults="true">
 		select shop_idx, shop_name, shop_addr1, shop_addr2, shop_addr3, shop_addr4, file_savname, 
 		  (select r_content from (select r_content from review r1 where s.shop_idx=r1.shop_idx)
@@ -32,14 +21,28 @@
 		  				where r1.SHOP_IDX=s.SHOP_IDX) as avg_r_score
 		from shop s order by avg_r_score desc, shop_idx desc
 	</select>
+	
 	<select id="foodsMenuListCount" resultClass="Integer">
 		select count(*) from shop 
 	</select>
+	
+	
 	<!-- 식당 전체 평균 조인  -->
-	<select id="newShop-selectOne" parameterClass="Integer" resultClass="bean.Join_R_S">
-		select shop_idx, shop_name, shop_addr1, shop_addr2, shop_addr3, shop_addr4, 
-		(select round(AVG(r1.r_score),1) 
-		from shop s1 inner join review r1 on r1.shop_idx = s1.shop_idx) as avg_r_score 
-		from shop
+	<select id="newShop-selectAll"  resultClass="bean.FoodsNewListBean" remapResults="true">
+		select shop_idx, shop_name, shop_addr1, shop_addr2, shop_addr3, shop_addr4, file_savname,
+		(select r_content from (select r_content from review r1 where s.shop_idx=r1.shop_idx)
+		  	 where <![CDATA[rownum<2]]>) as r_content,
+		  (select member_nicname from 
+			  (select  member_nicname from member m1 inner join review r1 on r1.member_id=m1.member_id
+			    where m1.member_id=r1.member_id and r1.shop_idx=s.shop_idx)
+		   where <![CDATA[rownum<2]]>) as member_nicname,
+		  (select member_image from 
+			  (select  member_image from member m1 inner join review r1 on r1.member_id=m1.member_id
+			    where m1.member_id=r1.member_id and r1.shop_idx=s.shop_idx)
+		   where <![CDATA[rownum<2]]>) as member_image, 
+		(select ROUND(AVG(r1.r_score),1) from shop s1 
+		  				inner join review r1 on r1.shop_idx = s1.shop_idx 
+		  				where r1.SHOP_IDX=s.SHOP_IDX) as avg_r_score
+		from shop s where <![CDATA[shop_regDate > add_months(sysdate, -1)]]>
 	</select>
 </sqlMap>
