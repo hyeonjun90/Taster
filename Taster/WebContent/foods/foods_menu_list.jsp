@@ -45,12 +45,33 @@
 </style>
 
 <script>
-	function init() {
-		//alert("${fTotalCount}");
+
+var currentPage = 1;
+var fTotalCount = ${fTotalCount};
+
+	function readMore() {
+		currentPage += 1;
+		fTotalCount -= 3; // 페이지 개수
+		$.ajax({
+			url: "foodsMenuListMore.action",
+			type: "POST",
+			async:true,
+			dataType: "Text", 
+			data: {"currentPage": currentPage },
+			success: function(data) {
+				//alert(data);
+				
+				$("#menuList").append(data);
+				if(fTotalCount < 1) {
+					$("#readMore").css("display", "none");
+				}
+			}
+			
+		});
 	}
 </script>
 </head>
-<body onload="init();">
+<body >
 <center>
 <div style="width:100%;min-height:500px;margin-top:40px;">
 
@@ -112,7 +133,7 @@
 		</div>
 	</div>
 
-	<div class="menuList" style="width:830px;">
+	<div class="menuList" id="menuList" style="width:830px;">
 	<c:forEach items="${fList}" var="fList" varStatus="status">
 		<div class="shopInfo" style="width:810px;margin-top:20px;">
 			<div style="background-image:url('/Taster/images/shop/${fList.file_savname}');
@@ -134,28 +155,12 @@
 		</div>
 		<div style="clear:both; height:10px;"></div>		
 		<div style="clear:both; width:800px; border:1px solid #d5d5d5;"></div>
-		<div class="shopInfo" style="width:810px;margin-top:20px;">
-			<div style="background-image:url('/Taster/images/shop/${fList.file_savname}');
-					background-repeat: no-repeat; display:block; 
-					width:150px;height:150px;background-size:150px 150px;padding-top:5px;float:left;">
-			</div>
-			<div style="float:left; width:550px; text-align:left;">
-				<span class="title">${status.index + 1}. ${fList.shop_name}</span>
-				<span class="r_score">${fList.avg_r_score }</span>
-			</div>
-			<div style="float:right;" class="favorite">별</div>
-			<div class="shop_addr">${fList.shop_addr1 } ${fList.shop_addr2 } ${fList.shop_addr3 } ${fList.shop_addr4 }</div>
-			<div class="r_content" >
-				<div class="m_image">
-				</div>
-				<strong>${fList.member_nicname }</strong>&nbsp;
-				${fList.r_content }
-			</div>
-		</div>
-		<div style="clear:both; height:10px;"></div>		
-		<div style="clear:both; width:800px; border:1px solid #d5d5d5;"></div>
+		
 	</c:forEach>
 	</div>
+		<c:if test="${fTotalCount > 0 }">
+			<div id="readMore" style="width:500px;height:50px;" onclick="readMore();"><h2>▽더보기</h2></div>
+		</c:if>
 </div>
 </center>
 </body>

@@ -11,7 +11,7 @@ public class FoodsMenuListBean {
 	private String member_nicname;
 	private String member_image;
 	private String file_savname;
-	
+	private int rnum;
 	private float avg_r_score; //식당 평점
 	
 	
@@ -80,6 +80,12 @@ public class FoodsMenuListBean {
 	}
 	public void setFile_savname(String file_savname) {
 		this.file_savname = file_savname;
+	}
+	public int getRnum() {
+		return rnum;
+	}
+	public void setRnum(int rnum) {
+		this.rnum = rnum;
 	}
 	
 	

@@ -6,6 +6,9 @@
       <action name="foodsMenuList" class="foods.FoodsMenuListAction" method="form" >
          <result type="tiles">foods_menu</result>
       </action>
+      <action name="foodsMenuListMore" class="foods.FoodsMenuListAction" method="readMore">
+      	<result>/foods/foods_menu_list_more.jsp</result>
+      </action>
       
       <!-- 뜨는 맛집 이동 -->
       <action name="foodsAreaList" class="foods.FoodsAreaListAction" method="form">
