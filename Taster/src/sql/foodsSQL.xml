@@ -10,7 +10,7 @@
         where <![CDATA[shop_regDate > add_months(sysdate, -1)]]> order by shop_idx desc                         
 	</sql>
 	<!-- 식당 테이블 전체 검색 -->
-	<select id="newShop-selectAll" parameterClass="Integer" resultClass ="Join_R_S">
+	<select id="newShop-selectAll" parameterClass="Integer" resultClass ="bean.Join_R_S">
 		<include refid="newShop-select-all"/>
 	</select>
 	
@@ -32,10 +32,10 @@
 		from shop s order by avg_r_score desc, shop_idx desc
 	</select>
 	<!-- 식당 전체 평균 조인  -->
-	<select id="newShop-selectOne" parameterClass="Integer" resultClass="Join_R_S">
+	<select id="newShop-selectOne" parameterClass="Integer" resultClass="bean.Join_R_S">
 		select shop_idx, shop_name, shop_addr1, shop_addr2, shop_addr3, shop_addr4, 
 		(select round(AVG(r1.r_score),1) 
 		from shop s1 inner join review r1 on r1.shop_idx = s1.shop_idx) as avg_r_score 
-		from shop;
+		from shop
 	</select>
 </sqlMap>

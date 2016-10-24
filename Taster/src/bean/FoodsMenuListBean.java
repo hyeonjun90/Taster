@@ -82,5 +82,5 @@ public class FoodsMenuListBean {
 		this.file_savname = file_savname;
 	}
 	
-	
+	 
 }
