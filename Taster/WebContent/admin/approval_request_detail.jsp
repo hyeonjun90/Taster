@@ -8,15 +8,16 @@
 <title>관리자페이지입니다.</title>
 <link rel="stylesheet" href="/StrutsBoard/board/common/css/css.css" type="text/css">
 <script type="text/javascript">
-	function ApprovalOk () {
-		window.opener.parent.location.href='approvalActionOk.action?r_idx=<s:property value="r_idx"/>&currentPage=<s:property value="currentPage"/>';
+	function ApprovalOk() {
 		alert('승인되었습니다.');
+		window.location.href='approvalActionOk.action?r_idx=<s:property value="r_idx"/>&currentPage=<s:property value="currentPage"/>';
+	
 		/* var oWin = window.open(url, name, "scrollbars=no, status=no, resizable=no, width=300, height=150");		 */
 	}
 	
-	function ApprovalNok () {
+	function ApprovalNok() {
 		alert('승인거부 되었습니다.');
-		window.opener.parent.location.href='approvalActionNok.action?r_idx=<s:property value="r_idx"/>&currentPage=<s:property value="currentPage"/>';
+		window.location.href='approvalActionNok.action?r_idx=<s:property value="r_idx"/>&currentPage=<s:property value="currentPage"/>';
 		window.close();
 	}
 
@@ -174,8 +175,8 @@
 					</s:param>
 				</s:url> --%>
 				
-			<input name="ApprovalOk"  type="button" value="승인하기" class="inputb" onClick="ApprovalOk()">
-			<input name="ApprovalNok" type="button" value="거부하기" class="inputb" onClick="ApprovalNok()">
+			<input name="ApprovalOk"  type="button" value="승인하기" class="inputb" onClick='ApprovalOk()'>
+			<input name="ApprovalNok" type="button" value="거부하기" class="inputb" onClick='ApprovalNok()'>
 			<input name="list" type="button" value=" 목 록 " class="inputb" onClick="javascript:location.href='approvalRequestList.action?currentPage=<s:property value="currentPage"/>'">
  			
  			</td>

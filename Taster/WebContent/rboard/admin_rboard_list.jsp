@@ -57,7 +57,8 @@
 				<td align="center"><s:property value="rec_image"/></td>
 				<td align="center"><s:property value="수정 버튼"/></td>
 				<td align="center"><s:property value="삭제 버튼"/></td>
-			</tr>
+			</tr>	
+			
 			
 		
 			<tr bgcolor="#777777">
@@ -79,6 +80,9 @@
 		</tr>
 
 	</table>
+
+
+
 
 </body>
 </html>
