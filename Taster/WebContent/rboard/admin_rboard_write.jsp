@@ -1,16 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <%@ taglib prefix="s" uri="/struts-tags" %>
-<%@ taglib prefix="ckeditor" uri="http://ckeditor.com" %>
-<%@ taglib prefix="ckfinder" uri="http://cksource.com/ckfinder" %>
+<%-- <%@ taglib prefix="ckeditor" uri="http://ckeditor.com" %> --%>
+<%-- <%@ taglib prefix="ckfinder" uri="http://cksource.com/ckfinder" %> --%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>스트럿츠2 게시판</title>
 <link rel="stylesheet" href="/Taster/css/style.css" type="text/css">
-<script src="/Taster/ckeditor/ckeditor.js" charset="euc-kr"></script>
-<script type="text/javascript" src="/Taster/ckfinder/ckfinder.js"></script> 
+<%-- <script src="/Taster/ckeditor/ckeditor.js" charset="euc-kr"></script>
+<script type="text/javascript" src="/Taster/ckfinder/ckfinder.js"></script>  --%>
 
 
 
