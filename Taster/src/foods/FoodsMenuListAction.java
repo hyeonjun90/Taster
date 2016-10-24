@@ -27,6 +27,7 @@ public class FoodsMenuListAction extends ActionSupport{
 	
 	
 	private String category;
+	
 	//»ý¼ºÀÚ
 	public FoodsMenuListAction() throws IOException{
 		reader=Resources.getResourceAsReader("sqlMapConfig.xml");

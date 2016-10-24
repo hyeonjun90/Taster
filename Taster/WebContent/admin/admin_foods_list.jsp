@@ -28,7 +28,7 @@
          <td width="50"><strong>전화번호</strong></td>
          <td width="50"><strong>업종</strong></td>
          <td width="50"><strong>휴일</strong></td>
-         <td width="50"><strong>신규</strong></td>
+         <td width="50"><strong>주소</strong></td>
          <td width="50"><strong>조회수</strong></td>
          
       </tr>
@@ -63,7 +63,7 @@
          <td  align="center"><s:property value="shop_tel" /></td>
          <td  align="center"><s:property value="shop_kind" /></td>
          <td  align="center"><s:property value="shop_holiday" /></td>
-         <td  align="center"><s:property value="shop_new" /></td>
+         <td  align="center"><s:property value="shop_addr1" /></td>
          <td  align="center"><s:property value="shop_readCount" /></td>
       </tr>
 

@@ -10,6 +10,11 @@ import com.ibatis.sqlmap.client.SqlMapClientBuilder;
 import java.io.Reader;
 import java.io.InputStream;
 import java.io.IOException;
+import java.io.File;
+import java.io.FileInputStream;
+
+import java.net.URLEncoder;
+
 
 public class AdminShopListDetailView extends ActionSupport {
 	
@@ -37,14 +42,13 @@ public class AdminShopListDetailView extends ActionSupport {
 	
 	
 	public String execute() throws Exception {
-
 		resultClass = (ShopBean) sqlMapper.queryForObject("Shop-selectOne", getShop_idx());
-		
 		return SUCCESS;
 	}
 	
 
 
+	
 	public static Reader getReader() {
 		return reader;
 	}

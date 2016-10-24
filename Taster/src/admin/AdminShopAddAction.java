@@ -32,13 +32,13 @@ private String shop_kind;		// 업종
 private String file_orgname;
 private String file_savname;
 
-//private String shop_addr1;		// 식당주소1(특별시, 광역시, 도)
+private String shop_addr1;		// 식당주소1(특별시, 광역시, 도)
 //private String shop_addr2;		// 식당주소2(시, 구, 군)
 //private String shop_addr3;		// 식당주소3(동)
 //private String shop_addr4;		// 식당주소4(나머지)
 private String shop_holiday;	// 휴일
 private int shop_readCount;		// 조회수
-private int shop_new; 			// 신규 여부(1.신규, 2.비신규)
+
 
 
 private File upload; //파일 객체
@@ -70,7 +70,7 @@ public String execute() throws Exception  {
 	paramClass.setShop_tel(shop_tel);
 	paramClass.setShop_price(shop_price);
 	paramClass.setShop_kind(shop_kind);
-	//paramClass.setShop_addr1(shop_addr1);
+	paramClass.setShop_addr1(shop_addr1);
 	//paramClass.setShop_addr2(shop_addr2);
 	//paramClass.setShop_addr3(shop_addr3);
 	//paramClass.setShop_addr4(shop_addr4);
@@ -84,15 +84,16 @@ public String execute() throws Exception  {
 	sqlMapper.insert("Shop-insertAshop",paramClass);
 	shop_idx = (int) sqlMapper.queryForObject("Shop-getIdx");
 	
+	//파일 업로드 부분
 	if(getUpload() !=null) {
 		
 		//실제 서버에 저장될 파일 이름과 확장자 설정.
 		String file_name = "file_" + shop_idx;
 		file_orgname = getUploadFileName();
-		file_savname = "file_" + shop_idx;
+		file_savname = "file_" + shop_idx + "jpg";
 		
 		String file_ext = getUploadFileName().substring(
-				getUploadFileName().lastIndexOf('.') + 1,
+				getUploadFileName().lastIndexOf('.')+ 1,
 				getUploadFileName().length());
 		
 		map.put("shop_idx", shop_idx);
@@ -248,14 +249,6 @@ public void setShop_readCount(int shop_readCount) {
 	this.shop_readCount = shop_readCount;
 }
 
-public int getShop_new() {
-	return shop_new;
-}
-
-public void setShop_new(int shop_new) {
-	this.shop_new = shop_new;
-}
-
 public int getShop_idx() {
 	return shop_idx;
 }
@@ -288,9 +281,13 @@ public void setUploadFileName(String uploadFileName) {
 	this.uploadFileName = uploadFileName;
 }
 
+public String getShop_addr1() {
+	return shop_addr1;
+}
 
-
-
+public void setShop_addr1(String shop_addr1) {
+	this.shop_addr1 = shop_addr1;
+}
 
 
 

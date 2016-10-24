@@ -2,37 +2,6 @@
 <!DOCTYPE sqlMap PUBLIC '-//ibatis.apache.org//DTD Sql Map 2.0//EN' 'http://ibatis.apache.org/dtd/sql-map-2.dtd'>
 
 <sqlMap>
-	<typeAlias alias="myPageList" type="bean.JoinR_B_S"/>
-	 
-	<resultMap id="myPageRes" class="myPageList">
-		<result property="review_idx" column="review_idx"/>
-		<result property="r_title" column="r_title"/>
-		<result property="r_content" column="r_content"/>
-		<result property="r_score" column="r_score"/>
-		<result property="r_pungga" column="r_pungga"/>
-		<result property="r_image" column="r_image"/>
-		<result property="r_regdate" column="r_redate"/>
-		<result property="member_id" column="member_id"/>
-		<result property="shop_idx" column="shop_idx"/>
-		<result property="bookmark_idx" column="bookmark_idx"/>
-		<result property="shop_name" column="shop_name"/>
-		<result property="shop_tel" column="shop_tel"/>
-		<result property="shop_kind" column="shop_kind"/>
-		<result property="shop_addr1" column="shop_addr1"/>
-		<result property="shop_addr2" column="shop_addr2"/>
-		<result property="shop_addr3" column="shop_addr3"/>
-		<result property="shop_addr4" column="shop_addr4"/>
-		<result property="shop_price" column="shop_price"/>
-		<result property="shop_holiday" column="shop_holiday"/>
-		<result property="shop_readCount" column="shop_readCount"/>
-		<result property="shop_regDate" column="shop_regDate"/>
-	</resultMap>
-	
-	<!--reviewList select문 선언 -->
-	<select id="reviewList-selectAll" resultMap="myPageRes" parameterClass="String">
-		select r_image, shop_name from review r inner join shop s on r.shop_idx=s.shop_idx
-		where member_id=#member_id# order by review_idx desc
-	</select>
 	
 	<select id="idCheck" parameterClass="String" resultClass="Integer">
 		select count(*) from Member where member_id=#member_id#
@@ -72,11 +41,18 @@
       select * from Member_Position where p_idx=1
    </select>
    
-	<!-- bookmarkList select문 선언 -->
-	<select id="bookmarkList-selectAll" resultMap="myPageRes" parameterClass="String">
-		select r_image, shop_name from review r left join shop s on r.shop_idx=s.shop_idx
-		left join bookmark b on r.shop_idx=b.shop_idx 
-		where member_id = #member_id#
-		order by bookmark_idx DESC, review_idx desc
-	</select>
+   <!-- bookmarkList select문 선언 -->
+   <select id="bookmarkList-selecAll" resultClass="bean.BookmarkListBean" parameterClass="String">
+   		select shop_name, file_savname from bookmark b left join shop s on b.shop_idx=s.shop_idx
+   		where member_id = #member_id#
+   		order by s.shop_idx DESC
+   </select>
+   
+   <!--reviewList select문 선언 -->
+   <select id="reviewList-selectAll" resultClass="bean.ReviewListBean" parameterClass="String">
+   		select shop_name, file_savname from review r inner join shop s on r.shop_idx=s.shop_idx
+   		where member_id = #member_id#
+   		order by s.shop_idx DESC
+   </select>
+	
 </sqlMap>
