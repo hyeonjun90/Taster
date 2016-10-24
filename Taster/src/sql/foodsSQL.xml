@@ -8,10 +8,7 @@
 	 	select * from shop s1 inner join review r1 on r1.shop_idx = s1.shop_idx
         where <![CDATA[shop_regDate > add_months(sysdate, -1)]]> order by shop_idx desc                         
 	</sql>
-	<!-- 식당 테이블 전체 검색 -->
-	<select id="newShop-selectAll" parameterClass="Integer" resultClass ="bean.Join_R_S">
-		<include refid="newShop-select-all"/>
-	</select>   
+
 	
 	<select id="foodsMenuList" resultClass="bean.FoodsMenuListBean" parameterClass="HashMap" remapResults="true">
 		select * from ( 
