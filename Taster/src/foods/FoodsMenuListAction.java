@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.Reader;
 
 import java.util.Date;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Map;
 
@@ -24,6 +25,8 @@ public class FoodsMenuListAction extends ActionSupport{
 	
 	public static Reader reader;
 	public static SqlMapClient sqlMapper;
+	private FoodsMenuListBean fBean;
+	private ArrayList<FoodsMenuListBean> fList;
 	
 	private String category;
 	//생성자
@@ -37,6 +40,11 @@ public class FoodsMenuListAction extends ActionSupport{
 	
 	public String form() throws Exception{  //foods_menu_list.jsp로 폼이동
 		setCategory("menu");
+		fBean = new FoodsMenuListBean();
+		fList = new ArrayList<>();
+		
+		fList = (ArrayList<FoodsMenuListBean>) sqlMapper.queryForList("foodsMenuList");
+		System.out.println("fList.size : " + fList.size());
 		return SUCCESS;
 	}
 	
@@ -52,6 +60,26 @@ public class FoodsMenuListAction extends ActionSupport{
 	}
 	public void setCategory(String category) {
 		this.category = category;
+	}
+
+
+	public FoodsMenuListBean getfBean() {
+		return fBean;
+	}
+
+
+	public void setfBean(FoodsMenuListBean fBean) {
+		this.fBean = fBean;
+	}
+
+
+	public ArrayList<FoodsMenuListBean> getfList() {
+		return fList;
+	}
+
+
+	public void setfList(ArrayList<FoodsMenuListBean> fList) {
+		this.fList = fList;
 	}
 	
 	

@@ -5,17 +5,13 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<<<<<<< HEAD
 <title>업종별 맛집 리스트</title>
 <link rel="stylesheet" href="/Taster/css/style.css" />
 
-=======
 <title>Insert title here</title>
 <link rel="stylesheet" href="/Taster/css/style.css" />
->>>>>>> branch 'master' of https://github.com/hyeonjun90/Taster
 <style>
-	.clearDiv{	clear:both;	}
+	.clearDiv{	clear:both; }
 	.c1 {background:url('http://itvplus5.cafe24.com/img/category/c01.png');}
 	.c2 {background:url(http://itvplus5.cafe24.com/img/category/c02.png);}
 	.c3 {background:url(http://itvplus5.cafe24.com/img/category/c03.png);}
@@ -37,29 +33,7 @@
 		background-repeat: no-repeat;
 		cursor: pointer;
 	}
-<<<<<<< HEAD
-	#topMenu ul li{  			
-		color: white;
-		background-color:FF9900; 
-		float: left;    		
-		line-height: 30px;   
-		vertical-align: middle; 
-		text-align:center;		
- 	} 
- 	#topMenu .menuLink{       
- 		text-decoration:none; 
- 		color: white;              
-        display: block;         
-        width: 150px;          
-        font-size: 12px;       
-        font-weight: bold;     
-        font-family: "Trebuchet MS", Dotum, Arial; 
- 	}
- 	#topMenu .menuLink:hover{   
- 		color:red;
- 		background-color: FF6600;
- 	}
-=======
+	
 	.category_bt{
 		width: 80px;
 		height: 80px;
@@ -86,87 +60,129 @@
 		border: 7px solid #ABC1DF;
 		padding-top: 0px;
 	}
-		
->>>>>>> branch 'master' of https://github.com/hyeonjun90/Taster
+
+	.menuList div {font-family : 'Noto Sans', sans-serif; }
+	.shopInfo div {margin-left:10px; padding: 3px; font-family : 'Noto Sans', sans-serif;}
+	.title { font-size: 18px; color:#555; font-weight:bold;}
+	.r_score { font-size: 18px; color:orange; font-weight:bold; }
+	.shop_addr {width:600px;float:left;text-align:left; color:#a6a6a6; font-size:13px;}
+	.r_content {padding: 10px; font-size: 12px; float:left; width: 600px; text-align:left; margin-top:10px;}
+	.favorite {   
+    width: 32px;
+    height: 31px;}
+    .m_image { width:25px; height: 24px; border-radius: 20px; display:block; float: left;
+    	 background:url('/Taster/images/basic_profile.png') no-repeat; background-size:32px 32px; margin-right:5px;}
 </style>
 </head>
   
 <body>
-       <nav id="topMenu" >
-                <ul>
-                        <li><a class="menuLink" href="#">한식</a></li>
-                        <li><a class="menuLink" href="#">양식</a></li>
-                        <li><a class="menuLink" href="#">일식</a></li>
-                        <li><a class="menuLink" href="#">중식</a></li>
-                        <li><a class="menuLink" href="#">고기</a></li>
-                </ul>
-        </nav>
-
-<<<<<<< HEAD
-=======
 <center>
 <div style="width:100%;min-height:500px;margin-top:40px;">
 
-<div style="width:900px;height:220px;background: #F3F3F3;padding: 10px 0px 20px;border: 1px solid #E6E3E3;text-align:center;">
-
-<div style="width:848px;margin:0px auto;">
-	<div class="category_bt">
-		<em class="c1 icon"></em>
-		<div class="icon_title">한식</div>
-	</div>
-	<div class="category_bt">
-		<em class="c2 icon"></em>
-		<div class="icon_title">양식</div>
-	</div>
-	<div class="category_bt">
-		<em class="c3 icon"></em>
-		<div class="icon_title">일식</div>
-	</div>
-	<div class="category_bt">
-		<em class="c4 icon"></em>
-		<div class="icon_title">중식</div>
-	</div>
-	<div class="category_bt">
-		<em class="c5 icon"></em>
-		<div class="icon_title">분식</div>
-	</div>
-	<div class="category_bt">
-		<em class="c6 icon"></em>
-		<div class="icon_title">해산물</div>
-	</div>
-	<div class="clearDiv"></div>
+	<div style="width:900px;height:220px;background: #F3F3F3;padding: 10px 0px 20px;border: 1px solid #E6E3E3;text-align:center;">
 	
+		<div style="width:848px;margin:0px auto;">
+			<div class="category_bt">
+				<em class="c1 icon"></em>
+				<div class="icon_title">한식</div>
+			</div>
+			<div class="category_bt">
+				<em class="c2 icon"></em>
+				<div class="icon_title">양식</div>
+			</div>
+			<div class="category_bt">
+				<em class="c3 icon"></em>
+				<div class="icon_title">일식</div>
+			</div>
+			<div class="category_bt">
+				<em class="c4 icon"></em>
+				<div class="icon_title">중식</div>
+			</div>
+			<div class="category_bt">
+				<em class="c5 icon"></em>
+				<div class="icon_title">분식</div>
+			</div>
+			<div class="category_bt">
+				<em class="c6 icon"></em>
+				<div class="icon_title">해산물</div>
+			</div>
+			<div class="clearDiv"></div>
+			
+			
+			<div class="category_bt">
+				<em class="c7 icon"></em>
+				<div class="icon_title">치킨</div>
+			</div>
+			<div class="category_bt">
+				<em class="c8 icon"></em>
+				<div class="icon_title">주류</div>
+			</div>
+			<div class="category_bt">
+				<em class="c9 icon"></em>
+				<div class="icon_title">제빵</div>
+			</div>
+			<div class="category_bt">
+				<em class="c10 icon"></em>
+				<div class="icon_title">육류</div>
+			</div>
+			<div class="category_bt">
+				<em class="c11 icon"></em>
+				<div class="icon_title">카페</div>
+			</div>
+			<div class="category_bt">
+				<em class="c12 icon"></em>
+				<div class="icon_title">이색</div>
+			</div>
+			<div class="clearDiv"></div>
+		</div>
+	</div>
 	
-	<div class="category_bt">
-		<em class="c7 icon"></em>
-		<div class="icon_title">치킨</div>
+	<div class="menuList" style="width:830px;">
+	<c:forEach items="${fList}" var="fList" varStatus="status">
+		<div class="shopInfo" style="width:810px;margin-top:20px;">
+			<div style="background-image:url('/Taster/images/shop/${fList.file_savname}');
+					background-repeat: no-repeat; display:block; 
+					width:150px;height:150px;background-size:150px 150px;padding-top:5px;float:left;">
+			</div>
+			<div style="float:left; width:550px; text-align:left;">
+				<span class="title">${status.index + 1}. ${fList.shop_name}</span>
+				<span class="r_score">${fList.avg_r_score }</span>
+			</div>
+			<div style="float:right;" class="favorite">별</div>
+			<div class="shop_addr">${fList.shop_addr1 } ${fList.shop_addr2 } ${fList.shop_addr3 } ${fList.shop_addr4 }</div>
+			<div class="r_content" >
+				<div class="m_image">
+				</div>
+				<strong>${fList.member_nicname }</strong>&nbsp;
+				${fList.r_content }
+			</div>
+		</div>
+		<div style="clear:both; height:10px;"></div>		
+		<div style="clear:both; width:800px; border:1px solid #d5d5d5;"></div>
+		<div class="shopInfo" style="width:810px;margin-top:20px;">
+			<div style="background-image:url('/Taster/images/shop/${fList.file_savname}');
+					background-repeat: no-repeat; display:block; 
+					width:150px;height:150px;background-size:150px 150px;padding-top:5px;float:left;">
+			</div>
+			<div style="float:left; width:550px; text-align:left;">
+				<span class="title">${status.index + 1}. ${fList.shop_name}</span>
+				<span class="r_score">${fList.avg_r_score }</span>
+			</div>
+			<div style="float:right;" class="favorite">별</div>
+			<div class="shop_addr">${fList.shop_addr1 } ${fList.shop_addr2 } ${fList.shop_addr3 } ${fList.shop_addr4 }</div>
+			<div class="r_content" >
+				<div class="m_image">
+				</div>
+				<strong>${fList.member_nicname }</strong>&nbsp;
+				${fList.r_content }
+			</div>
+		</div>
+		<div style="clear:both; height:10px;"></div>		
+		<div style="clear:both; width:800px; border:1px solid #d5d5d5;"></div>
+	</c:forEach>
 	</div>
-	<div class="category_bt">
-		<em class="c8 icon"></em>
-		<div class="icon_title">주류</div>
-	</div>
-	<div class="category_bt">
-		<em class="c9 icon"></em>
-		<div class="icon_title">제빵</div>
-	</div>
-	<div class="category_bt">
-		<em class="c10 icon"></em>
-		<div class="icon_title">육류</div>
-	</div>
-	<div class="category_bt">
-		<em class="c11 icon"></em>
-		<div class="icon_title">카페</div>
-	</div>
-	<div class="category_bt">
-		<em class="c12 icon"></em>
-		<div class="icon_title">이색</div>
-	</div>
-	<div class="clearDiv"></div>
-</div>
-</div>
 </div>
 </center>
->>>>>>> branch 'master' of https://github.com/hyeonjun90/Taster
 </body>
 </html>
 
