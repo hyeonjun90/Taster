@@ -224,5 +224,4 @@ public class FoodsDetailBean {
 		this.avg_r_score = avg_r_score;
 	}
 	
-	
 }
