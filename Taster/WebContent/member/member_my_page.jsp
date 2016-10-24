@@ -8,7 +8,18 @@
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>MyPage main</title>
 <link rel="stylesheet" href="/Taster/css/style.css"/>
+
+<style>
+	.clearDiv{	clear:both;	}
+	.shopInfo {	border:1px solid #d5d5d5; width:300px; height:150px; margin:20px; float:left; text-align:center;
+	 box-sizing:border-box; vertical-align: middle}
+	 .shopInfo span {vertical-align: middle; position:relative; color:#000; font-size:18px; font-weight:bold;
+	  			margin-top:50px;  }
+	.shopKind {width:99%;margin-top:25px;margin-left:10px;text-align:left;font-size:14px;color:#ff792a;font-weight:bold;}
+	.line { border-left:2px solid #FF9900;}
+</style>
 </head>
+
 <body>
 <div class="top_module"></div>
 
@@ -18,48 +29,52 @@
 		<td onclick="location.href='qWrite.action'">문의하기</td>
 	</tr>
 </table>
+
+<center>
+<div style="width:100%;">
+<table style="width:1050px;" id="tblForm">
+<tr>
+<td>
+	<div class="shopKind">MY REVIEW RESTAURANT</div>
+</td>
+<td>
+	<div class="shopKind">MY BOOKMARK RESTAURANT</div>
+</td>
+</tr>
+<tr>
+<td>
+<div style="width:450px; height:300px;text-align:center; margin:0px auto;">
+<c:forEach items="${rList}" var="rList" varStatus="status">
+	<div class="shopInfo">
+		<div style="background-image:url('/Taster/images/shop/${rList.file_savname}');
+				background-repeat: no-repeat; display:block; 
+				width:298px;height:149px;background-size:298px 149px;padding-top:50px;">
+			<span>${rList.shop_name}</span>
+		</div>
+	</div>
 	
-<table style="width:100%; margin-top:15px" border="1px">
-	<tr>
-		<td align="center">MY REVIEW RESTAURANT</td>
-		<td align="center">My BOOKMARK RESTAURANT</td>
-	</tr>
+</c:forEach>
+</div>
+</td>
+<td class="line">
+<div style="width:450px; height:300px;text-align:center; margin:0px auto;">
+<c:forEach items="${bList}" var="bList" varStatus="status">
+	<div class="shopInfo">
+		<div style="background-image:url('/Taster/images/shop/${bList.file_savname}');
+				background-repeat: no-repeat; display:block; 
+				width:298px;height:149px;background-size:298px 149px;padding-top:50px;">
+			<span>${bList.shop_name}</span>
+		</div>
+	</div>
 	
-	<tr style="vertical-align">
-		<td style="width:50%; padding :50px; align:center">
-			<c:forEach var="reviewList" items="${reviewList}">
-				<tr>
-					<td>${reviewList.r_image}</td>
-					<c:if test="${empty reviewList.r_image}">
-						<img src="/Taster/images/1.jpg"/>
-					</c:if>
-				</tr>
-				<tr>
-					<td>${reviewList.shop_name}</td>
-				</tr>
-			</c:forEach>
-			
-			<c:if test="${empty reviewList}">
-				등록된 식당이 없습니다
-			</c:if>
-		</td>
-		<td style="width:50%; padding :50px; align:center">
-			<c:forEach var="bookmarkList" items="${bookmarkList}">
-				<tr>
-					<td>${bookmarkList.r_image2}</td>
-				</tr>
-				<tr>
-					<td>${bookmarkList.shop_name2}</td>
-				</tr>
-			</c:forEach>
-			
-			<c:if test="${empty reviewList}">
-				등록된 식당이 없습니다
-			</c:if>
-		</td>
-	</tr>
-	
+</c:forEach>
+</div>
+</td>
+</tr>
 </table>
+
+</div>
+</center> 
 
 
 

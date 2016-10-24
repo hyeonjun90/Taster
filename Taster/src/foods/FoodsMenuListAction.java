@@ -30,6 +30,7 @@ public class FoodsMenuListAction extends ActionSupport{
 	private int fTotalCount;	// 식당 전체 개수
 	
 	private String category;
+	
 	//생성자
 	public FoodsMenuListAction() throws IOException{
 		reader=Resources.getResourceAsReader("sqlMapConfig.xml");
