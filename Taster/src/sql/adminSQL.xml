@@ -134,6 +134,15 @@
 			AND shop_name = #shop_name#
 		</select>
 		
+		<!-- 파일 업로드 할때 쓸 쿼리 -->
+		<select id="AprReq-getIdx" resultClass="Integer" resultMap="AprReqRes">
+			select max(r_idx) from REQUEST_LIST
+		</select>
+		
+		<update id="updateFileUpload2" parameterClass="HashMap">
+			update REQUEST_LIST set file_orgname=#file_orgname#, file_savname=#file_savname# where r_idx=#r_idx#
+		</update>
+		
 		<!-- insert 쿼리문 정의 -->
 		<insert id="AprReq-insertReqList" parameterClass="AprReq">
 		INSERT INTO REQUEST_LIST(r_idx, r_regdate, r_id, r_nicname, r_shop_tel, r_shop_name , r_shop_kind, r_shop_addr1, r_shop_addr2, r_shop_addr3, r_shop_addr4, r_shop_price, r_shop_holiday, r_shop_content, r_shop_file_orgname, r_shop_file_savname)

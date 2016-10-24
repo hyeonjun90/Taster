@@ -1,13 +1,16 @@
 package member;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.Reader;
 import java.util.Date;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.SessionAware;
 
@@ -25,6 +28,7 @@ public class ShopAddAction extends ActionSupport implements SessionAware{
 	public static SqlMapClient sqlMapper;
 	
 	private RequestListBean paramClass;//파라미터를 저장할 값
+	HashMap<String, Object> map = new HashMap<>();
 
 	
 	private Map session; //회원 아이디를 받아올 Map객체 
@@ -49,6 +53,13 @@ public class ShopAddAction extends ActionSupport implements SessionAware{
 	
 	Calendar today = Calendar.getInstance();
 	
+	private File upload; //파일 객체
+	private String uploadContentType; //컨텐츠 타입
+	private String uploadFileName; //파일 이름
+	
+	private String fileUploadPath="C:\\git2\\Taster2\\Taster\\Taster\\WebContent\\images\\temporary_shop\\";
+
+
 
 	//생성자
 	public ShopAddAction() throws IOException{
@@ -85,15 +96,38 @@ public class ShopAddAction extends ActionSupport implements SessionAware{
 		paramClass.setR_shop_addr3(r_shop_addr3);
 		paramClass.setR_shop_addr4(r_shop_addr4);
 		
-		System.out.println("paramgetR_id : " + paramClass.getR_id());
-		
-		
+		//System.out.println("paramgetR_id : " + paramClass.getR_id());
 		
 		paramClass.setR_shop_file_orgname(r_shop_file_orgname);
 		paramClass.setR_shop_file_savname(r_shop_file_savname);
 		
 		sqlMapper.insert("AprReq-insertReqList", paramClass);
+		r_idx = (int) sqlMapper.queryForObject("AprReq-getIdx");
 		
+		if(getUpload() != null){
+			
+			//실제 서버에 저장될 파일 이름과 확장자 설정.
+			String file_name="file_" + r_idx;
+			r_shop_file_orgname = getUploadFileName();
+			r_shop_file_savname = "file_" + r_idx;
+			
+			String file_ext = getUploadFileName().substring(
+					getUploadFileName().lastIndexOf('.') + 1,
+					getUploadFileName().length());
+			
+			map.put("r_idx", r_idx);
+			map.put("r_shop_file_orgname", r_shop_file_orgname);
+			map.put("r_shop_file_savname", r_shop_file_savname);
+			
+			//서버에 파일 저장
+			File destFile = new File(fileUploadPath + file_name + "." + file_ext);
+			FileUtils.copyFile(getUpload(), destFile);
+			
+			//파일 정보 업데이트
+			sqlMapper.update("updateFileUpload2", map);
+			System.out.println("파일업로드 완료");
+		}
+	
 		return SUCCESS;
 	}
 	
@@ -247,6 +281,36 @@ public class ShopAddAction extends ActionSupport implements SessionAware{
 	public void setR_shop_file_savname(String r_shop_file_savname) {
 		this.r_shop_file_savname = r_shop_file_savname;
 	}
+	
+	public File getUpload() {
+		return upload;
+	}
 
+	public void setUpload(File upload) {
+		this.upload = upload;
+	}
 
+	public String getUploadContentType() {
+		return uploadContentType;
+	}
+
+	public void setUploadContentType(String uploadContentType) {
+		this.uploadContentType = uploadContentType;
+	}
+
+	public String getUploadFileName() {
+		return uploadFileName;
+	}
+
+	public void setUploadFileName(String uploadFileName) {
+		this.uploadFileName = uploadFileName;
+	}
+	
+	public String getFileUploadPath() {
+		return fileUploadPath;
+	}
+
+	public void setFileUploadPath(String fileUploadPath) {
+		this.fileUploadPath = fileUploadPath;
+	}
 }
