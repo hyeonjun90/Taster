@@ -6,11 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>관리자 페이지</title>
-<script type="text/javascript">
-	function open_win_noresizable (url, name) {
-		var oWin = window.open(url, name, "scrollbars=no, status=no, resizable=no, width=300, height=150");		
-	}
-</script>
+
 
 </head>
 <body>
@@ -68,8 +64,8 @@
 		</tr>
 		
 		<tr>
-			<td bgcolor="#F4F4F4"> 신규</td>
-			<td bgcolor="#FFFFFF"> &nbsp; &nbsp; <s:property value="resultClass.shop_new"/></td>
+			<td bgcolor="#F4F4F4"> 주소 </td>
+			<td bgcolor="#FFFFFF"> &nbsp; &nbsp; <s:property value="resultClass.shop_addr1"/></td>
 		</tr>
 		
 		<tr bgcolor="#777777">
@@ -98,15 +94,11 @@
 			<td bgcolor="#F4F4F4"> 첨부파일</td>
 			<td bgcolor="#FFFFFF">&nbsp; &nbsp;<s:property value="resultClass.file_orgname"/></td>
 		</tr>
-		
+        
+       
 		<tr bgcolor="#777777">
 			<td height="1" colspan="2"></td>
 		</tr>
-        
-  
-		
-		
-		
  	</table>
 <input name="list" align="right" type="button" value="목록보기" class="inputb" onClick="javascript:location.href='AshoplistAction.action?currentPage=<s:property value="currentPage" />'">
 </body>
