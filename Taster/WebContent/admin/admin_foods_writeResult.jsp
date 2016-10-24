@@ -49,11 +49,6 @@
 </tr>
 
 <tr>
-<td width="100">신규:</td>
-<td>${shop_new}</td>
-</tr>
-
-<tr>
 <td width="100">휴일:</td>
 <td>${shop_holiday}</td>
 </tr>
