@@ -5,6 +5,6 @@
 	<select id="newShopList" resultClass="bean.ShopBean">
 		select * from (select * from shop order by shop_idx desc)  
 			where <![CDATA[shop_regDate > add_months(sysdate, -1)]]>
-														and <![CDATA[rownum<7]]>
+														and <![CDATA[rownum<5]]>
 	</select>
 </sqlMap>

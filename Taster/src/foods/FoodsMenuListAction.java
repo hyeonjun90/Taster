@@ -42,7 +42,7 @@ public class FoodsMenuListAction extends ActionSupport{
 	public String form() throws Exception{  //foods_menu_list.jsp·Î ÆûÀÌµ¿
 		setCategory("menu");
 		fBean = new FoodsMenuListBean();
-		fList = new ArrayList<>();
+		fList = new ArrayList<>(); 
 		
 		fTotalCount = (int)sqlMapper.queryForObject("foodsMenuListCount");
 		fList = (ArrayList<FoodsMenuListBean>) sqlMapper.queryForList("foodsMenuList");
@@ -65,6 +65,16 @@ public class FoodsMenuListAction extends ActionSupport{
 	}
 
 
+	public int getfTotalCount() {
+		return fTotalCount;
+	}
+
+
+	public void setfTotalCount(int fTotalCount) {
+		this.fTotalCount = fTotalCount;
+	}
+
+
 	public FoodsMenuListBean getfBean() {
 		return fBean;
 	}
@@ -82,16 +92,6 @@ public class FoodsMenuListAction extends ActionSupport{
 
 	public void setfList(ArrayList<FoodsMenuListBean> fList) {
 		this.fList = fList;
-	}
-
-
-	public int getfTotalCount() {
-		return fTotalCount;
-	}
-
-
-	public void setfTotalCount(int fTotalCount) {
-		this.fTotalCount = fTotalCount;
 	}
 	
 	

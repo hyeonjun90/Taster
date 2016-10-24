@@ -12,7 +12,8 @@
 	<!-- 식당 테이블 전체 검색 -->
 	<select id="newShop-selectAll" parameterClass="Integer" resultClass ="bean.Join_R_S">
 		<include refid="newShop-select-all"/>
-	</select>
+	</select>   
+	
 	
 	<select id="foodsMenuList" resultClass="bean.FoodsMenuListBean" remapResults="true">
 		select shop_idx, shop_name, shop_addr1, shop_addr2, shop_addr3, shop_addr4, file_savname, 

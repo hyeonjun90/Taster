@@ -25,18 +25,11 @@
 <div style="width:1040px; height:300px;text-align:center; margin:0px auto;">
 <c:forEach items="${newShopList}" var="shopBean" varStatus="status">
 	<div class="shopInfo">
-		<c:if test="${shopBean.file_savname != null }">
 		<div style="background-image:url('/Taster/images/shop/${shopBean.file_savname}');
 				background-repeat: no-repeat; display:block; 
 				width:298px;height:149px;background-size:298px 149px;padding-top:50px;">
-		</c:if>
-		
-		<c:if test="${empty shopBean.file_savname}">
-				<div style="background-image:url('/Taster/images/shop/no_img.jpg');
-				background-repeat: no-repeat; display:block; 
-				width:298px;height:149px;background-size:298px 149px;padding-top:50px;">
-		</c:if>
 			<span>${shopBean.shop_name}</span>
+			
 		</div>
 	</div>
 	<c:if test="${status.index mod 3 == 0 && status.index != 0}">

@@ -17,12 +17,14 @@
 	 		<property name="JDBC.Username" value="${username}" />
 	 		<property name="JDBC.Password" value="${password}" />
 	 	</dataSource>
-	 </transactionManager> 
+	 </transactionManager>
 	 
 	<sqlMap resource="/sql/memberSQL.xml" />
 	<sqlMap resource="/sql/adminSQL.xml" />
 	<sqlMap resource="/sql/qboardSQL.xml" />
+
 	<sqlMap resource="/sql/rboardSQL.xml" />
+	<!--  <sqlMap resource="/sql/commonSQL.xml" /> -->
 	<sqlMap resource="/sql/commonSQL.xml" />
 	<sqlMap resource="/sql/foodsSQL.xml" />
 </sqlMapConfig>
