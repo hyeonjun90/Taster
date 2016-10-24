@@ -3,7 +3,7 @@ package bean;
 import java.util.Date;
 
 public class FoodsNewListBean {
-	
+	    
 	private int shop_idx;
 	private String shop_name;
 	private String shop_addr1;
