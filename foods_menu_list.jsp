@@ -6,11 +6,12 @@
 <html>
 <head>
 <title>æ˜¡æ∫∞ ∏¿¡˝ ∏ÆΩ∫∆Æ</title>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<script type='text/javascript' src='http://code.jquery.com/jquery-1.11.0.min.js'></script>
+<link rel="stylesheet" href="/Taster/css/style.css" />
+
+<title>Insert title here</title>
 <link rel="stylesheet" href="/Taster/css/style.css" />
 <style>
-	.clearDiv{	clear:both;	}
+	.clearDiv{	clear:both; }
 	.c1 {background:url('http://itvplus5.cafe24.com/img/category/c01.png');}
 	.c2 {background:url(http://itvplus5.cafe24.com/img/category/c02.png);}
 	.c3 {background:url(http://itvplus5.cafe24.com/img/category/c03.png);}
@@ -24,12 +25,41 @@
 	.c11 {background:url(http://itvplus5.cafe24.com/img/category/c11.png);}
 	.c12 {background:url(http://itvplus5.cafe24.com/img/category/c10.png);}
 	
-	.icon { width: 70px; height: 70px; display: inline-block; background-repeat: no-repeat; cursor: pointer; }
 	
-	.category_bt{ width: 80px; height: 80px; float: left; text-align: center; background: white; border-radius: 60px;margin: 10px 23px 10px; /* ≈æ øﬁ πŸ≈“ ø¿ */border: 7px solid white;padding-top: 0px; }
-	.icon_title{ font-size: 13px; font-weight: 600; margin-top: -10px; font-family : 'Noto Sans', sans-serif;}
-	.category_bt:hover{ border: 7px solid #DDE5B8; padding-top: 0px; }
-
+	.icon {
+		width: 70px;
+		height: 70px;
+		display: inline-block;
+		background-repeat: no-repeat;
+		cursor: pointer;
+	}
+	
+	.category_bt{
+		width: 80px;
+		height: 80px;
+		float: left;
+		text-align: center;
+		background: white;
+		border-radius: 60px;
+		margin: 10px 23px 10px; /* ≈æ øﬁ πŸ≈“ ø¿ */
+		border: 7px solid white;
+		padding-top: 0px;
+	}
+	.icon_title{
+		font-size: 13px;
+		font-weight: 600;
+		margin-top: -10px;
+		font-family : 'Noto Sans', sans-serif;	
+	}
+	.category_bt:hover{
+		border: 7px solid #DDE5B8;
+		padding-top: 0px;
+	}
+	
+	.cat_select{
+		border: 7px solid #ABC1DF;
+		padding-top: 0px;
+	}
 
 	.menuList div {font-family : 'Noto Sans', sans-serif; }
 	.shopInfo div {margin-left:10px; padding: 3px; font-family : 'Noto Sans', sans-serif;}
@@ -43,14 +73,9 @@
     .m_image { width:25px; height: 24px; border-radius: 20px; display:block; float: left;
     	 background:url('/Taster/images/basic_profile.png') no-repeat; background-size:32px 32px; margin-right:5px;}
 </style>
-
-<script>
-	function init() {
-		//alert("${fTotalCount}");
-	}
-</script>
 </head>
-<body onload="init();">
+  
+<body>
 <center>
 <div style="width:100%;min-height:500px;margin-top:40px;">
 
@@ -111,7 +136,7 @@
 			<div class="clearDiv"></div>
 		</div>
 	</div>
-
+	
 	<div class="menuList" style="width:830px;">
 	<c:forEach items="${fList}" var="fList" varStatus="status">
 		<div class="shopInfo" style="width:810px;margin-top:20px;">

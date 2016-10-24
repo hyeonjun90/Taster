@@ -6,15 +6,14 @@
 	
 	<!--신규 식당  등록에서 사용할 현재시간에서 한달까지의 전채검색-->
 	<sql id= "newShop-select-all">
-	 	select * from shop s1 inner join review r1 on r1.shop_idx = s1.shop_idx
+	 	select * from shop 
         where <![CDATA[shop_regDate > add_months(sysdate, -1)]]> order by shop_idx desc                         
 	</sql>
-	<!-- 식당 테이블 전체 검색 -->
-	<select id="newShop-selectAll" parameterClass="Integer" resultClass ="bean.Join_R_S">
+	
+	<!--  -->
+	<select id="newShop-selectAll" parameterClass="Integer" resultClass ="bean.ShopBean" remapResults="true">
 		<include refid="newShop-select-all"/>
-	</select>   
-	
-	
+	</select>
 	
 	<select id="foodsMenuList" resultClass="bean.FoodsMenuListBean" remapResults="true">
 		select shop_idx, shop_name, shop_addr1, shop_addr2, shop_addr3, shop_addr4, file_savname, 
@@ -32,16 +31,5 @@
 		  				inner join review r1 on r1.shop_idx = s1.shop_idx 
 		  				where r1.SHOP_IDX=s.SHOP_IDX) as avg_r_score
 		from shop s order by avg_r_score desc, shop_idx desc
-	</select>
-	<select id="foodsMenuListCount" resultClass="Integer">
-		select count(*) from shop 
-	</select>
-
-	<!-- 식당 전체 평균 조인  -->
-	<select id="newShop-selectOne" parameterClass="Integer" resultClass="bean.Join_R_S">
-		select shop_idx, shop_name, shop_addr1, shop_addr2, shop_addr3, shop_addr4, 
-		(select round(AVG(r1.r_score),1) 
-		from shop s1 inner join review r1 on r1.shop_idx = s1.shop_idx) as avg_r_score 
-		from shop
 	</select>
 </sqlMap>
