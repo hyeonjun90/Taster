@@ -21,9 +21,9 @@ public class ApprovalRequestDetailView extends ActionSupport {
 	public static Reader reader;
 	public static SqlMapClient sqlMapper;
 	
-	private RequestListBean paramClass = new RequestListBean();
-	private RequestListBean resultClass = new RequestListBean();
-	private ShopBean approvedClass = new ShopBean();
+	private RequestListBean paramClass = new RequestListBean(); //임시 테이블
+	private RequestListBean resultClass = new RequestListBean(); //입력된 요청글을 불러오는 테이블
+	private ShopBean approvedClass = new ShopBean(); //승인된 요청글을 넣을 테이블
 
 	
 	private int currentPage;
@@ -45,7 +45,7 @@ public class ApprovalRequestDetailView extends ActionSupport {
 	public String execute() throws Exception {
 
 		// 해당 번호의 글을 가져온다.
-		resultClass = (RequestListBean) sqlMapper.queryForObject("AprReq-selectOne", getR_idx());
+		resultClass = (RequestListBean) sqlMapper.queryForObject("AprReq-selectOne", getR_idx()); 
 		
 		return SUCCESS;
 	}
@@ -69,8 +69,10 @@ public class ApprovalRequestDetailView extends ActionSupport {
 	//신규식당등록 요청 글 승인
 	public String approvalActionOk() throws Exception {
 		
+		//요청된 글의 내용을 가져온다
 		resultClass = (RequestListBean) sqlMapper.queryForObject("AprReq-selectOne", getR_idx());
 		
+		//요청글의 값을 shop테이블의 임시객체 approvedClass에 넣음
 		approvedClass.setShop_idx(resultClass.getR_idx());
 		System.out.println(resultClass.getR_idx());
 		approvedClass.setShop_name(resultClass.getR_shop_name());
@@ -86,7 +88,11 @@ public class ApprovalRequestDetailView extends ActionSupport {
 	/*	approvedClass.setShop_file_orgname(resultClass.getR_shop_file_orgname());
 		approvedClass.setShop_file_savname(resultClass.getR_shop_file_savname());
 		*/
+		
+		//임시테이블 approvedClass 객체에 입력된 속성값을 SHOP 테이블 DB에 저장
 		sqlMapper.insert("Shop-insertAshop", approvedClass);
+		
+		//승인된 요청글을 RequestListBean DB에서 삭제
 		/*sqlMapper.update("AprReq-DeleteReqList", resultClass);*/
 			return SUCCESS;
 			
@@ -95,17 +101,17 @@ public class ApprovalRequestDetailView extends ActionSupport {
 	//신규식당등록 요청 글 승인거부
 	public String approvalActionNok() throws Exception {
 		
-
+		//요청된 글의 내용을 가져온다
 		resultClass = (RequestListBean) sqlMapper.queryForObject("AprReq-selectOne", getR_idx());
 
 		/*//서버 파일 삭제
 		File deleteFile = new File(fileUploadPath + resultClass.getFile_savname());
 		deleteFile.delete();*/
 
-		// 삭제할 항목 설정.
+		// 삭제할 요청글을 paramClass에 저장
 		paramClass.setR_idx(getR_idx());
 				
-		// 삭제 쿼리 수행.
+		// 요청글을 RequestListBean DB에서 삭제
 		sqlMapper.update("AprReq-DeleteReqList", paramClass);
 
 		return SUCCESS;
