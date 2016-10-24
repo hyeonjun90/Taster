@@ -28,6 +28,13 @@
          <result type="tiles">foods_recommand</result> 
       </action>
       
+      <!-- 맛집 상세페이지 이동 -->
+      <action name="foodsDetailView" class="foods.FoodsDetailAction" method="form">
+         <result type="tiles">foods_detail</result> 
+      </action>
+      
+      
+      
    </package>
 </struts>
   
