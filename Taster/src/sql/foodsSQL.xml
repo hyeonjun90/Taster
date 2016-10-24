@@ -44,4 +44,16 @@
 		from shop s1 inner join review r1 on r1.shop_idx = s1.shop_idx) as avg_r_score 
 		from shop
 	</select>
+	
+	
+	
+	
+	<!-- 식당 상세페이지 쿼리문 -->
+	<!--  -->
+	<select id="foodsDetail" parameterClass="int" resultClass="bean.FoodsDetailBean">
+		SELECT shop_idx, shop_name, shop_tel, shop_kind, shop_addr1, shop_addr2, shop_addr3, shop_addr4, shop_price, shop_holiday, shop_readCount, shop_regDate
+		FROM SHOP WHERE shop_idx = #shop_idx#
+	</select>
+
+	
 </sqlMap>
