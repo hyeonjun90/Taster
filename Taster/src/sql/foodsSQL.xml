@@ -95,9 +95,45 @@
 	<!-- 식당 상세페이지 쿼리문 -->
 	<!--  -->
 	<select id="foodsDetail" parameterClass="int" resultClass="bean.FoodsDetailBean">
-		SELECT shop_idx, shop_name, shop_tel, shop_kind, shop_addr1, shop_addr2, shop_addr3, shop_addr4, shop_price, shop_holiday, shop_readCount, shop_regDate
+		SELECT shop_idx, shop_name, shop_tel, shop_kind, shop_addr1, shop_addr2, shop_addr3, shop_addr4, shop_price, shop_holiday, shop_readCount, shop_regDate, file_savname
 		FROM SHOP WHERE shop_idx = #shop_idx#
 	</select>
+	
+	
+	<!-- 코멘트 리스트 -->
+	<select id="reviewList" parameterClass="int" resultClass="bean.FoodsDetailBean">
+		SELECT  review_idx, r_title, r_content, r_pungga, r_image, r_regdate, member_nicname, member_image
+							 FROM review r left join member m on r.member_id=m.member_id
+							 where r.shop_idx=#shop_idx#
+							 ORDER BY r.review_idx desc 
 
+		
+		<!-- SELECT * FROM (
+					SELECT review_idx, r_title, r_content, r_pungga, r_image, r_regdate, rownum rnum, 
+							member_nicname, member_image 
+					FROM (SELECT  review_idx, r_title, r_content, r_pungga, r_image, r_regdate, 
+							(SELECT member_nicname FROM 
+							  		(SELECT member_nicname FROM member WHERE member.member_id=r.member_id)  
+							   where <![CDATA[rownum<2]]>) AS member_nicname,
+							 (SELECT member_image FROM 
+							 		(SELECT  member_image FROM member WHERE member.member_id=r.member_id)
+							 WHERE <![CDATA[rownum<2]]>) AS member_image
+							 FROM review r ORDER BY review_idx desc) 
+					WHERE <![CDATA[rownum<=#pageSize#]]>)
+		WHERE <![CDATA[rnum>#beforeSize#]]> -->
+	</select>
+	
 	
 </sqlMap>
+
+
+
+
+
+
+
+
+
+
+
+
