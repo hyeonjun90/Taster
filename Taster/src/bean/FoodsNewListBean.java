@@ -14,6 +14,8 @@ public class FoodsNewListBean {
 	private String member_nicname;
 	private String member_image;
 	private String file_savname;
+	private float avg_r_score; //식당 평점
+	
 	private int rnum;
 	
 	public int getRnum() {
@@ -24,7 +26,7 @@ public class FoodsNewListBean {
 		this.rnum = rnum;
 	}
 	
-	private float avg_r_score; //식당 평점
+
 	
 	public int getShop_idx() {
 		return shop_idx;

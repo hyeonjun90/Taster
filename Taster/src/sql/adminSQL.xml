@@ -135,12 +135,12 @@
 		</select>
 		
 		<!-- 파일 업로드 할때 쓸 쿼리 -->
-		<select id="AprReq-getIdx" resultClass="Integer" resultMap="AprReqRes">
+		<select id="AprReq-getIdx" resultClass="Integer">
 			select max(r_idx) from REQUEST_LIST
 		</select>
 		
 		<update id="updateFileUpload2" parameterClass="HashMap">
-			update REQUEST_LIST set file_orgname=#file_orgname#, file_savname=#file_savname# where r_idx=#r_idx#
+			update REQUEST_LIST set r_shop_file_orgname=#r_shop_file_orgname#, r_shop_file_savname=#r_shop_file_savname# where r_idx=#r_idx#
 		</update>
 		
 		<!-- insert 쿼리문 정의 -->
