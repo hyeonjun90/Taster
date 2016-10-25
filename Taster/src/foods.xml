@@ -32,7 +32,7 @@
       </action>
       
       <!-- 맛집 상세페이지 이동 -->
-      <action name="foodsDetailView" class="foods.FoodsDetailAction" method="form">
+      <action name="foodsDetailView" class="foods.FoodsDetailAction" method="execute">
          <result type="tiles">foods_detail</result> 
       </action>
       
