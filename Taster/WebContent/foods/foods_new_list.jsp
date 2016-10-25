@@ -7,6 +7,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>신규 식당 리스트</title>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script type='text/javascript' src='http://code.jquery.com/jquery-1.11.0.min.js'></script>
 <link rel="stylesheet" href="/Taster/css/style.css"/>
 
 <style>
@@ -45,16 +48,37 @@
 </style>
 
 <script>
-	function init() {
-		//alert("${fTotalCount}");
+var currentPage = 1;
+var fTotalCount = ${fTotalCount};
+
+	function readMore() {
+		currentPage += 1;
+		fTotalCount -= 3; // 페이지 개수
+		$.ajax({
+			url: "foodsNewListMore.action",
+			type: "POST",
+			async:true,
+			dataType: "Text", 
+			data: {"currentPage": currentPage },
+			success: function(data) {
+				//alert(data);
+				
+				$("#menuList").append(data);
+				if(fTotalCount < 1) {
+					$("#readMore").css("display", "none");
+				}
+			}
+			
+		});
 	}
 </script>
 </head>
 
-<body onload="init();">
+<body>
 <center>
+<div style="width:100%;min-height:500px;margin-top:40px;">
 
-	<div class="newList" style="width:830px;">
+	<div class="menuList" id="menuList" style="width:830px;">
 	<c:forEach items="${fList}" var="fList" varStatus="status">
 		<div class="shopInfo" style="width:810px;margin-top:20px;">
 			<div style="background-image:url('/Taster/images/shop/${fList.file_savname}');
@@ -74,11 +98,14 @@
 				${fList.r_content }
 			</div>
 			<div style="clear:both; height:10px;"></div>		
-			<div style="clear:both; width:800px; border:1px solid #d5d5d5;"></div>
+			<div style="clear:both; width:800px; border:1px solid #d5d5d5; padding: 0px;"></div>
 		</div>
 	</c:forEach>
 	</div>
-
+		<c:if test="${fTotalCount > 0 }">
+			<div id="readMore" style="width:500px;height:50px;" onclick="readMore();"><h2>▽더보기</h2></div>
+		</c:if>
+</div>
 </center>
 </body>
 </html>

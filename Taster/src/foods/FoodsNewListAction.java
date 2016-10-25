@@ -13,9 +13,13 @@ import org.apache.struts2.interceptor.SessionAware;
 
 
 
+
+
+
 import java.io.IOException;
 import java.io.Reader;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -29,6 +33,10 @@ public class FoodsNewListAction  extends ActionSupport {
 	private FoodsNewListBean fBean;      //FoodNewList bean
 	private ArrayList<FoodsNewListBean> fList; //식당 리스트를 담을 배열
 	private int fTotalCount;	// 식당 전체 개수
+
+	int currentPage;
+	int pageSize = 3;
+	int beforeSize;
 	
 	//생성자
 	public FoodsNewListAction() throws IOException{
@@ -38,13 +46,48 @@ public class FoodsNewListAction  extends ActionSupport {
 		reader.close();
 	}
 	
+public String readMore() throws Exception{
+		
+		fBean = new FoodsNewListBean();
+		fList = new ArrayList();
+		HashMap<String, Object> pagingMap = new HashMap<>();
+		
+		currentPage = getCurrentPage();
+		beforeSize = pageSize * currentPage - 3; // 페이징 개수
+		pageSize = pageSize * currentPage;
+		
+		pagingMap.put("beforeSize", beforeSize);
+		pagingMap.put("pageSize", pageSize);
+		
+		System.out.println("beforeSize : " + beforeSize);
+		System.out.println("pageSize : " + pageSize);
+		System.out.println("-----------");
+		fList = (ArrayList<FoodsNewListBean>) sqlMapper.queryForList("newShop-selectAll", pagingMap);
+		
+		return SUCCESS;
+	}
+	
+	
 	public String form() throws Exception{  //foods_new_list.jsp로 폼 이동 
+		
 		fBean = new FoodsNewListBean();
 		fList = new ArrayList<>();
+		HashMap<String, Object> pagingMap = new HashMap<>();
 		
+		currentPage = 1;
+		beforeSize = 0;
 		fTotalCount = (int)sqlMapper.queryForObject("foodsMenuListCount");
-		fList = (ArrayList<FoodsNewListBean>) sqlMapper.queryForList("newShop-selectAll");
-		System.out.println("fList.size: "+ fList.size());
+		
+		pageSize = pageSize * currentPage;
+		
+		pagingMap.put("beforeSize", beforeSize);
+		pagingMap.put("pageSize", pageSize);
+		
+		fTotalCount = (int) sqlMapper.queryForObject("foodsMenuListCount");
+		fList = (ArrayList<FoodsNewListBean>) sqlMapper.queryForList("newShop-selectAll",pagingMap);
+		
+		fTotalCount -= fList.size();
+		
 		
 		return SUCCESS;
 	}
@@ -79,4 +122,29 @@ public class FoodsNewListAction  extends ActionSupport {
 		this.fTotalCount = fTotalCount;
 	}
 
+	
+	
+	public int getCurrentPage() {
+		return currentPage;
+	}
+
+	public void setCurrentPage(int currentPage) {
+		this.currentPage = currentPage;
+	}
+
+	public int getPageSize() {
+		return pageSize;
+	}
+
+	public void setPageSize(int pageSize) {
+		this.pageSize = pageSize;
+	}
+
+	public int getBeforeSize() {
+		return beforeSize;
+	}
+
+	public void setBeforeSize(int beforeSize) {
+		this.beforeSize = beforeSize;
+	}
 }
