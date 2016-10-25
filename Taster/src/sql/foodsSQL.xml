@@ -66,7 +66,7 @@
 	
 	
 	<!-- 요즘뜨는 맛집 -->
-	<select id="hopShop-list-selectAll" resultClass="bean.FoodsHotListBean">
+	<select id="hotShop-list-selectAll" resultClass="bean.FoodsHotListBean">
 		select * from ( 
 		 	select shop_idx, shop_name, shop_addr1, shop_addr2, shop_addr3, shop_addr4, file_savname, rownum rnum,
     					r_content, member_nicname, member_image, avg_r_score 
