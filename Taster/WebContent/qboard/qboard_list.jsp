@@ -22,7 +22,7 @@
 		<tr align="center" bgcolor="#f3f3f3">
 			<td width="30"><strong>번호</strong></td>
 			<td width="300"><strong>제목</strong></td>
-			<td width="70"><strong>글쓴이</strong></td>
+			<td width="70"><strong>닉네임</strong></td>
 			<td width="50"><strong>날짜</strong></td>
 			<td width="30"><strong>조회</strong></td>
 		</tr>
@@ -55,7 +55,7 @@
 			<!-- 글 제목 -->
  				<s:a href="%{viewURL}"><s:property value="b_title" /></s:a>
  			</td>
-			<td><s:property value="member_id" /></td>
+			<td><s:property value="member_nicname" /></td>
 			<td><s:property value="b_regdate" /></td>
 			<td><s:property value="b_readCount" /></td>
 		</tr>
@@ -90,7 +90,7 @@
 		<td colspan="5">
 			<form>
 				<select name="searchNum" >
-					<option value="1">글쓴이</option>
+					<option value="1">닉네임</option>
 					<option value="2">제목</option>
 					<option value="3">내용</option>
 				</select>

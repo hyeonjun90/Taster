@@ -10,7 +10,8 @@ import java.io.Reader;
 import java.io.IOException;
 
 import java.net.*;
-import bean.QnABoardBean;
+//import bean.QnABoardBean;
+import bean.*;
 
 
 public class QBoardListAction extends ActionSupport{
@@ -19,7 +20,7 @@ public class QBoardListAction extends ActionSupport{
    public static SqlMapClient sqlMapper;
 
    
-   private List<QnABoardBean> list = new ArrayList<QnABoardBean>();
+   private List<QnABoardListBean> list = new ArrayList<QnABoardListBean>();
    
    
    private String searchKeyword=null;
@@ -75,7 +76,7 @@ public class QBoardListAction extends ActionSupport{
 		System.out.println(searchKeyword);
 		System.out.println(searchNum);
 		if(searchNum == 1){
-			list = sqlMapper.queryForList("qboard-selectSearchW", "%"+getSearchKeyword()+"%");
+			list = sqlMapper.queryForList("qboard-selectSearchN", "%"+getSearchKeyword()+"%");
 		}
 		if(searchNum == 2){
 			list = sqlMapper.queryForList("qboard-selectSearchT", "%"+getSearchKeyword()+"%");
@@ -102,11 +103,11 @@ public class QBoardListAction extends ActionSupport{
 
 
 
-   public List<QnABoardBean> getList() {
+   public List<QnABoardListBean> getList() {
       return list;
    }
 
-   public void setList(List<QnABoardBean> list) {
+   public void setList(List<QnABoardListBean> list) {
       this.list = list;
    }
 
