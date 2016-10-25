@@ -96,11 +96,11 @@
         </tr>
         
         <tr>
-          <td bgcolor="#F4F4F4"><font color="#FF0000">*</font>  이름 </td>
+          <td bgcolor="#F4F4F4"><font color="#FF0000">*</font>  닉네임 </td>
           <td bgcolor="#FFFFFF">
           <!-- 이름 -->
             <%-- <s:textfield name="member_id" theme="simple" value="${session.member_id}" cssStyle="width:100px" maxlength="20"/> --%>
-            <input type="text" value="${session.member_id }" name="member_id" cssStyle="width:100px" maxlength="20"/>
+            <input type="text" value="${session.member_nicname }" name="${session.member_nicname }" readonly cssStyle="width:100px" maxlength="20"/>
           </td>
         </tr>
         <tr bgcolor="#777777">
