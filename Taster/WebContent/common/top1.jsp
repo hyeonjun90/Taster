@@ -22,11 +22,11 @@ function logout() {
     
     <s:if test="#session.member_id != null">
     <div class="btn_category" onclick="logout();">로그아웃</div>
-    <div class="btn_category" onclick="location.href='qboardList.action'">1:1문의</div>
     <div class="btn_category" onclick="location.href='memberMypage.action'">마이페이지</div>
     </s:if>
     
     <s:if test="#session.member_id == null">
+    <div class="btn_category" onclick="location.href='qboardList.action'">1:1문의</div>
     <div class="btn_category" onclick="location.href='memberJoin.action'" >회원가입</div>
     <div class="btn_category"  onclick="">
     	<a href="#layer" class="layer_trigger">로그인</a>
