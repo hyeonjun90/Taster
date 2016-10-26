@@ -93,7 +93,7 @@ public class ApprovalRequestDetailView extends ActionSupport {
 		sqlMapper.insert("Shop-insertAshop", approvedClass);
 		
 		//승인된 요청글을 RequestListBean DB에서 삭제
-		/*sqlMapper.update("AprReq-DeleteReqList", resultClass);*/
+		sqlMapper.update("AprReq-DeleteReqList", resultClass);
 			return SUCCESS;
 			
 		} 
