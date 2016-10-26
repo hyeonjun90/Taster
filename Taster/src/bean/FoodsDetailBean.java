@@ -16,11 +16,13 @@ public class FoodsDetailBean {
 	private String shop_holiday;	// 휴일
 	private int shop_readCount;		// 조회수
 	private Date shop_regDate; //
+	private String file_savname;
+	
 
 	private String member_id; 	// Member테이블의 member_id 
 	private String member_nicname; //멤버테이블
 	private String member_image;
-	private String file_savname;
+
 
 	private int review_idx;		// 기본키
 	private String r_title;		// 제목

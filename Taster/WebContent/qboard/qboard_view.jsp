@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <%@ taglib prefix="s" uri="/struts-tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -84,8 +85,10 @@
 			</td>
 		</tr>
 -->
-		
-		
+
+	<!-- 관리자에게만   상세보기에서 코멘트메뉴가 생김. -->
+	<c:if test="${session.member_level == 3}">
+    
 		<tr bgcolor="#777777">
 			<td colspan="2" height="1"></td>
 		</tr>
@@ -98,7 +101,9 @@
 					<table>
 						<tr>
 							<td width="170">
-								닉&nbsp;&nbsp;&nbsp;네&nbsp;&nbsp;임 <!--<s:textfield name="member_id" theme="simple" value="" cssStyle="width:100px" maxlength="20" /><br>--><input type="text" value="${session.nicname}" name="member_nicname" cssStyle="width:100px" maxlength="20"/>
+								<input type="text" value="관리자" readonly style="text-align:center; border:0px;"/>
+								
+								<!--  <input type="text" value="${session.nicname}" name="member_nicname" cssStyle="width:100px" maxlength="20"/>-->
 								<!-- 비밀번호 <s:textfield name="c_pwd" theme="simple" value="" cssStyle="width:100px" maxlength="20" /> -->
 							</td>
 
@@ -122,6 +127,8 @@
 				</form>
 			</td>
 		</tr>
+	</c:if>	
+		
 	
 		<tr bgcolor="#777777">
 			<td colspan="2" height="1"></td>
@@ -132,7 +139,7 @@
 		<tr>
 			<td height="10" width="130" align="center">
 			
-				<s:property value="resultClass.member_nicname"/>
+				<input type="text" value="관리자" readonly style="text-align:center; border:0px;"/>
 				<s:hidden name="member_id" value="%{resultClass.member_id}" />
 			<br>			
 				<s:property value="c_regdate" /><br><br>

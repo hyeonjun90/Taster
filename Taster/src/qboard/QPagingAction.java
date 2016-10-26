@@ -46,12 +46,19 @@ public class QPagingAction {
 		pagingHtml = new StringBuffer();
 		if(currentPage > blockPage)
 		{
-			if(isSearch != "")
+			if(isSearch != ""){
 				pagingHtml.append("<a href=qboardList.action?currentPage=" + (startPage - 1) + "&searchKeyword="+isSearch+"&searchNum="+searchNum+">");
-			else
+				System.out.println("페이징 검색용 테스트 숫자 몇나오니?");
+				System.out.println(isSearch);
+			}
+			else{
+				System.out.println("페이징 검색용 테스트 숫자 몇나오니?");
+				System.out.println(isSearch);
 				pagingHtml.append("<a href=qboardList.action?currentPage=" + (startPage - 1) + ">");
+			}
 			pagingHtml.append("이전");
 			pagingHtml.append("</a>");
+			
 		}
 		
 		pagingHtml.append("&nbsp;|&nbsp;");

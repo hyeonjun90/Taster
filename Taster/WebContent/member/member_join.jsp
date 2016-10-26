@@ -165,7 +165,7 @@ function memberIdCheck() {
 		return;
 	}
 	$.ajax({
-		url: "idCheck.action",
+		url: "memberIdCheck.action",
 		type: "POST",
 		async:true,
 		dataType: "Text", 

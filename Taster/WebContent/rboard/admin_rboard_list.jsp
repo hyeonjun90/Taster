@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <%@ taglib prefix="s" uri="/struts-tags" %>
+<%@ page import = "java.util.HashMap" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -58,13 +59,24 @@
 				<td align="center"><s:property value="수정 버튼"/></td>
 				<td align="center"><s:property value="삭제 버튼"/></td>
 			</tr>	
-			
-			
 		
 			<tr bgcolor="#777777">
 				<td height="1" colspan="7"></td>
 			</tr>
 		</s:iterator>
+		
+		<tr align="center">
+			<td colspan="5">
+				<form>
+					<select name="searchNum">
+						<option value="0">제목</option>
+						<option value="1">내용</option>
+					</select>
+					<s:textfield name="searchKeyword" theme="simple" value="" cssStyle="width:120px" maxlength="20"/>
+					<input name="submit" type="submit" value="검 색" class="inputb">
+				</form>
+			</td>
+		</tr>
 		
 		<s:if test="list.size()<=0">
 		<tr bgcolor="#FFFFFF" align="center">

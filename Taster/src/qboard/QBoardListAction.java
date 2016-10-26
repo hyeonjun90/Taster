@@ -10,7 +10,8 @@ import java.io.Reader;
 import java.io.IOException;
 
 import java.net.*;
-import bean.QnABoardBean;
+//import bean.QnABoardBean;
+import bean.*;
 
 
 public class QBoardListAction extends ActionSupport{
@@ -19,7 +20,7 @@ public class QBoardListAction extends ActionSupport{
    public static SqlMapClient sqlMapper;
 
    
-   private List<QnABoardBean> list = new ArrayList<QnABoardBean>();
+   private List<QnABoardListBean> list = new ArrayList<QnABoardListBean>();
    
    
    private String searchKeyword=null;
@@ -45,7 +46,7 @@ public class QBoardListAction extends ActionSupport{
 	}
 	
 	public String execute() throws Exception {
-		
+		System.out.println("리스트액션 excute메소드용 테스트 숫자 몇나오니?");
 		System.out.println(getSearchKeyword());
 		if(getSearchKeyword() != null)
 		{
@@ -72,16 +73,18 @@ public class QBoardListAction extends ActionSupport{
 	public String search() throws Exception {
 		
 		searchKeyword = new String(searchKeyword.getBytes("iso-8859-1"),"euc-kr") ;
+		System.out.println("리스트액션 써치메소드 값 테스트 숫자 몇나오니?");
 		System.out.println(searchKeyword);
 		System.out.println(searchNum);
-		if(searchNum == 1){
-			list = sqlMapper.queryForList("qboard-selectSearchW", "%"+getSearchKeyword()+"%");
+		System.out.println("리스트액션 써치메소드 값 테스트 끝");
+		if(searchNum == 0){
+			list = sqlMapper.queryForList("qboard-selectSearchN", "%"+getSearchKeyword()+"%");
 		}
-		if(searchNum == 2){
+		if(searchNum == 1){
 			list = sqlMapper.queryForList("qboard-selectSearchT", "%"+getSearchKeyword()+"%");
 		}
 		
-		if(searchNum == 3){
+		if(searchNum == 2){
 			list = sqlMapper.queryForList("qboard-selectSearchC", "%"+getSearchKeyword()+"%");	
 		}
 		
@@ -102,11 +105,11 @@ public class QBoardListAction extends ActionSupport{
 
 
 
-   public List<QnABoardBean> getList() {
+   public List<QnABoardListBean> getList() {
       return list;
    }
 
-   public void setList(List<QnABoardBean> list) {
+   public void setList(List<QnABoardListBean> list) {
       this.list = list;
    }
 

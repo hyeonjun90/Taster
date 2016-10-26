@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.Reader;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Map;
@@ -20,6 +21,7 @@ import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
 import bean.FoodsDetailBean;
+import bean.FoodsMenuListBean;
 import bean.ReviewBean;
 
 public class FoodsDetailAction extends ActionSupport {
@@ -28,7 +30,7 @@ public class FoodsDetailAction extends ActionSupport {
 	public static SqlMapClient sqlMapper;
 	
 	private FoodsDetailBean FDBean = new FoodsDetailBean(); 
-	private ArrayList<ReviewBean> RevList = new ArrayList<ReviewBean>(); //리뷰(코멘트) 리스트
+	private ArrayList<FoodsDetailBean> RevList = new ArrayList<FoodsDetailBean>(); //리뷰(코멘트) 리스트
 	
 	private int shop_idx; //샵 인덱스
 	private int rTotalCount; //총 리뷰 수 
@@ -42,27 +44,34 @@ public class FoodsDetailAction extends ActionSupport {
 	}
 	
 	public String form() throws Exception {
-		//setCategory("detail");
-		FDBean = new FoodsDetailBean();
-		
-		RevList = new ArrayList<>();
-		//fTotalCount = (int)sqlMapper.queryForObject("");
-		
-		FDBean = (FoodsDetailBean) sqlMapper.queryForObject("foodsDetail", getShop_idx()); //식당정보 불러오기 
-	//	RevList = (ArrayList<ReviewBean>)sqlMapper.queryForList("리뷰리스트"); //리뷰(코멘트) 리스트 출력
-		//System.out.println("fList.size: " + fList.size());
-		
 		return SUCCESS;
 	}
 	
 	public String execute() throws Exception{
-		
-		return SUCCESS;
+			
+		//setCategory("detail");
+		//currentPage = 1;
+		//beforeSize = 0;
+				//fTotalCount = (int)sqlMapper.queryForObject("");
+				
+		//pageSize = pageSize * currentPage;
+				FDBean = (FoodsDetailBean) sqlMapper.queryForObject("foodsDetail", getShop_idx()); //식당정보 불러오기 
+				System.out.println(shop_idx);
+				RevList = (ArrayList<FoodsDetailBean>)sqlMapper.queryForList("reviewList", getShop_idx()); //리뷰(코멘트) 리스트 출력
+
+				
+				
+				
+				//System.out.println("fList.size: " + fList.size());
+				//sqlMapper.update("updateReadHit",FDBean);
+				
+				return SUCCESS;
+				
+				
 	}
 	
+
 	
-
-
 	public int getShop_idx() {
 		return shop_idx;
 	}
@@ -79,11 +88,11 @@ public class FoodsDetailAction extends ActionSupport {
 		FDBean = fDBean;
 	}
 
-	public ArrayList<ReviewBean> getRevList() {
+	public ArrayList<FoodsDetailBean> getRevList() {
 		return RevList;
 	}
 
-	public void setRevList(ArrayList<ReviewBean> revList) {
+	public void setRevList(ArrayList<FoodsDetailBean> revList) {
 		RevList = revList;
 	}
 
@@ -110,7 +119,5 @@ public class FoodsDetailAction extends ActionSupport {
 	public void setrTotalCount(int rTotalCount) {
 		this.rTotalCount = rTotalCount;
 	}
-
-	
 	
 }

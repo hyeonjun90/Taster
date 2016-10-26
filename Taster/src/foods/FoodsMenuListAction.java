@@ -20,13 +20,13 @@ public class FoodsMenuListAction extends ActionSupport{
 	private FoodsMenuListBean fBean;	//식당 bean
 	private ArrayList<FoodsMenuListBean> fList; // 식당 리스트 담을 배열
 	private int fTotalCount;	// 식당 전체 개수
+	private String keyword; // 종류별 검색 키워드
 	
 	int currentPage; 
 	int pageSize = 3; // 한 페이지에 표시할 목록 개수
 	int beforeSize;
 	
-	
-	private String category;
+	private String category; // 상단 메뉴 색깔 표시
 	
 	//생성자
 	public FoodsMenuListAction() throws IOException{
@@ -49,11 +49,13 @@ public class FoodsMenuListAction extends ActionSupport{
 		pagingMap.put("beforeSize", beforeSize);
 		pagingMap.put("pageSize", pageSize);
 		
-		
-		System.out.println("beforeSize : " + beforeSize);
-		System.out.println("pageSize : " + pageSize);
-		System.out.println("-----------");
-		fList = (ArrayList<FoodsMenuListBean>) sqlMapper.queryForList("foodsMenuList", pagingMap);
+		System.out.println("getKeyword() : " + getKeyword());
+		if (getKeyword() == null || getKeyword() == "") 
+			fList = (ArrayList<FoodsMenuListBean>) sqlMapper.queryForList("foodsMenuList", pagingMap);
+		else {
+			pagingMap.put("keyword", getKeyword());
+			fList = (ArrayList<FoodsMenuListBean>) sqlMapper.queryForList("foodsMenuListSearch", pagingMap);
+		}
 		
 		
 		//System.out.println("fTotalCount : " + fTotalCount);
@@ -66,20 +68,23 @@ public class FoodsMenuListAction extends ActionSupport{
 		fList = new ArrayList<>(); 
 		HashMap<String, Object> pagingMap = new HashMap<>();
 		
-		
 		currentPage = 1;
 		beforeSize = 0;
-		fTotalCount = (int) sqlMapper.queryForObject("foodsMenuListCount");
-		
+
 		pageSize = pageSize * currentPage;
 		
 		pagingMap.put("beforeSize", beforeSize);
 		pagingMap.put("pageSize", pageSize);
 		
-		fTotalCount = (int) sqlMapper.queryForObject("foodsMenuListCount");
-		fList = (ArrayList<FoodsMenuListBean>) sqlMapper.queryForList("foodsMenuList", pagingMap);
-		
-		fTotalCount -= fList.size();
+		if (getKeyword() == null || getKeyword() == "") {
+			fTotalCount = (int) sqlMapper.queryForObject("foodsMenuListCount");
+			fList = (ArrayList<FoodsMenuListBean>) sqlMapper.queryForList("foodsMenuList", pagingMap);
+		} else {
+			pagingMap.put("keyword", getKeyword());
+			fTotalCount = (int) sqlMapper.queryForObject("foodsMenuListSearchCount", getKeyword());
+			fList = (ArrayList<FoodsMenuListBean>) sqlMapper.queryForList("foodsMenuListSearch", pagingMap);
+			
+		}
 		
 		return SUCCESS;
 	}
@@ -136,6 +141,14 @@ public class FoodsMenuListAction extends ActionSupport{
 
 	public void setCurrentPage(int currentPage) {
 		this.currentPage = currentPage;
+	}
+
+	public String getKeyword() {
+		return keyword;
+	}
+
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
 	}
 	
 	
