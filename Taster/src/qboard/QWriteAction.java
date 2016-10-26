@@ -28,11 +28,11 @@ public class QWriteAction extends ActionSupport{
 	
 	private int currentPage;
 	
-	private int b_idx;
-	private String b_title;
-	private String member_id;
+	private int b_idx;			//글번호
+	private String b_title;		//글제목
+	private String member_id;	//회원id
 	//private String b_pwd;
-	private String b_content;
+	private String b_content;	//글내용.
 	//private String file_orgName;
 	//private String file_savName;
 	Calendar today = Calendar.getInstance();

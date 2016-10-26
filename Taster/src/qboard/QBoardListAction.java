@@ -23,18 +23,18 @@ public class QBoardListAction extends ActionSupport{
    private List<QnABoardListBean> list = new ArrayList<QnABoardListBean>();
    
    
-   private String searchKeyword=null;
-   private int searchNum;
+   private String searchKeyword=null;	//검색키워드
+   private int searchNum;				//검색속성필터값
    
 
 
-	private int currentPage = 1;
-	private int totalCount;
-	private int blockCount = 10;
-	private int blockPage = 5;
+	private int currentPage = 1;	//현제 페이지
+	private int totalCount;			//
+	private int blockCount = 10;	//한 페이지 게시글 수 제한
+	private int blockPage = 5;		//<이전  다음> 가운데에 표시되는 페이지 수
 	private String pagingHtml;
-	private QPagingAction page;
-	private int num = 0;
+	private QPagingAction page;		
+	private int num = 0;			
 
 
 	public QBoardListAction() throws IOException
@@ -46,8 +46,8 @@ public class QBoardListAction extends ActionSupport{
 	}
 	
 	public String execute() throws Exception {
-		System.out.println("리스트액션 excute메소드용 테스트 숫자 몇나오니?");
-		System.out.println(getSearchKeyword());
+		
+		//null값이 아니면 search메소드 실행하고 null값이면 문의게시판 리스트 출력(액션명 qboardList)
 		if(getSearchKeyword() != null)
 		{
 			return search();
@@ -73,10 +73,8 @@ public class QBoardListAction extends ActionSupport{
 	public String search() throws Exception {
 		
 		searchKeyword = new String(searchKeyword.getBytes("iso-8859-1"),"euc-kr") ;
-		System.out.println("리스트액션 써치메소드 값 테스트 숫자 몇나오니?");
-		System.out.println(searchKeyword);
-		System.out.println(searchNum);
-		System.out.println("리스트액션 써치메소드 값 테스트 끝");
+
+		//qboard_view.jsp의 searchNum값 참조. 0은 닉네임검색시, 1은 글제목 검색시 , 2는 글내용 검색시 searchNum값.
 		if(searchNum == 0){
 			list = sqlMapper.queryForList("qboard-selectSearchN", "%"+getSearchKeyword()+"%");
 		}

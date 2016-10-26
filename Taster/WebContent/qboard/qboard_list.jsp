@@ -7,6 +7,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+
 <title>문의 게시판</title>
 <link rel="stylesheet" href="/Taster/css/style.css" />
 </head>
@@ -32,6 +33,8 @@
 		</tr>
 
 	<s:iterator value="list" status="stat">
+	
+		<!-- 글제목 클릭시 상세보기 페이지로 넘어가는 액션 -->
 		<s:url id="viewURL" action="qboardViewForm">
 			<s:param name="b_idx">
 				<s:property value="b_idx" />
@@ -53,6 +56,7 @@
 				
 				
 			<!-- 글 제목 -->
+				<!-- 위의 viewURL 참조 -->
  				<s:a href="%{viewURL}"><s:property value="b_title" /></s:a>
  			</td>
 			<td align="center"><s:property value="member_nicname" /></td>
@@ -77,6 +81,7 @@
 		<td colspan="5"><s:property value="pagingHtml" escape="false" /></td>
 	</tr>
 
+<!-- 비회원의 경우 문의게시판 글쓰기 버튼이 안보임 -->
 <c:if test="${session.member_level != null}">
 	<!-- 글쓰기 버튼 -->
 	<tr align="right">
@@ -91,11 +96,15 @@
 	<tr align="center">
 		<td colspan="5">
 			<form>
+			
+				<!-- 이 searchNum값이 QBoardListAction.java에서 조건에 맞게 수행됨. -->
 				<select name="searchNum" >
 					<option value="1">닉네임</option>
 					<option value="2">제목</option>
 					<option value="3">내용</option>
 				</select>
+				
+				<!-- 이 값이 QPagingAction에서 처리됨. -->
 				<s:textfield name="searchKeyword" theme="simple" value="" cssStyle="width:120px" maxlength="20" />
 				<input name="submit" type="submit" value="검색" class="inputb">
 			</form>
