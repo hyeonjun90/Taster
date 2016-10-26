@@ -19,6 +19,8 @@
 			<result property="shop_holiday" column="shop_holiday"/>	
 			<result property="shop_readCount" column="shop_readCount"/>
 			<result property="shop_regDate" column="shop_regDate"/>
+			<result property="file_orgname" column="file_orgname"/>	
+			<result property="file_savname" column="file_savname"/>	
 		</resultMap>
 		
 		<resultMap id="AprReqRes" class="AprReq">   <!-- 신규등록 승인 요청 리스트 -->
@@ -85,6 +87,11 @@
 		<select id="Shop-getIdx" resultClass="Integer">
 			select max(shop_idx) from shop
 		</select>
+		
+		<delete id="Shop-deleteIdx" parameterClass="int">
+		<include refid="Shop-where-Sidx"/>
+		  DELETE FROM REQUEST_LIST
+		</delete>
 		<!--  
 		<select id="selectOne" parameterClass="int" resultMap="boardRes">
 		 SELECT * FROM SBOARD WHERE no = #no# 
@@ -94,7 +101,7 @@
 		<!-- insert 쿼리문 정의 -->
 		<insert id="Shop-insertAshop" parameterClass="admin_shop">
 		INSERT INTO SHOP(shop_idx, shop_name, shop_tel, shop_kind, shop_addr1, shop_addr2, shop_addr3, shop_addr4, shop_price, shop_holiday, shop_readCount, shop_regDate)
-		VALUES (shop_no_seq.NEXTVAL, #shop_name#, #shop_tel#, #shop_kind#, #shop_addr1#, #shop_addr2#, #shop_addr3#, #shop_addr4#, #shop_price#, #shop_holiday#, #shop_readCount#, sysdate)
+		VALUES (shop_no_seq.NEXTVAL, #shop_name#, #shop_tel#, #shop_kind#, #shop_addr1#, #shop_addr2#, #shop_addr3#, #shop_addr4#, #shop_price#, #shop_holiday#, #shop_readCount#,sysdate)
 		</insert>
 		
 		<!-- update 쿼리문 정의 -->
@@ -135,12 +142,12 @@
 		</select>
 		
 		<!-- 파일 업로드 할때 쓸 쿼리 -->
-		<select id="AprReq-getIdx" resultClass="Integer" resultMap="AprReqRes">
+		<select id="AprReq-getIdx" resultClass="Integer">
 			select max(r_idx) from REQUEST_LIST
 		</select>
 		
 		<update id="updateFileUpload2" parameterClass="HashMap">
-			update REQUEST_LIST set file_orgname=#file_orgname#, file_savname=#file_savname# where r_idx=#r_idx#
+			update REQUEST_LIST set r_shop_file_orgname=#r_shop_file_orgname#, r_shop_file_savname=#r_shop_file_savname# where r_idx=#r_idx#
 		</update>
 		
 		<!-- insert 쿼리문 정의 -->
@@ -155,5 +162,7 @@
 			DELETE FROM REQUEST_LIST
 		<include refid="AprReq-where-Ridx"/>
 		</delete>
+		
+		
 
 </sqlMap>

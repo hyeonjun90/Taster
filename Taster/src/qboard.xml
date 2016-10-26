@@ -29,8 +29,6 @@
 			 	
 	</action>
 	<action name="qWritePro" class="qboard.QWriteAction">
-		
-	  
 	<result type="redirect-action">
 		<param name="actionName">qboardList</param>
 		<!--  <result type="tiles">qboard_list</result>-->

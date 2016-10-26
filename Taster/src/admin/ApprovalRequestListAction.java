@@ -51,6 +51,22 @@ public class ApprovalRequestListAction extends ActionSupport {
 		return SUCCESS;
 		
 	}
+	
+/*	public void checkedApproval(Map resultMap) throws Exception {
+		
+		String delUser = resultMap.get(Management.DEL_USER).toString();
+		System.out.println("Service==delUser>>"+delUser);
+		
+		String[] userArr = delUser.split("-");  // '-'로 연결된 userid를 split으로 잘라 배열에 넣음.
+				
+		if (userArr != null && userArr.length>0) {
+			for (int i = 0; i < userArr.length; i++) {
+				requestMap.put(Parameter.USER_ID, userArr[i]);
+				System.out.println("======"+i+"번째 userid ==" +requestMap.get(Parameter.USER_ID));
+				manageDao.userDel(requestMap);
+			}
+		}
+	}*/
 
 	public static Reader getReader() {
 		return reader;

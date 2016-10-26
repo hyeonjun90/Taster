@@ -6,6 +6,7 @@ public class BookmarkListBean {
 	private String file_orgname;
 	private String file_savname;
 	private String member_id;
+	
 	public int getShop_idx() {
 		return shop_idx;
 	}

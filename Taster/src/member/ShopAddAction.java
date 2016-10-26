@@ -57,7 +57,7 @@ public class ShopAddAction extends ActionSupport implements SessionAware{
 	private String uploadContentType; //컨텐츠 타입
 	private String uploadFileName; //파일 이름
 	
-	private String fileUploadPath="C:\\git2\\Taster2\\Taster\\Taster\\WebContent\\images\\temporary_shop\\";
+	private String fileUploadPath="C:\\git\\Taster\\Taster\\WebContent\\images\\temporary_shop\\";
 
 
 
@@ -106,11 +106,14 @@ public class ShopAddAction extends ActionSupport implements SessionAware{
 		
 		if(getUpload() != null){
 			
+			System.out.println("test");
 			//실제 서버에 저장될 파일 이름과 확장자 설정.
 			String file_name="file_" + r_idx;
 			r_shop_file_orgname = getUploadFileName();
 			r_shop_file_savname = "file_" + r_idx;
 			
+			System.out.println("file_name : " + file_name);
+			System.out.println("r_shop_file_orgname: "+r_shop_file_orgname);
 			String file_ext = getUploadFileName().substring(
 					getUploadFileName().lastIndexOf('.') + 1,
 					getUploadFileName().length());
@@ -120,6 +123,7 @@ public class ShopAddAction extends ActionSupport implements SessionAware{
 			map.put("r_shop_file_savname", r_shop_file_savname);
 			
 			//서버에 파일 저장
+			System.out.println("fileUploadPath + file_name + file_ext : " + fileUploadPath + file_name + "." + file_ext);
 			File destFile = new File(fileUploadPath + file_name + "." + file_ext);
 			FileUtils.copyFile(getUpload(), destFile);
 			

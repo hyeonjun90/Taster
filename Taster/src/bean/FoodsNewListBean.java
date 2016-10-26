@@ -14,8 +14,19 @@ public class FoodsNewListBean {
 	private String member_nicname;
 	private String member_image;
 	private String file_savname;
-	
 	private float avg_r_score; //식당 평점
+	
+	private int rnum;
+	
+	public int getRnum() {
+		return rnum;
+	}
+
+	public void setRnum(int rnum) {
+		this.rnum = rnum;
+	}
+	
+
 	
 	public int getShop_idx() {
 		return shop_idx;

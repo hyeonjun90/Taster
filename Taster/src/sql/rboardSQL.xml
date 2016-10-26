@@ -44,6 +44,21 @@
 			AND rec_subject = #rec_subject#
 		</select>
 		
+		<!-- 검색 관련 -->
+		<!-- 제목으로 검색 -->
+		<select id="rboard-selectSearchS" resultClass="rboard" parameterClass="string">
+			<include refid="rboard-select-all"/>
+			WHERE rec_subject like #searchKeyword#
+			ORDER BY rec_idx DESC
+		</select>
+		
+		<!-- 내용으로 검색 -->
+		<select id="rboard-selectSearchC" resultClass="rboard" parameterClass="string">
+			<include refid="rboard-select-all"/>
+			WHERE rec_content like #searchKeyword#
+			ORDER BY rec_idx DESC
+		</select>
+		
 		<!-- insert 쿼리문 정의 -->
 		<insert id="rboard-insertRboard" parameterClass="rboard">
 		INSERT INTO RECOMBOARD(rec_idx, rec_date, rec_subject, rec_content, rec_image)

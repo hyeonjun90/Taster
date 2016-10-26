@@ -121,12 +121,11 @@ function openZipcode(){
 <div id="joinDiv">
 <div><strong>식당 등록</strong></div>
 
-<form method="post" action="memberFoodWriteOk.action" name="joinForm">
+<form method="post" action="memberFoodWriteOk.action" name="joinForm" enctype="multipart/form-data">
 
 <input type="hidden" name="r_shop_addr1" id="r_shop_addr1"/>
 <input type="hidden" name="r_shop_addr2" id="r_shop_addr2"/>
 <input type="hidden" name="r_shop_addr3" id="r_shop_addr3"/>
-
 <input type="hidden" name=" r_shop_tel" id="r_shop_tel"/>
 
 <table id="joinTable">
@@ -154,13 +153,13 @@ function openZipcode(){
 	<tr>
 		<th>업종</th>
 		<td>
-			<input type="checkbox" name="r_shop_kind1" id="r_shop_kind1" value="한식">한식
-			<input type="checkbox" name="r_shop_kind2" id="r_shop_kind2" value="양식">양식
-			<input type="checkbox" name="r_shop_kind3" id="r_shop_kind3" value="중식">중식
-			<input type="checkbox" name="r_shop_kind4" id="r_shop_kind4" value="일식">일식
-			<input type="checkbox" name="r_shop_kind5" id="r_shop_kind5" value="일식">태국/인도
-			<input type="checkbox" name="r_shop_kind6" id="r_shop_kind6" value="고기(소/돼지)">고기(소/돼지)
-			<input type="checkbox" name="r_shop_kind7" id="r_shop_kind7" value="치킨">치킨
+			<input type="radio" name="r_shop_kind" value="한식">한식
+			<input type="radio" name="r_shop_kind" value="양식">양식
+			<input type="radio" name="r_shop_kind" value="중식">중식
+			<input type="radio" name="r_shop_kind" value="일식">일식
+			<input type="radio" name="r_shop_kind" value="태국">태국
+			<input type="radio" name="r_shop_kind" value="육류">육류
+			<input type="radio" name="r_shop_kind" value="치킨">치킨
 		</td>
 	</tr>
 	<tr>
@@ -180,7 +179,7 @@ function openZipcode(){
 	<tr>
 		<th>사진등록</th>
 		<td style="heght:30px; font-size:10px;">
-			<input type="file" name="r_shop_image" id="r_shop_image"  style="height:22px;font-size:10px;"/>
+			<input type="file" name="upload" id="r_shop_image"  style="height:22px;font-size:10px;"/>
 		</td>
 	</tr>
 	

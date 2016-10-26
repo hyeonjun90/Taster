@@ -2,7 +2,8 @@ package qboard;
 
 import com.opensymphony.xwork2.ActionSupport;
 
-import bean.QnABoardBean;
+//import bean.QnABoardBean;
+import bean.QnABoardListBean;
 
 import com.ibatis.common.resources.Resources;
 import com.ibatis.sqlmap.client.SqlMapClient;
@@ -21,8 +22,8 @@ public class QWriteAction extends ActionSupport{
 	public static Reader reader;
 	public static SqlMapClient sqlMapper;
 	
-	private QnABoardBean paramClass;
-	private QnABoardBean resultClass;
+	private QnABoardListBean paramClass;
+	private QnABoardListBean resultClass;
 
 	
 	private int currentPage;
@@ -85,8 +86,8 @@ public class QWriteAction extends ActionSupport{
 
 	public String execute() throws Exception {
 		
-		paramClass = new QnABoardBean();
-		resultClass = new QnABoardBean();
+		paramClass = new QnABoardListBean();
+		resultClass = new QnABoardListBean();
 		
 		/*답변관련
 		
@@ -155,19 +156,19 @@ public class QWriteAction extends ActionSupport{
 		return SUCCESS;
 	}
 
-	public QnABoardBean getParamClass() {
+	public QnABoardListBean getParamClass() {
 		return paramClass;
 	}
 
-	public void setParamClass(QnABoardBean paramClass) {
+	public void setParamClass(QnABoardListBean paramClass) {
 		this.paramClass = paramClass;
 	}
 
-	public QnABoardBean getResultClass() {
+	public QnABoardListBean getResultClass() {
 		return resultClass;
 	}
 
-	public void setResultClass(QnABoardBean resultClass) {
+	public void setResultClass(QnABoardListBean resultClass) {
 		this.resultClass = resultClass;
 	}
 
