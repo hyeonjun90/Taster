@@ -8,7 +8,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>문의 게시판</title>
-<link rel="stylesheet" href="/Taster/qboard/css.css" type="text/css">
+<link rel="stylesheet" href="/Taster/css/style.css" />
 </head>
 
 <body>
