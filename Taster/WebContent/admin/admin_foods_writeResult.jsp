@@ -36,12 +36,12 @@
 <td>${shop_price}</td>
 </tr>
 
-<!--  
+
 <tr>
 <td width="100">주소:</td>
-<td>${shop_addr1 + shop_addr2 + shop_addr3 + shop_addr4}</td>
+<td>${r_shop_addr1}//${r_shop_addr2}//${r_shop_addr3}//${r_shop_addr4}</td>
 </tr>
--->
+
 
 <tr>
 <td width="100">업종:</td>

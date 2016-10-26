@@ -10,7 +10,7 @@
 			<result type="tiles">AshopWrite</result>
 			</action>
 
-		<action name="AshopWriteAction" class="admin.AdminShopAddAction">
+		<action name="AshopWriteAction" class="admin.AdminShopAddAction" method="execute">
      	  	 <result type="tiles">AshopWriteResult</result>
      	</action>
 		
@@ -27,6 +27,16 @@
 	<action name="AdminShopListDetailView" class="admin.AdminShopListDetailView">
 			<result type="tiles">AdminShopListDetail</result>
 		</action>
+		
+		<!-- 주소찾기 -->
+		 
+		<action name="AdminShopSearchZipcode" class="admin.AdminShopZipcodeAction" method="AdminshopZipcode">
+			<result>/admin/admin_shop_zipcode.jsp</result>
+		</action>
+		 
+      <action name="AdminShopSearchZipcodeSearch" class="admin.AdminShopZipcodeAction" method="shopZipcodeSearh">
+         <result>/member/shop_zipcode_search.jsp</result>
+       </action>
 	
 		<!-- 신규가게 등록 요청글 관련 -->
 		<!-- 신규가게등록 승인 요청 리스트 보기 -->

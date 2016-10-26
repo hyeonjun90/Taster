@@ -10,9 +10,11 @@
 	<script type="text/javascript">
 		function locationURL() {
 		
+		//문의글 상세보기에서 글수정버튼 눌러 ID체크 성공하면
 		if ( window.name == 'modify' ) 
 			window.opener.parent.location.href="qModifyForm.action?b_idx=<s:property value="b_idx" />&currentPage=<s:property value="currentPage" />";
-				
+		
+		//문의글 삭제버튼눌러서 ID체크 성공하면		
 		else if ( window.name == 'delete' ) 
 		{
 			alert('삭제되었습니다.');
@@ -20,13 +22,15 @@
 			window.close();
 		}
 		
+		//문의글의 코멘트삭제버튼 눌러서 ID체크 성공하면
 		else if ( window.name == 'cdelete' ) 
 		{
 			alert('삭제되었습니다.');
 			window.opener.parent.location.href="cDeletePro.action?c_idx=<s:property value="c_idx" />&b_idx=<s:property value="b_idx" />&currentPage=<s:property value="currentPage" />";
 			
 		}
-			
+		
+		//창 종료
 		window.close();
 		}
 	</script>

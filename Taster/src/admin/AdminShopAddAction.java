@@ -22,7 +22,6 @@ public static SqlMapClient sqlMapper;
 private ShopBean paramClass; //파라미터를 저장 할 객체
 private ShopBean resultClass;// 쿼리 결과 값 저장 객체
 	
-
 private int shop_idx;
 private String shop_name;
 private String shop_tel;
@@ -33,9 +32,9 @@ private String file_orgname;
 private String file_savname;
 
 private String shop_addr1;		// 식당주소1(특별시, 광역시, 도)
-//private String shop_addr2;		// 식당주소2(시, 구, 군)
-//private String shop_addr3;		// 식당주소3(동)
-//private String shop_addr4;		// 식당주소4(나머지)
+private String shop_addr2;		// 식당주소2(시, 구, 군)
+private String shop_addr3;		// 식당주소3(동)
+private String shop_addr4;		// 식당주소4(나머지)
 private String shop_holiday;	// 휴일
 private int shop_readCount;		// 조회수
 
@@ -44,6 +43,13 @@ private int shop_readCount;		// 조회수
 private File upload; //파일 객체
 private String uploadContentType; //컨텐츠 타입
 private String uploadFileName; //파일 이름
+
+
+private String r_shop_addr4;
+private String r_shop_addr1;
+private String r_shop_addr2;
+private String r_shop_addr3;
+
 
 private String fileUploadPath="C:\\git2\\Taster2\\Taster\\Taster\\WebContent\\images\\shop\\";
 
@@ -62,6 +68,7 @@ public String form() throws Exception {
 
 public String execute() throws Exception  {
 	
+	System.out.println("test");
 	paramClass = new ShopBean();
 	resultClass = new ShopBean();
 	HashMap<String, Object> map = new HashMap<>();
@@ -70,10 +77,18 @@ public String execute() throws Exception  {
 	paramClass.setShop_tel(shop_tel);
 	paramClass.setShop_price(shop_price);
 	paramClass.setShop_kind(shop_kind);
+	
+	shop_addr1 = getR_shop_addr1();
+	shop_addr2 = getR_shop_addr2();
+	shop_addr3 = getR_shop_addr3();
+	shop_addr4 = getR_shop_addr4();
+	
+	System.out.println("shop_addr1 : " + getR_shop_addr1());
 	paramClass.setShop_addr1(shop_addr1);
-	//paramClass.setShop_addr2(shop_addr2);
-	//paramClass.setShop_addr3(shop_addr3);
-	//paramClass.setShop_addr4(shop_addr4);
+	paramClass.setShop_addr2(shop_addr2);
+	paramClass.setShop_addr3(shop_addr3);
+	paramClass.setShop_addr4(shop_addr4);
+	
 	paramClass.setShop_holiday(shop_holiday);
 	paramClass.setShop_readCount(shop_readCount);
 	
@@ -89,12 +104,13 @@ public String execute() throws Exception  {
 		
 		//실제 서버에 저장될 파일 이름과 확장자 설정.
 		String file_name = "file_" + shop_idx;
-		file_orgname = getUploadFileName();
-		file_savname = "file_" + shop_idx + "jpg";
 		
 		String file_ext = getUploadFileName().substring(
 				getUploadFileName().lastIndexOf('.')+ 1,
 				getUploadFileName().length());
+		
+		file_orgname = getUploadFileName();
+		file_savname = "file_" + shop_idx + "." + file_ext;
 		
 		map.put("shop_idx", shop_idx);
 		map.put("file_orgname", file_orgname);
@@ -106,7 +122,7 @@ public String execute() throws Exception  {
 		
 		//파일 정보 업데이트.
 		sqlMapper.update("updateFileUpload", map);
-		System.out.println("업로드 완료");
+		//System.out.println("업로드 완료");
 		
 	}
 	
@@ -281,12 +297,70 @@ public void setUploadFileName(String uploadFileName) {
 	this.uploadFileName = uploadFileName;
 }
 
+
 public String getShop_addr1() {
 	return shop_addr1;
 }
 
 public void setShop_addr1(String shop_addr1) {
 	this.shop_addr1 = shop_addr1;
+}
+
+public String getShop_addr2() {
+	return shop_addr2;
+}
+
+public void setShop_addr2(String shop_addr2) {
+	this.shop_addr2 = shop_addr2;
+}
+
+public String getShop_addr3() {
+	return shop_addr3;
+}
+
+public void setShop_addr3(String shop_addr3) {
+	this.shop_addr3 = shop_addr3;
+}
+
+public String getShop_addr4() {
+	return shop_addr4;
+}
+
+public void setShop_addr4(String shop_addr4) {
+	this.shop_addr4 = shop_addr4;
+}
+
+
+public String getR_shop_addr1() {
+	return r_shop_addr1;
+}
+
+public void setR_shop_addr1(String r_shop_addr1) {
+	this.r_shop_addr1 = r_shop_addr1;
+}
+
+public String getR_shop_addr2() {
+	return r_shop_addr2;
+}
+
+public void setR_shop_addr2(String r_shop_addr2) {
+	this.r_shop_addr2 = r_shop_addr2;
+}
+
+public String getR_shop_addr3() {
+	return r_shop_addr3;
+}
+
+public void setR_shop_addr3(String r_shop_addr3) {
+	this.r_shop_addr3 = r_shop_addr3;
+}
+
+public String getR_shop_addr4() {
+	return r_shop_addr4;
+}
+
+public void setR_shop_addr4(String r_shop_addr4) {
+	this.r_shop_addr4 = r_shop_addr4;
 }
 
 

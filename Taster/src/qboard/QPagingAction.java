@@ -46,12 +46,16 @@ public class QPagingAction {
 		pagingHtml = new StringBuffer();
 		if(currentPage > blockPage)
 		{
-			if(isSearch != "")
+			//검색키워드가 빈값일 경우
+			if(isSearch != ""){
 				pagingHtml.append("<a href=qboardList.action?currentPage=" + (startPage - 1) + "&searchKeyword="+isSearch+"&searchNum="+searchNum+">");
-			else
+			}//검색키워드가 빈값이 아닐경우
+			else{
 				pagingHtml.append("<a href=qboardList.action?currentPage=" + (startPage - 1) + ">");
+			}
 			pagingHtml.append("이전");
 			pagingHtml.append("</a>");
+			
 		}
 		
 		pagingHtml.append("&nbsp;|&nbsp;");
@@ -72,6 +76,7 @@ public class QPagingAction {
 			{
 				pagingHtml.append("&nbsp;<a href='qboardList.action?currentPage=");
 				pagingHtml.append(i);
+				//검색키워드가 빈값일 경우
 				if(isSearch != "")
 					pagingHtml.append("&searchKeyword="+isSearch);
 				pagingHtml.append("'>");

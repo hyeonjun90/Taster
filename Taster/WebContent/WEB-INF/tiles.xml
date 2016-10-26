@@ -183,8 +183,15 @@
 	<put-attribute name="body" value="/admin/admin_foods_detail.jsp"/>
 	<put-attribute name="bottom" value="/common/bottom.jsp"/>
 	</definition>
-	
-	
+	  
+	<!-- 주소 검색 -->
+	<!--
+	<definition name="adminShopzipcode" template="/common/layout.jsp">
+	<put-attribute name="top" value="/common/top2.jsp"/>
+	<put-attribute name="body" value="/admin/admin_shop_zipcode.jsp"/>
+	<put-attribute name="bottom" value="/common/bottom.jsp"/>
+	</definition>
+	-->
 	<!-- 맛집추천리스트 관련 -->
 	<!-- 관리자 화면에서 맛집추천리스트 등록글 리스트 조회 -->
 	<definition name="AdminRboardList" template="/common/layout.jsp">

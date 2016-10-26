@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <%@ taglib prefix="s" uri="/struts-tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -84,8 +85,10 @@
 			</td>
 		</tr>
 -->
-		
-		
+
+	<!-- 관리자에게만   상세보기에서 코멘트메뉴가 생김. -->
+	<c:if test="${session.member_level == 3}">
+    
 		<tr bgcolor="#777777">
 			<td colspan="2" height="1"></td>
 		</tr>
@@ -98,13 +101,15 @@
 					<table>
 						<tr>
 							<td width="170">
+							
+								<!-- 닉네임 수정 불가능하게 읽기전용 처리 -->
 								<input type="text" value="관리자" readonly style="text-align:center; border:0px;"/>
 								
 								<!--  <input type="text" value="${session.nicname}" name="member_nicname" cssStyle="width:100px" maxlength="20"/>-->
 								<!-- 비밀번호 <s:textfield name="c_pwd" theme="simple" value="" cssStyle="width:100px" maxlength="20" /> -->
 							</td>
 
-							<!-- 상세보기 페이지에서 숨겨져 있는 값들: 글번호 댓글번호 멤버ID, 현재페이지번호 -->
+					<!-- 상세보기 페이지에서 숨겨져 있는 값들: 글번호 댓글번호 멤버ID, 현재페이지번호 -->
 							<s:hidden name="b_idx" value="%{resultClass.b_idx}" />
 							<s:hidden name="member_id" value="%{resultClass.member_id}" />							
 					<!-- !!!!!!!!!!!!!!!!!!!!!!!!수정!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
@@ -124,17 +129,21 @@
 				</form>
 			</td>
 		</tr>
+	</c:if>	
+		
 	
 		<tr bgcolor="#777777">
 			<td colspan="2" height="1"></td>
 		</tr>
 	
-	
+	 <!-- 댓글 관련 -->
 		<s:iterator value="commentlist" status="stat">
 		<tr>
 			<td height="10" width="130" align="center">
 			
 				<input type="text" value="관리자" readonly style="text-align:center; border:0px;"/>
+			
+				<!-- 관리자 ID값 -->
 				<s:hidden name="member_id" value="%{resultClass.member_id}" />
 			<br>			
 				<s:property value="c_regdate" /><br><br>
@@ -177,6 +186,8 @@
 						<s:property value="b_idx" />
 					</s:param>
 				</s:url>
+				
+				<!-- 글수정,글삭제,목록 버튼 -->
 				<!--<input name="list" type="button" value="답변달기" class="inputb" onClick="javascript:location.href='replyForm.action?no=<s:property value="no" />'"> -->
 				<input name="list" type="button" value="수정" class="inputb" onClick="javascript:open_win_noresizable('idCheck.action?member_id=<s:property value="resultClass.member_id" />&b_idx=<s:property value="resultClass.b_idx" />&currentPage=<s:property value="currentPage" />','modify')">
 				<input name="list" type="button" value="삭제" class="inputb" onClick="javascript:open_win_noresizable('idCheck.action?member_id=<s:property value="resultClass.member_id" />&b_idx=<s:property value="resultClass.b_idx" />&currentPage=<s:property value="currentPage" />','delete')">

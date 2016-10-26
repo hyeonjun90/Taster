@@ -29,8 +29,8 @@ public class QDeleteAction extends ActionSupport{
 	private int currentPage;
 	//private String fileUploadPath = "D:\\upload\\";
 	
-	private int b_idx;
-	private int c_idx;
+	private int b_idx;	//글번호
+	private int c_idx;	//댓글(코멘트)번호
 	
 	public QDeleteAction() throws IOException
 	{
@@ -52,6 +52,7 @@ public class QDeleteAction extends ActionSupport{
 		
 		paramClass.setB_idx(getB_idx());
 		
+		//글 삭제 쿼리문 수행
 		sqlMapper.update("qboard-deleteBoard",paramClass);
 		
 		return SUCCESS;
@@ -72,6 +73,8 @@ public class QDeleteAction extends ActionSupport{
 		cClass.setB_idx(getB_idx());
 		cClass.setC_idx(getC_idx());
 		
+		
+		//코메트 삭제 쿼리문 시행
 		sqlMapper.update("qboard-deleteComment",cClass);
 		
 		return SUCCESS;
