@@ -29,7 +29,7 @@
 	.category_bt{ width: 80px; height: 80px; float: left; text-align: center; background: white; border-radius: 60px;margin: 10px 23px 10px; /* 탑 왼 바텀 오 */border: 7px solid white;padding-top: 0px; }
 	.icon_title{ font-size: 13px; font-weight: 600; margin-top: -10px; font-family : 'Noto Sans', sans-serif;}
 	.category_bt:hover{ border: 7px solid #DDE5B8; padding-top: 0px; }
-
+	.selected { border: 7px solid #DDE5B8; padding-top: 0px; }
 
 	.menuList div {font-family : 'Noto Sans', sans-serif; }
 	.shopInfo div {margin-left:10px; padding: 3px; font-family : 'Noto Sans', sans-serif;}
@@ -48,7 +48,13 @@
 
 var currentPage = 1;
 var fTotalCount = ${fTotalCount};
-
+//alert(fTotalCount);
+	
+	function init() {
+		if(fTotalCount <= 3) {
+			$("#readMore").css("display", "none");
+		}
+	}
 	function readMore() {
 		currentPage += 1;
 		fTotalCount -= 3; // 페이지 개수
@@ -60,72 +66,81 @@ var fTotalCount = ${fTotalCount};
 			data: {"currentPage": currentPage },
 			success: function(data) {
 				//alert(data);
-				
+				//alert(fTotalCount);
 				$("#menuList").append(data);
-				if(fTotalCount < 1) {
+				if(fTotalCount <= 3) {
 					$("#readMore").css("display", "none");
 				}
 			}
 			
 		});
 	}
+	
+	function menuSearch(keyword, div) {
+		searchForm = document.searchForm;
+		searchForm.keyword.value = keyword;
+		searchForm.submit();
+	}
 </script>
 </head>
-<body >
+<body onload="init();">
 <center>
+<form action="foodsMenuList.action" name="searchForm">
+	<input type="hidden" name="keyword" value=""/>
+</form>
 <div style="width:100%;min-height:500px;margin-top:40px;">
 
 	<div style="width:900px;height:220px;background: #F3F3F3;padding: 10px 0px 20px;border: 1px solid #E6E3E3;text-align:center;">
 	
 		<div style="width:848px;margin:0px auto;">
-			<div class="category_bt">
+			<div class="category_bt <c:if test="${keyword eq '한식'}">selected</c:if>" onclick="menuSearch('한식', this);">
 				<em class="c1 icon"></em>
 				<div class="icon_title">한식</div>
 			</div>
-			<div class="category_bt">
+			<div class="category_bt <c:if test="${keyword eq '양식'}">selected</c:if>" onclick="menuSearch('양식');">
 				<em class="c2 icon"></em>
 				<div class="icon_title">양식</div>
 			</div>
-			<div class="category_bt">
+			<div class="category_bt <c:if test="${keyword eq '일식'}">selected</c:if>" onclick="menuSearch('일식');">
 				<em class="c3 icon"></em>
 				<div class="icon_title">일식</div>
 			</div>
-			<div class="category_bt">
+			<div class="category_bt <c:if test="${keyword eq '중식'}">selected</c:if>" onclick="menuSearch('중식');">
 				<em class="c4 icon"></em>
 				<div class="icon_title">중식</div>
 			</div>
-			<div class="category_bt">
+			<div class="category_bt <c:if test="${keyword eq '분식'}">selected</c:if>" onclick="menuSearch('분식');">
 				<em class="c5 icon"></em>
 				<div class="icon_title">분식</div>
 			</div>
-			<div class="category_bt">
+			<div class="category_bt <c:if test="${keyword eq '해산물'}">selected</c:if>" onclick="menuSearch('해산물');">
 				<em class="c6 icon"></em>
 				<div class="icon_title">해산물</div>
 			</div>
 			<div class="clearDiv"></div>
 			
 			
-			<div class="category_bt">
+			<div class="category_bt <c:if test="${keyword eq '치킨'}">selected</c:if>" onclick="menuSearch('치킨');">
 				<em class="c7 icon"></em>
 				<div class="icon_title">치킨</div>
 			</div>
-			<div class="category_bt">
+			<div class="category_bt <c:if test="${keyword eq '주류'}">selected</c:if>" onclick="menuSearch('주류');">
 				<em class="c8 icon"></em>
 				<div class="icon_title">주류</div>
 			</div>
-			<div class="category_bt">
+			<div class="category_bt <c:if test="${keyword eq '제빵'}">selected</c:if>" onclick="menuSearch('제빵');">
 				<em class="c9 icon"></em>
 				<div class="icon_title">제빵</div>
 			</div>
-			<div class="category_bt">
+			<div class="category_bt <c:if test="${keyword eq '육류'}">selected</c:if>" onclick="menuSearch('육류');">
 				<em class="c10 icon"></em>
 				<div class="icon_title">육류</div>
 			</div>
-			<div class="category_bt">
+			<div class="category_bt <c:if test="${keyword eq '카페'}">selected</c:if>" onclick="menuSearch('카페');">
 				<em class="c11 icon"></em>
 				<div class="icon_title">카페</div>
 			</div>
-			<div class="category_bt">
+			<div class="category_bt <c:if test="${keyword eq '이색'}">selected</c:if>" onclick="menuSearch('이색');">
 				<em class="c12 icon"></em>
 				<div class="icon_title">이색</div>
 			</div>
@@ -134,6 +149,7 @@ var fTotalCount = ${fTotalCount};
 	</div>
 
 	<div class="menuList" id="menuList" style="width:830px;">
+	
 	<c:forEach items="${fList}" var="fList" varStatus="status">
 		<div class="shopInfo" style="width:810px;margin-top:20px;">
 			<div style="background-image:url('/Taster/images/shop/${fList.file_savname}');
@@ -158,8 +174,13 @@ var fTotalCount = ${fTotalCount};
 		
 	</c:forEach>
 	</div>
+		<c:if test="${empty fList }">
+			<div id="" style="width:500px;height:50px;margin-top:30px;"><h2>등록된 식당 정보가 없습니다.</h2></div>
+		</c:if>
 		<c:if test="${fTotalCount > 0 }">
-			<div id="readMore" style="width:500px;height:50px;" onclick="readMore();"><h2>▽더보기</h2></div>
+			<div id="readMore" style="width:500px;height:50px;">
+				<h2 style="cursor:pointer;" onclick="readMore();">▽더보기</h2>
+			</div>
 		</c:if>
 </div>
 </center>

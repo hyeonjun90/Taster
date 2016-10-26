@@ -9,10 +9,15 @@
       <action name="foodsMenuListMore" class="foods.FoodsMenuListAction" method="readMore">
       	<result>/foods/foods_menu_list_more.jsp</result>
       </action>
-      
-      <!-- 뜨는 맛집 이동 -->
+      <!-- 지역별 맛집 -->
+      <action name="foodsAreaSearch" class="foods.FoodsAreaListAction" method="areaSearch">
+      	<result>/foods/foods_search_area.jsp</result>
+      </action>
       <action name="foodsAreaList" class="foods.FoodsAreaListAction" method="form">
          <result type="tiles">foods_area</result>
+      </action>
+      <action name="foodsAreaListSearch" class="foods.FoodsAreaListAction" method="areaSearchList">
+      	 <result>/foods/foods_searchArea_list.jsp</result>
       </action>
       
       

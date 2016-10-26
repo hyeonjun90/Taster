@@ -3,7 +3,7 @@
 
 <sqlMap>
 	
-	<select id="idCheck" parameterClass="String" resultClass="Integer">
+	<select id="memberIdCheck" parameterClass="String" resultClass="Integer">
 		select count(*) from Member where member_id=#member_id#
 	</select>
 	<select id="nicCheck" parameterClass="String" resultClass="Integer">
