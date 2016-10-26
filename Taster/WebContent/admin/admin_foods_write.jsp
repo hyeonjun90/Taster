@@ -17,9 +17,9 @@
 </table>
 
 
-<s:form action="AshopWriteAction" theme="simple" enctype="multipart/form-data">
+<form action="AshopWriteAction" theme="simple" enctype="multipart/form-data" name="joinForm">
 
-
+<
 		<tr>
 			<td align="center" width="100">
 				<font color="#FF0000">*</font> 식당이름:
@@ -50,10 +50,13 @@
 		<td align="center" width="100">
 				<font color="#FF0000">*</font> 주소:
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <s:textfield name="shop_addr1" theme="simple" value="%{resultClass.shop_addr1}" cssStyle="width:370px"/>
-			
-			
-			</td>
-			
+		</td>
+		</tr>
+		
+		<tr>
+		<td align="right" width="100">
+		<input  align="right" type="button" value="주소검색" class="inputb" onClick="javascript:location.href='AdminShopSearchZipcode.action?currentPage=<s:property value="currentPage" />'">
+		</td>
 		</tr>
 		
 		
@@ -76,19 +79,9 @@
 		</tr>
 		<br>
 		<br>
-		
 		<tr>
-          <td bgcolor="#F4F4F4">  첨부파일 </td>
-          <td bgcolor="#FFFFFF">
-              <s:file name="upload" theme="simple"/>
-            
-            <s:if test="resultClass.file_orgname != NULL">
-		&nbsp; * <s:property value="resultClass.file_orgname" /> 파일이 등록되어 있습니다. 다시 업로드하면 기존의 파일은 삭제됩니다.
-	</s:if>
-		</td>
-		</tr>
-		<tr>
-			<td align="center" colspan="2">
+			<td align="left" colspan="2">
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			 <input type="radio" name="shop_kind" value="한식"> 한식 
 		    &nbsp;
 			
@@ -98,10 +91,28 @@
 			<input type="radio" name="shop_kind" value="양식"> 양식 
 		    &nbsp;
 			<br>
-			<s:submit value="등록하기" align="center" />
 			</td>
 		</tr>
-		</s:form>
-	  
+		
+		<tr>
+		
+          <td align="right" bgcolor="#F4F4F4">  첨부파일 </td>
+          
+          <td bgcolor="#FFFFFF">
+              <s:file name="upload" theme="simple"/>
+            
+            <s:if test="resultClass.file_orgname != NULL">
+		&nbsp; * <s:property value="resultClass.file_orgname" /> 파일이 등록되어 있습니다. 다시 업로드하면 기존의 파일은 삭제됩니다.
+		
+	</s:if>
+	<br>
+	<s:submit value="등록하기" align="center" />
+		</td>
+		
+		</tr>
+		
+		</form>
+	
+	 
 </body>
 </html>
