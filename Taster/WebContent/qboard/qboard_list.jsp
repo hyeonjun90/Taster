@@ -77,12 +77,14 @@
 		<td colspan="5"><s:property value="pagingHtml" escape="false" /></td>
 	</tr>
 
+<c:if test="${session.member_level != null}">
 	<!-- 글쓰기 버튼 -->
 	<tr align="right">
 		<td colspan="5">
 			<input type="button" value="글쓰기" class="inputb" onClick="javascript:location.href='qWriteForm.action?currentPage=<s:property value="currentPage" />';" />
 		</td>
 	</tr>
+</c:if>	
 
 
 	<!-- 검색메뉴 -->
