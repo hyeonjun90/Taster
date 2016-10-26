@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <%@ taglib prefix="s" uri="/struts-tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -84,8 +85,10 @@
 			</td>
 		</tr>
 -->
-		
-		
+
+	<!-- 관리자에게만   상세보기에서 코멘트메뉴가 생김. -->
+	<c:if test="${session.member_level == 3}">
+    
 		<tr bgcolor="#777777">
 			<td colspan="2" height="1"></td>
 		</tr>
@@ -124,6 +127,8 @@
 				</form>
 			</td>
 		</tr>
+	</c:if>	
+		
 	
 		<tr bgcolor="#777777">
 			<td colspan="2" height="1"></td>

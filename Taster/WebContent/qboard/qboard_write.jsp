@@ -100,7 +100,7 @@
           <td bgcolor="#FFFFFF">
           <!-- ÀÌ¸§ -->
             <%-- <s:textfield name="member_id" theme="simple" value="${session.member_id}" cssStyle="width:100px" maxlength="20"/> --%>
-            <input type="text" value="${session.member_nicname }" name="${session.member_nicname }" readonly cssStyle="width:100px" maxlength="20"/>
+            <input type="text" value="${session.member_id }" name="member_id" readonly cssStyle="width:100px" maxlength="20"/>
           </td>
         </tr>
         <tr bgcolor="#777777">
