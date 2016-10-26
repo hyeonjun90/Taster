@@ -18,7 +18,8 @@ import java.util.Map;
 import org.apache.struts2.interceptor.SessionAware;
 
 import bean.CommentBean;
-import bean.QnABoardBean;
+//import bean.QnABoardBean;
+import bean.QnABoardListBean;
 //다운로드 메서드 삭제
 
 public class QBoardViewAction extends ActionSupport implements SessionAware{
@@ -26,8 +27,8 @@ public class QBoardViewAction extends ActionSupport implements SessionAware{
 	public static Reader reader;
 	public static SqlMapClient sqlMapper;
 	
-	private QnABoardBean paramClass = new QnABoardBean();
-	private QnABoardBean resultClass = new QnABoardBean();
+	private QnABoardListBean paramClass = new QnABoardListBean();
+	private QnABoardListBean resultClass = new QnABoardListBean();
 	private List<CommentBean> commentlist = new ArrayList<CommentBean>();
 	
 	private CommentBean cClass = new CommentBean();
@@ -42,6 +43,7 @@ public class QBoardViewAction extends ActionSupport implements SessionAware{
 	private String member_nicname;
 	
 	private Map session;
+	
 	
 	//private String fileUploadPath = "C:\\Java\\Framework02\\upload\\";
 	
@@ -73,8 +75,7 @@ public class QBoardViewAction extends ActionSupport implements SessionAware{
 		
 		
 		sqlMapper.update("qboard-updateB_readCount",paramClass);
-		
-		resultClass = (QnABoardBean) sqlMapper.queryForObject("qboard-selectOne", getB_idx());
+		resultClass = (QnABoardListBean) sqlMapper.queryForObject("qboard-selectOne", getB_idx());
 		
 		commentlist = sqlMapper.queryForList("qboard-commentSelectAll", getB_idx());
 		
@@ -94,17 +95,19 @@ public class QBoardViewAction extends ActionSupport implements SessionAware{
 		//paramClass.setB_pwd(getB_pwd());
 		
 		paramClass.setB_idx(getB_idx());
-		paramClass.setMember_id(getMember_id());
-
-		System.out.println(getMember_id());//1234
-		System.out.println(session.get("member_id"));//null
+		paramClass.setMember_nicname(getMember_nicname());
 		
+
+		System.out.println("시작");
+		System.out.println(getMember_nicname());//1234 이게 왜 널이 나오지?
+		System.out.println(session.get("member_nicname"));//로그인시 로그인한 ID 비로그인시 null
+		System.out.println(session.get("member_level"));
 		
 		System.out.println("가위바위보");
-		resultClass = (QnABoardBean) sqlMapper.queryForObject("qboard-selectMember_id", paramClass);
+		//resultClass = (JoinM_Q_C) sqlMapper.queryForObject("qboard-selectMember_id", paramClass);
 		
 		System.out.println("묵");
-		if( !getMember_id().equals(session.get("member_id") ) ){
+		if( !getMember_id().equals(session.get("member_nicname") ) ){
 			System.out.println("찌");
 			//System.out.println("error");
 			return ERROR;
@@ -115,12 +118,24 @@ public class QBoardViewAction extends ActionSupport implements SessionAware{
 	
 	public String checkAction2()	throws Exception
 	{
+		int memberCheck=3;
 		cClass.setC_idx(getC_idx());
 		cClass.setB_idx(getB_idx());
 		
 		//cResult = (CommentBean) sqlMapper.queryForObject("selectC_idx", cClass);
-		//if(!session.get("member_id").equals(getMember_id()))		
-		if(!session.get("member_level").equals(3)){
+		//if(!session.get("member_id").equals(getMember_id()))
+		
+		
+		System.out.println(session.get("member_level"));
+		System.out.println(memberCheck);
+		
+		/*
+		if(!memberCheck.equals(session.get("member_level") ) ){
+			
+			return ERROR;
+		}*/
+		
+		if(memberCheck != (Integer)session.get("member_level") ){
 			return ERROR;
 		}
 		return SUCCESS;
@@ -134,19 +149,19 @@ public class QBoardViewAction extends ActionSupport implements SessionAware{
 		this.commentlist = commentlist;
 	}
 
-	public QnABoardBean getParamClass() {
+	public QnABoardListBean getParamClass() {
 		return paramClass;
 	}
 
-	public void setParamClass(QnABoardBean paramClass) {
+	public void setParamClass(QnABoardListBean paramClass) {
 		this.paramClass = paramClass;
 	}
 
-	public QnABoardBean getResultClass() {
+	public QnABoardListBean getResultClass() {
 		return resultClass;
 	}
 
-	public void setResultClass(QnABoardBean resultClass) {
+	public void setResultClass(QnABoardListBean resultClass) {
 		this.resultClass = resultClass;
 	}
 

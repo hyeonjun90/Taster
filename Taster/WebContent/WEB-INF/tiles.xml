@@ -37,6 +37,7 @@
 	<put-attribute name="bottom" value="/common/bottom.jsp"/>
 	</definition>
 	
+	<!-- 맛집 상세 페이지 -->
 	<definition name="foods_detail" template="/common/layout.jsp">
 	<put-attribute name="top" value="/common/top1.jsp"/>
 	<put-attribute name="body" value="/foods/foods_detail.jsp"/>

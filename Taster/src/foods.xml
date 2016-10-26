@@ -6,27 +6,45 @@
       <action name="foodsMenuList" class="foods.FoodsMenuListAction" method="form" >
          <result type="tiles">foods_menu</result>
       </action>
+      <action name="foodsMenuListMore" class="foods.FoodsMenuListAction" method="readMore">
+      	<result>/foods/foods_menu_list_more.jsp</result>
+      </action>
       
       <!-- 뜨는 맛집 이동 -->
       <action name="foodsAreaList" class="foods.FoodsAreaListAction" method="form">
          <result type="tiles">foods_area</result>
       </action>
       
-      
       <!-- 뜨는 맛집 이동 -->
       <action name="foodsHotList" class="foods.FoodsHotListAction" method="form">
          <result type="tiles">foods_hot</result>
       </action>
       
+      <action name="foodsHotListMore" class="foods.FoodsHotListAction" method="readMore">
+      	<result>/foods/foods_hot_list_more.jsp</result>
+      </action>
+      
       <!-- 신규 식당 리스트 이동 -->
-      <action name="foodsNewList" class="foods.FoodsNewListAction" method="execute">
+      <action name="foodsNewList" class="foods.FoodsNewListAction" method="form">
          <result type="tiles">foods_new</result>
       </action>
+      
+      <action name="foodsNewListMore" class="foods.FoodsNewListAction" method="readMore">
+      	<result>/foods/foods_new_list_more.jsp</result>
+      </action>
+      
       
       <!-- 추천 맛집 리스트 이동 -->
       <action name="foodsRecommendList" class="foods.FoodsRecommendListAction" method="form">
          <result type="tiles">foods_recommand</result> 
       </action>
+      
+      <!-- 맛집 상세페이지 이동 -->
+      <action name="foodsDetailView" class="foods.FoodsDetailAction" method="execute">
+         <result type="tiles">foods_detail</result> 
+      </action>
+      
+      
       
    </package>
 </struts>

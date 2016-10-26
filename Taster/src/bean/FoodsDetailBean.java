@@ -2,9 +2,9 @@ package bean;
 
 import java.util.Date;
 
-public class Join_R_S {
+public class FoodsDetailBean {
 	
-	private int shop_idx;			// 기본키
+	private int shop_idx;
 	private String shop_name;		// 식당명
 	private String shop_tel;		// 전번
 	private String shop_kind;		// 업종
@@ -15,24 +15,25 @@ public class Join_R_S {
 	private String shop_price;		// 가격대
 	private String shop_holiday;	// 휴일
 	private int shop_readCount;		// 조회수
-	private Date shop_regDate;      
-	private String file_orgname;
+	private Date shop_regDate; //
 	private String file_savname;
 	
+
+	private String member_id; 	// Member테이블의 member_id 
+	private String member_nicname; //멤버테이블
+	private String member_image;
+
+
 	private int review_idx;		// 기본키
 	private String r_title;		// 제목
 	private String r_content;	// 내용
 	private int r_score;		// 리뷰 평점(별 5개 만점)
 	private int r_pungga;		// 평가(1.맛있다, 2.괜찮다, 3.별로)
-	private String r_image; 	// 리뷰 이미지ㄴ
+	private String r_image; 	// 리뷰 이미지
 	private Date r_regdate; 	// 리뷰 작성일
-	private String member_id; 	// Member테이블의 member_id 
 	
-	private int avg_r_score ;   //식당 리부 전체 평균 
-	
-	
-	
-	
+	private float avg_r_score; //별점 평균
+
 	public int getShop_idx() {
 		return shop_idx;
 	}
@@ -129,12 +130,28 @@ public class Join_R_S {
 		this.shop_regDate = shop_regDate;
 	}
 
-	public String getFile_orgname() {
-		return file_orgname;
+	public String getMember_id() {
+		return member_id;
 	}
 
-	public void setFile_orgname(String file_orgname) {
-		this.file_orgname = file_orgname;
+	public void setMember_id(String member_id) {
+		this.member_id = member_id;
+	}
+
+	public String getMember_nicname() {
+		return member_nicname;
+	}
+
+	public void setMember_nicname(String member_nicname) {
+		this.member_nicname = member_nicname;
+	}
+
+	public String getMember_image() {
+		return member_image;
+	}
+
+	public void setMember_image(String member_image) {
+		this.member_image = member_image;
 	}
 
 	public String getFile_savname() {
@@ -201,23 +218,12 @@ public class Join_R_S {
 		this.r_regdate = r_regdate;
 	}
 
-	public String getMember_id() {
-		return member_id;
-	}
-
-	public void setMember_id(String member_id) {
-		this.member_id = member_id;
-	}
-
-	public int getAvg_r_score() {
+	public float getAvg_r_score() {
 		return avg_r_score;
 	}
 
-	public void setAvg_r_score(int avg_r_score) {
+	public void setAvg_r_score(float avg_r_score) {
 		this.avg_r_score = avg_r_score;
 	}
-
 	
-
-
 }

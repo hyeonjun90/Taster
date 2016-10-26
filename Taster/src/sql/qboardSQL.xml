@@ -1,143 +1,112 @@
 <?xml version="1.0" encoding="euc-kr"?>
 <!DOCTYPE sqlMap PUBLIC '-//ibatis.apache.org//DTD Sql Map 2.0//EN' 'http://ibatis.apache.org/dtd/sql-map-2.dtd'>
+
 <sqlMap>
-
-	<typeAlias alias="board" type="bean.QnABoardBean"/>
-	<typeAlias alias="comment" type="bean.CommentBean"/>
-	
-	<resultMap id="boardRes" class="board">
-		<result property ="b_idx" column="b_idx" />
-		<result property ="b_title" column="b_title" />
-		<result property ="b_content" column="b_content" />
-		<result property ="b_pwd" column="b_pwd" />
-		<result property ="b_regdate" column="b_regdate" />
-		<result property ="b_readCount" column="b_readCount" />
- 		<result property ="member_id" column="member_id" />
-	</resultMap>
-	
-	<resultMap id="commentRes" class="comment">
-	
-		<!-- bean.CommentBean과 매칭 -->
-		<result property="c_idx" column="c_idx" />
-		<result property="b_idx" column="b_idx" />
-		<result property="c_content" column="c_content" />
-		<result property="c_regdate" column="c_regdate" />
-	</resultMap>
-
-
-	
-	
+		
 	<!-- 공통으로 사용할 select 절 정의 -->
 	<sql id="qboard-select-all">
 		SELECT * FROM QNABOARD
 	</sql>
 	
+	
 	<sql id="qboard-select-com">
 		SELECT * FROM COMMENTBOARD
 	</sql>
+	 
 	
-	<!-- 공통으로 사용할 where-b_idx 절 정의 -->
-	<sql id="qboard-where-b_idx">
-		WHERE b_idx = #b_idx#
-	</sql>
-	
-	<!-- 요 주의 -->
-	<!-- where-c_idx 절 정의 -->
-	<sql id="qboard-where-c_idx">
-		WHERE c_idx = #c_idx#
-	</sql>	
 	
 	
 	<!--select 쿼리문 정의 -->
-	
 	<!--게시판 리스트 보기 정의 -->
-	<select id="qboard-selectAll" resultMap="boardRes" >
-		<include refid="qboard-select-all" />
-		 ORDER BY b_idx DESC
+	<select id="qboard-selectAll" resultClass="bean.QnABoardListBean" > 
+	SELECT B_IDX,B_TITLE,B_CONTENT,B_REGDATE,B_READCOUNT,MEMBER_NICNAME 
+	FROM QNABOARD Q inner join MEMBER M on Q.member_id=M.member_id
+	ORDER BY b_idx DESC
 	</select>
 	
-	<!-- 코멘트 관련 -->
-	<select id="qboard-commentSelectAll" resultMap="commentRes" parameterClass="int">
+	
+	
+	
+	<!-- 글 상세보기에서 코멘트 리스트 출력 -->
+	<select id="qboard-commentSelectAll" resultClass="bean.CommentBean" parameterClass="int">
 		SELECT * FROM COMMENTBOARD
 		 WHERE b_idx = #b_idx#
 		 ORDER BY c_idx DESC
 	</select>
 	
-	<!-- 글 수정시 id체크 처리하는데 사용되는 액션 정의  -->
-	<select id="qboard-selectMember_id" resultMap="boardRes">
-		<include refid="qboard-select-all" />
-		<include refid="qboard-where-b_idx" />
-		AND member_id = #member_id#
+	<!-- 글 상세보기 정의 -->
+	<select id="qboard-selectOne" resultClass="bean.QnABoardListBean">
+	select b_idx, b_title, b_content, b_regdate, b_readcount, m.member_id, member_nicname 
+	from QNABOARD q inner join MEMBER m on q.member_id = m.member_id
+	where q.b_idx=#q.b_idx#
 	</select>
-	
-	
 	
 	
 	
 	
 	<!-- insert 쿼리문 정의 -->
-	<insert id="qboard-insertBoard" parameterClass="board">
-		INSERT INTO QNABOARD(B_IDX, B_TITLE,MEMBER_ID,B_CONTENT, B_REGDATE,B_PWD)
+	<!-- 게시글 작성 관련 -->
+	<insert id="qboard-insertBoard" parameterClass="bean.QnABoardListBean">
+		INSERT INTO QNABOARD(B_IDX, B_TITLE, MEMBER_ID, B_CONTENT, B_REGDATE,B_PWD)
 		VALUES (QNABOARD_NO_SEQ.NEXTVAL, #b_title#, #member_id#,#b_content#, #b_regdate#,1)
 	</insert>
 	
-	
-	<!-- 글 상세보기 정의 -->
-	<select id="qboard-selectOne" resultMap="boardRes" parameterClass="int">
-		<include refid="qboard-select-all" />
-		<include refid="qboard-where-b_idx" />
-	</select>
-	
-	
 	<!-- 코멘트 달기 정의 -->
-	<insert id="qboard-insertComment" parameterClass="comment">
+	<insert id="qboard-insertComment" parameterClass="bean.CommentBean">
 		INSERT INTO COMMENTBOARD(C_IDX, B_IDX, C_CONTENT, C_REGDATE)
 		VALUES (COMMENTBOARD_NO_SEQ.NEXTVAL, #b_idx#, #c_content#, #c_regdate#)
 	</insert>
 	
 	
+	
+	
 	<!-- update 쿼리문 정의 -->
-	<update id="qboard-updateBoard" parameterClass="board">
+	<update id="qboard-updateBoard" parameterClass="bean.QnABoardListBean">
 	UPDATE QNABOARD SET B_TITLE = 	#b_title#, 
-					MEMBER_ID = #member_id#,
 					B_CONTENT = #b_content#
-	<include refid = "qboard-where-b_idx" />
+					<!--  MEMBER_ID = #member_id#-->
+	WHERE b_idx = #b_idx#
 	</update>
 	
 	
 	<!-- 조회수 업데이트 정의 -->
-	<update id="qboard-updateB_readCount" parameterClass="board">
-		UPDATE QNABOARD SET B_READCOUNT = b_readCount + 1
-		
-		<include refid="qboard-where-b_idx" />
+	<update id="qboard-updateB_readCount" parameterClass="bean.QnABoardListBean">
+	UPDATE QNABOARD SET B_READCOUNT = b_readCount + 1
+	WHERE b_idx = #b_idx#
 	</update>
 	
 	
+	
+	
 	<!-- delete 쿼리문 정의 -->
-	<delete id="qboard-deleteBoard" parameterClass="board">
+	<delete id="qboard-deleteBoard" parameterClass="bean.QnABoardListBean">
 		DELETE FROM QNABOARD
-		<include refid="qboard-where-b_idx" />
+	WHERE b_idx = #b_idx#
 	</delete>
 	
 	<!-- 코멘트 삭제 -->
-	<delete id="qboard-deleteComment" parameterClass="comment">
+	<delete id="qboard-deleteComment" parameterClass="bean.CommentBean">
 		DELETE FROM COMMENTBOARD
-		<include refid="qboard-where-c_idx" />
+	WHERE c_idx = #c_idx#
 	</delete>
 	
-	<!-- 검색 W=글쓴이,T=글제목.C=글내용 -->
-	<select id="qboard-selectSearchW" resultMap="boardRes" parameterClass="string">
-		<include refid="qboard-select-all" />
-		 WHERE member_id like #searchKeyword#
+	
+	<!-- 검색 N=닉네임,T=글제목,C=글내용 -->
+	 <select id="qboard-selectSearchN" resultClass="bean.QnABoardListBean" parameterClass="string">
+		SELECT B_IDX,B_TITLE,B_CONTENT,B_REGDATE,B_READCOUNT,MEMBER_NICNAME 
+		FROM QNABOARD Q inner join MEMBER M on Q.member_id=M.member_id
+		 WHERE member_nicname like #searchKeyword#
 		 ORDER BY b_idx DESC
 	</select>
-	<select id="qboard-selectSearchT" resultMap="boardRes" parameterClass="string">
-		<include refid="qboard-select-all" />
+	<select id="qboard-selectSearchT" resultClass="bean.QnABoardListBean" parameterClass="string">
+		SELECT B_IDX,B_TITLE,B_CONTENT,B_REGDATE,B_READCOUNT,MEMBER_NICNAME 
+		FROM QNABOARD Q inner join MEMBER M on Q.member_id=M.member_id
 		 WHERE b_title like #searchKeyword#
 		 ORDER BY b_idx DESC
 	</select>
-	<select id="qboard-selectSearchC" resultMap="boardRes" parameterClass="string">
-		<include refid="qboard-select-all" />
+	<select id="qboard-selectSearchC" resultClass="bean.QnABoardListBean" parameterClass="string">
+		SELECT B_IDX,B_TITLE,B_CONTENT,B_REGDATE,B_READCOUNT,MEMBER_NICNAME 
+		FROM QNABOARD Q inner join MEMBER M on Q.member_id=M.member_id
 		 WHERE b_content like #searchKeyword#
 		 ORDER BY b_idx DESC
 	</select>

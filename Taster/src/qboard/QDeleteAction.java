@@ -3,7 +3,8 @@ package qboard;
 import com.opensymphony.xwork2.ActionSupport;
 
 import bean.CommentBean;
-import bean.QnABoardBean;
+//import bean.QnABoardBean;
+import bean.QnABoardListBean;
 
 import com.ibatis.common.resources.Resources;
 import com.ibatis.sqlmap.client.SqlMapClient;
@@ -19,8 +20,8 @@ public class QDeleteAction extends ActionSupport{
 	public static Reader reader;
 	public static SqlMapClient sqlMapper;
 	
-	private QnABoardBean paramClass;
-	private QnABoardBean resultClass;
+	private QnABoardListBean paramClass;
+	private QnABoardListBean resultClass;
 	
 	private CommentBean cClass = new CommentBean();
 	private CommentBean cResult = new CommentBean();
@@ -41,10 +42,10 @@ public class QDeleteAction extends ActionSupport{
 	
 
 	public String execute() throws Exception {
-		paramClass = new QnABoardBean();
-		resultClass = new QnABoardBean();
+		paramClass = new QnABoardListBean();
+		resultClass = new QnABoardListBean();
 		
-		resultClass = (QnABoardBean) sqlMapper.queryForObject("qboard-selectOne", getB_idx());
+		resultClass = (QnABoardListBean) sqlMapper.queryForObject("qboard-selectOne", getB_idx());
 		
 		//File deleteFile = new File(fileUploadPath + resultClass.getFile_savname());
 		//deleteFile.delete();
@@ -76,19 +77,19 @@ public class QDeleteAction extends ActionSupport{
 		return SUCCESS;
 	}
 
-	public QnABoardBean getParamClass() {
+	public QnABoardListBean getParamClass() {
 		return paramClass;
 	}
 
-	public void setParamClass(QnABoardBean paramClass) {
+	public void setParamClass(QnABoardListBean paramClass) {
 		this.paramClass = paramClass;
 	}
 
-	public QnABoardBean getResultClass() {
+	public QnABoardListBean getResultClass() {
 		return resultClass;
 	}
 
-	public void setResultClass(QnABoardBean resultClass) {
+	public void setResultClass(QnABoardListBean resultClass) {
 		this.resultClass = resultClass;
 	}
 
