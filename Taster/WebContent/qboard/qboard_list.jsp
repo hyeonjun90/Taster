@@ -12,19 +12,19 @@
 </head>
 
 <body>
-	<table width="600" border="0" cellspacing="0" cellpadding="2">
+	<table width="100%" border="0" cellspacing="0" cellpadding="2">
 		<tr>
 			<td align="center"><h2>문의 게시판</h2></td>
 		</tr>
 	</table>
 	
-	<table width="600" border="0" cellspacing="0" cellpadding="2">
+	<table width="100%" border="0" cellspacing="0" cellpadding="2">
 		<tr align="center" bgcolor="#f3f3f3">
-			<td width="30"><strong>번호</strong></td>
-			<td width="300"><strong>제목</strong></td>
-			<td width="70"><strong>닉네임</strong></td>
-			<td width="50"><strong>날짜</strong></td>
-			<td width="30"><strong>조회</strong></td>
+			<td width="30" align="center"><strong>번호</strong></td>
+			<td width="300" align="center"><strong>제목</strong></td>
+			<td width="70" align="center"><strong>닉네임</strong></td>
+			<td width="50" align="center"><strong>날짜</strong></td>
+			<td width="30" align="center"><strong>조회</strong></td>
 		</tr>
 
 		<tr bgcolor="#777777">
@@ -43,7 +43,7 @@
 	
 		<tr>
 			<!-- 글 번호 -->
-			<td><s:property value="b_idx" /></td>
+			<td align="center" bgcolor= "#f3f3f3"><s:property value="b_idx" /></td>
 				<td align="center">
 				<!--				  
 				<s:if test="re_level != 0">
@@ -55,9 +55,9 @@
 			<!-- 글 제목 -->
  				<s:a href="%{viewURL}"><s:property value="b_title" /></s:a>
  			</td>
-			<td><s:property value="member_nicname" /></td>
-			<td><s:property value="b_regdate" /></td>
-			<td><s:property value="b_readCount" /></td>
+			<td align="center"><s:property value="member_nicname" /></td>
+			<td align="center"><s:property value="b_regdate" /></td>
+			<td align="center"><s:property value="b_readCount" /></td>
 		</tr>
 
 		<tr bgcolor="#777777">
@@ -90,9 +90,9 @@
 		<td colspan="5">
 			<form>
 				<select name="searchNum" >
-					<option value="0">닉네임</option>
-					<option value="1">제목</option>
-					<option value="2">내용</option>
+					<option value="1">닉네임</option>
+					<option value="2">제목</option>
+					<option value="3">내용</option>
 				</select>
 				<s:textfield name="searchKeyword" theme="simple" value="" cssStyle="width:120px" maxlength="20" />
 				<input name="submit" type="submit" value="검색" class="inputb">
