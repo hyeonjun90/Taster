@@ -73,7 +73,7 @@ public class MemberJoinAction extends ActionSupport {
 	}
 
 	public String idCheck() throws Exception { // 아이디 중복체크
-		chk = (int) sqlMapper.queryForObject("idCheck", getMember_id());
+		chk = (int) sqlMapper.queryForObject("memberIdCheck", getMember_id());
 		return SUCCESS;
 	}
 	public String nicCheck() throws Exception { // 닉네임 중복체크

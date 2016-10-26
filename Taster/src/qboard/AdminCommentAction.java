@@ -52,13 +52,14 @@ public class AdminCommentAction extends ActionSupport{
 		paramClass.setB_idx(getB_idx());
 
 		paramClass.setC_idx(getC_idx());
-		System.out.print(getC_content()); 
+ 
 		paramClass.setC_content(getC_content());
 		paramClass.setC_regdate(today.getTime());
 		
-		sqlMapper.insert("qboard-insertComment", paramClass);
 		
-		System.out.println(getC_idx());
+		//内膏飘 累己 孽府巩 荐青
+		sqlMapper.insert("qboard-insertComment", paramClass);
+
 		return SUCCESS;
 	}
 

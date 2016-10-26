@@ -5,6 +5,7 @@ public class BookMarkBean { // 즐겨찾기
 	private String member_id;	//MEMBER테이블의 member_id
 	private int shop_idx;		//SHOP테이블의 shop_idx
 	
+	
 	public int getBookmark_idx() {
 		return bookmark_idx; 
 	}

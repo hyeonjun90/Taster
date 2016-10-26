@@ -2,18 +2,6 @@
 <!DOCTYPE sqlMap PUBLIC '-//ibatis.apache.org//DTD Sql Map 2.0//EN' 'http://ibatis.apache.org/dtd/sql-map-2.dtd'>
 
 <sqlMap>
-		
-	<!-- 공통으로 사용할 select 절 정의 -->
-	<sql id="qboard-select-all">
-		SELECT * FROM QNABOARD
-	</sql>
-	
-	
-	<sql id="qboard-select-com">
-		SELECT * FROM COMMENTBOARD
-	</sql>
-	 
-	
 	
 	
 	<!--select 쿼리문 정의 -->
@@ -46,6 +34,7 @@
 	
 	<!-- insert 쿼리문 정의 -->
 	<!-- 게시글 작성 관련 -->
+	<!-- 게시판 글 작성시 사용되는 비밀번호는 자동으로 무조건 1로 넣어짐 , 글비밀번호 활용할 생각 없음. ID체크로만 할 것임. 사유: 초창기 설계착오 -->
 	<insert id="qboard-insertBoard" parameterClass="bean.QnABoardListBean">
 		INSERT INTO QNABOARD(B_IDX, B_TITLE, MEMBER_ID, B_CONTENT, B_REGDATE,B_PWD)
 		VALUES (QNABOARD_NO_SEQ.NEXTVAL, #b_title#, #member_id#,#b_content#, #b_regdate#,1)

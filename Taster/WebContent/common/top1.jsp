@@ -27,6 +27,7 @@ function logout() {
     </s:if>
     
     <s:if test="#session.member_id == null">
+    <div class="btn_category" onclick="location.href='qboardList.action'">1:1문의</div>
     <div class="btn_category" onclick="location.href='memberJoin.action'" >회원가입</div>
     <div class="btn_category"  onclick="">
     	<a href="#layer" class="layer_trigger">로그인</a>
@@ -55,7 +56,7 @@ function logout() {
 <table style="width:100%;" class="top_table">
 	<tr>
 		<td onclick="location.href='foodsMenuList.action'" <c:if test="${category=='menu'}">style="background-color:orange;"</c:if>>업종별 맛집</td>
-		<td onclick="location.href='foodsAreaList.action'">지역별 맛집</td>
+		<td onclick="location.href='foodsAreaList.action'" <c:if test="${category=='area'}">style="background-color:orange;"</c:if>>지역별 맛집</td>
 		<td onclick="location.href='foodsHotList.action'">뜨는 맛집</td>
 		<td onclick="location.href='foodsNewList.action'">신규 맛집</td>
 		<td onclick="location.href='foodsRecommendList.action'">추천 맛집</td>
