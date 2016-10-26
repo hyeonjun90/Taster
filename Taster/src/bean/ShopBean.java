@@ -17,6 +17,8 @@ public class ShopBean { //¸ÀÁý bean
 	private Date shop_regDate; //
 	private String file_orgname;
 	private String file_savname;
+	
+	
 
 	
 	public int getShop_idx() {

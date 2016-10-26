@@ -65,7 +65,8 @@
 		
 		<tr>
 			<td bgcolor="#F4F4F4"> аж╪р </td>
-			<td bgcolor="#FFFFFF"> &nbsp; &nbsp; <s:property value="resultClass.shop_addr1"/></td>
+			<td bgcolor="#FFFFFF"> &nbsp; &nbsp; <s:property value="resultClass.shop_addr1 + '  ' + resultClass.shop_addr2 + '  ' + resultClass.shop_addr3 + resultClass.shop_addr4"/></td>
+			
 		</tr>
 		
 		<tr bgcolor="#777777">
