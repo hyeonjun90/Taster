@@ -1,48 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE sqlMap PUBLIC '-//ibatis.apache.org//DTD Sql Map 2.0//EN' 'http://ibatis.apache.org/dtd/sql-map-2.dtd'>
+
 <sqlMap>
 
-	<typeAlias alias="admin_shop" type="bean.ShopBean"/> <!-- 관리자 삽 관리 -->
-	<typeAlias alias="AprReq" type="bean.RequestListBean"/> <!-- 신규등록 승인 요청 리스트 -->
+   <typeAlias alias="admin_shop" type="bean.ShopBean"/> <!-- 관리자 삽 관리 -->
+   <typeAlias alias="AprReq" type="bean.RequestListBean"/> <!-- 신규등록 승인 요청 리스트 -->
 
 	
 		<resultMap id="AshopRes" class="admin_shop"><!-- 관리자 삽 관리 -->
-			<result property="shop_idx" column="shop_idx"/>
-			<result property="shop_name" column="shop_name"/>
-			<result property="shop_tel" column="shop_tel"/>
-			<result property="shop_kind" column="shop_kind"/>
-			<result property="shop_addr1" column="shop_addr1"/>
-			<result property="shop_addr2" column="shop_addr2"/>
-			<result property="shop_addr3" column="shop_addr3"/>
-			<result property="shop_addr4" column="shop_addr4"/>
-			<result property="shop_price" column="shop_price"/>
-			<result property="shop_holiday" column="shop_holiday"/>	
-			<result property="shop_readCount" column="shop_readCount"/>
-			<result property="shop_regDate" column="shop_regDate"/>
-			<result property="file_orgname" column="file_orgname"/>	
-			<result property="file_savname" column="file_savname"/>	
-			
-		</resultMap>
-		
-		<resultMap id="AprReqRes" class="AprReq">   <!-- 신규등록 승인 요청 리스트 -->
-			<result property="r_idx" column="r_idx"/>
-			<result property="r_regdate" column="r_regdate"/>
-			<result property="r_id" column="r_id"/>
-			<result property="r_nicname" column="r_nicname"/>
-			<result property="r_shop_name" column="r_shop_name"/>
-			<result property="r_shop_tel" column="r_shop_tel"/>
-			<result property="r_shop_kind" column="r_shop_kind"/>
-			<result property="r_shop_addr1" column="r_shop_addr1"/>
-			<result property="r_shop_addr2" column="r_shop_addr2"/>
-			<result property="r_shop_addr3" column="r_shop_addr3"/>
-			<result property="r_shop_addr4" column="r_shop_addr4"/>
-			<result property="r_shop_price" column="r_shop_price"/>
-			<result property="r_shop_holiday" column="r_shop_holiday"/>	
-			<result property="r_shop_content" column="r_shop_content"/>	
-			<result property="r_shop_file_orgname" column="r_shop_file_orgname"/>	
-			<result property="r_shop_file_savname" column="r_shop_file_savname"/>	
-			
-		</resultMap>
+         <result property="shop_idx" column="shop_idx"/>
+         <result property="shop_name" column="shop_name"/>
+         <result property="shop_tel" column="shop_tel"/>
+         <result property="shop_kind" column="shop_kind"/>
+         <result property="shop_addr1" column="shop_addr1"/>
+         <result property="shop_addr2" column="shop_addr2"/>
+         <result property="shop_addr3" column="shop_addr3"/>
+         <result property="shop_addr4" column="shop_addr4"/>
+         <result property="shop_price" column="shop_price"/>
+         <result property="shop_holiday" column="shop_holiday"/>   
+         <result property="shop_readCount" column="shop_readCount"/>
+         <result property="shop_regDate" column="shop_regDate"/>
+         <result property="file_orgname" column="file_orgname"/>   
+         <result property="file_savname" column="file_savname"/>   
+         
+      </resultMap>
+      
+      <resultMap id="AprReqRes" class="AprReq">   <!-- 신규등록 승인 요청 리스트 -->
+         <result property="r_idx" column="r_idx"/>
+         <result property="r_regdate" column="r_regdate"/>
+         <result property="r_id" column="r_id"/>
+         <result property="r_nicname" column="r_nicname"/>
+         <result property="r_shop_name" column="r_shop_name"/>
+         <result property="r_shop_tel" column="r_shop_tel"/>
+         <result property="r_shop_kind" column="r_shop_kind"/>
+         <result property="r_shop_addr1" column="r_shop_addr1"/>
+         <result property="r_shop_addr2" column="r_shop_addr2"/>
+         <result property="r_shop_addr3" column="r_shop_addr3"/>
+         <result property="r_shop_addr4" column="r_shop_addr4"/>
+         <result property="r_shop_price" column="r_shop_price"/>
+         <result property="r_shop_holiday" column="r_shop_holiday"/>   
+         <result property="r_shop_content" column="r_shop_content"/>   
+         <result property="r_shop_file_orgname" column="r_shop_file_orgname"/>   
+         <result property="r_shop_file_savname" column="r_shop_file_savname"/>   
+         
+      </resultMap>
+
 		
 		
 		
@@ -93,10 +95,23 @@
 			select max(shop_idx) from shop
 		</select>
 		
+		
+		<!-- delete 샵 삭제 정의 -->
+		<delete id="Shop-deleteIdx" parameterClass="admin_shop">
+		DELETE FROM SHOP
+		<include refid="Shop-where-Sidx"/>
+		</delete>
+		
+		<!--  성준이가 한거
 		<delete id="Shop-deleteIdx" parameterClass="int">
 		DELETE FROM SHOP
 		<include refid="Shop-where-Sidx"/>
 		</delete>
+		-->
+
+		
+		
+		
 		<!--  
 		<select id="selectOne" parameterClass="int" resultMap="boardRes">
 		 SELECT * FROM SBOARD WHERE no = #no# 

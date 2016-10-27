@@ -51,7 +51,9 @@ private String r_shop_addr2;
 private String r_shop_addr3;
 
 
-private String fileUploadPath="C:\\git2\\Taster2\\Taster\\Taster\\WebContent\\images\\shop\\";
+
+private String fileUploadPath="C:\\Users\\jinwo\\git\\Taster\\Taster\\WebContent\\images\\shop\\";
+//C:\\git2\\Taster2\\Taster\\Taster\\WebContent\\images\\shop\\
 
 
 public AdminShopAddAction() throws IOException {
