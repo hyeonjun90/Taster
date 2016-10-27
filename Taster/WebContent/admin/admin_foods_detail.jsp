@@ -102,5 +102,8 @@
 		</tr>
  	</table>
 <input name="list" align="right" type="button" value="목록보기" class="inputb" onClick="javascript:location.href='AshoplistAction.action?currentPage=<s:property value="currentPage" />'">
+<input name="execute" type="button" value="삭제하기" class="inputb"onClick='execute()'>
+
+
 </body>
 </html>

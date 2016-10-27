@@ -31,7 +31,7 @@ public AdminShopDeleteAction() throws IOException {
 		sqlMapper = SqlMapClientBuilder.buildSqlMapClient(reader); // sqlMapConfig.xml의 내용을 적용한 sqlMapper 객체 생성.
 		reader.close();
 	}
-//게시글 글 삭제
+    //게시글 글 삭제
 	public String execute() throws Exception {
 		
 		//파라미터와 리절트 객체 생성.
@@ -39,8 +39,6 @@ public AdminShopDeleteAction() throws IOException {
 		resultClass = new ShopBean();
 		
 		// 해당 번호의 글을 가져온다.
-		resultClass = (ShopBean) sqlMapper.queryForObject("Shop-selectOne", getShop_idx());
-
 		//서버 파일 삭제
 		File deleteFile = new File(fileUploadPath + resultClass.getFile_savname());
 		deleteFile.delete();
