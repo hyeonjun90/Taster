@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="EUC-KR"?>
 <!DOCTYPE sqlMap PUBLIC '-//ibatis.apache.org//DTD Sql Map 2.0//EN' 'http://ibatis.apache.org/dtd/sql-map-2.dtd'>
-<sqlMap>
-	<!--신규 식당  등록에서 사용할 현재시간에서 한달까지의 전채검색-->
+<sqlMap> 
 	<sql id= "newShop-select-all">
 	 	select * from shop s1 inner join review r1 on r1.shop_idx = s1.shop_idx
         where <![CDATA[shop_regDate > add_months(sysdate, -1)]]> order by shop_idx desc                         
@@ -55,7 +54,6 @@
 		where <![CDATA[rnum>#beforeSize#]]>
 	</select>
 
-	
 	<select id="foodsMenuListCount" resultClass="Integer">
 		select count(*) from shop 
 	</select>
@@ -64,7 +62,6 @@
 	</select>
 	
 	
-	<!-- 지역별 맛집 검색 -->
 	<select id="searchArea" parameterClass="String" resultClass="String">
 		select distinct(gugun) from zipcode where sido=#sido# order by gugun asc
 	</select>
@@ -123,8 +120,6 @@
 		where <![CDATA[rnum>#beforeSize#]]>
 	</select>
 
-	<!-- 지역별 맛집 검색 끝 -->
-	<!-- 식당 전체 평균 조인  -->
 	<select id="newShop-selectAll"  resultClass="bean.FoodsNewListBean" remapResults="true">
 		select * from ( 
 		 	select shop_idx, shop_name, shop_addr1, shop_addr2, shop_addr3, shop_addr4, file_savname, rownum rnum,
@@ -147,9 +142,9 @@
 			where <![CDATA[rownum<=#pageSize#]]>)
 		where <![CDATA[rnum>#beforeSize#]]>
 	</select>
+
 	
-	
-	<select id="hopShop-list-selectAll" resultClass="bean.FoodsHotListBean">
+	<select id="hotShop-list-selectAll" resultClass="bean.FoodsHotListBean">
 		select * from ( 
 		 	select shop_idx, shop_name, shop_addr1, shop_addr2, shop_addr3, shop_addr4, file_savname, rownum rnum,
     					r_content, member_nicname, member_image, avg_r_score 
@@ -172,55 +167,109 @@
 		where <![CDATA[rnum>#beforeSize#]]>
 	</select>
 
-
-	<!-- 식당 상세페이지 쿼리문 -->
-	<!--  -->
 	<select id="foodsDetail" parameterClass="int" resultClass="bean.FoodsDetailBean">
 		SELECT shop_idx, shop_name, shop_tel, shop_kind, shop_addr1, shop_addr2, shop_addr3, shop_addr4, shop_price, shop_holiday, shop_readCount, shop_regDate, file_savname
 		FROM SHOP WHERE shop_idx = #shop_idx#
 	</select>
+	<select id="getReviewSeq" resultClass="int">
+		SELECT review_no_seq.NEXTVAL FROM DUAL
+	</select>
+	
+	<insert id="insertReview" parameterClass="bean.ReviewBean">
+		insert into REVIEW (review_idx, r_title, r_content, r_score, r_pungga, r_image, r_regdate, member_id, shop_idx)
+		VALUES (review_no_seq.NEXTVAL, #r_title#, #r_content#, #r_score#, #r_pungga#, #r_image#, #r_regdate#, #member_id#, #shop_idx#)
+	</insert>
 	
 	
-	<!-- 코멘트 리스트 -->
 	<select id="reviewList" parameterClass="int" resultClass="bean.FoodsDetailBean">
 		SELECT  review_idx, r_title, r_content, r_pungga, r_image, r_regdate, member_nicname, member_image
 							 FROM review r left join member m on r.member_id=m.member_id
 							 where r.shop_idx=#shop_idx#
 							 ORDER BY r.review_idx desc 
-
-		
-		<!-- SELECT * FROM (
-					SELECT review_idx, r_title, r_content, r_pungga, r_image, r_regdate, rownum rnum, 
-							member_nicname, member_image 
-					FROM (SELECT  review_idx, r_title, r_content, r_pungga, r_image, r_regdate, 
-							(SELECT member_nicname FROM 
-							  		(SELECT member_nicname FROM member WHERE member.member_id=r.member_id)  
-							   where <![CDATA[rownum<2]]>) AS member_nicname,
-							 (SELECT member_image FROM 
-							 		(SELECT  member_image FROM member WHERE member.member_id=r.member_id)
-							 WHERE <![CDATA[rownum<2]]>) AS member_image
-							 FROM review r ORDER BY review_idx desc) 
-					WHERE <![CDATA[rownum<=#pageSize#]]>)
-		WHERE <![CDATA[rnum>#beforeSize#]]> -->
 	</select>
 	
 	
-	<!-- 즐겨찾기 있는지 여부 체크 -->
+	
 	<select id="checkBookMark" parameterClass="HashMap" resultClass="Integer">
 		select count(*) from bookmark where shop_idx=#shop_idx# and member_id=#member_id#
 	</select>
-	<!-- 즐겨찾기 추가 -->
+	
 	<insert id="insertBookMark" parameterClass="HashMap">
 		insert into bookmark(bookmark_idx, member_id, shop_idx) values(bookmark_no_seq.nextVal, #member_id#, #shop_idx#)
 	</insert>
-	<!-- 즐겨찾기 제거 -->
+	
 	<delete id="deleteBookMark" parameterClass="HashMap">
 		delete from bookmark where shop_idx=#shop_idx# and member_id=#member_id#
 	</delete>
-	<!-- 로그인 한 회원 즐겨찾기 리스트 가져오기 -->
+	
 	<select id="bookList" parameterClass="String" resultClass="Integer">
 		select shop_idx from bookmark where member_id=#member_id#
 	</select>
+	
+	<!-- 상단검색 -->
+	<select id="foodsTopAreaSearchCount" parameterClass="String" resultClass="Integer">
+		select count(*) from shop where shop_addr1 like #keyword# or shop_addr2 like #keyword# or
+			shop_addr3 like #keyword# or shop_addr4 like #keyword#
+	</select>
+	
+	<select id="foodsTopNameSearchCount" parameterClass="String" resultClass="Integer">
+		select count(*) from shop where shop_name like #keyword# 
+	</select>
+	
+	<select id="foodsTopAreaSearch" parameterClass="HashMap" resultClass="bean.FoodsMenuListBean">
+		select * from ( 
+		 	select shop_idx, shop_name, shop_addr1, shop_addr2, shop_addr3, shop_addr4, file_savname, rownum rnum,
+    					r_content, member_nicname, member_image, avg_r_score,  shop_kind 
+    		from (
+			 		  select shop_idx, shop_name, shop_addr1, shop_addr2, shop_addr3, shop_addr4, file_savname,  shop_kind,
+						  nvl((select r_content from (select r_content from review r1 where s.shop_idx=r1.shop_idx)
+						  	 where <![CDATA[rownum<2]]>),'등록된 리뷰가 없습니다.') as r_content,
+						  nvl((select member_nicname from 
+							  (select  member_nicname from member m1 inner join review r1 on r1.member_id=m1.member_id
+							    where m1.member_id=r1.member_id and r1.shop_idx=s.shop_idx)
+						   where <![CDATA[rownum<2]]>), ' ') as member_nicname,
+						  nvl((select member_image from 
+							  (select  member_image from member m1 inner join review r1 on r1.member_id=m1.member_id
+							    where m1.member_id=r1.member_id and r1.shop_idx=s.shop_idx)
+						   where <![CDATA[rownum<2]]>), 'basic_profile.png') as member_image, 
+						  nvl((select ROUND(AVG(r1.r_score),1) from shop s1 
+						  				inner join review r1 on r1.shop_idx = s1.shop_idx 
+						  				where r1.SHOP_IDX=s.SHOP_IDX), 0) as avg_r_score
+					    from shop s where 
+					    	s.shop_addr1 like #keyword# or s.shop_addr2 like #keyword# or  
+					    	 s.shop_addr3 like #keyword# or s.shop_addr4 like #keyword#
+					    	order by avg_r_score desc, shop_idx desc) 
+			where <![CDATA[rownum<=#pageSize#]]>) shop
+		where <![CDATA[rnum>#beforeSize#]]>
+	</select>
+	
+	<select id="foodsTopNameSearch" parameterClass="HashMap" resultClass="bean.FoodsMenuListBean">
+		select * from ( 
+		 	select shop_idx, shop_name, shop_addr1, shop_addr2, shop_addr3, shop_addr4, file_savname, rownum rnum,
+    					r_content, member_nicname, member_image, avg_r_score,  shop_kind 
+    		from (
+			 		  select shop_idx, shop_name, shop_addr1, shop_addr2, shop_addr3, shop_addr4, file_savname,  shop_kind,
+						  nvl((select r_content from (select r_content from review r1 where s.shop_idx=r1.shop_idx)
+						  	 where <![CDATA[rownum<2]]>),'등록된 리뷰가 없습니다.') as r_content,
+						  nvl((select member_nicname from 
+							  (select  member_nicname from member m1 inner join review r1 on r1.member_id=m1.member_id
+							    where m1.member_id=r1.member_id and r1.shop_idx=s.shop_idx)
+						   where <![CDATA[rownum<2]]>), ' ') as member_nicname,
+						  nvl((select member_image from 
+							  (select  member_image from member m1 inner join review r1 on r1.member_id=m1.member_id
+							    where m1.member_id=r1.member_id and r1.shop_idx=s.shop_idx)
+						   where <![CDATA[rownum<2]]>), 'basic_profile.png') as member_image, 
+						  nvl((select ROUND(AVG(r1.r_score),1) from shop s1 
+						  				inner join review r1 on r1.shop_idx = s1.shop_idx 
+						  				where r1.SHOP_IDX=s.SHOP_IDX), 0) as avg_r_score
+					    from shop s where 
+					    	 s.shop_name like #keyword# 
+					    	order by avg_r_score desc, shop_idx desc) 
+			where <![CDATA[rownum<=#pageSize#]]>) shop
+		where <![CDATA[rnum>#beforeSize#]]>
+	</select>
+	<!-- 상단 검색 끝-->
+	
 </sqlMap>
 
 

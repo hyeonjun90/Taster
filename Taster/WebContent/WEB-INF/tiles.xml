@@ -13,6 +13,12 @@
 	<put-attribute name="bottom" value="/common/bottom.jsp"/>
 	</definition>
 	
+	<definition name="top_search" template="/common/layout.jsp">
+	<put-attribute name="top" value="/common/top1.jsp"/>
+	<put-attribute name="body" value="/foods/foods_search_list.jsp"/>
+	<put-attribute name="bottom" value="/common/bottom.jsp"/>
+	</definition>
+	
 	<definition name="foods_menu" template="/common/layout.jsp">
 	<put-attribute name="top" value="/common/top1.jsp"/>
 	<put-attribute name="body" value="/foods/foods_menu_list.jsp"/>

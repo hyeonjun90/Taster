@@ -94,13 +94,18 @@
          select max(shop_idx) from shop
       </select>
       
+
          <delete id="Shop-deleteIdx" parameterClass="admin_shop">
       DELETE FROM SHOP
       <include refid="Shop-where-Sidx"/> 
       </delete>
    
-      
-      
+
+   
+      <select id="Shop-select-filesavName" resultClass="String" parameterClass="HashMap">
+      	select file_savname from shop where shop_idx = #shop_idx#
+      </select>
+
       <!--  
       <update id="Shop_update_file_savname" parameterClass="HashMap">
          update shop set file_savname = #file_savname# where shop_idx = #shop_idx# 
@@ -122,6 +127,12 @@
        </select>
       -->
       
+
+      <update id="Shop_update_file_savname" parameterClass="HashMap">
+         update shop set file_savname = #file_savname# where shop_idx = #shop_idx# 
+      </update>
+     
+
       <!-- insert 쿼리문 정의 -->
       <insert id="Shop-insertAshop" parameterClass="admin_shop">
       INSERT INTO SHOP(shop_idx, shop_name, shop_tel, shop_kind, shop_addr1, shop_addr2, shop_addr3, shop_addr4, shop_price, shop_holiday, shop_readCount, shop_regDate)
@@ -185,10 +196,12 @@
       <delete id="AprReq-DeleteReqList" parameterClass="AprReq">
          DELETE FROM REQUEST_LIST
       <include refid="AprReq-where-Ridx"/>
+
       </delete>
       
       
       
+
 
 
 </sqlMap>

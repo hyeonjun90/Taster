@@ -44,7 +44,7 @@
 		
 		<tr>
 			<Td bgcolor="#F4F4F4"> 번호</Td>
-			<td bgcolor="#FFFFFF">&nbsp; &nbsp; <s:property value="resultClass.r_idx"/></td>
+			<td bgcolor="#FFFFFF">&nbsp; &nbsp; <s:property value="paramClass.r_idx"/></td>
 		</tr>
 		
 		<tr bgcolor="#777777">
@@ -53,7 +53,7 @@
 		
 		<tr>
 			<Td bgcolor="#F4F4F4"> 작성일</Td>   
-			<td bgcolor="#FFFFFF">&nbsp; &nbsp; <s:property value="resultClass.r_regdate"/></td>
+			<td bgcolor="#FFFFFF">&nbsp; &nbsp; <s:property value="paramClass.r_regdate"/></td>
 		</tr>
 		
 		<tr bgcolor="#777777">
@@ -62,7 +62,7 @@
 		
 		<tr>
 			<Td bgcolor="#F4F4F4"> ID</Td>
-			<td bgcolor="#FFFFFF">&nbsp; &nbsp; <s:property value="resultClass.r_id"/></td>
+			<td bgcolor="#FFFFFF">&nbsp; &nbsp; <s:property value="paramClass.r_id"/></td>
 		</tr>
 		
 		<tr bgcolor="#777777">
@@ -71,7 +71,7 @@
 		
 		<tr>
 			<Td bgcolor="#F4F4F4"> 닉네임</Td>
-			<td bgcolor="#FFFFFF">&nbsp; &nbsp; <s:property value="resultClass.r_nicname"/></td>
+			<td bgcolor="#FFFFFF">&nbsp; &nbsp; <s:property value="paramClass.r_nicname"/></td>
 		</tr>
 		
 		<tr bgcolor="#777777">
@@ -80,7 +80,7 @@
 		
 		<tr>
 			<td bgcolor="#F4F4F4"> 가게이름</td>
-			<td bgcolor="#FFFFFF"> &nbsp; &nbsp; <s:property value="resultClass.r_shop_name"/></td>
+			<td bgcolor="#FFFFFF"> &nbsp; &nbsp; <s:property value="paramClass.r_shop_name"/></td>
 		</tr>
 		
 		<tr bgcolor="#777777">
@@ -93,7 +93,7 @@
 		
 		<tr>
 			<td bgcolor="#F4F4F4"> 전화번호 </td>
-			<td bgcolor="#FFFFFF"> &nbsp; &nbsp; <s:property value="resultClass.r_shop_tel"/></td>
+			<td bgcolor="#FFFFFF"> &nbsp; &nbsp; <s:property value="paramClass.r_shop_tel"/></td>
 		</tr>
 		
 		<tr bgcolor="#777777">
@@ -102,7 +102,7 @@
 		
 		<tr>
 			<td bgcolor="#F4F4F4"> 업종</td>
-			<td bgcolor="#FFFFFF">&nbsp; &nbsp;<s:property value="resultClass.r_shop_kind"/></td>
+			<td bgcolor="#FFFFFF">&nbsp; &nbsp;<s:property value="paramClass.r_shop_kind"/></td>
 		</tr>
 		
 		<tr bgcolor="#777777">
@@ -111,7 +111,7 @@
 		
 		<tr>
 			<td width="100" bgcolor="#F4F4F4"> 주소</td>
-			<td width="500" bgcolor="#FFFFFF">&nbsp; &nbsp; <s:property value='"resultClass.r_shop_addr1 "+"resultClass.r_shop_addr2 "+"resultClass.r_shop_addr3 "+"resultClass.r_shop_addr4 "'/></td>
+			<td width="500" bgcolor="#FFFFFF">&nbsp; &nbsp; <s:property value="paramClass.r_shop_addr1 + ' ' + paramClass.r_shop_addr2 + ' ' + paramClass.r_shop_addr3 + ' ' + paramClass.r_shop_addr4 "/></td>
 		</tr>
 		
 		<tr bgcolor="#777777">
@@ -120,7 +120,7 @@
 		
 		<tr>
 			<td bgcolor="#F4F4F4"> 가격대</td>
-			<td bgcolor="#FFFFFF"> &nbsp; &nbsp; <s:property value="resultClass.r_shop_price"/></td>
+			<td bgcolor="#FFFFFF"> &nbsp; &nbsp; <s:property value="paramClass.r_shop_price"/></td>
 		</tr>
 	
 		<tr bgcolor="#777777">
@@ -129,7 +129,7 @@
 		
 		<tr>
 			<td bgcolor="#F4F4F4"> 휴일</td>
-			<td bgcolor="#FFFFFF"> &nbsp; &nbsp; <s:property value="resultClass.r_shop_holiday"/></td>
+			<td bgcolor="#FFFFFF"> &nbsp; &nbsp; <s:property value="paramClass.r_shop_holiday"/></td>
 		</tr>
 	
 		<tr bgcolor="#777777">
@@ -138,7 +138,7 @@
 		
 		<tr>
 			<td bgcolor="#F4F4F4"> 내용</td>
-			<td bgcolor="#FFFFFF"> &nbsp; &nbsp; <s:property value="resultClass.r_shop_content"/></td>
+			<td bgcolor="#FFFFFF"> &nbsp; &nbsp; <s:property value="paramClass.r_shop_content"/></td>
 		</tr>
 	
 		<tr bgcolor="#777777">
@@ -155,7 +155,7 @@
 			</s:param>
 			</s:url>
 			
-			<s:a href="%{download}"><s:property value="resultClass.r_shop_file_orgname"/></s:a>
+			<s:a href="%{download}"><s:property value="paramClass.r_shop_file_orgname"/></s:a>
 			</td>
 		</tr>
 		
