@@ -28,8 +28,9 @@
 	.favorite {   
     width: 32px;
     height: 31px;}
-    .m_image { width:25px; height: 24px; border-radius: 20px; display:block; float: left;
-    	 background:url('/Taster/images/basic_profile.png') no-repeat; background-size:32px 32px; margin-right:5px;}
+   
+    .m_image { width:30px; height: 30px; border-radius: 30px; display:block; float: left;
+    	  background:url('/Taster/images/basic_profile.png') no-repeat; background-size:36px 36px; margin-right:5px;}
     	 
 	#VIEW { background: url(http://itvplus5.cafe24.com/img/map/map.png);width: 250px;height: 290px;font-size: 11px;float: left;background-size: 250px 290px;margin-left: 16px; }
 	#VIEW span{color: #939393;font-family: NanumGothic;cursor: pointer;text-shadow: 1px 1px 1px #FFF;position: absolute;font-weight: bold;font-size: 10px;}
@@ -45,6 +46,12 @@
 	.area_selected { color: #ff3300; }
 	.gugun { cursor:pointer; vertical-align:middle; text-align:center; padding-top:7px; }
 	.gugun:hover { background-color:#ff3300; color: #fff;}
+	.favorite {background-image: url('/Taster/images/fav.png'); 
+    			 width: 52px; height: 31px; background-size: 32px 31px; background-repeat: no-repeat; 
+    			 background-position:50% 0%; float:right;padding-top:30px;}
+    .favorite:hover { background-image: url('/Taster/images/fav_check.png'); }
+    .m_image { width:30px; height: 30px; border-radius: 30px; display:block; float: left;
+    	  background:url('/Taster/images/basic_profile.png') no-repeat; background-size:36px 36px; margin-right:5px;}
 </style>
 
 <script>
@@ -125,6 +132,30 @@ var beforeThis = "";
 			}
 		});
 	}
+	
+	function bookMark(shop_idx) {
+		$.ajax({
+			url: "insertBookMark.action",
+			type: "POST",
+			async:true,
+			dataType: "Text", 
+			data: {"shop_idx": shop_idx },
+			success: function(data) {
+				//alert(data);
+				var bk = data.split("|");
+				if(bk[0].trim() == "0") {
+					favId = "#favorite_"+bk[1];
+					$(favId).css("background-image", "url('/Taster/images/fav_check.png')");
+				} else {
+					favId = "#favorite_"+bk[1];
+					$(favId).css("background-image", "url('/Taster/images/fav.png')");
+				}
+				
+				
+			}
+			
+		});
+	}
 </script>
 <body onload="init();">
 <div id="MAP" class="frame">
@@ -173,7 +204,24 @@ var beforeThis = "";
 				<span class="title">${status.index + 1}. ${fList.shop_name}</span>
 				<span class="r_score">${fList.avg_r_score }</span>
 			</div>
-			<div style="float:right;" class="favorite">별</div>
+			<div id="favorite_${fList.shop_idx}" class="favorite"
+						 style="<c:forEach items="${bookList}" var="bookList">
+									<c:if test="${bookList eq fList.shop_idx }">
+						 			background-image:url('/Taster/images/fav_check.png');padding-top:30px;
+						 			</c:if>
+						 			<c:if test="${bookList ne fList.shop_idx }">
+						 				padding-top:30px;
+									</c:if>
+								</c:forEach>
+								"<c:if test="${!empty session.member_id}">
+									onclick="bookMark('${fList.shop_idx}');"
+								</c:if>
+								<c:if test="${empty session.member_id}">
+									onclick="javascript:alert('로그인 후에 이용 가능합니다.');"
+								</c:if>
+			>
+			<font style="font-size:11px;">즐겨찾기</font>
+			</div>
 			<div class="shop_addr">${fList.shop_addr1 } ${fList.shop_addr2 } ${fList.shop_addr3 } ${fList.shop_addr4 }</div>
 			<div class="r_content" >
 				<div class="m_image">

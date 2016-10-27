@@ -4,13 +4,13 @@
 <script>
 var currentPage = 1;
 var fTotalCount = ${fTotalCount};
-	function init() {
-		searchArea('서울', document.getElementById("start"), '1');
+	function init2() {
+		//searchArea('서울', document.getElementById("start"), '1');
 		if(fTotalCount <= 3) {
 			$("#readMore").css("display", "none");
 		}
 	}
-init();
+init2();
 </script>
 <div class="menuList" id="menuList" style="width:830px; margin:0px auto;">
 <c:forEach items="${fList}" var="fList" varStatus="status">
@@ -23,7 +23,24 @@ init();
 				<span class="title">${status.index + 1}. ${fList.shop_name}</span>
 				<span class="r_score">${fList.avg_r_score }</span>
 			</div>
-			<div style="float:right;" class="favorite">별</div>
+			<div id="favorite_${fList.shop_idx}" class="favorite"
+						 style="<c:forEach items="${bookList}" var="bookList">
+									<c:if test="${bookList eq fList.shop_idx }">
+						 			background-image:url('/Taster/images/fav_check.png');padding-top:30px;
+						 			</c:if>
+						 			<c:if test="${bookList ne fList.shop_idx }">
+						 				padding-top:30px;
+									</c:if>
+								</c:forEach>
+								"<c:if test="${!empty session.member_id}">
+									onclick="bookMark('${fList.shop_idx}');"
+								</c:if>
+								<c:if test="${empty session.member_id}">
+									onclick="javascript:alert('로그인 후에 이용 가능합니다.');"
+								</c:if>
+			>
+				<font style="font-size:11px;">즐겨찾기</font>
+			</div>
 			<div class="shop_addr">${fList.shop_addr1 } ${fList.shop_addr2 } ${fList.shop_addr3 } ${fList.shop_addr4 }</div>
 			<div class="r_content" >
 				<div class="m_image">
@@ -38,7 +55,7 @@ init();
 	</c:forEach>
 	</div>
 		<c:if test="${empty fList }">
-			<div id="" style="width:500px;height:50px;margin-top:30px;"><h2>등록된 식당 정보가 없습니다.</h2></div>
+			<div id="" style="width:500px;height:50px;margin:30px auto;text-align:center;"><h2>등록된 식당 정보가 없습니다.</h2></div>
 		</c:if>
 		<c:if test="${fTotalCount > 0 }">
 			<div id="readMore" style="width:500px;height:50px;margin:0px auto;text-align:center;">

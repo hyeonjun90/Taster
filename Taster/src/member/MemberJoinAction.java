@@ -1,12 +1,15 @@
 package member;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.Reader;
 import java.sql.Date;
 import java.util.Calendar;
+import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.struts2.ServletActionContext;
 
 import com.ibatis.common.resources.Resources;
@@ -33,6 +36,14 @@ public class MemberJoinAction extends ActionSupport {
 	private Date member_joinDate; //가입일
 	private Date member_loginDate; // 최근 로그인
 	private int p_idx;  // 회원 등급 1.유저 2.에디터 3.관리자
+	
+	private File upload; //파일 객체
+	private String uploadContentType; //컨텐츠 타입
+	private String uploadFileName; //파일 이름
+	private String file_orgname;
+	private String file_savname;
+	
+	private String fileUploadPath="C:\\Java\\git\\Taster\\WebContent\\images\\member\\";
 	
 	private int chk; // 아이디 중복체크 변수
 	private int chk2; //닉네임 중복체크 변수 
@@ -68,7 +79,29 @@ public class MemberJoinAction extends ActionSupport {
 		memberBean.setMember_joinDate(cal.getTime());
 		
 		sqlMapper.insert("insertMember", memberBean);
-		 
+		
+		if(getUpload() !=null) {
+			HashMap<String, Object> map = new  HashMap<>();
+			
+			String member_id_tmp = (String) sqlMapper.queryForObject("getMemberId");
+			String file_name = "file_" + member_id_tmp;
+			
+			String file_ext = getUploadFileName().substring(
+					getUploadFileName().lastIndexOf('.')+ 1,
+					getUploadFileName().length());
+			
+			file_orgname = getUploadFileName();
+			file_savname = "file_" + member_id_tmp + "." + file_ext;
+			
+			map.put("member_image", file_savname);
+			map.put("member_id", member_id_tmp);
+			//서버에 파일 저장.
+			File destFile = new File(fileUploadPath + file_savname);
+			FileUtils.copyFile(getUpload(), destFile);
+			
+			sqlMapper.update("updateMemberUpload", map);
+			
+		}
 		return SUCCESS;
 	}
 
@@ -199,6 +232,54 @@ public class MemberJoinAction extends ActionSupport {
 
 	public void setMember_email(String member_email) {
 		this.member_email = member_email;
+	}
+
+	public File getUpload() {
+		return upload;
+	}
+
+	public void setUpload(File upload) {
+		this.upload = upload;
+	}
+
+	public String getUploadContentType() {
+		return uploadContentType;
+	}
+
+	public void setUploadContentType(String uploadContentType) {
+		this.uploadContentType = uploadContentType;
+	}
+
+	public String getUploadFileName() {
+		return uploadFileName;
+	}
+
+	public void setUploadFileName(String uploadFileName) {
+		this.uploadFileName = uploadFileName;
+	}
+
+	public String getFileUploadPath() {
+		return fileUploadPath;
+	}
+
+	public void setFileUploadPath(String fileUploadPath) {
+		this.fileUploadPath = fileUploadPath;
+	}
+
+	public String getFile_orgname() {
+		return file_orgname;
+	}
+
+	public void setFile_orgname(String file_orgname) {
+		this.file_orgname = file_orgname;
+	}
+
+	public String getFile_savname() {
+		return file_savname;
+	}
+
+	public void setFile_savname(String file_savname) {
+		this.file_savname = file_savname;
 	}
 	
 	

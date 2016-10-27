@@ -95,6 +95,7 @@
 			select max(shop_idx) from shop
 		</select>
 		
+
 		
 		<!-- delete 샵 삭제 정의 -->
 		<delete id="Shop-deleteIdx" parameterClass="admin_shop">
@@ -102,6 +103,11 @@
 		<include refid="Shop-where-Sidx"/>
 		</delete>
 		
+		<!--  
+		<update id="Shop_update_file_savname" parameterClass="HashMap">
+			update shop set file_savname = #file_savname# where shop_idx = #shop_idx# 
+		</update>
+		-->
 		<!--  성준이가 한거
 		<delete id="Shop-deleteIdx" parameterClass="int">
 		DELETE FROM SHOP
@@ -123,6 +129,8 @@
 		INSERT INTO SHOP(shop_idx, shop_name, shop_tel, shop_kind, shop_addr1, shop_addr2, shop_addr3, shop_addr4, shop_price, shop_holiday, shop_readCount, shop_regDate)
 		VALUES (shop_no_seq.NEXTVAL, #shop_name#, #shop_tel#, #shop_kind#, #shop_addr1#, #shop_addr2#, #shop_addr3#, #shop_addr4#, #shop_price#, #shop_holiday#, #shop_readCount#,sysdate)
 		</insert>
+		
+		
 		
 		<!-- update 쿼리문 정의 -->
 		<update id="updateFileUpload" parameterClass="HashMap">
@@ -172,7 +180,7 @@
 		
 		<!-- insert 쿼리문 정의 -->
 		<insert id="AprReq-insertReqList" parameterClass="AprReq">
-		INSERT INTO REQUEST_LIST(r_idx, r_regdate, r_id, r_nicname, r_shop_tel, r_shop_name , r_shop_kind, r_shop_addr1, r_shop_addr2, r_shop_addr3, r_shop_addr4, r_shop_price, r_shop_holiday, r_shop_content, r_shop_file_orgname, r_shop_file_savname)
+		INSERT INTO REQUEST_LIST(r_idx, r_regdate, r_id, r_nicname, r_shop_tel, r_shop_name, r_shop_kind, r_shop_addr1, r_shop_addr2, r_shop_addr3, r_shop_addr4, r_shop_price, r_shop_holiday, r_shop_content, r_shop_file_orgname, r_shop_file_savname)
 		VALUES (request_no_seq.NEXTVAL, #r_regdate#, #r_id#, #r_nicname#, #r_shop_tel#, #r_shop_name#, #r_shop_kind#, #r_shop_addr1#, #r_shop_addr2#, #r_shop_addr3#, #r_shop_addr4#, #r_shop_price#, #r_shop_holiday#, #r_shop_content#, #r_shop_file_orgname#, #r_shop_file_savname#)
 		</insert>
 		

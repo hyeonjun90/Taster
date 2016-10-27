@@ -22,6 +22,15 @@
 			<result type="tiles">member_my_page</result>
 		</action>
 		
+		<action name="reviewListMore" class="member.MemberMyPageAction" method="reviewListform">
+      		<result>/member/review_list_more.jsp</result>
+      	</action>
+      	
+      	<action name="bookmarkListMore" class="member.MemberMyPageAction" method="bookmarkListform">
+      		<result>/member/bookmark_list_more.jsp</result>
+      	</action>
+		
+		
 		<!-- 식당등록 폼 이동 -->
 		<action name="shopAdd" class="member.ShopAddAction" method="form">
 			<result type="tiles">member_foods_write</result>
