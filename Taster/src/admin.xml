@@ -60,7 +60,7 @@
 			<result type="tiles">ApprovalRequestDetail</result>
 		</action>
 		
-		<!-- 신규가게등록 요청 글 파일 다운로드 액션 -->
+		<!-- 
 		<action name="AprReq_fileDownloadAction" class="admin.ApprovalRequestDetailView" method="download">
     	<result name="success" type="stream">
                 <param name="contentType">binary/octet-stream</param>
@@ -68,8 +68,8 @@
                 <param name="contentDisposition">${contentDisposition}</param>
                 <param name="contentLength">${contentLength}</param> 
                 <param name="bufferSize">4096</param>
-         </result>
-</action>
+         </result>-->
+
 
 	<!-- 맛집추천리스트 관련 -->
 		<!-- 관리자 화면에서 맛집추천리스트 등록글 리스트 조회 -->

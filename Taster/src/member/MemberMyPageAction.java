@@ -120,10 +120,23 @@ public class MemberMyPageAction extends ActionSupport implements SessionAware{
 		
 		rBean = new ReviewListBean();
 		rList = new ArrayList<>();
+		HashMap<String, Object> pagingMap = new HashMap<>();
 		
-		shopTotalCount = (int)sqlMapper.queryForObject("foodsMenuListCount");   //식당 전체 카운터 해주는 쿼리문 
+		currentPage = 1;
+		beforeSize = 0;
+		shopTotalCount = (int)sqlMapper.queryForObject("reviewListCount");
 		
-		rList=(ArrayList<ReviewListBean>) sqlMapper.queryForList("reviewList-selectAll", session.get("member_id"));
+		pageSize = pageSize * currentPage;
+		
+		pagingMap.put("beforeSize", beforeSize);
+		pagingMap.put("pageSize", pageSize);
+		pagingMap.put("member_id", session.get("member_id"));
+		
+		shopTotalCount = (int) sqlMapper.queryForObject("reviewListCount");
+		rList=(ArrayList<ReviewListBean>) sqlMapper.queryForList("reviewList-selectAll", pagingMap);
+		
+		shopTotalCount -= rList.size();
+		
 		
 		return SUCCESS;
 		
@@ -133,10 +146,24 @@ public class MemberMyPageAction extends ActionSupport implements SessionAware{
 		
 		bBean = new BookmarkListBean();
 		bList = new ArrayList<>();
+		HashMap<String, Object> pagingMap = new HashMap<>();
 		
-		shopTotalCount = (int)sqlMapper.queryForObject("foodsMenuListCount");   //식당 전체 카운터 해주는 쿼리문 
+		currentPage = 1;
+		beforeSize = 0;
+		shopTotalCount = (int)sqlMapper.queryForObject("bookmarkListCount");
 		
-		bList=(ArrayList<BookmarkListBean>) sqlMapper.queryForList("bookmarkList-selecAll", session.get("member_id"));
+		pageSize = pageSize * currentPage;
+		
+		pagingMap.put("beforeSize", beforeSize);
+		pagingMap.put("pageSize", pageSize);
+		pagingMap.put("member_id", session.get("member_id"));
+		
+		shopTotalCount = (int) sqlMapper.queryForObject("bookmarkListCount");
+		
+		shopTotalCount = (int)sqlMapper.queryForObject("bookmarkListCount");   //식당 전체 카운터 해주는 쿼리문 
+		bList=(ArrayList<BookmarkListBean>) sqlMapper.queryForList("bookmarkList-selecAll", pagingMap);
+		
+		shopTotalCount -= bList.size();
 		
 		return SUCCESS;
 	}

@@ -108,16 +108,21 @@ public class ShopAddAction extends ActionSupport implements SessionAware{
 			
 			System.out.println("test");
 			//실제 서버에 저장될 파일 이름과 확장자 설정.
+			
 			String file_name="file_" + r_idx;
+			
 			r_shop_file_orgname = getUploadFileName();
-			r_shop_file_savname = "file_" + r_idx;
+			
 			
 			System.out.println("file_name : " + file_name);
 			System.out.println("r_shop_file_orgname: "+r_shop_file_orgname);
+			
+			
 			String file_ext = getUploadFileName().substring(
 					getUploadFileName().lastIndexOf('.') + 1,
 					getUploadFileName().length());
 			
+			r_shop_file_savname = "file_" + r_idx + "."+ file_ext;
 			map.put("r_idx", r_idx);
 			map.put("r_shop_file_orgname", r_shop_file_orgname);
 			map.put("r_shop_file_savname", r_shop_file_savname);
