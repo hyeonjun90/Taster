@@ -94,8 +94,8 @@
 		</select>
 		
 		<delete id="Shop-deleteIdx" parameterClass="int">
+		DELETE FROM SHOP
 		<include refid="Shop-where-Sidx"/>
-		  DELETE FROM REQUEST_LIST
 		</delete>
 		<!--  
 		<select id="selectOne" parameterClass="int" resultMap="boardRes">

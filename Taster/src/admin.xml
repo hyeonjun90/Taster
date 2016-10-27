@@ -29,7 +29,6 @@
 		</action>
 		
 		<!-- 주소찾기 -->
-		 
 		<action name="AdminShopSearchZipcode" class="admin.AdminShopZipcodeAction" method="AdminshopZipcode">
 			<result>/admin/admin_shop_zipcode.jsp</result>
 		</action>
