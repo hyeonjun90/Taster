@@ -106,6 +106,12 @@ function openZipcode(){
 			
 			<input type="radio" name="shop_kind" value="양식"> 양식 
 		    &nbsp;
+		    
+		    <input type="radio" name="shop_kind" value="일식"> 일식 
+		    &nbsp;
+		    
+		    <input type="radio" name="shop_kind" value="분식"> 분식 
+		    &nbsp;
 			<br>
 			</td>
 		</tr>

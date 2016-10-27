@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -23,13 +24,14 @@
 	.shopInfo div {margin-left:10px; padding: 3px; font-family : 'Noto Sans', sans-serif;}
 	.title { font-size: 18px; color:#555; font-weight:bold;}
 	.r_score { font-size: 18px; color:orange; font-weight:bold; }
-	.shop_addr {width:600px;float:left;text-align:left; color:#a6a6a6; font-size:13px;}
+	.shop_addr {width:600px;float:left;text-align:left; color:#a6a6a6; font-size:13px; }
 	.r_content {padding: 10px; font-size: 12px; float:left; width: 600px; text-align:left; margin-top:10px;}
 	.favorite {   
     width: 32px;
     height: 31px;}
-    .m_image { width:25px; height: 24px; border-radius: 20px; display:block; float: left;
-    	 background:url('/Taster/images/basic_profile.png') no-repeat; background-size:32px 32px; margin-right:5px;}
+   
+    .m_image { width:30px; height: 30px; border-radius: 30px; display:block; float: left;
+    	  background:url('/Taster/images/basic_profile.png') no-repeat; background-size:36px 36px; margin-right:5px;}
     	 
 	#VIEW { background: url(http://itvplus5.cafe24.com/img/map/map.png);width: 250px;height: 290px;font-size: 11px;float: left;background-size: 250px 290px;margin-left: 16px; }
 	#VIEW span{color: #939393;font-family: NanumGothic;cursor: pointer;text-shadow: 1px 1px 1px #FFF;position: absolute;font-weight: bold;font-size: 10px;}
@@ -45,6 +47,12 @@
 	.area_selected { color: #ff3300; }
 	.gugun { cursor:pointer; vertical-align:middle; text-align:center; padding-top:7px; }
 	.gugun:hover { background-color:#ff3300; color: #fff;}
+	.favorite {background-image: url('/Taster/images/fav.png'); 
+    			 width: 52px; height: 31px; background-size: 32px 31px; background-repeat: no-repeat; 
+    			 background-position:50% 0%; float:right;padding-top:30px;}
+    .favorite:hover { background-image: url('/Taster/images/fav_check.png'); }
+    .m_image { width:30px; height: 30px; border-radius: 30px; display:block; float: left;
+    	  background:url('/Taster/images/basic_profile.png') no-repeat; background-size:36px 36px; margin-right:5px;}
 </style>
 
 <script>
@@ -125,6 +133,30 @@ var beforeThis = "";
 			}
 		});
 	}
+	
+	function bookMark(shop_idx) {
+		$.ajax({
+			url: "insertBookMark.action",
+			type: "POST",
+			async:true,
+			dataType: "Text", 
+			data: {"shop_idx": shop_idx },
+			success: function(data) {
+				//alert(data);
+				var bk = data.split("|");
+				if(bk[0].trim() == "0") {
+					favId = "#favorite_"+bk[1];
+					$(favId).css("background-image", "url('/Taster/images/fav_check.png')");
+				} else {
+					favId = "#favorite_"+bk[1];
+					$(favId).css("background-image", "url('/Taster/images/fav.png')");
+				}
+				
+				
+			}
+			
+		});
+	}
 </script>
 <body onload="init();">
 <div id="MAP" class="frame">
@@ -173,15 +205,33 @@ var beforeThis = "";
 				<span class="title">${status.index + 1}. ${fList.shop_name}</span>
 				<span class="r_score">${fList.avg_r_score }</span>
 			</div>
-			<div style="float:right;" class="favorite">별</div>
+			<div id="favorite_${fList.shop_idx}" class="favorite"
+						 style="<c:forEach items="${bookList}" var="bookList">
+									<c:if test="${bookList eq fList.shop_idx }">
+						 			background-image:url('/Taster/images/fav_check.png');padding-top:30px;
+						 			</c:if>
+						 			<c:if test="${bookList ne fList.shop_idx }">
+						 				padding-top:30px;
+									</c:if>
+								</c:forEach>
+								"<c:if test="${!empty session.member_id}">
+									onclick="bookMark('${fList.shop_idx}');"
+								</c:if>
+								<c:if test="${empty session.member_id}">
+									onclick="javascript:alert('로그인 후에 이용 가능합니다.');"
+								</c:if>
+			>
+			<font style="font-size:11px;">즐겨찾기</font>
+			</div>
 			<div class="shop_addr">${fList.shop_addr1 } ${fList.shop_addr2 } ${fList.shop_addr3 } ${fList.shop_addr4 }</div>
 			<div class="r_content" >
 				<div class="m_image">
 				</div>
 				<strong>${fList.member_nicname }</strong>&nbsp;
-				${fList.r_content }
+				${fn:substring(fList.r_content, 0, 150) }...
 			</div>
 		</div>
+		<div style="width:300px; text-align:right; float:right;font-size:11px;color:#a6a6a6;"> >>${fList.shop_name} 정보 더보기</div>
 		<div style="clear:both; height:10px;"></div>		
 		<div style="clear:both; width:800px; border:1px solid #d5d5d5;"></div>
 		
@@ -191,7 +241,7 @@ var beforeThis = "";
 			<div id="" style="width:500px;height:50px;margin-top:30px;"><h2>등록된 식당 정보가 없습니다.</h2></div>
 		</c:if>
 		<c:if test="${fTotalCount > 0 }">
-			<div id="readMore" style="width:500px;height:50px;margin:0px auto;">
+			<div id="readMore" style="width:500px;height:50px;margin:0px auto;text-align:center;">
 				<h2 style="cursor:pointer;" onclick="readMore();">▽더보기</h2>
 			</div>
 		</c:if>

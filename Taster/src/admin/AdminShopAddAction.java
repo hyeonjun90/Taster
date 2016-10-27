@@ -8,8 +8,8 @@ import com.ibatis.sqlmap.client.SqlMapClientBuilder;
 import java.util.*;
 import java.io.Reader;
 import java.io.IOException;
-
 import java.io.File;
+
 import org.apache.commons.io.FileUtils;
 
 import bean.ShopBean;
@@ -51,7 +51,9 @@ private String r_shop_addr2;
 private String r_shop_addr3;
 
 
-private String fileUploadPath="C:\\git2\\Taster2\\Taster\\Taster\\WebContent\\images\\shop\\";
+
+private String fileUploadPath="C:\\Users\\jinwo\\git\\Taster\\Taster\\WebContent\\images\\shop\\";
+//C:\\git2\\Taster2\\Taster\\Taster\\WebContent\\images\\shop\\
 
 
 public AdminShopAddAction() throws IOException {
@@ -115,9 +117,11 @@ public String execute() throws Exception  {
 		map.put("shop_idx", shop_idx);
 		map.put("file_orgname", file_orgname);
 		map.put("file_savname", file_savname);
+		
 		//서버에 파일 저장.
-		File destFile = new File(fileUploadPath + file_name + "."
-				+ file_ext);
+		System.out.println("fileUploadPath + file_name + file_ext : " + fileUploadPath + file_name + "." + file_ext);
+		
+		File destFile = new File(fileUploadPath + file_name + "."+ file_ext);
 		FileUtils.copyFile(getUpload(), destFile);
 		
 		//파일 정보 업데이트.

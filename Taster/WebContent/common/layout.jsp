@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title></title>
 </head>
-<body>
+<body style="width:100%;height:100%;margin:0px;padding:0px;">
 
 <table width="100%" border="0" cellpadding="0" cellspacing="0">
 <tr>

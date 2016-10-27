@@ -159,6 +159,12 @@ function openZipcode(){
 		</td>
 	</tr>
 	<tr>
+		<th>휴일</th>
+		<td>
+			<input type="text" name="r_shop_holiday" id="r_shop_holiday" size="10"/>요일(예:월)
+		</td>
+	</tr>
+	<tr>
 		<th>업종</th>
 		<td>
 			<input type="radio" name="r_shop_kind" value="한식">한식
