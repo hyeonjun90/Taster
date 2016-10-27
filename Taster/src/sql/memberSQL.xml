@@ -9,6 +9,10 @@
 	<select id="nicCheck" parameterClass="String" resultClass="Integer">
 		select count(*) from Member where member_nicname=#member_nicname#
 	</select>
+	<select id="getMemberId" resultClass="String">
+		select member_id from (select member_id,rownum rnum from 
+			(select member_id from member order by member_joinDate desc)) where rnum=1
+	</select>
 	
 	<insert id="insertMember" parameterClass="bean.MemberBean">
 		insert into MEMBER(member_id, member_pwd, member_nicname, member_name, member_phone,
@@ -55,4 +59,8 @@
    		order by s.shop_idx DESC
    </select>
 	
+	<!-- 회원 사진 등록 -->
+	<update id="updateMemberUpload" parameterClass="HashMap">
+		update member set member_image=#member_image# where member_id=#member_id#
+	</update>
 </sqlMap>

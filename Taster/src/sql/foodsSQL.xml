@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="EUC-KR"?>
 <!DOCTYPE sqlMap PUBLIC '-//ibatis.apache.org//DTD Sql Map 2.0//EN' 'http://ibatis.apache.org/dtd/sql-map-2.dtd'>
 <sqlMap>
-	<!--ì‹ ê·œ ì‹ë‹¹  ë“±ë¡ì—ì„œ ì‚¬ìš©í•  í˜„ìž¬ì‹œê°„ì—ì„œ í•œë‹¬ê¹Œì§€ì˜ ì „ì±„ê²€ìƒ‰-->
+	<!--½Å±Ô ½Ä´ç  µî·Ï¿¡¼­ »ç¿ëÇÒ ÇöÀç½Ã°£¿¡¼­ ÇÑ´Þ±îÁöÀÇ ÀüÃ¤°Ë»ö-->
 	<sql id= "newShop-select-all">
 	 	select * from shop s1 inner join review r1 on r1.shop_idx = s1.shop_idx
         where <![CDATA[shop_regDate > add_months(sysdate, -1)]]> order by shop_idx desc                         
@@ -13,19 +13,19 @@
     					r_content, member_nicname, member_image, avg_r_score,  shop_kind 
     		from (
 			 		  select shop_idx, shop_name, shop_addr1, shop_addr2, shop_addr3, shop_addr4, file_savname,  shop_kind,
-						  (select r_content from (select r_content from review r1 where s.shop_idx=r1.shop_idx)
-						  	 where <![CDATA[rownum<2]]>) as r_content,
-						  (select member_nicname from 
+						  nvl((select r_content from (select r_content from review r1 where s.shop_idx=r1.shop_idx)
+						  	 where <![CDATA[rownum<2]]>),'µî·ÏµÈ ¸®ºä°¡ ¾ø½À´Ï´Ù.') as r_content,
+						  nvl((select member_nicname from 
 							  (select  member_nicname from member m1 inner join review r1 on r1.member_id=m1.member_id
 							    where m1.member_id=r1.member_id and r1.shop_idx=s.shop_idx)
-						   where <![CDATA[rownum<2]]>) as member_nicname,
-						  (select member_image from 
+						   where <![CDATA[rownum<2]]>), ' ') as member_nicname,
+						  nvl((select member_image from 
 							  (select  member_image from member m1 inner join review r1 on r1.member_id=m1.member_id
 							    where m1.member_id=r1.member_id and r1.shop_idx=s.shop_idx)
-						   where <![CDATA[rownum<2]]>) as member_image, 
-						  (select ROUND(AVG(r1.r_score),1) from shop s1 
+						   where <![CDATA[rownum<2]]>), 'basic_profile.png') as member_image, 
+						  nvl((select ROUND(AVG(r1.r_score),1) from shop s1 
 						  				inner join review r1 on r1.shop_idx = s1.shop_idx 
-						  				where r1.SHOP_IDX=s.SHOP_IDX) as avg_r_score
+						  				where r1.SHOP_IDX=s.SHOP_IDX), 0) as avg_r_score
 					    from shop s where s.shop_kind=#keyword# order by avg_r_score desc, shop_idx desc) 
 			where <![CDATA[rownum<=#pageSize#]]>) shop
 		where <![CDATA[rnum>#beforeSize#]]>
@@ -37,19 +37,19 @@
     					r_content, member_nicname, member_image, avg_r_score 
     		from (
 			 		  select shop_idx, shop_name, shop_addr1, shop_addr2, shop_addr3, shop_addr4, file_savname, 
-						  (select r_content from (select r_content from review r1 where s.shop_idx=r1.shop_idx)
-						  	 where <![CDATA[rownum<2]]>) as r_content,
-						  (select member_nicname from 
+						  nvl((select r_content from (select r_content from review r1 where s.shop_idx=r1.shop_idx)
+						  	 where <![CDATA[rownum<2]]>),'µî·ÏµÈ ¸®ºä°¡ ¾ø½À´Ï´Ù.') as r_content,
+						  nvl((select member_nicname from 
 							  (select  member_nicname from member m1 inner join review r1 on r1.member_id=m1.member_id
 							    where m1.member_id=r1.member_id and r1.shop_idx=s.shop_idx)
-						   where <![CDATA[rownum<2]]>) as member_nicname,
-						  (select member_image from 
+						   where <![CDATA[rownum<2]]>), ' ') as member_nicname,
+						  nvl((select member_image from 
 							  (select  member_image from member m1 inner join review r1 on r1.member_id=m1.member_id
 							    where m1.member_id=r1.member_id and r1.shop_idx=s.shop_idx)
-						   where <![CDATA[rownum<2]]>) as member_image, 
-						  (select ROUND(AVG(r1.r_score),1) from shop s1 
+						   where <![CDATA[rownum<2]]>), 'basic_profile.png') as member_image, 
+						  nvl((select ROUND(AVG(r1.r_score),1) from shop s1 
 						  				inner join review r1 on r1.shop_idx = s1.shop_idx 
-						  				where r1.SHOP_IDX=s.SHOP_IDX) as avg_r_score
+						  				where r1.SHOP_IDX=s.SHOP_IDX), 0) as avg_r_score
 					    from shop s order by avg_r_score desc, shop_idx desc) 
 			where <![CDATA[rownum<=#pageSize#]]>)
 		where <![CDATA[rnum>#beforeSize#]]>
@@ -64,7 +64,7 @@
 	</select>
 	
 	
-	<!-- ì§€ì—­ë³„ ë§›ì§‘ ê²€ìƒ‰ -->
+	<!-- Áö¿ªº° ¸ÀÁý °Ë»ö -->
 	<select id="searchArea" parameterClass="String" resultClass="String">
 		select distinct(gugun) from zipcode where sido=#sido# order by gugun asc
 	</select>
@@ -80,19 +80,19 @@
     					r_content, member_nicname, member_image, avg_r_score 
     		from (
 			 		  select shop_idx, shop_name, shop_addr1, shop_addr2, shop_addr3, shop_addr4, file_savname, 
-						  (select r_content from (select r_content from review r1 where s.shop_idx=r1.shop_idx)
-						  	 where <![CDATA[rownum<2]]>) as r_content,
-						  (select member_nicname from 
+						  nvl((select r_content from (select r_content from review r1 where s.shop_idx=r1.shop_idx)
+						  	 where <![CDATA[rownum<2]]>),'µî·ÏµÈ ¸®ºä°¡ ¾ø½À´Ï´Ù.') as r_content,
+						  nvl((select member_nicname from 
 							  (select  member_nicname from member m1 inner join review r1 on r1.member_id=m1.member_id
 							    where m1.member_id=r1.member_id and r1.shop_idx=s.shop_idx)
-						   where <![CDATA[rownum<2]]>) as member_nicname,
-						  (select member_image from 
+						   where <![CDATA[rownum<2]]>), ' ') as member_nicname,
+						  nvl((select member_image from 
 							  (select  member_image from member m1 inner join review r1 on r1.member_id=m1.member_id
 							    where m1.member_id=r1.member_id and r1.shop_idx=s.shop_idx)
-						   where <![CDATA[rownum<2]]>) as member_image, 
-						  (select ROUND(AVG(r1.r_score),1) from shop s1 
+						   where <![CDATA[rownum<2]]>), 'basic_profile.png') as member_image, 
+						  nvl((select ROUND(AVG(r1.r_score),1) from shop s1 
 						  				inner join review r1 on r1.shop_idx = s1.shop_idx 
-						  				where r1.SHOP_IDX=s.SHOP_IDX) as avg_r_score
+						  				where r1.SHOP_IDX=s.SHOP_IDX), 0) as avg_r_score
 					    from shop s where shop_addr1=#sido# and shop_addr2=#gugun#
 					    								 order by avg_r_score desc, shop_idx desc) 
 			where <![CDATA[rownum<=#pageSize#]]>)
@@ -104,26 +104,26 @@
     					r_content, member_nicname, member_image, avg_r_score 
     		from (
 			 		  select shop_idx, shop_name, shop_addr1, shop_addr2, shop_addr3, shop_addr4, file_savname, 
-						  (select r_content from (select r_content from review r1 where s.shop_idx=r1.shop_idx)
-						  	 where <![CDATA[rownum<2]]>) as r_content,
-						  (select member_nicname from 
+						  nvl((select r_content from (select r_content from review r1 where s.shop_idx=r1.shop_idx)
+						  	 where <![CDATA[rownum<2]]>),'µî·ÏµÈ ¸®ºä°¡ ¾ø½À´Ï´Ù.') as r_content,
+						  nvl((select member_nicname from 
 							  (select  member_nicname from member m1 inner join review r1 on r1.member_id=m1.member_id
 							    where m1.member_id=r1.member_id and r1.shop_idx=s.shop_idx)
-						   where <![CDATA[rownum<2]]>) as member_nicname,
-						  (select member_image from 
+						   where <![CDATA[rownum<2]]>), ' ') as member_nicname,
+						  nvl((select member_image from 
 							  (select  member_image from member m1 inner join review r1 on r1.member_id=m1.member_id
 							    where m1.member_id=r1.member_id and r1.shop_idx=s.shop_idx)
-						   where <![CDATA[rownum<2]]>) as member_image, 
-						  (select ROUND(AVG(r1.r_score),1) from shop s1 
+						   where <![CDATA[rownum<2]]>), 'basic_profile.png') as member_image, 
+						  nvl((select ROUND(AVG(r1.r_score),1) from shop s1 
 						  				inner join review r1 on r1.shop_idx = s1.shop_idx 
-						  				where r1.SHOP_IDX=s.SHOP_IDX) as avg_r_score
+						  				where r1.SHOP_IDX=s.SHOP_IDX), 0) as avg_r_score 
 					    from shop s where  shop_addr2=#gugun#
 					    								 order by avg_r_score desc, shop_idx desc) 
 			where <![CDATA[rownum<=#pageSize#]]>)
 		where <![CDATA[rnum>#beforeSize#]]>
 	</select>
-	<!-- ì§€ì—­ë³„ ë§›ì§‘ ê²€ìƒ‰ ë -->
-	<!-- ì‹ë‹¹ ì „ì²´ í‰ê·  ì¡°ì¸  -->
+	<!-- Áö¿ªº° ¸ÀÁý °Ë»ö ³¡ -->
+	<!-- ½Ä´ç ÀüÃ¼ Æò±Õ Á¶ÀÎ  -->
 	<select id="newShop-selectAll"  resultClass="bean.FoodsNewListBean" remapResults="true">
 		
 		select * from ( 
@@ -149,7 +149,7 @@
 	</select>
 	
 	
-	<!-- ìš”ì¦˜ëœ¨ëŠ” ë§›ì§‘ -->
+	<!-- ¿äÁò¶ß´Â ¸ÀÁý -->
 	<select id="hopShop-list-selectAll" resultClass="bean.FoodsHotListBean">
 		select * from ( 
 		 	select shop_idx, shop_name, shop_addr1, shop_addr2, shop_addr3, shop_addr4, file_savname, rownum rnum,
@@ -176,7 +176,7 @@
 	</select>
 
 
-	<!-- ì‹ë‹¹ ìƒì„¸íŽ˜ì´ì§€ ì¿¼ë¦¬ë¬¸ -->
+	<!-- ½Ä´ç »ó¼¼ÆäÀÌÁö Äõ¸®¹® -->
 	<!--  -->
 	<select id="foodsDetail" parameterClass="int" resultClass="bean.FoodsDetailBean">
 		SELECT shop_idx, shop_name, shop_tel, shop_kind, shop_addr1, shop_addr2, shop_addr3, shop_addr4, shop_price, shop_holiday, shop_readCount, shop_regDate, file_savname
@@ -184,7 +184,7 @@
 	</select>
 	
 	
-	<!-- ì½”ë©˜íŠ¸ ë¦¬ìŠ¤íŠ¸ -->
+	<!-- ÄÚ¸àÆ® ¸®½ºÆ® -->
 	<select id="reviewList" parameterClass="int" resultClass="bean.FoodsDetailBean">
 		SELECT  review_idx, r_title, r_content, r_pungga, r_image, r_regdate, member_nicname, member_image
 							 FROM review r left join member m on r.member_id=m.member_id
@@ -208,6 +208,22 @@
 	</select>
 	
 	
+	<!-- Áñ°ÜÃ£±â ÀÖ´ÂÁö ¿©ºÎ Ã¼Å© -->
+	<select id="checkBookMark" parameterClass="HashMap" resultClass="Integer">
+		select count(*) from bookmark where shop_idx=#shop_idx# and member_id=#member_id#
+	</select>
+	<!-- Áñ°ÜÃ£±â Ãß°¡ -->
+	<insert id="insertBookMark" parameterClass="HashMap">
+		insert into bookmark(bookmark_idx, member_id, shop_idx) values(bookmark_no_seq.nextVal, #member_id#, #shop_idx#)
+	</insert>
+	<!-- Áñ°ÜÃ£±â Á¦°Å -->
+	<delete id="deleteBookMark" parameterClass="HashMap">
+		delete from bookmark where shop_idx=#shop_idx# and member_id=#member_id#
+	</delete>
+	<!-- ·Î±×ÀÎ ÇÑ È¸¿ø Áñ°ÜÃ£±â ¸®½ºÆ® °¡Á®¿À±â -->
+	<select id="bookList" parameterClass="String" resultClass="Integer">
+		select shop_idx from bookmark where member_id=#member_id#
+	</select>
 </sqlMap>
 
 

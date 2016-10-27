@@ -265,7 +265,7 @@ function openZipcode(){
 <center>
 <div id="joinDiv" style="border:0px;">
 <div><strong>회원가입</strong></div>
-<form method="post" action="memberJoinOk.action" name="joinForm">
+<form method="post" action="memberJoinOk.action" name="joinForm" enctype="multipart/form-data">
 <input type="hidden" name="member_zipcode" />
 <input type="hidden" name="member_phone" />
 <input type="hidden" name="member_addr" />
@@ -393,7 +393,7 @@ function openZipcode(){
 	<tr>
 		<th>사진 등록</th>
 		<td style="height:30px;font-size:10px;">
-			<input type="file" name="member_image" id="member_image" style="height:22px;font-size:10px;"/>
+			<input type="file" name="upload" id="member_image" style="height:22px;font-size:10px;"/>
 		</td>
 	</tr>
 	<tr>

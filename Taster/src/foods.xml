@@ -50,6 +50,10 @@
       </action>
       
       
+      <!-- 즐겨찾기 추가 -->
+      <action name="insertBookMark" class="foods.BookMarkAction">
+      	  <result>/foods/foods_bookmark.jsp</result>
+      </action>
       
    </package>
 </struts>
