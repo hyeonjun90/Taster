@@ -37,11 +37,12 @@
 	.r_score { font-size: 18px; color:orange; font-weight:bold; }
 	.shop_addr {width:600px;float:left;text-align:left; color:#a6a6a6; font-size:13px;}
 	.r_content {padding: 10px; font-size: 12px; float:left; width: 600px; text-align:left; margin-top:10px;}
-	.favorite {   
-    width: 32px;
-    height: 31px;}
-    .m_image { width:25px; height: 24px; border-radius: 20px; display:block; float: left;
-    	 background:url('/Taster/images/basic_profile.png') no-repeat; background-size:32px 32px; margin-right:5px;}
+	.favorite {background-image: url('/Taster/images/fav.png'); 
+    			 width: 52px; height: 31px; background-size: 32px 31px; background-repeat: no-repeat; 
+    			 background-position:50% 0%; float:right;padding-top:30px;}
+    .favorite:hover { background-image: url('/Taster/images/fav_check.png'); }
+    .m_image { width:30px; height: 30px; border-radius: 30px; display:block; float: left;
+    	  background:url('/Taster/images/basic_profile.png') no-repeat; background-size:36px 36px; margin-right:5px;}
 </style>
 
 <script>
@@ -80,6 +81,30 @@ var fTotalCount = ${fTotalCount};
 		searchForm = document.searchForm;
 		searchForm.keyword.value = keyword;
 		searchForm.submit();
+	}
+	
+	function bookMark(shop_idx) {
+		$.ajax({
+			url: "insertBookMark.action",
+			type: "POST",
+			async:true,
+			dataType: "Text", 
+			data: {"shop_idx": shop_idx },
+			success: function(data) {
+				//alert(data);
+				var bk = data.split("|");
+				if(bk[0].trim() == "0") {
+					favId = "#favorite_"+bk[1];
+					$(favId).css("background-image", "url('/Taster/images/fav_check.png')");
+				} else {
+					favId = "#favorite_"+bk[1];
+					$(favId).css("background-image", "url('/Taster/images/fav.png')");
+				}
+				
+				
+			}
+			
+		});
 	}
 </script>
 </head>
@@ -150,7 +175,7 @@ var fTotalCount = ${fTotalCount};
 
 	<div class="menuList" id="menuList" style="width:830px;">
 	
-	<c:forEach items="${fList}" var="fList" varStatus="status">
+		<c:forEach items="${fList}" var="fList" varStatus="status">
 		<div class="shopInfo" style="width:810px;margin-top:20px;">
 			<div style="background-image:url('/Taster/images/shop/${fList.file_savname}');
 					background-repeat: no-repeat; display:block; 
@@ -158,15 +183,50 @@ var fTotalCount = ${fTotalCount};
 			</div>
 			<div style="float:left; width:550px; text-align:left;">
 				<span class="title">${status.index + 1}. ${fList.shop_name}</span>
-				<span class="r_score">${fList.avg_r_score }</span>
+				<span class="r_score">
+				<c:if test="${fList.avg_r_score != null }">
+					${fList.avg_r_score }
+				</c:if>
+			
+				</span>
 			</div>
-			<div style="float:right;" class="favorite">별</div>
+			
+			<div id="favorite_${fList.shop_idx}" class="favorite"
+						 style="<c:forEach items="${bookList}" var="bookList">
+									<c:if test="${bookList eq fList.shop_idx }">
+						 			background-image:url('/Taster/images/fav_check.png');padding-top:30px;
+						 			</c:if>
+						 			<c:if test="${bookList ne fList.shop_idx }">
+						 				padding-top:30px;
+									</c:if>
+								</c:forEach>
+								"<c:if test="${!empty session.member_id}">
+									onclick="bookMark('${fList.shop_idx}');"
+								</c:if>
+								<c:if test="${empty session.member_id}">
+									onclick="javascript:alert('로그인 후에 이용 가능합니다.');"
+								</c:if>
+			>
+			<font style="font-size:11px;">즐겨찾기</font>
+			</div>
 			<div class="shop_addr">${fList.shop_addr1 } ${fList.shop_addr2 } ${fList.shop_addr3 } ${fList.shop_addr4 }</div>
 			<div class="r_content" >
-				<div class="m_image">
+				<div class="m_image" 
+					<c:if test="${fList.member_image != null }">
+					style="background:url('/Taster/images/member/${fList.member_image }') no-repeat;
+							background-size: 36px 36px;" </c:if>>
 				</div>
-				<strong>${fList.member_nicname }</strong>&nbsp;
-				${fList.r_content }
+				<strong>
+				<c:if test="${fList.member_nicname != null }">
+					${fList.member_nicname }
+				</c:if>
+				</strong>&nbsp;
+				
+				<c:if test="${fList.r_content != null }">
+					${fList.r_content }
+				</c:if>
+				
+				
 			</div>
 		</div>
 		<div style="clear:both; height:10px;"></div>		
