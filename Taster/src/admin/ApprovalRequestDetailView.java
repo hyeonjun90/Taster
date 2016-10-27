@@ -12,6 +12,7 @@ import java.io.InputStream;
 import java.io.IOException;
 import java.net.URLEncoder;
 import java.util.HashMap;
+import java.util.List;
 
 import bean.RequestListBean;
 import bean.ShopBean;
@@ -29,6 +30,7 @@ public class ApprovalRequestDetailView extends ActionSupport {
 	private int currentPage;
 
 	int shop_idx;
+	
 	private String file_savname;
 	
 	public String getFile_savname() {
@@ -67,7 +69,7 @@ public class ApprovalRequestDetailView extends ActionSupport {
 	
 	
 	public String execute() throws Exception {    
-		
+		paramClass = (RequestListBean) sqlMapper.queryForObject("AprReq-selectOne", getR_idx());
 		return SUCCESS;
 	}
 
@@ -81,8 +83,10 @@ public class ApprovalRequestDetailView extends ActionSupport {
 		//해당 글의 값을 빈에 넣는다 
 		shopBean.setShop_idx(paramClass.getR_idx());
 		System.out.println(paramClass.getR_idx());
+		
 		shopBean.setShop_name(paramClass.getR_shop_name());
 		System.out.print(paramClass.getR_shop_name());
+		
 		shopBean.setShop_tel(paramClass.getR_shop_tel());
 		shopBean.setShop_kind(paramClass.getR_shop_kind());
 		shopBean.setShop_addr1(paramClass.getR_shop_addr1());
@@ -95,27 +99,38 @@ public class ApprovalRequestDetailView extends ActionSupport {
 		shopBean.setFile_orgname(paramClass.getR_shop_file_orgname());
 		shopBean.setFile_savname(paramClass.getR_shop_file_savname());
 		
-		//임시테이블 approvedClass 객체에 입력된 속성값을 SHOP 테이블 DB에 저장
+		//shopBean 객체에 입력된 requestList값을  SHOP 테이블 DB에 저장
 		sqlMapper.insert("Shop-insertAshop", shopBean);
 		
-		shop_idx = (int) sqlMapper.queryForObject("Shop-getIdx");
+		shop_idx = (int) sqlMapper.queryForObject("Shop-getIdx");    //저장된후 shop테이블의 마지막 인덱스 값을 불러 온다(방금 저장된 것)
 		
+
 		//실제 서버에 저장될 파일 이름과 확장자 설정 
 		String file_name = "file_" + shop_idx;
+		
 		//확장자 설정 
 		String file_ext = getUploadFileName().substring(
 				getUploadFileName().lastIndexOf('.')+ 1,
 				getUploadFileName().length());
 		
 		file_savname = "file_" + shop_idx + "." + file_ext;
-		
+
 		map.put("shop_idx", shop_idx);
 		map.put("file_savname", file_savname);
 		
 		sqlMapper.update("Shop_update_file_savname", map);
 		
-		File destFile = new File(fileUploadPath + file_name + "."+ file_ext);
-	
+		//File destFile = new File(fileUploadPath + file_name);
+		System.out.println("paramClass.getR_idx() : " + paramClass.getR_idx());
+		
+		File beforeFile = new File("C:\\git\\Taster\\Taster\\WebContent\\images\\temporary_shop\\" + "file_" + paramClass.getR_idx());
+		
+		System.out.println("beforeFile.exists() : " + beforeFile.exists());
+		
+		File afterFile = new File("C:\\git\\Taster\\Taster\\WebContent\\images\\shop\\" + "file_" + shop_idx);
+		
+		
+		
 		//승인된 요청글을 RequestListBean DB에서 삭제
 		sqlMapper.update("AprReq-DeleteReqList", paramClass);
 			return SUCCESS;	

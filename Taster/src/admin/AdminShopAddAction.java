@@ -123,7 +123,7 @@ public String execute() throws Exception  {
 		FileUtils.copyFile(getUpload(), destFile);
 		
 		//파일 정보 업데이트.
-		sqlMapper.update("updateFileUpload", map);
+		//sqlMapper.update("updateFileUpload", map);
 		//System.out.println("업로드 완료");
 		
 	}
