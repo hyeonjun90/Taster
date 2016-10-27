@@ -1,29 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN" "http://struts.apache.org/dtds/struts-2.0.dtd">
 <struts>
+   <constant name="struts.multipart.maxSize" value="104857600"/>
+   <package name="admin" extends="struts-default, tiles-default">
+   
 
-<constant value="104857600" name="struts.multipart.maxSize"/>
+   <!-- 관리자의 식당등록 액션 -->
+      <action name="AshopWriteForm" class="admin.AdminShopAddAction" method="form">
+         <result type="tiles">AshopWrite</result>
+         </action>
 
-<<<<<<< HEAD
-
-<package name="admin" extends="struts-default, tiles-default">
-
-<!-- 관리자의 식당등록 액션 -->
-
-
-
-<action name="AshopWriteForm" method="form" class="admin.AdminShopAddAction">
-
-<result type="tiles">AshopWrite</result>
-
-=======
       <action name="AshopWriteAction" class="admin.AdminShopAddAction" method="execute">
               <result type="tiles">AshopWriteResult</result>
         </action>
       
      <!-- 리스트 삭제 액션-->
       <action name="AshopDeleteAction" class="admin.AdminShopDeleteAction" method="execute">
-  		<result type="chain">AshoplistAction</result>
+        <result type="chain">AshoplistAction</result>
       </action>
       
       <!-- 리스트 삭제 , 성준이가 한것 
@@ -54,36 +47,8 @@
        
       <action name="AdminShopSearchZipcodeSearch" class="admin.AdminShopZipcodeAction" method="shopZipcodeSearh">
          <result>/member/shop_zipcode_search.jsp</result>
-<<<<<<< HEAD
-       </action>
-	
-		<!-- 신규가게 등록 요청글 관련 -->
-		<!-- 신규가게등록 승인 요청 리스트 보기 -->
-		<action name="approvalRequestList" class="admin.ApprovalRequestListAction" method="execute">
-			<result type="tiles">ApprovalRequestList</result>
-		</action>
-		
-		<!-- 신규가게등록 요청 승인액션 -->
-		<action name="approvalActionOk" class="admin.ApprovalRequestDetailView" method="approvalActionOk">
-			<result type="redirect-action">
-			<param name="actionName">approvalRequestList</param></result>
-		</action>
-		
-		<!-- 신규가게등록 요청 반려액션 -->
-		<action name="approvalActionNok" class="admin.ApprovalRequestDetailView" method="approvalActionNok">
-			<result type="redirect-action"></result>
-			<param name="actionName">approvalRequestList</param>
-		</action>
-		
-		<!-- 신규가게등록 리스트 글 상세보기 -->
-		<action name="approvalRequestDetailView" class="admin.ApprovalRequestDetailView">
-			<result type="tiles">ApprovalRequestDetail</result>
-		</action>
-		
-=======
        </action>
        
->>>>>>> branch 'master' of https://github.com/hyeonjun90/Taster
        
    
       <!-- 신규가게 등록 요청글 관련 -->
@@ -109,8 +74,16 @@
          <result type="tiles">ApprovalRequestDetail</result>
       </action>
       
-<<<<<<< HEAD
-
+      <!-- 신규가게등록 요청 글 파일 다운로드 액션 -->
+      <action name="AprReq_fileDownloadAction" class="admin.ApprovalRequestDetailView" method="download">
+       <result name="success" type="stream">
+                <param name="contentType">binary/octet-stream</param>
+                <param name="inputName">inputStream</param>
+                <param name="contentDisposition">${contentDisposition}</param>
+                <param name="contentLength">${contentLength}</param> 
+                <param name="bufferSize">4096</param>
+         </result>
+</action>
 
    <!-- 맛집추천리스트 관련 -->
       <!-- 관리자 화면에서 맛집추천리스트 등록글 리스트 조회 -->
@@ -127,207 +100,14 @@
       <action name="rboardWriteAction" class="rboard.AdminRBoardWriteAction">
          <result type="redirect-action">
          <param name="actionName">adminRboardList</param>
-=======
-      <!-- 신규가게등록 요청 글 파일 다운로드 액션 -->
-      <action name="AprReq_fileDownloadAction" class="admin.ApprovalRequestDetailView" method="download">
-       <result name="success" type="stream">
-                <param name="contentType">binary/octet-stream</param>
-                <param name="inputName">inputStream</param>
-                <param name="contentDisposition">${contentDisposition}</param>
-                <param name="contentLength">${contentLength}</param> 
-                <param name="bufferSize">4096</param>
->>>>>>> branch 'master' of https://github.com/hyeonjun90/Taster
          </result>
->>>>>>> branch 'master' of https://github.com/hyeonjun90/Taster
-</action>
-
-
-<action name="AshopWriteAction" method="execute" class="admin.AdminShopAddAction">
-
-<result type="tiles">AshopWriteResult</result>
-
-</action>
-
-<!-- 리스트 삭제 액션-->
-
-
-
-<action name="AshopDeleteAction" method="execute" class="admin.AdminShopDeleteAction">
-
-<result type="chain">AshoplistAction</result>
-
-</action>
-
-<!-- 리스트 삭제 , 성준이가 한것 <action name="AshopDeleteAction" class="admin.AdminShopDeleteAction" method="execute"> <result type="redirect-action"> <param name="actionName">AshopList</param></result> </action> -->
-
-
-<!-- 관리자의 식당등록 목록 보기 액션 -->
-
-
-
-<action name="AshoplistAction" class="admin.AdminShopListAction">
-
-<result type="tiles">AshopList</result>
-
-</action>
-
-<!-- 관리자의 식당리스트 검색 액션 -->
-
-
-
-<action name="AshoplistSearchNAction" method="search" class="admin.AdminShopListAction">
-
-<result type="tiles">AshopList</result>
-
-</action>
-
-<!-- 관리자의 식당등록리스트 상세보기 액션 -->
-
-
-
-<action name="AdminShopListDetailView" class="admin.AdminShopListDetailView">
-
-<result type="tiles">AdminShopListDetail</result>
-
-</action>
-
-<!-- 주소찾기 -->
-
-
-
-<action name="AdminShopSearchZipcode" method="AdminshopZipcode" class="admin.AdminShopZipcodeAction">
-
-<result>/admin/admin_shop_zipcode.jsp</result>
-
-</action>
-
-<action name="AdminShopSearchZipcodeSearch" method="shopZipcodeSearh" class="admin.AdminShopZipcodeAction">
-
-<result>/member/shop_zipcode_search.jsp</result>
-
-</action>
-
-<!-- 신규가게 등록 요청글 관련 -->
-
-
-<!-- 신규가게등록 승인 요청 리스트 보기 -->
-
-
-
-<action name="approvalRequestList" method="execute" class="admin.ApprovalRequestListAction">
-
-<result type="tiles">ApprovalRequestList</result>
-
-</action>
-
-<!-- 신규가게등록 요청 승인액션 -->
-
-
-
-<action name="approvalActionOk" method="approvalActionOk" class="admin.ApprovalRequestDetailView">
-
-
-<result type="redirect-action">
-
-<param name="actionName">approvalRequestList</param>
-
-</result>
-
-</action>
-
-<!-- 신규가게등록 요청 반려액션 -->
-
-
-
-<action name="approvalActionNok" method="approvalActionNok" class="admin.ApprovalRequestDetailView">
-
-<result type="redirect-action"/>
-
-<param name="actionName">approvalRequestList</param>
-
-</action>
-
-<!-- 신규가게등록 리스트 글 상세보기 -->
-
-
-
-<action name="approvalRequestDetailView" class="admin.ApprovalRequestDetailView">
-
-<result type="tiles">ApprovalRequestDetail</result>
-
-</action>
-
-<!-- 신규가게등록 요청 글 파일 다운로드 액션 -->
-
-
-
-<action name="AprReq_fileDownloadAction" method="download" class="admin.ApprovalRequestDetailView">
-
-
-<result name="success" type="stream">
-
-<param name="contentType">binary/octet-stream</param>
-
-<param name="inputName">inputStream</param>
-
-<param name="contentDisposition">${contentDisposition}</param>
-
-<param name="contentLength">${contentLength}</param>
-
-<param name="bufferSize">4096</param>
-
-</result>
-
-</action>
-
-<!-- 맛집추천리스트 관련 -->
-
-
-<!-- 관리자 화면에서 맛집추천리스트 등록글 리스트 조회 -->
-
-
-
-<action name="adminRboardList" class="rboard.AdminRBoardListAction">
-
-<result type="tiles">AdminRboardList</result>
-
-</action>
-
-<!-- 관리자 화면에서 맛집추천리스트 포스팅 작성하기 페이지로 이동 -->
-
-
-
-<action name="rboardWriteForm" method="form" class="rboard.AdminRBoardWriteAction">
-
-<result type="tiles">AdminRboardWrite</result>
-
-</action>
-
-<!-- 관리자 화면에서 맛집추천리스트 작성하기 실행 -->
-
-
-
-<action name="rboardWriteAction" class="rboard.AdminRBoardWriteAction">
-
-
-<result type="redirect-action">
-
-<param name="actionName">adminRboardList</param>
-
-</result>
-
-</action>
-
-<!-- 맛집추천리스트 등록글 상세 조회 -->
-
-
-
-<action name="rboardDetailView" method="execute" class="rboard.RboardDetailView">
-
-<result type="tiles">rboardDetail</result>
-
-</action>
-
-</package>
-
+      </action>
+      
+      <!-- 맛집추천리스트 등록글 상세 조회 -->
+      <action name="rboardDetailView" class="rboard.RboardDetailView" method="execute">
+         <result type="tiles">rboardDetail</result>
+      </action>
+
+   </package>
 </struts>
+  

@@ -5,12 +5,15 @@ import com.ibatis.common.resources.Resources;
 import com.ibatis.sqlmap.client.SqlMapClient;
 import com.ibatis.sqlmap.client.SqlMapClientBuilder;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.Reader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.io.IOException;
 import java.net.URLEncoder;
+import java.nio.channels.FileChannel;
 import java.util.HashMap;
 import java.util.List;
 
@@ -82,10 +85,9 @@ public class ApprovalRequestDetailView extends ActionSupport {
 		
 		//해당 글의 값을 빈에 넣는다 
 		shopBean.setShop_idx(paramClass.getR_idx());
-		System.out.println(paramClass.getR_idx());
 		
 		shopBean.setShop_name(paramClass.getR_shop_name());
-		System.out.print(paramClass.getR_shop_name());
+		
 		
 		shopBean.setShop_tel(paramClass.getR_shop_tel());
 		shopBean.setShop_kind(paramClass.getR_shop_kind());
@@ -103,38 +105,73 @@ public class ApprovalRequestDetailView extends ActionSupport {
 		sqlMapper.insert("Shop-insertAshop", shopBean);
 		
 		shop_idx = (int) sqlMapper.queryForObject("Shop-getIdx");    //저장된후 shop테이블의 마지막 인덱스 값을 불러 온다(방금 저장된 것)
+		map.put("shop_idx", shop_idx);    
 		
-
-		//실제 서버에 저장될 파일 이름과 확장자 설정 
-		String file_name = "file_" + shop_idx;
+		System.out.println();
+		file_savname = (String) sqlMapper.queryForObject("Shop-select-filesavName", map);
 		
-		//확장자 설정 
-		String file_ext = getUploadFileName().substring(
-				getUploadFileName().lastIndexOf('.')+ 1,
-				getUploadFileName().length());
+		System.out.println("file_savname : " + file_savname);
+		//확장자 얻어오기 
+		int pos = file_savname.lastIndexOf(".");
+		String file_ext = file_savname.substring(pos+1);
 		
 		file_savname = "file_" + shop_idx + "." + file_ext;
-
-		map.put("shop_idx", shop_idx);
 		map.put("file_savname", file_savname);
 		
 		sqlMapper.update("Shop_update_file_savname", map);
 		
-		//File destFile = new File(fileUploadPath + file_name);
-		System.out.println("paramClass.getR_idx() : " + paramClass.getR_idx());
-		
 		File beforeFile = new File("C:\\git\\Taster\\Taster\\WebContent\\images\\temporary_shop\\" + "file_" + paramClass.getR_idx());
-		
-		System.out.println("beforeFile.exists() : " + beforeFile.exists());
-		
 		File afterFile = new File("C:\\git\\Taster\\Taster\\WebContent\\images\\shop\\" + "file_" + shop_idx);
 		
-		
-		
+		moveFile(beforeFile.getAbsolutePath(), afterFile.getAbsolutePath());
+
 		//승인된 요청글을 RequestListBean DB에서 삭제
 		sqlMapper.update("AprReq-DeleteReqList", paramClass);
-			return SUCCESS;	
+		return SUCCESS;	
+	
+		//System.out.println("paramClass.getR_idx() : " + paramClass.getR_idx());
 		} 
+	
+	//파일 shop으로 옮기기
+	public boolean moveFile(String source, String dest){
+		boolean result = false;
+		
+		FileInputStream inputStream = null;
+		FileOutputStream outputStream = null;
+		
+		try{
+			inputStream = new FileInputStream(source);
+			outputStream = new FileOutputStream(dest);
+		}catch(FileNotFoundException e){
+			e.printStackTrace();
+			result = false;
+		}
+		
+		FileChannel fcin = inputStream.getChannel();
+		FileChannel fcout = outputStream.getChannel();
+		
+		long size = 0;
+		try{
+			size = fcin.size();
+			fcin.transferTo(0, size, fcout);
+			
+			fcout.close();
+			fcin.close();
+			outputStream.close();
+			inputStream.close();
+			
+			result = true;	
+		}catch(IOException e){
+			e.printStackTrace();
+			result = false;
+		}
+		
+		File f = new File(source);
+		if(f.delete()){
+			result = true;
+		}
+		return result;
+	}
 	
 	//신규식당등록 요청 글 승인거부
 	public String approvalActionNok() throws Exception {

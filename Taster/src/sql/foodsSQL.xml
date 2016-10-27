@@ -123,14 +123,7 @@
 		where <![CDATA[rnum>#beforeSize#]]>
 	</select>
 
-	<!-- Áö¿ªº° ¸ÀÁý °Ë»ö ³¡ -->
-	<!-- ½Ä´ç ÀüÃ¼ Æò±Õ Á¶ÀÎ  -->
-<<<<<<< HEAD
 	<select id="newShop-selectAll"  resultClass="bean.FoodsNewListBean" remapResults="true">
-		
-=======
-	<select id="newShop-selectAll"  resultClass="bean.FoodsNewListBean" remapResults="true">
->>>>>>> branch 'master' of https://github.com/hyeonjun90/Taster
 		select * from ( 
 		 	select shop_idx, shop_name, shop_addr1, shop_addr2, shop_addr3, shop_addr4, file_savname, rownum rnum,
     					r_content, member_nicname, member_image, avg_r_score 
@@ -152,16 +145,9 @@
 			where <![CDATA[rownum<=#pageSize#]]>)
 		where <![CDATA[rnum>#beforeSize#]]>
 	</select>
-	
-	
-<<<<<<< HEAD
 
-	<!-- ¿äÁò¶ß´Â ¸ÀÁý -->
-	<select id="hopShop-list-selectAll" resultClass="bean.FoodsHotListBean">
-
-=======
-	<select id="hopShop-list-selectAll" resultClass="bean.FoodsHotListBean">
->>>>>>> branch 'master' of https://github.com/hyeonjun90/Taster
+	
+	<select id="hotShop-list-selectAll" resultClass="bean.FoodsHotListBean">
 		select * from ( 
 		 	select shop_idx, shop_name, shop_addr1, shop_addr2, shop_addr3, shop_addr4, file_savname, rownum rnum,
     					r_content, member_nicname, member_image, avg_r_score 
@@ -192,7 +178,6 @@
 		FROM SHOP WHERE shop_idx = #shop_idx#
 	</select>
 	
-	<!-- ë¦¬ë·° ìž‘ì„±í•˜ê¸° -->
 	<insert id="insertReview" parameterClass="bean.ReviewBean">
 		insert into REVIEWBEAN (review_idx, r_title, r_content, r_score, r_pungga, r_image, r_regdate, member_id, shop_idx)
 		VALUES (review_no_seq.NEXTVAL, #r_title#, #r_content#, #r_score#, #r_pungga#, #r_image#, #r_regdate#, #member_id#, #shop_idx#)
