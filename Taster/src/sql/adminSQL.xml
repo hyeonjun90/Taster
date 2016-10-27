@@ -116,8 +116,6 @@
 		-->
 
 		
-		
-		
 		<!--  
 		<select id="selectOne" parameterClass="int" resultMap="boardRes">
 		 SELECT * FROM SBOARD WHERE no = #no# 
@@ -132,10 +130,49 @@
 		
 		
 		
+		
+
 		<!-- update 쿼리문 정의 -->
+		<!-- 성준이꺼 파일변경 관련 
 		<update id="updateFileUpload" parameterClass="HashMap">
 			update shop set file_orgname=#file_orgname#, file_savname=#file_savname# where shop_idx=#shop_idx#
 		</update>
+		-->
+		
+		
+		<!--update 쿼리문 정의-->
+		<!-- 샵 수정할때 파일 변경 관련 , 내가 변경함 -->
+		<update id="updateFileUpload" parameterClass="admin_shop">
+			UPDATE SHOP SET FILE_ORGNAME=#file_orgname#,
+			FILE_SAVNAME=#file_savname#
+			<include refid="Shop-where-Sidx"/> 
+		</update>
+		
+		
+		<!-- 샵 수정하기 관련 액션,  샵수정할때 파일변경은 바로 위를 참조할 것-->
+		<update id="Shop-updateAshop" parameterClass="admin_shop">
+		UPDATE SHOP SET SHOP_NAME = #shop_name#, 
+						SHOP_TEL = #shop_tel#,
+						SHOP_KIND = #shop_kind#,
+						SHOP_ADDR1 = #shop_addr1#,
+						SHOP_ADDR2 = #shop_addr2#,
+						SHOP_ADDR3 = #shop_addr3#,
+						SHOP_ADDR4 = #shop_addr4#,
+						SHOP_PRICE = #shop_price#,
+						SHOP_HOLIDAY = #shop_holiday#
+		<include refid="Shop-where-Sidx"/>
+		</update>
+	
+	<!--
+	<update id="updateBoard" parameterClass="board">
+	UPDATE SBOARD2 SET SUBJECT = 	#subject#, 
+					NAME = #name#,
+					PASSWORD = #password#,
+					CONTENT = #content#
+	<include refid = "where-no" />
+	</update>
+	-->
+		
 		
 		
 		<!-- ApprovalRequest(신규등록요청)에서 공통으로 사용할 select-all 명령문 -->
