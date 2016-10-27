@@ -130,19 +130,19 @@
 		 	select shop_idx, shop_name, shop_addr1, shop_addr2, shop_addr3, shop_addr4, file_savname, rownum rnum,
     					r_content, member_nicname, member_image, avg_r_score 
     		from (select shop_idx, shop_name, shop_addr1, shop_addr2, shop_addr3, shop_addr4, file_savname, 
-						  (select r_content from (select r_content from review r1 where s.shop_idx=r1.shop_idx)
-						  	 where <![CDATA[rownum<2]]>) as r_content,
-						  (select member_nicname from 
+						  nvl((select r_content from (select r_content from review r1 where s.shop_idx=r1.shop_idx)
+						  	 where <![CDATA[rownum<2]]>),'등록된 리뷰가 없습니다.') as r_content,
+						  nvl((select member_nicname from 
 							  (select  member_nicname from member m1 inner join review r1 on r1.member_id=m1.member_id
 							    where m1.member_id=r1.member_id and r1.shop_idx=s.shop_idx)
-						   where <![CDATA[rownum<2]]>) as member_nicname,
-						  (select member_image from 
+						   where <![CDATA[rownum<2]]>), ' ') as member_nicname,
+						  nvl((select member_image from 
 							  (select  member_image from member m1 inner join review r1 on r1.member_id=m1.member_id
 							    where m1.member_id=r1.member_id and r1.shop_idx=s.shop_idx)
-						   where <![CDATA[rownum<2]]>) as member_image, 
-						  (select ROUND(AVG(r1.r_score),1) from shop s1 
+						   where <![CDATA[rownum<2]]>), 'basic_profile.png') as member_image, 
+						  nvl((select ROUND(AVG(r1.r_score),1) from shop s1 
 						  				inner join review r1 on r1.shop_idx = s1.shop_idx 
-						  				where r1.SHOP_IDX=s.SHOP_IDX) as avg_r_score
+						  				where r1.SHOP_IDX=s.SHOP_IDX), 0) as avg_r_score 
 					    from shop s where <![CDATA[shop_regDate > add_months(sysdate, -1)]]> order by avg_r_score desc, shop_idx desc) 
 			where <![CDATA[rownum<=#pageSize#]]>)
 		where <![CDATA[rnum>#beforeSize#]]>
@@ -151,30 +151,27 @@
 	
 
 	<!-- 요즘뜨는 맛집 -->
-	<select id="hopShop-list-selectAll" resultClass="bean.FoodsHotListBean">
-
+	<select id="hotShop-list-selectAll" resultClass="bean.FoodsHotListBean">
 		select * from ( 
 		 	select shop_idx, shop_name, shop_addr1, shop_addr2, shop_addr3, shop_addr4, file_savname, rownum rnum,
     					r_content, member_nicname, member_image, avg_r_score 
     		from (select shop_idx, shop_name, shop_addr1, shop_addr2, shop_addr3, shop_addr4, file_savname, 
-						  (select r_content from (select r_content from review r1 where s.shop_idx=r1.shop_idx)
-						  	 where <![CDATA[rownum<2]]>) as r_content,
-						  (select member_nicname from 
+						  nvl((select r_content from (select r_content from review r1 where s.shop_idx=r1.shop_idx)
+						  	 where <![CDATA[rownum<2]]>),'등록된 리뷰가 없습니다.') as r_content,
+						  nvl((select member_nicname from 
 							  (select  member_nicname from member m1 inner join review r1 on r1.member_id=m1.member_id
 							    where m1.member_id=r1.member_id and r1.shop_idx=s.shop_idx)
-						   where <![CDATA[rownum<2]]>) as member_nicname,
-						  (select member_image from 
+						   where <![CDATA[rownum<2]]>), ' ') as member_nicname,
+						  nvl((select member_image from 
 							  (select  member_image from member m1 inner join review r1 on r1.member_id=m1.member_id
 							    where m1.member_id=r1.member_id and r1.shop_idx=s.shop_idx)
-						   where <![CDATA[rownum<2]]>) as member_image, 
-						  (select ROUND(AVG(r1.r_score),1) from shop s1 
+						   where <![CDATA[rownum<2]]>), 'basic_profile.png') as member_image, 
+						  nvl((select ROUND(AVG(r1.r_score),1) from shop s1 
 						  				inner join review r1 on r1.shop_idx = s1.shop_idx 
-						  				where r1.SHOP_IDX=s.SHOP_IDX) as avg_r_score
+						  				where r1.SHOP_IDX=s.SHOP_IDX), 0) as avg_r_score 
 					    from shop s order by shop_readcount desc, avg_r_score desc, shop_idx desc) 
 			where <![CDATA[rownum<=#pageSize#]]>)
 		where <![CDATA[rnum>#beforeSize#]]>
-	
-	
 	</select>
 
 

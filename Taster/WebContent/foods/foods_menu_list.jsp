@@ -2,6 +2,7 @@
     pageEncoding="EUC-KR"%>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -35,7 +36,7 @@
 	.shopInfo div {margin-left:10px; padding: 3px; font-family : 'Noto Sans', sans-serif;}
 	.title { font-size: 18px; color:#555; font-weight:bold;}
 	.r_score { font-size: 18px; color:orange; font-weight:bold; }
-	.shop_addr {width:600px;float:left;text-align:left; color:#a6a6a6; font-size:13px;}
+	.shop_addr {width:600px;float:left;text-align:left; color:#a6a6a6; font-size:13px; }
 	.r_content {padding: 10px; font-size: 12px; float:left; width: 600px; text-align:left; margin-top:10px;}
 	.favorite {background-image: url('/Taster/images/fav.png'); 
     			 width: 52px; height: 31px; background-size: 32px 31px; background-repeat: no-repeat; 
@@ -194,13 +195,13 @@ var fTotalCount = ${fTotalCount};
 			<div id="favorite_${fList.shop_idx}" class="favorite"
 						 style="<c:forEach items="${bookList}" var="bookList">
 									<c:if test="${bookList eq fList.shop_idx }">
-						 			background-image:url('/Taster/images/fav_check.png');padding-top:30px;
+						 			background-image:url('/Taster/images/fav_check.png');
 						 			</c:if>
-						 			<c:if test="${bookList ne fList.shop_idx }">
-						 				padding-top:30px;
+						 			<c:if test="${bookList ne fList.shop_idx || empty session.member_id}">
+						 				
 									</c:if>
 								</c:forEach>
-								"<c:if test="${!empty session.member_id}">
+								padding-top:30px;"<c:if test="${!empty session.member_id}">
 									onclick="bookMark('${fList.shop_idx}');"
 								</c:if>
 								<c:if test="${empty session.member_id}">
@@ -223,12 +224,13 @@ var fTotalCount = ${fTotalCount};
 				</strong>&nbsp;
 				
 				<c:if test="${fList.r_content != null }">
-					${fList.r_content }
+					${fn:substring(fList.r_content, 0, 150) }...
 				</c:if>
 				
 				
 			</div>
 		</div>
+		<div style="width:300px; text-align:right; float:right;font-size:11px;color:#a6a6a6;"> >>${fList.shop_name} 정보 더보기</div>
 		<div style="clear:both; height:10px;"></div>		
 		<div style="clear:both; width:800px; border:1px solid #d5d5d5;"></div>
 		
