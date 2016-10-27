@@ -19,7 +19,7 @@ import java.util.Map;
 
 import bean.*;
 
-public class FoodsHotListAction  extends ActionSupport {
+public class FoodsHotListAction  extends ActionSupport implements SessionAware {
 	
 	public static Reader reader; //파일 스트림을 위한 reader
 	public static SqlMapClient sqlMapper; //SqlMapClient API를 사용하기 위한 sqlMapper 객체
@@ -32,6 +32,10 @@ public class FoodsHotListAction  extends ActionSupport {
 	int currentPage;
 	int pageSize = 3;
 	int beforeSize;
+	
+	private Map session;
+	private ArrayList<Integer> bookList;
+	String member_id;
 	
 	//생성자
 	public FoodsHotListAction() throws IOException {
@@ -57,7 +61,12 @@ public class FoodsHotListAction  extends ActionSupport {
 		System.out.println("pageSize : " + pageSize);
 		System.out.println("-----------");
 		fList = (ArrayList<FoodsHotListBean>) sqlMapper.queryForList("hotShop-list-selectAll", pagingMap);
-		
+		if(session.get("member_id") != null) {
+			member_id = session.get("member_id").toString();
+		} else {
+			member_id = "";
+		}
+		bookList = (ArrayList<Integer>) sqlMapper.queryForList("bookList", member_id);
 		return SUCCESS;
 	}
 		
@@ -78,7 +87,12 @@ public class FoodsHotListAction  extends ActionSupport {
 		
 		fTotalCount = (int) sqlMapper.queryForObject("foodsMenuListCount");
 		fList = (ArrayList<FoodsHotListBean>) sqlMapper.queryForList("hotShop-list-selectAll",pagingMap);
-		
+		if(session.get("member_id") != null) {
+			member_id = session.get("member_id").toString();
+		} else {
+			member_id = "";
+		}
+		bookList = (ArrayList<Integer>) sqlMapper.queryForList("bookList", member_id);
 		fTotalCount -= fList.size();
 		
 		
@@ -138,6 +152,22 @@ public class FoodsHotListAction  extends ActionSupport {
 
 	public void setBeforeSize(int beforeSize) {
 		this.beforeSize = beforeSize;
+	}
+
+	public Map getSession() {
+		return session;
+	}
+
+	public void setSession(Map session) {
+		this.session = session;
+	}
+
+	public ArrayList<Integer> getBookList() {
+		return bookList;
+	}
+
+	public void setBookList(ArrayList<Integer> bookList) {
+		this.bookList = bookList;
 	}
 
 }

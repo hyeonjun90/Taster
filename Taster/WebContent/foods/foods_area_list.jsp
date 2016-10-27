@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -23,7 +24,7 @@
 	.shopInfo div {margin-left:10px; padding: 3px; font-family : 'Noto Sans', sans-serif;}
 	.title { font-size: 18px; color:#555; font-weight:bold;}
 	.r_score { font-size: 18px; color:orange; font-weight:bold; }
-	.shop_addr {width:600px;float:left;text-align:left; color:#a6a6a6; font-size:13px;}
+	.shop_addr {width:600px;float:left;text-align:left; color:#a6a6a6; font-size:13px; }
 	.r_content {padding: 10px; font-size: 12px; float:left; width: 600px; text-align:left; margin-top:10px;}
 	.favorite {   
     width: 32px;
@@ -227,9 +228,10 @@ var beforeThis = "";
 				<div class="m_image">
 				</div>
 				<strong>${fList.member_nicname }</strong>&nbsp;
-				${fList.r_content }
+				${fn:substring(fList.r_content, 0, 150) }...
 			</div>
 		</div>
+		<div style="width:300px; text-align:right; float:right;font-size:11px;color:#a6a6a6;"> >>${fList.shop_name} 정보 더보기</div>
 		<div style="clear:both; height:10px;"></div>		
 		<div style="clear:both; width:800px; border:1px solid #d5d5d5;"></div>
 		
@@ -239,7 +241,7 @@ var beforeThis = "";
 			<div id="" style="width:500px;height:50px;margin-top:30px;"><h2>등록된 식당 정보가 없습니다.</h2></div>
 		</c:if>
 		<c:if test="${fTotalCount > 0 }">
-			<div id="readMore" style="width:500px;height:50px;margin:0px auto;">
+			<div id="readMore" style="width:500px;height:50px;margin:0px auto;text-align:center;">
 				<h2 style="cursor:pointer;" onclick="readMore();">▽더보기</h2>
 			</div>
 		</c:if>

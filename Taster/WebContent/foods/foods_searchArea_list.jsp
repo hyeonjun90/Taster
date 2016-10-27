@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <script>
 var currentPage = 1;
 var fTotalCount = ${fTotalCount};
@@ -46,9 +47,10 @@ init2();
 				<div class="m_image">
 				</div>
 				<strong>${fList.member_nicname }</strong>&nbsp;
-				${fList.r_content }
+				${fn:substring(fList.r_content, 0, 150) }...
 			</div>
 		</div>
+		<div style="width:300px; text-align:right; float:right;font-size:11px;color:#a6a6a6;"> >>${fList.shop_name} 정보 더보기</div>
 		<div style="clear:both; height:10px;"></div>		
 		<div style="clear:both; width:800px; border:1px solid #d5d5d5;"></div>
 		
