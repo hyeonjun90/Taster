@@ -46,17 +46,30 @@
    </select>
    
    <!-- bookmarkList select문 선언 -->
-   <select id="bookmarkList-selecAll" resultClass="bean.BookmarkListBean" parameterClass="String">
-   		select shop_name, file_savname from bookmark b left join shop s on b.shop_idx=s.shop_idx
-   		where member_id = #member_id#
-   		order by s.shop_idx DESC
+   <select id="bookmarkList-selecAll" resultClass="bean.BookmarkListBean" parameterClass="HashMap">
+   		select * from (select * from (select shop_name, file_savname, rownum rnum from shop 
+			where shop_idx in (select shop_idx from bookmark where member_id=#member_id# )
+   			order by shop_idx DESC) where <![CDATA[rownum<10]]>) where <![CDATA[rnum>0]]>
    </select>
    
    <!--reviewList select문 선언 -->
-   <select id="reviewList-selectAll" resultClass="bean.ReviewListBean" parameterClass="String">
-   		select shop_name, file_savname from review r inner join shop s on r.shop_idx=s.shop_idx
-   		where member_id = #member_id#
-   		order by s.shop_idx DESC
+   <select id="reviewList-selectAll" resultClass="bean.ReviewListBean" parameterClass="HashMap">
+		select s.shop_idx,shop_name, shop_addr1, shop_addr2, shop_addr3, shop_addr4, file_savname, (select r_content  from (select * from (select r_content,rownum rnum from review r 
+						where r.shop_idx=s.shop_idx and member_id=#member_id# 
+						order by review_idx desc) where rnum=1)) r_content,
+		(select member_nicname from 
+							  (select  member_nicname from member m1 inner join review r1 on r1.member_id=m1.member_id
+							    where m1.member_id=r1.member_id and r1.shop_idx=s.shop_idx)
+						   where <![CDATA[rownum<2]]>) as member_nicname,
+		(select ROUND(AVG(r1.r_score),1) from shop s1 
+						  				inner join review r1 on r1.shop_idx = s1.shop_idx 
+						  				where r1.SHOP_IDX=s.SHOP_IDX) as avg_r_score,
+		(select member_image from 
+							  (select  member_image from member m1 inner join review r1 on r1.member_id=m1.member_id
+							    where m1.member_id=r1.member_id and r1.shop_idx=s.shop_idx)
+						   where <![CDATA[rownum<2]]>) as member_image
+from shop s 
+	 where s.shop_idx in (select distinct(shop_idx) from review where member_id=#member_id#)
    </select>
 
 	<!-- 회원 사진 등록 -->

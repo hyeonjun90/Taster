@@ -2,6 +2,7 @@ package admin;
 
 import com.opensymphony.xwork2.ActionSupport;
 
+import bean.QnABoardListBean;
 import bean.ShopBean;
 
 import com.ibatis.common.resources.Resources;
@@ -39,6 +40,8 @@ public AdminShopDeleteAction() throws IOException {
 		resultClass = new ShopBean();
 		
 		// 해당 번호의 글을 가져온다.
+		resultClass = (ShopBean) sqlMapper.queryForObject("Shop-selectOne", getShop_idx());
+		
 		//서버 파일 삭제
 		File deleteFile = new File(fileUploadPath + resultClass.getFile_savname());
 		deleteFile.delete();

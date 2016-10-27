@@ -187,7 +187,7 @@
 					</s:param>
 				</s:url>
 				
-				<!-- 글수정,글삭제,목록 버튼 -->
+				<!-- 글수정,글삭제,목록 버튼, 수정/삭제 버튼을 누르면  qboard.xml에 정의해놓은 idCheck액션을 통해 QBoardViewAction.java내  idCheck메소드가 동작한다. idCheck메소드에서 ID가 다르면qboard_check_error페이지(수정/삭제 불가 창)를 띄웠다가 종료하며 ID가 일치하면 qboard_check_success.jsp(수정/삭제 가능)창을 띄웠다가 종료한다..-->
 				<!--<input name="list" type="button" value="답변달기" class="inputb" onClick="javascript:location.href='replyForm.action?no=<s:property value="no" />'"> -->
 				<input name="list" type="button" value="수정" class="inputb" onClick="javascript:open_win_noresizable('idCheck.action?member_id=<s:property value="resultClass.member_id" />&b_idx=<s:property value="resultClass.b_idx" />&currentPage=<s:property value="currentPage" />','modify')">
 				<input name="list" type="button" value="삭제" class="inputb" onClick="javascript:open_win_noresizable('idCheck.action?member_id=<s:property value="resultClass.member_id" />&b_idx=<s:property value="resultClass.b_idx" />&currentPage=<s:property value="currentPage" />','delete')">
