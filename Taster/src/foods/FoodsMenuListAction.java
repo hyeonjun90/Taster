@@ -5,6 +5,9 @@ import java.io.Reader;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
+
+import org.apache.struts2.interceptor.SessionAware;
 
 import com.ibatis.common.resources.Resources;
 import com.ibatis.sqlmap.client.SqlMapClient;
@@ -13,7 +16,7 @@ import com.opensymphony.xwork2.ActionSupport;
 
 import bean.*; 
 
-public class FoodsMenuListAction extends ActionSupport{
+public class FoodsMenuListAction extends ActionSupport implements SessionAware {
 	
 	public static Reader reader;
 	public static SqlMapClient sqlMapper;
@@ -27,6 +30,10 @@ public class FoodsMenuListAction extends ActionSupport{
 	int beforeSize;
 	
 	private String category; // 상단 메뉴 색깔 표시
+	
+	private Map session;
+	private ArrayList<Integer> bookList;
+	String member_id;
 	
 	//생성자
 	public FoodsMenuListAction() throws IOException{
@@ -57,7 +64,12 @@ public class FoodsMenuListAction extends ActionSupport{
 			fList = (ArrayList<FoodsMenuListBean>) sqlMapper.queryForList("foodsMenuListSearch", pagingMap);
 		}
 		
-		
+		if(session.get("member_id") != null) {
+			member_id = session.get("member_id").toString();
+		} else {
+			member_id = "";
+		}
+		bookList = (ArrayList<Integer>) sqlMapper.queryForList("bookList", member_id);
 		//System.out.println("fTotalCount : " + fTotalCount);
 		//System.out.println("currentPage : " + currentPage);
 		return SUCCESS;
@@ -76,6 +88,13 @@ public class FoodsMenuListAction extends ActionSupport{
 		pagingMap.put("beforeSize", beforeSize);
 		pagingMap.put("pageSize", pageSize);
 		
+		if(session.get("member_id") != null) {
+			member_id = session.get("member_id").toString();
+		} else {
+			member_id = "";
+		}
+		
+		
 		if (getKeyword() == null || getKeyword() == "") {
 			fTotalCount = (int) sqlMapper.queryForObject("foodsMenuListCount");
 			fList = (ArrayList<FoodsMenuListBean>) sqlMapper.queryForList("foodsMenuList", pagingMap);
@@ -83,9 +102,10 @@ public class FoodsMenuListAction extends ActionSupport{
 			pagingMap.put("keyword", getKeyword());
 			fTotalCount = (int) sqlMapper.queryForObject("foodsMenuListSearchCount", getKeyword());
 			fList = (ArrayList<FoodsMenuListBean>) sqlMapper.queryForList("foodsMenuListSearch", pagingMap);
-			
 		}
 		
+		bookList = (ArrayList<Integer>) sqlMapper.queryForList("bookList", member_id);
+		System.out.println("bookList.size : " + bookList.size());
 		return SUCCESS;
 	}
 	
@@ -149,6 +169,22 @@ public class FoodsMenuListAction extends ActionSupport{
 
 	public void setKeyword(String keyword) {
 		this.keyword = keyword;
+	}
+
+	public Map getSession() {
+		return session;
+	}
+
+	public void setSession(Map session) {
+		this.session = session;
+	}
+
+	public ArrayList<Integer> getBookList() {
+		return bookList;
+	}
+
+	public void setBookList(ArrayList<Integer> bookList) {
+		this.bookList = bookList;
 	}
 	
 	

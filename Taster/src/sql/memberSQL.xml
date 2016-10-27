@@ -9,6 +9,10 @@
 	<select id="nicCheck" parameterClass="String" resultClass="Integer">
 		select count(*) from Member where member_nicname=#member_nicname#
 	</select>
+	<select id="getMemberId" resultClass="String">
+		select member_id from (select member_id,rownum rnum from 
+			(select member_id from member order by member_joinDate desc)) where rnum=1
+	</select>
 	
 	<insert id="insertMember" parameterClass="bean.MemberBean">
 		insert into MEMBER(member_id, member_pwd, member_nicname, member_name, member_phone,
@@ -67,6 +71,11 @@
 from shop s 
 	 where s.shop_idx in (select distinct(shop_idx) from review where member_id=#member_id#)
    </select>
+
+	<!-- 회원 사진 등록 -->
+	<update id="updateMemberUpload" parameterClass="HashMap">
+		update member set member_image=#member_image# where member_id=#member_id#
+	</update>
    
    <!-- 마이펭지 페이징에 사용될 리스트 카운터 -->
    	<select id="reviewListCount" resultClass="Integer" parameterClass ="String">

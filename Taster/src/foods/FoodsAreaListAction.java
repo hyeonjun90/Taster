@@ -5,6 +5,9 @@ import java.io.Reader;
 import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
+
+import org.apache.struts2.interceptor.SessionAware;
 
 import com.ibatis.common.resources.Resources;
 import com.ibatis.sqlmap.client.SqlMapClient;
@@ -13,7 +16,7 @@ import com.opensymphony.xwork2.ActionSupport;
 
 import bean.FoodsMenuListBean;
 
-public class FoodsAreaListAction extends ActionSupport {
+public class FoodsAreaListAction extends ActionSupport implements SessionAware{
 	public static Reader reader; //파일 스트림을 위한 reader
 	public static SqlMapClient sqlMapper; //SqlMapClient API를 사용하기 위한 sqlMapper 객체
 	
@@ -34,6 +37,10 @@ public class FoodsAreaListAction extends ActionSupport {
 	private String category; // 상단 메뉴 색깔 표시
 	private String startPage; // 페이지 시작을 강남으로 정하기 위한 변수
 	private String startNum;
+	
+	private Map session;
+	private ArrayList<Integer> bookList;
+	String member_id;
 	
 	//생성자
 	public FoodsAreaListAction() throws IOException {
@@ -63,6 +70,12 @@ public class FoodsAreaListAction extends ActionSupport {
 		fTotalCount = (int) sqlMapper.queryForObject("foodsAreaListCount", pagingMap);
 		
 		fList = (ArrayList<FoodsMenuListBean>) sqlMapper.queryForList("foodsAreaList", pagingMap);
+		if(session.get("member_id") != null) {
+			member_id = session.get("member_id").toString();
+		} else {
+			member_id = "";
+		}
+		bookList = (ArrayList<Integer>) sqlMapper.queryForList("bookList", member_id);
 		
 		return SUCCESS;
 	}
@@ -94,6 +107,13 @@ public class FoodsAreaListAction extends ActionSupport {
 		System.out.println(URLDecoder.decode(getGugun(), "utf-8"));
 		fTotalCount = (int) sqlMapper.queryForObject("foodsSearchAreaListCount", pagingMap);
 		fList = (ArrayList<FoodsMenuListBean>) sqlMapper.queryForList("foodsSearchAreaList", pagingMap);
+		
+		if(session.get("member_id") != null) {
+			member_id = session.get("member_id").toString();
+		} else {
+			member_id = "";
+		}
+		bookList = (ArrayList<Integer>) sqlMapper.queryForList("bookList", member_id);
 		
 		return SUCCESS;
 	}
@@ -208,6 +228,22 @@ public class FoodsAreaListAction extends ActionSupport {
 
 	public void setGugun(String gugun) {
 		this.gugun = gugun;
+	}
+
+	public Map getSession() {
+		return session;
+	}
+
+	public void setSession(Map session) {
+		this.session = session;
+	}
+
+	public ArrayList<Integer> getBookList() {
+		return bookList;
+	}
+
+	public void setBookList(ArrayList<Integer> bookList) {
+		this.bookList = bookList;
 	}
 
 	

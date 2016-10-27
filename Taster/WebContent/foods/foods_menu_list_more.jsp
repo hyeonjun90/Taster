@@ -11,10 +11,32 @@
 				<span class="title">${fList.rnum}. ${fList.shop_name}</span>
 				<span class="r_score">${fList.avg_r_score }</span>
 			</div>
-			<div style="float:right;" class="favorite">별</div>
+			
+			<div id="favorite_${fList.shop_idx}" class="favorite"
+						 style="<c:forEach items="${bookList}" var="bookList">
+									<c:if test="${bookList eq fList.shop_idx }">
+						 			background-image:url('/Taster/images/fav_check.png');padding-top:30px;
+						 			</c:if>
+						 			<c:if test="${bookList ne fList.shop_idx }">
+						 				padding-top:30px;
+									</c:if>
+								</c:forEach>
+								"<c:if test="${!empty session.member_id}">
+									onclick="bookMark('${fList.shop_idx}');"
+								</c:if>
+								<c:if test="${empty session.member_id}">
+									onclick="javascript:alert('로그인 후에 이용 가능합니다.');"
+								</c:if>
+			>
+			<font style="font-size:11px;">즐겨찾기</font>
+			</div>
+			
 			<div class="shop_addr">${fList.shop_addr1 } ${fList.shop_addr2 } ${fList.shop_addr3 } ${fList.shop_addr4 }</div>
 			<div class="r_content" >
-				<div class="m_image">
+				<div class="m_image" 
+					<c:if test="${fList.member_image != null }">
+					style="background:url('/Taster/images/member/${fList.member_image }') no-repeat;
+							background-size: 36px 36px;" </c:if>>
 				</div>
 				<strong>${fList.member_nicname }</strong>&nbsp;
 				${fList.r_content }
