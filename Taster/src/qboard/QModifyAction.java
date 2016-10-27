@@ -25,11 +25,13 @@ public class QModifyAction extends ActionSupport{
 	
 	private int currentPage;
 	
-	private int b_idx;
-	private String b_title;
-	private String member_id;
-	//private String b_pwd;	//로그인중인 ID와 동일한가 여부로 글을 수정하게 할것임.
-	private String b_content;
+	private int b_idx;		//글번호
+	private String b_title;	//글제목
+	private String member_id;//회원id
+	//private String b_pwd;	//로그인중인 ID와 동일한가 여부로 글을 수정하게 할것임. 글비밀번호 활용x
+	private String b_content; //글내용
+	
+	
 	//private String old_file;
 	
 	//private File upload;

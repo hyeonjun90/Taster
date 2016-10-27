@@ -21,6 +21,7 @@
 			<result property="shop_regDate" column="shop_regDate"/>
 			<result property="file_orgname" column="file_orgname"/>	
 			<result property="file_savname" column="file_savname"/>	
+			
 		</resultMap>
 		
 		<resultMap id="AprReqRes" class="AprReq">   <!-- 신규등록 승인 요청 리스트 -->
@@ -72,6 +73,10 @@
 			SELECT max(shop_idx) as shop_idx FROM SHOP
 		</select>
 		
+		<!-- 주소 검색 -->
+		<select id="AdminZipcodeSearch" parameterClass="String" resultClass="bean.ZipcodeBean">
+		select * from zipcode where dong like #keyword#
+	    </select>
 		
 		
 		<select id="Shop-selectName" resultMap="AshopRes" parameterClass="String">
@@ -89,8 +94,8 @@
 		</select>
 		
 		<delete id="Shop-deleteIdx" parameterClass="int">
+		DELETE FROM SHOP
 		<include refid="Shop-where-Sidx"/>
-		  DELETE FROM REQUEST_LIST
 		</delete>
 		<!--  
 		<select id="selectOne" parameterClass="int" resultMap="boardRes">

@@ -10,11 +10,6 @@ import com.opensymphony.xwork2.ActionSupport;
 
 import org.apache.struts2.interceptor.SessionAware;
 
-
-
-
-
-
 import java.io.IOException;
 import java.io.Reader;
 import java.util.ArrayList;
@@ -61,7 +56,7 @@ public class FoodsHotListAction  extends ActionSupport {
 		System.out.println("beforeSize : " + beforeSize);
 		System.out.println("pageSize : " + pageSize);
 		System.out.println("-----------");
-		fList = (ArrayList<FoodsHotListBean>) sqlMapper.queryForList("hopShop-list-selectAll", pagingMap);
+		fList = (ArrayList<FoodsHotListBean>) sqlMapper.queryForList("hotShop-list-selectAll", pagingMap);
 		
 		return SUCCESS;
 	}
@@ -82,7 +77,7 @@ public class FoodsHotListAction  extends ActionSupport {
 		pagingMap.put("pageSize", pageSize);
 		
 		fTotalCount = (int) sqlMapper.queryForObject("foodsMenuListCount");
-		fList = (ArrayList<FoodsHotListBean>) sqlMapper.queryForList("hopShop-list-selectAll",pagingMap);
+		fList = (ArrayList<FoodsHotListBean>) sqlMapper.queryForList("hotShop-list-selectAll",pagingMap);
 		
 		fTotalCount -= fList.size();
 		

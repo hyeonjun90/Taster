@@ -92,8 +92,7 @@ function joinConf(){
 		return;
 	}
 	
-	if(form.r_shop_kind1.value =="" && form.r_shop_kind2.value =="" && form.r_shop_kind3.value =="" && form.r_shop_kind4.value=="" &&
-			form.r_shop_kind5.value == "" && form.r_shop_kind6.value == "" && form.r_shop_kind7.value ==""){
+	if(form.r_shop_kind.value ==""){
 		alert("업종을 선택해주세요.");
 		return;
 	}
@@ -103,7 +102,16 @@ function joinConf(){
 	form.submit();
 }
 
+function radioCheck(){
 
+	var form = document.joinForm;
+	
+	for(var i=0; i<form.r_shop_kind.length; i++){
+		if(r_shop_kind[i].checked == true){
+			r_shop_kind[i].value;
+		}
+	}
+}
 
 function openZipcode(){
 	var url="shopZipcode.action";
@@ -155,11 +163,16 @@ function openZipcode(){
 		<td>
 			<input type="radio" name="r_shop_kind" value="한식">한식
 			<input type="radio" name="r_shop_kind" value="양식">양식
-			<input type="radio" name="r_shop_kind" value="중식">중식
-			<input type="radio" name="r_shop_kind" value="일식">일식
-			<input type="radio" name="r_shop_kind" value="태국">태국
-			<input type="radio" name="r_shop_kind" value="육류">육류
+			<input type="radio" name="r_shop_kind" value="중식">일식
+			<input type="radio" name="r_shop_kind" value="일식">중식
+			<input type="radio" name="r_shop_kind" value="태국">분식
+			<input type="radio" name="r_shop_kind" value="육류">해산물
 			<input type="radio" name="r_shop_kind" value="치킨">치킨
+			<input type="radio" name="r_shop_kind" value="치킨">주류
+			<input type="radio" name="r_shop_kind" value="치킨">제빵
+			<input type="radio" name="r_shop_kind" value="치킨">육류
+			<input type="radio" name="r_shop_kind" value="치킨">카페
+			<input type="radio" name="r_shop_kind" value="치킨">이색
 		</td>
 	</tr>
 	<tr>

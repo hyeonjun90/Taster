@@ -3,6 +3,7 @@ package member;
 import java.io.IOException;
 import java.io.Reader;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -30,7 +31,13 @@ public class MemberMyPageAction extends ActionSupport implements SessionAware{
 	private ArrayList<ReviewListBean> rList;
 	private ArrayList<BookmarkListBean> bList;
 	
-	private int shopTotalCount;  //식당 전체 개수 
+	private int shopTotalCount;  //식당 전체 개수
+	
+	
+	int currentPage;
+	int pageSize = 3;
+	int beforeSize;
+	
 	
 	private Map session;
 	
@@ -62,6 +69,53 @@ public class MemberMyPageAction extends ActionSupport implements SessionAware{
 		return SUCCESS;
 	}
 	
+	public String reviewReaderMore() throws Exception{
+		 
+		rBean = new ReviewListBean();
+		rList = new ArrayList();
+		
+		HashMap<String, Object> pagingMap = new HashMap<>();
+		
+		currentPage = getCurrentPage();
+		beforeSize = pageSize * currentPage - 3; // 페이징 개수
+		pageSize = pageSize * currentPage;
+		
+		pagingMap.put("beforeSize", beforeSize);
+		pagingMap.put("pageSize", pageSize);
+		
+		System.out.println("beforeSize : " + beforeSize);
+		System.out.println("pageSize : " + pageSize);
+		System.out.println("-----------");
+		rList = (ArrayList<ReviewListBean>) sqlMapper.queryForList("reviewListCount", pagingMap);
+		
+		return SUCCESS;
+	}
+	
+	public String bookmarkReaderMore() throws Exception{
+		 
+		bBean = new BookmarkListBean();
+		bList = new ArrayList();
+		
+		HashMap<String, Object> pagingMap = new HashMap<>();
+		
+		currentPage = getCurrentPage();
+		beforeSize = pageSize * currentPage - 3; // 페이징 개수
+		pageSize = pageSize * currentPage;
+		
+		pagingMap.put("beforeSize", beforeSize);
+		pagingMap.put("pageSize", pageSize);
+		
+		System.out.println("beforeSize : " + beforeSize);
+		System.out.println("pageSize : " + pageSize);
+		System.out.println("-----------");
+		
+		bList = (ArrayList<BookmarkListBean>) sqlMapper.queryForList("bookmarkListCount", pagingMap);
+		
+		return SUCCESS;
+	}
+	
+
+	
 	public String reviewListform() throws Exception{    //reviewList 구해오는 매소드
 		
 		rBean = new ReviewListBean();
@@ -72,9 +126,10 @@ public class MemberMyPageAction extends ActionSupport implements SessionAware{
 		rList=(ArrayList<ReviewListBean>) sqlMapper.queryForList("reviewList-selectAll", session.get("member_id"));
 		
 		return SUCCESS;
+		
 	}
 	
-	public String bookmarkListform() throws Exception{    //bookmarkList 구해오는 매소드
+	public String bookmarkListform() throws Exception{ //bookmarkList 구해오는 매소드
 		
 		bBean = new BookmarkListBean();
 		bList = new ArrayList<>();
@@ -85,10 +140,6 @@ public class MemberMyPageAction extends ActionSupport implements SessionAware{
 		
 		return SUCCESS;
 	}
-	
-	
-	
-	
 	
 	
 	public ReviewListBean getrBean() {
@@ -130,6 +181,26 @@ public class MemberMyPageAction extends ActionSupport implements SessionAware{
 	public void setShopTotalCount(int shopTotalCount) {
 		this.shopTotalCount = shopTotalCount;
 	}
+	
+	public int getCurrentPage() {
+		return currentPage;
+	}
+	public void setCurrentPage(int currentPage) {
+		this.currentPage = currentPage;
+	}
+	public int getPageSize() {
+		return pageSize;
+	}
+	public void setPageSize(int pageSize) {
+		this.pageSize = pageSize;
+	}
+	public int getBeforeSize() {
+		return beforeSize;
+	}
+	public void setBeforeSize(int beforeSize) {
+		this.beforeSize = beforeSize;
+	}
+
 
 
 }

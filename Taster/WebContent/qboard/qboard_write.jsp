@@ -16,6 +16,7 @@
 	{
 		var frm = document.forms(0);
 
+		//글제목을 입력안하고 작성버튼 누를시
 		if(frm.b_title.value == "")
 		{
 			alert("입력해주세요");
@@ -35,6 +36,8 @@
 			return false;
 		}
 		 */
+		 
+		 //글내용을 입력안하고 작성버튼 누를시
 		else if(frm.b_content.value == "")
 		{
 			alert("입력해주세요");
@@ -65,9 +68,11 @@
 	</s:if>
 	 -->
 	
+	<!-- 상단의 펑션 호출 -->
 	<s:if test="resultClass == NULL">
 		<form action="qWritePro.action" method="post" enctype="multipart/form-data" onsubmit="return validation();">
 	</s:if>
+	<!-- 글번호, 현재페이지 값이 숨겨진 상태로 전송됨  -->
 	<s:else>
 		<form action="qModifyPro.action" method="post" enctype="multipart/form-data">
 			<s:hidden name="b_idx" value="%{resultClass.b_idx}" />
@@ -153,7 +158,7 @@
           <td height="10" colspan="2"></td>
         </tr>
         
-        
+        <!-- 작성완료 버튼(문의게시판 리스트로 넘어감) -->
         <tr>
           <td align="right" colspan="2">
           	<input name="submit" type="submit" value="작성완료" class="inputb">

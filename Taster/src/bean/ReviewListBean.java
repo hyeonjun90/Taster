@@ -7,6 +7,14 @@ public class ReviewListBean {
 	private String file_savname;
 	private String member_id;
 	
+	private int rnum;
+	
+	public int getRnum() {
+		return rnum;
+	}
+	public void setRnum(int rnum) {
+		this.rnum = rnum;
+	}
 	public int getShop_idx() {
 		return shop_idx;
 	}

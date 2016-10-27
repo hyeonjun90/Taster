@@ -25,6 +25,7 @@ function logout() {
     </s:if>
     
     <s:if test="#session.member_id == null">
+    <div class="btn_category" onclick="location.href='qboardList.action'">1:1문의</div>
     <div class="btn_category" onclick="location.href='memberJoin.action'" >회원가입</div>
     <div class="btn_category"  onclick="">
     	<a href="#layer" class="layer_trigger">로그인</a>
@@ -34,6 +35,7 @@ function logout() {
     <s:if test="#session.member_level == 3">
     <div class="btn_category" onclick="location.href='approvalRequestList.action'" style="background:#ff792a;" >신규식당 승인</div>
     <div class="btn_category" onclick="location.href='adminMemberList.action'" style="background:#ff792a;">회원 관리</div>
+    <div class="btn_category" onclick="location.href='AshoplistAction.action'" style="background:#ff792a;">맛집 관리</div>
     </s:if>
   </div>
 </div>

@@ -68,15 +68,17 @@ public class QBoardViewAction extends ActionSupport implements SessionAware{
 
 	
 
-    
+    //게시판 글 상세보기 
 	public String execute() throws Exception {
 		
 		paramClass.setB_idx(getB_idx());
 		
-		
+		//조회수 1 증가
 		sqlMapper.update("qboard-updateB_readCount",paramClass);
+		
 		resultClass = (QnABoardListBean) sqlMapper.queryForObject("qboard-selectOne", getB_idx());
 		
+		//해당 글번호값의 댓글(코멘트)목록 출력하는 쿼리문 수행
 		commentlist = sqlMapper.queryForList("qboard-commentSelectAll", getB_idx());
 		
 		return SUCCESS;
@@ -89,6 +91,8 @@ public class QBoardViewAction extends ActionSupport implements SessionAware{
 		return SUCCESS;
 	}
 	*/
+	
+	//게시판 글 수정/삭제시  로그인중인 id와 글작성자의 id를 비교하는 메소드
 	public String checkAction()	throws Exception
 	{
 		//paramClass.setB_idx(getB_idx());
@@ -98,43 +102,31 @@ public class QBoardViewAction extends ActionSupport implements SessionAware{
 		paramClass.setMember_nicname(getMember_nicname());
 		
 
-		System.out.println("시작");
-		System.out.println(getMember_nicname());//1234 이게 왜 널이 나오지?
-		System.out.println(session.get("member_nicname"));//로그인시 로그인한 ID 비로그인시 null
-		System.out.println(session.get("member_level"));
+
+		System.out.println(getMember_nicname());//회원의 닉네임 값을 얻어옴
+		System.out.println(session.get("member_nicname"));//회원의 닉네임 값을 잘 얻어오는지 콘솔창으로 테스트
+		System.out.println(session.get("member_level")); //회원의 등급을 나타내는 값을 잘 얻어오는지 콘솔창으로 테스트
 		
-		System.out.println("가위바위보");
-		//resultClass = (JoinM_Q_C) sqlMapper.queryForObject("qboard-selectMember_id", paramClass);
 		
-		System.out.println("묵");
 		if( !getMember_id().equals(session.get("member_nicname") ) ){
-			System.out.println("찌");
-			//System.out.println("error");
+			//따로 만든 에러페이지(qboard_check_error.jsp)
 			return ERROR;
 		}
 			System.out.println("빠");
+			//따로 만든 페이지(qboard_check_success.jsp)
 			return SUCCESS;
 	}
-	
+	// 댓글(코멘트) 삭제시  로그인중인 id와 댓글작성자의 id를 비교하는 메소드
 	public String checkAction2()	throws Exception
 	{
-		int memberCheck=3;
+		int memberCheck=3;	//관리자 회원등급값 비교하기 위해 추가한 것
+		
 		cClass.setC_idx(getC_idx());
 		cClass.setB_idx(getB_idx());
 		
-		//cResult = (CommentBean) sqlMapper.queryForObject("selectC_idx", cClass);
-		//if(!session.get("member_id").equals(getMember_id()))
 		
-		
-		System.out.println(session.get("member_level"));
-		System.out.println(memberCheck);
-		
-		/*
-		if(!memberCheck.equals(session.get("member_level") ) ){
-			
-			return ERROR;
-		}*/
-		
+		//관리자만 문의게시판 댓글을 삭제 할수 있으므로...
+		//로그인중인 회원의 등급과 관리자 등급이 일치하지 않으면 에러를 내뿜는다.
 		if(memberCheck != (Integer)session.get("member_level") ){
 			return ERROR;
 		}
