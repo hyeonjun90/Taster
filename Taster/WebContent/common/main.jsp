@@ -32,7 +32,7 @@
 			
 		</div>
 	</div>
-	<c:if test="${status.index mod 3 == 0 && status.index != 0}">
+	<c:if test="${status.index + 1 mod 3 == 0 && status.index != 0}">
 		<div class="clearDiv"></div>
 	</c:if>
 </c:forEach>

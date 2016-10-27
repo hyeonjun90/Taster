@@ -59,7 +59,10 @@
          <result type="chain">foodsDetailView</result>
       </action>
       
-      
+      <!-- 탑 검색 부분 -->
+      <action name="searchShop" class="foods.FoodsSearchAction">
+      	<result type="tiles">top_search</result>
+      </action>
    </package>
 </struts>
   

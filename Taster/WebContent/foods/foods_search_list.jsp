@@ -50,7 +50,7 @@ var fTotalCount = ${fTotalCount};
 		currentPage += 1;
 		fTotalCount -= 3; // 페이지 개수
 		$.ajax({
-			url: "foodsHotListMore.action",
+			url: "foodsMenuListMore.action",
 			type: "POST",
 			async:true,
 			dataType: "Text", 
