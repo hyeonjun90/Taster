@@ -183,6 +183,11 @@
 		FROM SHOP WHERE shop_idx = #shop_idx#
 	</select>
 	
+	<!-- 리뷰 작성하기 -->
+	<insert id="insertReview" parameterClass="bean.ReviewBean">
+		insert into REVIEWBEAN (review_idx, r_title, r_content, r_score, r_pungga, r_image, r_regdate, member_id, shop_idx)
+		VALUES (review_no_seq.NEXTVAL, #r_title#, #r_content#, #r_score#, #r_pungga#, #r_image#, #r_regdate#, #member_id#, #shop_idx#)
+	</insert>
 	
 	<!-- 코멘트 리스트 -->
 	<select id="reviewList" parameterClass="int" resultClass="bean.FoodsDetailBean">
