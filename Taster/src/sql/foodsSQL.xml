@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="EUC-KR"?>
 <!DOCTYPE sqlMap PUBLIC '-//ibatis.apache.org//DTD Sql Map 2.0//EN' 'http://ibatis.apache.org/dtd/sql-map-2.dtd'>
 <sqlMap>
-	<!--½Å±Ô ½Ä´ç  µî·Ï¿¡¼­ »ç¿ëÇÒ ÇöÀç½Ã°£¿¡¼­ ÇÑ´Ş±îÁöÀÇ ÀüÃ¤°Ë»ö-->
+	<!--ì‹ ê·œ ì‹ë‹¹  ë“±ë¡ì—ì„œ ì‚¬ìš©í•  í˜„ì¬ì‹œê°„ì—ì„œ í•œë‹¬ê¹Œì§€ì˜ ì „ì±„ê²€ìƒ‰-->
 	<sql id= "newShop-select-all">
 	 	select * from shop s1 inner join review r1 on r1.shop_idx = s1.shop_idx
         where <![CDATA[shop_regDate > add_months(sysdate, -1)]]> order by shop_idx desc                         
@@ -14,7 +14,7 @@
     		from (
 			 		  select shop_idx, shop_name, shop_addr1, shop_addr2, shop_addr3, shop_addr4, file_savname,  shop_kind,
 						  nvl((select r_content from (select r_content from review r1 where s.shop_idx=r1.shop_idx)
-						  	 where <![CDATA[rownum<2]]>),'µî·ÏµÈ ¸®ºä°¡ ¾ø½À´Ï´Ù.') as r_content,
+						  	 where <![CDATA[rownum<2]]>),'ë“±ë¡ëœ ë¦¬ë·°ê°€ ì—†ìŠµë‹ˆë‹¤.') as r_content,
 						  nvl((select member_nicname from 
 							  (select  member_nicname from member m1 inner join review r1 on r1.member_id=m1.member_id
 							    where m1.member_id=r1.member_id and r1.shop_idx=s.shop_idx)
@@ -38,7 +38,7 @@
     		from (
 			 		  select shop_idx, shop_name, shop_addr1, shop_addr2, shop_addr3, shop_addr4, file_savname, 
 						  nvl((select r_content from (select r_content from review r1 where s.shop_idx=r1.shop_idx)
-						  	 where <![CDATA[rownum<2]]>),'µî·ÏµÈ ¸®ºä°¡ ¾ø½À´Ï´Ù.') as r_content,
+						  	 where <![CDATA[rownum<2]]>),'ë“±ë¡ëœ ë¦¬ë·°ê°€ ì—†ìŠµë‹ˆë‹¤.') as r_content,
 						  nvl((select member_nicname from 
 							  (select  member_nicname from member m1 inner join review r1 on r1.member_id=m1.member_id
 							    where m1.member_id=r1.member_id and r1.shop_idx=s.shop_idx)
@@ -64,7 +64,7 @@
 	</select>
 	
 	
-	<!-- Áö¿ªº° ¸ÀÁı °Ë»ö -->
+	<!-- ì§€ì—­ë³„ ë§›ì§‘ ê²€ìƒ‰ -->
 	<select id="searchArea" parameterClass="String" resultClass="String">
 		select distinct(gugun) from zipcode where sido=#sido# order by gugun asc
 	</select>
@@ -81,7 +81,7 @@
     		from (
 			 		  select shop_idx, shop_name, shop_addr1, shop_addr2, shop_addr3, shop_addr4, file_savname, 
 						  nvl((select r_content from (select r_content from review r1 where s.shop_idx=r1.shop_idx)
-						  	 where <![CDATA[rownum<2]]>),'µî·ÏµÈ ¸®ºä°¡ ¾ø½À´Ï´Ù.') as r_content,
+						  	 where <![CDATA[rownum<2]]>),'ë“±ë¡ëœ ë¦¬ë·°ê°€ ì—†ìŠµë‹ˆë‹¤.') as r_content,
 						  nvl((select member_nicname from 
 							  (select  member_nicname from member m1 inner join review r1 on r1.member_id=m1.member_id
 							    where m1.member_id=r1.member_id and r1.shop_idx=s.shop_idx)
@@ -105,7 +105,7 @@
     		from (
 			 		  select shop_idx, shop_name, shop_addr1, shop_addr2, shop_addr3, shop_addr4, file_savname, 
 						  nvl((select r_content from (select r_content from review r1 where s.shop_idx=r1.shop_idx)
-						  	 where <![CDATA[rownum<2]]>),'µî·ÏµÈ ¸®ºä°¡ ¾ø½À´Ï´Ù.') as r_content,
+						  	 where <![CDATA[rownum<2]]>),'ë“±ë¡ëœ ë¦¬ë·°ê°€ ì—†ìŠµë‹ˆë‹¤.') as r_content,
 						  nvl((select member_nicname from 
 							  (select  member_nicname from member m1 inner join review r1 on r1.member_id=m1.member_id
 							    where m1.member_id=r1.member_id and r1.shop_idx=s.shop_idx)
@@ -123,15 +123,15 @@
 		where <![CDATA[rnum>#beforeSize#]]>
 	</select>
 
-	<!-- Áö¿ªº° ¸ÀÁı °Ë»ö ³¡ -->
-	<!-- ½Ä´ç ÀüÃ¼ Æò±Õ Á¶ÀÎ  -->
+	<!-- ì§€ì—­ë³„ ë§›ì§‘ ê²€ìƒ‰ ë -->
+	<!-- ì‹ë‹¹ ì „ì²´ í‰ê·  ì¡°ì¸  -->
 	<select id="newShop-selectAll"  resultClass="bean.FoodsNewListBean" remapResults="true">
 		select * from ( 
 		 	select shop_idx, shop_name, shop_addr1, shop_addr2, shop_addr3, shop_addr4, file_savname, rownum rnum,
     					r_content, member_nicname, member_image, avg_r_score 
     		from (select shop_idx, shop_name, shop_addr1, shop_addr2, shop_addr3, shop_addr4, file_savname, 
 						  nvl((select r_content from (select r_content from review r1 where s.shop_idx=r1.shop_idx)
-						  	 where <![CDATA[rownum<2]]>),'µî·ÏµÈ ¸®ºä°¡ ¾ø½À´Ï´Ù.') as r_content,
+						  	 where <![CDATA[rownum<2]]>),'ë“±ë¡ëœ ë¦¬ë·°ê°€ ì—†ìŠµë‹ˆë‹¤.') as r_content,
 						  nvl((select member_nicname from 
 							  (select  member_nicname from member m1 inner join review r1 on r1.member_id=m1.member_id
 							    where m1.member_id=r1.member_id and r1.shop_idx=s.shop_idx)
@@ -155,7 +155,7 @@
     					r_content, member_nicname, member_image, avg_r_score 
     		from (select shop_idx, shop_name, shop_addr1, shop_addr2, shop_addr3, shop_addr4, file_savname, 
 						  nvl((select r_content from (select r_content from review r1 where s.shop_idx=r1.shop_idx)
-						  	 where <![CDATA[rownum<2]]>),'µî·ÏµÈ ¸®ºä°¡ ¾ø½À´Ï´Ù.') as r_content,
+						  	 where <![CDATA[rownum<2]]>),'ë“±ë¡ëœ ë¦¬ë·°ê°€ ì—†ìŠµë‹ˆë‹¤.') as r_content,
 						  nvl((select member_nicname from 
 							  (select  member_nicname from member m1 inner join review r1 on r1.member_id=m1.member_id
 							    where m1.member_id=r1.member_id and r1.shop_idx=s.shop_idx)
@@ -173,20 +173,24 @@
 	</select>
 
 
-	<!-- ½Ä´ç »ó¼¼ÆäÀÌÁö Äõ¸®¹® -->
+	<!-- ì‹ë‹¹ ìƒì„¸í˜ì´ì§€ ì¿¼ë¦¬ë¬¸ -->
 	<!--  -->
 	<select id="foodsDetail" parameterClass="int" resultClass="bean.FoodsDetailBean">
 		SELECT shop_idx, shop_name, shop_tel, shop_kind, shop_addr1, shop_addr2, shop_addr3, shop_addr4, shop_price, shop_holiday, shop_readCount, shop_regDate, file_savname
 		FROM SHOP WHERE shop_idx = #shop_idx#
 	</select>
+	<!-- ë¦¬ë·° ì‹œí€€ìŠ¤ ê°€ì ¸ì˜¤ê¸° -->
+	<select id="getReviewSeq" resultClass="int">
+		SELECT review_no_seq.NEXTVAL FROM DUAL
+	</select>
 	
-	<!-- ë¦¬ë·° ì‘ì„±í•˜ê¸° -->
+	<!-- ë¦¬ë·° ë“±ë¡ -->
 	<insert id="insertReview" parameterClass="bean.ReviewBean">
-		insert into REVIEWBEAN (review_idx, r_title, r_content, r_score, r_pungga, r_image, r_regdate, member_id, shop_idx)
+		insert into REVIEW (review_idx, r_title, r_content, r_score, r_pungga, r_image, r_regdate, member_id, shop_idx)
 		VALUES (review_no_seq.NEXTVAL, #r_title#, #r_content#, #r_score#, #r_pungga#, #r_image#, #r_regdate#, #member_id#, #shop_idx#)
 	</insert>
 	
-	<!-- ÄÚ¸àÆ® ¸®½ºÆ® -->
+	<!-- ì½”ë©˜íŠ¸ ë¦¬ìŠ¤íŠ¸ -->
 	<select id="reviewList" parameterClass="int" resultClass="bean.FoodsDetailBean">
 		SELECT  review_idx, r_title, r_content, r_pungga, r_image, r_regdate, member_nicname, member_image
 							 FROM review r left join member m on r.member_id=m.member_id
@@ -210,19 +214,19 @@
 	</select>
 	
 	
-	<!-- Áñ°ÜÃ£±â ÀÖ´ÂÁö ¿©ºÎ Ã¼Å© -->
+	<!-- ì¦ê²¨ì°¾ê¸° ìˆëŠ”ì§€ ì—¬ë¶€ ì²´í¬ -->
 	<select id="checkBookMark" parameterClass="HashMap" resultClass="Integer">
 		select count(*) from bookmark where shop_idx=#shop_idx# and member_id=#member_id#
 	</select>
-	<!-- Áñ°ÜÃ£±â Ãß°¡ -->
+	<!-- ì¦ê²¨ì°¾ê¸° ì¶”ê°€ -->
 	<insert id="insertBookMark" parameterClass="HashMap">
 		insert into bookmark(bookmark_idx, member_id, shop_idx) values(bookmark_no_seq.nextVal, #member_id#, #shop_idx#)
 	</insert>
-	<!-- Áñ°ÜÃ£±â Á¦°Å -->
+	<!-- ì¦ê²¨ì°¾ê¸° ì œê±° -->
 	<delete id="deleteBookMark" parameterClass="HashMap">
 		delete from bookmark where shop_idx=#shop_idx# and member_id=#member_id#
 	</delete>
-	<!-- ·Î±×ÀÎ ÇÑ È¸¿ø Áñ°ÜÃ£±â ¸®½ºÆ® °¡Á®¿À±â -->
+	<!-- ë¡œê·¸ì¸ í•œ íšŒì› ì¦ê²¨ì°¾ê¸° ë¦¬ìŠ¤íŠ¸ ê°€ì ¸ì˜¤ê¸° -->
 	<select id="bookList" parameterClass="String" resultClass="Integer">
 		select shop_idx from bookmark where member_id=#member_id#
 	</select>

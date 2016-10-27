@@ -59,14 +59,10 @@ public class FoodsDetailAction extends ActionSupport {
 				System.out.println(shop_idx);
 				RevList = (ArrayList<FoodsDetailBean>)sqlMapper.queryForList("reviewList", getShop_idx()); //리뷰(코멘트) 리스트 출력
 
-				
-				
-				
 				//System.out.println("fList.size: " + fList.size());
 				//sqlMapper.update("updateReadHit",FDBean);
 				
 				return SUCCESS;
-				
 				
 	}
 	
