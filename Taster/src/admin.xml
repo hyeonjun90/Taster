@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN" "http://struts.apache.org/dtds/struts-2.0.dtd">
 <struts>
-
 <constant value="104857600" name="struts.multipart.maxSize"/>
-
 
 <package name="admin" extends="struts-default, tiles-default">
 
@@ -11,10 +9,10 @@
 	<action name="AshopWriteForm" method="form" class="admin.AdminShopAddAction">
 		<result type="tiles">AshopWrite</result>
 	</action>
-      <action name="AshopWriteAction" class="admin.AdminShopAddAction" method="execute">
-              <result type="tiles">AshopWriteResult</result>
-        </action>
-      
+		
+     <action name="AshopWriteAction" class="admin.AdminShopAddAction" method="execute">
+        <result type="tiles">AshopWriteResult</result>
+     </action>
      <!-- 리스트 삭제 액션-->
       <action name="AshopDeleteAction" class="admin.AdminShopDeleteAction" method="execute">
   		<result type="chain">AshoplistAction</result>
@@ -66,30 +64,6 @@
 		<action name="approvalRequestDetailView" class="admin.ApprovalRequestDetailView">
 			<result type="tiles">ApprovalRequestDetail</result>
 		</action>
-		
-   
-      <!-- 신규가게 등록 요청글 관련 -->
-      <!-- 신규가게등록 승인 요청 리스트 보기 -->
-      <action name="approvalRequestList" class="admin.ApprovalRequestListAction" method="execute">
-         <result type="tiles">ApprovalRequestList</result>
-      </action>
-      
-      <!-- 신규가게등록 요청 승인액션 -->
-      <action name="approvalActionOk" class="admin.ApprovalRequestDetailView" method="approvalActionOk">
-         <result type="redirect-action">
-         <param name="actionName">approvalRequestList</param></result>
-      </action>
-      
-      <!-- 신규가게등록 요청 반려액션 -->
-      <action name="approvalActionNok" class="admin.ApprovalRequestDetailView" method="approvalActionNok">
-         <result type="redirect-action"></result>
-         <param name="actionName">approvalRequestList</param>
-      </action>
-      
-      <!-- 신규가게등록 리스트 글 상세보기 -->
-      <action name="approvalRequestDetailView" class="admin.ApprovalRequestDetailView">
-         <result type="tiles">ApprovalRequestDetail</result>
-      </action>
       
 
    <!-- 맛집추천리스트 관련 -->
@@ -118,6 +92,15 @@
                 <param name="contentLength">${contentLength}</param> 
                 <param name="bufferSize">4096</param>
        </result>
+	</action>
+
+
+
+<!-- 리스트 삭제 , 성준이가 한것 <action name="AshopDeleteAction" class="admin.AdminShopDeleteAction" method="execute"> <result type="redirect-action"> <param name="actionName">AshopList</param></result> </action> -->
+
+<!-- 맛집추천리스트 등록글 상세 조회 -->
+	<action name="rboardDetailView" method="execute" class="rboard.RboardDetailView">
+		<result type="tiles">rboardDetail</result>
 	</action>
 </package>
 </struts>
