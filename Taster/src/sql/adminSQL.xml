@@ -6,7 +6,6 @@
    <typeAlias alias="admin_shop" type="bean.ShopBean"/> <!-- 관리자 삽 관리 -->
    <typeAlias alias="AprReq" type="bean.RequestListBean"/> <!-- 신규등록 승인 요청 리스트 -->
 
-<<<<<<< HEAD
    
       <resultMap id="AshopRes" class="admin_shop"><!-- 관리자 삽 관리 -->
          <result property="shop_idx" column="shop_idx"/>
@@ -95,127 +94,27 @@
          select max(shop_idx) from shop
       </select>
       
-   		<delete id="Shop-deleteIdx" parameterClass="admin_shop">
-		DELETE FROM SHOP 
-=======
-	
-		<resultMap id="AshopRes" class="admin_shop"><!-- 관리자 삽 관리 -->
-         <result property="shop_idx" column="shop_idx"/>
-         <result property="shop_name" column="shop_name"/>
-         <result property="shop_tel" column="shop_tel"/>
-         <result property="shop_kind" column="shop_kind"/>
-         <result property="shop_addr1" column="shop_addr1"/>
-         <result property="shop_addr2" column="shop_addr2"/>
-         <result property="shop_addr3" column="shop_addr3"/>
-         <result property="shop_addr4" column="shop_addr4"/>
-         <result property="shop_price" column="shop_price"/>
-         <result property="shop_holiday" column="shop_holiday"/>   
-         <result property="shop_readCount" column="shop_readCount"/>
-         <result property="shop_regDate" column="shop_regDate"/>
-         <result property="file_orgname" column="file_orgname"/>   
-         <result property="file_savname" column="file_savname"/>   
-         
-      </resultMap>
-      
-      <resultMap id="AprReqRes" class="AprReq">   <!-- 신규등록 승인 요청 리스트 -->
-         <result property="r_idx" column="r_idx"/>
-         <result property="r_regdate" column="r_regdate"/>
-         <result property="r_id" column="r_id"/>
-         <result property="r_nicname" column="r_nicname"/>
-         <result property="r_shop_name" column="r_shop_name"/>
-         <result property="r_shop_tel" column="r_shop_tel"/>
-         <result property="r_shop_kind" column="r_shop_kind"/>
-         <result property="r_shop_addr1" column="r_shop_addr1"/>
-         <result property="r_shop_addr2" column="r_shop_addr2"/>
-         <result property="r_shop_addr3" column="r_shop_addr3"/>
-         <result property="r_shop_addr4" column="r_shop_addr4"/>
-         <result property="r_shop_price" column="r_shop_price"/>
-         <result property="r_shop_holiday" column="r_shop_holiday"/>   
-         <result property="r_shop_content" column="r_shop_content"/>   
-         <result property="r_shop_file_orgname" column="r_shop_file_orgname"/>   
-         <result property="r_shop_file_savname" column="r_shop_file_savname"/>   
-         
-      </resultMap>
-
-		
-		
-		
-		
-		<!-- ShopRes에서 공통으로 사용할 select-all 명령문 -->
-		<sql id="Shop-select-all">
-		SELECT * FROM SHOP
-		</sql>
-		
-		<!-- 공통으로 사용할 where-Sidx 명령문 -->
-		<sql id="Shop-where-Sidx">
-			WHERE shop_idx = #shop_idx#
-		</sql>
-		
-		<!-- select 쿼리문 정의-->
-		<!-- 리스트보기 정의 -->
-		<select id="Shop-selectAll" resultMap="AshopRes" parameterClass="int">
-			<include refid="Shop-select-all"/>
-			ORDER BY shop_idx DESC
-		</select>
-		
-		<select id="Shop-selectOne" resultMap="AshopRes" parameterClass="int">
-			<include refid="Shop-select-all"/>
-			<include refid="Shop-where-Sidx"/>
-		</select>
-		
-		<select id="Shop-selectLastNo" resultClass="admin_shop" parameterClass="int">
-			SELECT max(shop_idx) as shop_idx FROM SHOP
-		</select>
-		
-		<!-- 주소 검색 -->
-		<select id="AdminZipcodeSearch" parameterClass="String" resultClass="bean.ZipcodeBean">
-		select * from zipcode where dong like #keyword#
-	    </select>
-		
-		
-		<select id="Shop-selectName" resultMap="AshopRes" parameterClass="String">
-			<include refid="Shop-select-all"/>
-			where shop_name like #shop_name# 
-		</select>
-		
-		<select id="Shop-selectKind" resultMap="AshopRes" parameterClass="String">
-			<include refid="Shop-select-all"/>
-			where shop_kind like #shop_kind#
-		</select>
-		
-		<select id="Shop-getIdx" resultClass="Integer">
-			select max(shop_idx) from shop
-		</select>
-		
-
-		
-		<!-- delete 샵 삭제 정의 -->
-		<delete id="Shop-deleteIdx" parameterClass="admin_shop">
-		DELETE FROM SHOP
-		<include refid="Shop-where-Sidx"/>
-		</delete>
-		
-		<!--  
-		<update id="Shop_update_file_savname" parameterClass="HashMap">
-			update shop set file_savname = #file_savname# where shop_idx = #shop_idx# 
-		</update>
-		-->
-		<!--  성준이가 한거
-		<delete id="Shop-deleteIdx" parameterClass="int">
-		DELETE FROM SHOP
->>>>>>> branch 'master' of https://github.com/hyeonjun90/Taster
-		<include refid="Shop-where-Sidx"/>
-
-		</delete>
-<<<<<<< HEAD
+         <delete id="Shop-deleteIdx" parameterClass="admin_shop">
+      DELETE FROM SHOP
+      <include refid="Shop-where-Sidx"/> 
+      </delete>
+   
       
       
       <!--  
+      <update id="Shop_update_file_savname" parameterClass="HashMap">
+         update shop set file_savname = #file_savname# where shop_idx = #shop_idx# 
+      </update>
+      -->
+<!--        성준이가 한거
       <delete id="Shop-deleteIdx" parameterClass="int">
       DELETE FROM SHOP
+
       <include refid="Shop-where-Sidx"/>
-      </delete>
-      -->
+
+      </delete> -->
+
+
       
       <!--  
       <select id="selectOne" parameterClass="int" resultMap="boardRes">
@@ -289,86 +188,7 @@
       </delete>
       
       
-=======
-		-->
+      
 
-		
-		
-		
-		<!--  
-		<select id="selectOne" parameterClass="int" resultMap="boardRes">
-		 SELECT * FROM SBOARD WHERE no = #no# 
-		 </select>
-		-->
-		
-		<!-- insert 쿼리문 정의 -->
-		<insert id="Shop-insertAshop" parameterClass="admin_shop">
-		INSERT INTO SHOP(shop_idx, shop_name, shop_tel, shop_kind, shop_addr1, shop_addr2, shop_addr3, shop_addr4, shop_price, shop_holiday, shop_readCount, shop_regDate)
-		VALUES (shop_no_seq.NEXTVAL, #shop_name#, #shop_tel#, #shop_kind#, #shop_addr1#, #shop_addr2#, #shop_addr3#, #shop_addr4#, #shop_price#, #shop_holiday#, #shop_readCount#,sysdate)
-		</insert>
-		
-		
-		
-		<!-- update 쿼리문 정의 -->
-		<update id="updateFileUpload" parameterClass="HashMap">
-			update shop set file_orgname=#file_orgname#, file_savname=#file_savname# where shop_idx=#shop_idx#
-		</update>
-		
-		
-		<!-- ApprovalRequest(신규등록요청)에서 공통으로 사용할 select-all 명령문 -->
-		<sql id="AprReq-select-all">
-		SELECT * FROM REQUEST_LIST
-		</sql>
-		
-		<!-- 공통으로 사용할 where-Ridx 명령문 -->
-		<sql id="AprReq-where-Ridx">
-			WHERE r_idx = #r_idx#
-		</sql>
-		
-		<!-- select 쿼리문 정의-->
-		<select id="AprReq-selectAll" resultMap="AprReqRes" parameterClass="int">
-			<include refid="AprReq-select-all"/>
-			ORDER BY r_idx DESC
-		</select>
-		
-		<select id="AprReq-selectOne" resultMap="AprReqRes" parameterClass="int">
-			<include refid="AprReq-select-all"/>
-			<include refid="AprReq-where-Ridx"/>
-		</select>
-		
-		<select id="AprReq-selectLastNo" resultClass="AprReq" parameterClass="int">
-			SELECT max(r_idx) as r_idx FROM REQUEST_LIST
-		</select>
-		
-		<select id="AprReq-selectName" resultMap="AprReqRes">
-			<include refid="AprReq-select-all"/>
-			<include refid="AprReq-where-Ridx"/>
-			AND shop_name = #shop_name#
-		</select>
-		
-		<!-- 파일 업로드 할때 쓸 쿼리 -->
-		<select id="AprReq-getIdx" resultClass="Integer">
-			select max(r_idx) from REQUEST_LIST
-		</select>
-		
-		<update id="updateFileUpload2" parameterClass="HashMap">
-			update REQUEST_LIST set r_shop_file_orgname=#r_shop_file_orgname#, r_shop_file_savname=#r_shop_file_savname# where r_idx=#r_idx#
-		</update>
-		
-		<!-- insert 쿼리문 정의 -->
-		<insert id="AprReq-insertReqList" parameterClass="AprReq">
-		INSERT INTO REQUEST_LIST(r_idx, r_regdate, r_id, r_nicname, r_shop_tel, r_shop_name, r_shop_kind, r_shop_addr1, r_shop_addr2, r_shop_addr3, r_shop_addr4, r_shop_price, r_shop_holiday, r_shop_content, r_shop_file_orgname, r_shop_file_savname)
-		VALUES (request_no_seq.NEXTVAL, #r_regdate#, #r_id#, #r_nicname#, #r_shop_tel#, #r_shop_name#, #r_shop_kind#, #r_shop_addr1#, #r_shop_addr2#, #r_shop_addr3#, #r_shop_addr4#, #r_shop_price#, #r_shop_holiday#, #r_shop_content#, #r_shop_file_orgname#, #r_shop_file_savname#)
-		</insert>
-		
-		
-		<!-- delete 쿼리문 정의 -->
-		<delete id="AprReq-DeleteReqList" parameterClass="AprReq">
-			DELETE FROM REQUEST_LIST
-		<include refid="AprReq-where-Ridx"/>
-		</delete>
-		
-		
->>>>>>> branch 'master' of https://github.com/hyeonjun90/Taster
 
 </sqlMap>
