@@ -124,7 +124,6 @@
 	</select>
 
 	<!-- 지역별 맛집 검색 끝 -->
-	<!-- 식당 전체 평균 조인  -->
 	<select id="newShop-selectAll"  resultClass="bean.FoodsNewListBean" remapResults="true">
 		select * from ( 
 		 	select shop_idx, shop_name, shop_addr1, shop_addr2, shop_addr3, shop_addr4, file_savname, rownum rnum,
@@ -148,7 +147,7 @@
 		where <![CDATA[rnum>#beforeSize#]]>
 	</select>
 	
-	
+	<!-- 요즘뜨는 맛집 -->
 	<select id="hotShop-list-selectAll" resultClass="bean.FoodsHotListBean">
 		select * from ( 
 		 	select shop_idx, shop_name, shop_addr1, shop_addr2, shop_addr3, shop_addr4, file_savname, rownum rnum,
@@ -174,12 +173,15 @@
 
 
 	<!-- 식당 상세페이지 쿼리문 -->
-	<!--  -->
 	<select id="foodsDetail" parameterClass="int" resultClass="bean.FoodsDetailBean">
 		SELECT shop_idx, shop_name, shop_tel, shop_kind, shop_addr1, shop_addr2, shop_addr3, shop_addr4, shop_price, shop_holiday, shop_readCount, shop_regDate, file_savname
 		FROM SHOP WHERE shop_idx = #shop_idx#
 	</select>
 	
+	<insert id="insertReview" parameterClass="bean.ReviewBean">
+		insert into REVIEWBEAN (review_idx, r_title, r_content, r_score, r_pungga, r_image, r_regdate, member_id, shop_idx)
+		VALUES (review_no_seq.NEXTVAL, #r_title#, #r_content#, #r_score#, #r_pungga#, #r_image#, #r_regdate#, #member_id#, #shop_idx#)
+	</insert>
 	
 	<!-- 코멘트 리스트 -->
 	<select id="reviewList" parameterClass="int" resultClass="bean.FoodsDetailBean">

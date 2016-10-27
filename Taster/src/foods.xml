@@ -26,7 +26,7 @@
       </action>
       
       <action name="foodsHotListMore" class="foods.FoodsHotListAction" method="readMore">
-      	<result>/foods/foods_hot_list_more.jsp</result>
+      	<result>/foods/foods_hot_list_more2.jsp</result>
       </action>
       
       <!-- 신규 식당 리스트 이동 -->
@@ -35,7 +35,7 @@
       </action>
       
       <action name="foodsNewListMore" class="foods.FoodsNewListAction" method="readMore">
-      	<result>/foods/foods_new_list_more.jsp</result>
+      	<result>/foods/foods_new_list_more2.jsp</result>
       </action>
       
       

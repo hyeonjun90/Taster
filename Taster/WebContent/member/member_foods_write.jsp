@@ -97,7 +97,7 @@ function joinConf(){
 		return;
 	}
 	
-	form.r_shop_tel,value = ""+form.shop_phone1.value + form.shop_phone2.value + form.shop_phone3.value;
+	form.r_shop_tel.value = ""+form.shop_phone1.value + form.shop_phone2.value + form.shop_phone3.value;
 	
 	form.submit();
 }
