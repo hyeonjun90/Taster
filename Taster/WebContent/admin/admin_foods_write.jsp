@@ -112,8 +112,7 @@ function openZipcode(){
 		<th>가격대</th>
 		<td>
 			<s:textfield name="shop_price" theme="simple" value="%{resultClass.shop_price}"/>
-			</td>
-			
+		</td>
 		</tr>
 		 
 	  
@@ -124,17 +123,7 @@ function openZipcode(){
 		<img src="/Taster/images/bt_zipcode.gif" alt="" onclick="openZipcode();" /> <br />
 		<s:textfield name="r_shop_addr4" theme="simple"/>
 		</td>
-		</tr>
-		
-		
-		
-		
-		
-		
-		 
-		
-		
-		
+
 		
 		<tr>
 		<th>휴일:</th>
@@ -159,25 +148,11 @@ function openZipcode(){
           <td style="heght:30px; font-size:10px;">
             <s:file name="upload" theme="simple"/>
             <s:if test="resultClass.file_orgname != NULL">
-<<<<<<< HEAD
+
             <s:property value="resultClass.file_orgname" /> 파일이 등록되어 있습니다. 다시 업로드하면 기존의 파일은 삭제됩니다.
             </s:if>
           </td>
         </tr>
-
-	<tr>
-		<td colspan="2" align="center" style="height:50px;border:1px solid white;">
-		<input type= "image" src="/Taster/images/bt_ok.gif" font-size="11px" height="20">
-		<img src="/Taster/images/bt_cancel.gif" alt="" onclick="javascript:if(confirm('작성한 정보가 초기화 됩니다. 취소하시겠습니까?')){location.href='AshopWriteForm.action'}" /> 
-=======
-			<s:property value="resultClass.file_orgname" /> 파일이 등록되어 있습니다. 다시 업로드하면 기존의 파일은 삭제됩니다.
-		
-			</s:if>
-	<br>
-		<input type="submit" value="등록"/>
->>>>>>> branch 'master' of https://github.com/hyeonjun90/Taster
-		</td>
-	</tr>
 		
 </table>
 </form>
