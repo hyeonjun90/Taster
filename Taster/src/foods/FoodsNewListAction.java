@@ -42,6 +42,8 @@ public class FoodsNewListAction  extends ActionSupport implements SessionAware {
 	private ArrayList<Integer> bookList;
 	String member_id;
 	
+	private String category; // 상단 메뉴 색깔 표시
+	
 	//생성자
 	public FoodsNewListAction() throws IOException{
 		
@@ -80,6 +82,7 @@ public String readMore() throws Exception{
 	
 	public String form() throws Exception{  //foods_new_list.jsp로 폼 이동 
 		
+		setCategory("new");
 		fBean = new FoodsNewListBean();
 		fList = new ArrayList<>();
 		HashMap<String, Object> pagingMap = new HashMap<>();
@@ -178,5 +181,14 @@ public String readMore() throws Exception{
 	public void setBookList(ArrayList<Integer> bookList) {
 		this.bookList = bookList;
 	}
+
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
+	
 	
 }

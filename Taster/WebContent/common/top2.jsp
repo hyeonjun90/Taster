@@ -34,7 +34,12 @@ function logout() {
       text-align:center;
    }
    .lineDiv {height:50px;width:0px;border:0.5px solid #a6a6a6;padding:0px;margin:0px;}
-   
+   #myInfo { position: absolute; border:2px solid orange; width:150px; height:150px;
+   	 border-radius: 80px; margin-top:50px; left:45%; 
+   	 background-image:url('/Taster/images/member/${session.member_image}');background-size:150px 150px;}
+   	#myInfo2 {position: absolute; border:0px solid orange; width:150px; height:30px;
+   			margin-top:210px; left:45%; text-align:center; } 
+   	
 </style>
 
 <div class="top_module" id="top_module">
@@ -72,7 +77,21 @@ function logout() {
        <div class="top1" onclick="location.href='adminMemberList.action'" style="color:#ff3300;">회원 관리</div>
        
        </s:if>
+		
+  		<div id="myInfo">
+  		</div>
+		<div id="myInfo2">
+			<font style="color:#fff;font-size:14px;font-family:NanumGothic;font-weight:bold;">
+				${session.member_nicname } &nbsp;&nbsp;
+				<img src="/Taster/images/review-write.jpg" />
+				${reviewCount }&nbsp;&nbsp;
+				<img src="/Taster/images/favorite_s.jpg" />
+				${bookCount }
+			</font>
+		</div>
+  	
   </div>
+ 
   
 	<%-- <div>
 	<div class="m_image" 

@@ -11,12 +11,13 @@
 
 <style>
 	.clearDiv{	clear:both;	}
-	.shopInfo {	border:1px solid #d5d5d5; width:300px; height:150px; margin:20px; float:left; text-align:center;
-	 box-sizing:border-box; vertical-align: middle}
+	.shopInfo {	border:1px solid #d5d5d5; width:300px; height:150px; margin:20px; text-align:center;
+	 box-sizing:border-box; vertical-align: middle; margin:20px auto;}
 	 .shopInfo span {vertical-align: middle; position:relative; color:#000; font-size:18px; font-weight:bold;
 	  			margin-top:50px;  }
 	.shopKind {width:99%;margin-top:25px;margin-left:10px;text-align:left;font-size:14px;color:#ff792a;font-weight:bold; text-align:left;}
 	.line { border-left:2px solid #FF9900;}
+	#tblForm tr td {text-align:center; }
 </style>
 </head>
 
@@ -30,18 +31,18 @@
 
 <center>
 <div style="width:100%;">
-<table style="width:1050px;" id="tblForm">
+<table style="width:1050px; height: 600px; " id="tblForm">
 <tr>
 <td>
-	<div class="shopKind">MY REVIEW RESTAURANT</div>
+	<div class="shopKind" style="float:left;">MY REVIEW RESTAURANT</div>
 </td>
 <td>
 	<div class="shopKind">MY BOOKMARK RESTAURANT</div>
 </td>
 </tr>
 <tr>
-<td>
-<div style="width:450px; height:300px;text-align:center; margin:0px auto;">
+<td style="height:900px;">
+<div style="width:450px; height:300px; text-align:center; margin:0px auto;">
 <c:forEach items="${rList}" var="rList" varStatus="status">
 	<div class="shopInfo">
 		<div style="background-image:url('/Taster/images/shop/${rList.file_savname}');
@@ -50,7 +51,6 @@
 			<span>${rList.shop_name}</span>
 		</div>
 	</div>
-	
 </c:forEach>
 </div>
 </td>
@@ -59,22 +59,17 @@
 <c:forEach items="${bList}" var="bList" varStatus="status">
 	<div class="shopInfo">
 		<div style="background-image:url('/Taster/images/shop/${bList.file_savname}');
-				background-repeat: no-repeat; display:block; 
+				background-repeat: no-repeat; 
 				width:298px;height:149px;background-size:298px 149px;padding-top:50px;">
 			<span>${bList.shop_name}</span>
 		</div>
 	</div>
-	
 </c:forEach>
 </div>
 </td>
 </tr>
 </table>
-
 </div>
 </center> 
-
-
-
 </body>
 </html>

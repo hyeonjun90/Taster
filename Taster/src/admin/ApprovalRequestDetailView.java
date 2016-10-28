@@ -54,7 +54,7 @@ public class ApprovalRequestDetailView extends ActionSupport {
 	private String uploadContentType; //컨텐츠 타입
 	private String uploadFileName; //파일 이름
 	
-	private String fileUploadPath="C:\\git\\Taster\\Taster\\WebContent\\images\\shop\\";
+	private String fileUploadPath="C:\\Java\\git\\Taster\\WebContent\\images\\shop\\";
 
 	
 /*	private String fileUploadPath = "C:\\Program Files\\Java\\upload\\";
@@ -85,10 +85,7 @@ public class ApprovalRequestDetailView extends ActionSupport {
 		
 		//해당 글의 값을 빈에 넣는다 
 		shopBean.setShop_idx(paramClass.getR_idx());
-		
 		shopBean.setShop_name(paramClass.getR_shop_name());
-		
-		
 		shopBean.setShop_tel(paramClass.getR_shop_tel());
 		shopBean.setShop_kind(paramClass.getR_shop_kind());
 		shopBean.setShop_addr1(paramClass.getR_shop_addr1());
@@ -100,30 +97,35 @@ public class ApprovalRequestDetailView extends ActionSupport {
 		
 		shopBean.setFile_orgname(paramClass.getR_shop_file_orgname());
 		shopBean.setFile_savname(paramClass.getR_shop_file_savname());
-		
+		System.out.println("getR_shop_file_savname : " + paramClass.getR_shop_file_savname());
 		//shopBean 객체에 입력된 requestList값을  SHOP 테이블 DB에 저장
 		sqlMapper.insert("Shop-insertAshop", shopBean);
 		
 		shop_idx = (int) sqlMapper.queryForObject("Shop-getIdx");    //저장된후 shop테이블의 마지막 인덱스 값을 불러 온다(방금 저장된 것)
+		System.out.println("shop_idx : " + shop_idx);
 		map.put("shop_idx", shop_idx);    
 		
-		System.out.println();
 		file_savname = (String) sqlMapper.queryForObject("Shop-select-filesavName", map);
 		
 		System.out.println("file_savname : " + file_savname);
 		//확장자 얻어오기 
 		int pos = file_savname.lastIndexOf(".");
+		System.out.println("pos : " + pos);
 		String file_ext = file_savname.substring(pos+1);
+		System.out.println("file_ext : " + file_ext);
 		
 		file_savname = "file_" + shop_idx + "." + file_ext;
+		System.out.println("file_savname : " + file_savname);
 		map.put("file_savname", file_savname);
 		
 		sqlMapper.update("Shop_update_file_savname", map);
 		
-		File beforeFile = new File("C:\\git\\Taster\\Taster\\WebContent\\images\\temporary_shop\\" + "file_" + paramClass.getR_idx());
-		File afterFile = new File("C:\\git\\Taster\\Taster\\WebContent\\images\\shop\\" + "file_" + shop_idx);
+		File beforeFile = new File("C:\\Java\\git\\Taster\\WebContent\\images\\temporary_shop\\" + "file_" + paramClass.getR_idx() + "." + file_ext);
+		File afterFile = new File("C:\\Java\\git\\Taster\\WebContent\\images\\shop\\" + file_savname);
 		
-		moveFile(beforeFile.getAbsolutePath(), afterFile.getAbsolutePath());
+		beforeFile.renameTo(afterFile);
+		
+		//moveFile(beforeFile.getAbsolutePath(), afterFile.getAbsolutePath());
 
 		//승인된 요청글을 RequestListBean DB에서 삭제
 		sqlMapper.update("AprReq-DeleteReqList", paramClass);

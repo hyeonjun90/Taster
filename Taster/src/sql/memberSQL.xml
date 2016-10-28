@@ -30,7 +30,7 @@
 	</select>
 	
 	<select id="getMemberInfo" parameterClass="String" resultClass="bean.MemberBean">
-		select member_id, member_nicname, member_level from member where member_id=#member_id#
+		select member_id, member_nicname, member_level, member_image from member where member_id=#member_id#
 	</select>
 	<!-- 아이디/비번 찾기 -->
 	<select id="findMemberId" parameterClass="String" resultClass="String">
@@ -49,7 +49,7 @@
    <select id="bookmarkList-selecAll" resultClass="bean.BookmarkListBean" parameterClass="HashMap">
    		select * from (select * from (select shop_name, file_savname, rownum rnum from shop 
 			where shop_idx in (select shop_idx from bookmark where member_id=#member_id# )
-   			order by shop_idx DESC) where <![CDATA[rownum<10]]>) where <![CDATA[rnum>0]]>
+   			order by shop_idx DESC) where <![CDATA[rownum<1000]]>) where <![CDATA[rnum>0]]>
    </select>
    
    <!--reviewList select문 선언 -->
@@ -86,4 +86,12 @@ from shop s
 		select count(*) from bookmark where member_id = #member_id#
 	</select>
 	
+	
+	<!-- 마이페이지 리뷰개수, 북마크개수 구하기 -->
+	<select id="reviewCount" parameterClass="String" resultClass="Integer">
+		select count(*) from review where member_id=#member_id#
+	</select>
+	<select id="bookCount" parameterClass="String" resultClass="Integer">
+		select count(*) from bookmark where member_id=#member_id#
+	</select>
 </sqlMap>

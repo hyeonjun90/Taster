@@ -93,9 +93,9 @@ function logout() {
    <tr>
       <td onclick="location.href='foodsMenuList.action'" <c:if test="${category=='menu'}">style="background-color:orange;"</c:if>>업종별 맛집</td>
       <td onclick="location.href='foodsAreaList.action'" <c:if test="${category=='area'}">style="background-color:orange;"</c:if>>지역별 맛집</td>
-      <td onclick="location.href='foodsHotList.action'">뜨는 맛집</td>
-      <td onclick="location.href='foodsNewList.action'">신규 맛집</td>
-      <td onclick="location.href='foodsRecommendList.action'">추천 맛집</td>
+      <td onclick="location.href='foodsHotList.action'" <c:if test="${category=='hot'}">style="background-color:orange;"</c:if>>뜨는 맛집</td>
+      <td onclick="location.href='foodsNewList.action'" <c:if test="${category=='new'}">style="background-color:orange;"</c:if>>신규 맛집</td>
+      <td onclick="location.href='foodsRecommendList.action'" <c:if test="${category=='recom'}">style="background-color:orange;"</c:if>>추천 맛집</td>
       <td onclick="">전체 보기</td>
    </tr>
 </table>

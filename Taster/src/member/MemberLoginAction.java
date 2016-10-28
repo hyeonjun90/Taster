@@ -20,6 +20,7 @@ public class MemberLoginAction extends ActionSupport implements SessionAware {
 	private String member_id;
 	private String member_pwd;
 	private int member_level;
+	private String member_image;
 	private Map<String, Object> session;
 	private MemberBean memberBean;
 	
@@ -41,6 +42,7 @@ public class MemberLoginAction extends ActionSupport implements SessionAware {
 			session.put("member_id", memberBean.getMember_id());
 			session.put("member_nicname", memberBean.getMember_nicname());
 			session.put("member_level", memberBean.getMember_level());
+			session.put("member_image", memberBean.getMember_image());
 			
 			return SUCCESS;
 		} else { //로그인 실패
@@ -54,6 +56,9 @@ public class MemberLoginAction extends ActionSupport implements SessionAware {
 			session.remove("member_id");
 			session.remove("member_nicname");
 			session.remove("member_level");
+			session.remove("member_image");
+			
+			
 		}
 		return SUCCESS;
 	}
