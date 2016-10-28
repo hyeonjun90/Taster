@@ -141,8 +141,10 @@
       </update>
       
       <!-- 조회수 -->
-      <update id="ShopUpdateReadHit" parameterClass="admin_shop"> UPDATE SHOP SET SHOP_READCOUNT = shop_readCount + 1 WHERE Shop_idx = #Shop_idx# </update>
-
+      <update id="shop-readCount" parameterClass="bean.ShopBean">
+	UPDATE SHOP SET SHOP_READCOUNT = shop_readCount + 1
+	WHERE shop_idx = #shop_idx#
+	</update>
       
      
 
