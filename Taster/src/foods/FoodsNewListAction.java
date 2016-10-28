@@ -25,7 +25,7 @@ import java.util.Map;
 
 import bean.*;
 
-public class FoodsNewListAction  extends ActionSupport {
+public class FoodsNewListAction  extends ActionSupport implements SessionAware {
 	
 	public static Reader reader;
 	public static SqlMapClient sqlMapper;
@@ -37,6 +37,10 @@ public class FoodsNewListAction  extends ActionSupport {
 	int currentPage;
 	int pageSize = 3;
 	int beforeSize;
+	
+	private Map session;
+	private ArrayList<Integer> bookList;
+	String member_id;
 	
 	//»ý¼ºÀÚ
 	public FoodsNewListAction() throws IOException{
@@ -63,6 +67,12 @@ public String readMore() throws Exception{
 		System.out.println("pageSize : " + pageSize);
 		System.out.println("-----------");
 		fList = (ArrayList<FoodsNewListBean>) sqlMapper.queryForList("newShop-selectAll", pagingMap);
+		if(session.get("member_id") != null) {
+			member_id = session.get("member_id").toString();
+		} else {
+			member_id = "";
+		}
+		bookList = (ArrayList<Integer>) sqlMapper.queryForList("bookList", member_id);
 		
 		return SUCCESS;
 	}
@@ -86,7 +96,12 @@ public String readMore() throws Exception{
 		fTotalCount = (int) sqlMapper.queryForObject("foodsMenuListCount");
 		fList = (ArrayList<FoodsNewListBean>) sqlMapper.queryForList("newShop-selectAll",pagingMap);
 		
-		fTotalCount -= fList.size();
+		if(session.get("member_id") != null) {
+			member_id = session.get("member_id").toString();
+		} else {
+			member_id = "";
+		}
+		bookList = (ArrayList<Integer>) sqlMapper.queryForList("bookList", member_id);
 		
 		
 		return SUCCESS;
@@ -147,4 +162,21 @@ public String readMore() throws Exception{
 	public void setBeforeSize(int beforeSize) {
 		this.beforeSize = beforeSize;
 	}
+
+	public Map getSession() {
+		return session;
+	}
+
+	public void setSession(Map session) {
+		this.session = session;
+	}
+
+	public ArrayList<Integer> getBookList() {
+		return bookList;
+	}
+
+	public void setBookList(ArrayList<Integer> bookList) {
+		this.bookList = bookList;
+	}
+	
 }
