@@ -13,18 +13,6 @@
 <link rel="stylesheet" href="/Taster/css/style.css" />
 <style>
 	.clearDiv{	clear:both;	}
-	.c1 {background:url('http://itvplus5.cafe24.com/img/category/c01.png');}
-	.c2 {background:url(http://itvplus5.cafe24.com/img/category/c02.png);}
-	.c3 {background:url(http://itvplus5.cafe24.com/img/category/c03.png);}
-	.c4 {background:url(http://itvplus5.cafe24.com/img/category/c12.png);}
-	.c5 {background:url(http://itvplus5.cafe24.com/img/category/c04.png);}
-	.c6 {background:url(http://itvplus5.cafe24.com/img/category/c05.png);}
-	.c7 {background:url(http://itvplus5.cafe24.com/img/category/c06.png);}
-	.c8 {background:url(http://itvplus5.cafe24.com/img/category/c07.png);}
-	.c9 {background:url(http://itvplus5.cafe24.com/img/category/c08.png);}
-	.c10 {background:url(http://itvplus5.cafe24.com/img/category/c09.png);}
-	.c11 {background:url(http://itvplus5.cafe24.com/img/category/c11.png);}
-	.c12 {background:url(http://itvplus5.cafe24.com/img/category/c10.png);}
 	
 	.icon { width: 70px; height: 70px; display: inline-block; background-repeat: no-repeat; cursor: pointer; }
 	

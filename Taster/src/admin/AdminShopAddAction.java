@@ -52,8 +52,7 @@ private String r_shop_addr3;
 
 
 
-private String fileUploadPath="C:\\Users\\jinwo\\git\\Taster\\Taster\\WebContent\\images\\shop\\";
-//C:\\git2\\Taster2\\Taster\\Taster\\WebContent\\images\\shop\\
+private String fileUploadPath="C:\\git2\\Taster2\\Taster\\Taster\\WebContent\\images\\shop\\";
 
 
 public AdminShopAddAction() throws IOException {
@@ -123,7 +122,7 @@ public String execute() throws Exception  {
 		
 		File destFile = new File(fileUploadPath + file_name + "."+ file_ext);
 		FileUtils.copyFile(getUpload(), destFile);
-		
+		 
 		//파일 정보 업데이트.
 		sqlMapper.update("updateFileUpload", map);
 		//System.out.println("업로드 완료");

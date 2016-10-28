@@ -4,6 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
 <script src="https://code.jquery.com/jquery-latest.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <link rel="stylesheet" href="/Taster/css/login/layout.css" />
 <script>
 function logout() {
@@ -12,11 +13,13 @@ function logout() {
 	}
 	return;
 }
+
 </script>
 <style>
 	#category_top { border: 1px solid #a6a6a6; }
+	.top_module div { display: inline-block; }
+	.top_module { }
 	.top1 {
-		
 		vertical-align:middle;
 		font-family: NanumGothic;
 		font-size:13px;
@@ -32,22 +35,20 @@ function logout() {
 	}
 	.lineDiv {height:50px;width:0px;border:0.5px solid #a6a6a6;padding:0px;margin:0px;}
 </style>
-<div class="top_module">
+<div class="top_module" id="top_module">
   <div class="menu_container">
     <!--  <div id="category_top" style="width:100%; background-color:#fff; height:50px;float:right;">
    <div class="" style="background-image:url('/Taster/images/logo2.png');
     		width:140px;height:50px;background-size:140px 50px; background-repeat:no-repeat; float:left; margin:0px; cursor:pointer;">
     </div> -->
-    <div class="" style="width:140px;height:70px;float:left; margin:0px;">
-    	<img src="/Taster/images/logo2.png"	onclick="location.href='main.action'" 
-    		width="138px" height="68px" style="cursor:pointer"/>
+    <div class="" style="width:140px;height:70px;float:left;cursor:pointer; margin:0px;" onclick="location.href='main.action'">
+    	<!-- <img src="/Taster/images/logo2.png"	onclick="location.href='main.action'" 
+    		width="138px" height="68px" style="cursor:pointer"/> -->
     </div>
     
 	    <s:if test="#session.member_id != null">
 	    <div class="top1" onclick="logout();">로그아웃</div>
-	    
 	    <div class="top1" onclick="location.href='qboardList.action'">1:1문의</div>
-	    
 	    <div class="top1" onclick="location.href='memberMypage.action'">마이페이지</div>
 	    </s:if>
 	    
@@ -70,19 +71,22 @@ function logout() {
 	    </s:if>
     
   </div>
+<form action="searchShop.action" method="post" name="topSearchForm">
   <div style="width:100%; height:100px; text-align:center; color:#fff;">
   	<h3>솔직한 리뷰, 믿을 수 있는 평점!</h3>
   	<h3>맛객에 오신 것을 환영합니다.</h3>
   	
-  	<select name="" id="selectbox" class="selectbox">
-  		<option value="">식당명</option>
-  		<option value="">지역</option>
+  	<select name="topSearch" id="selectbox" class="selectbox">
+  		<option value="shopName">식당명</option>
+  		<option value="shopArea">지역</option>
   	</select>
   	
   	<input type="text" name="keyword" id="keyword" placeholder="검색 목록을 선택해 주세요."/>
-  	<input type="button" value="검  색" class="btn_search" style="margin-right:30px;font-size:13px;font-weight:bold;"/>
+  	<input type="submit" value="검  색" class="btn_search" onclick="topSearch();"  
+  		style="margin-right:30px;font-size:13px;font-weight:bold;"/>
   	<input type="button" value="상세검색" class="btn_search" style="font-size:13px;font-weight:bold;"/>
   </div>
+</form>
 </div>
 <table style="width:100%;" class="top_table">
 	<tr>
@@ -134,6 +138,18 @@ function loginCheck() {
 	}
 	
 	document.loginForm.submit();
+}
+
+function topSearch() {
+	alert("test");
+	topForm = document.topSearchForm;
+	
+	if(topForm.keyword.value == "") {
+		alert("검색어를 입력해주세요.");
+		return;
+	}
+	
+	topForm.submit();
 }
 </script>
 

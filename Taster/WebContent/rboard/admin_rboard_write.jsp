@@ -8,12 +8,17 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>스트럿츠2 게시판</title>
-<link rel="stylesheet" href="/Taster/css/style.css" type="text/css">
+<link rel="stylesheet" href="/Taster/css/style.css" type="text/css"> 
 <%-- <script src="/Taster/ckeditor/ckeditor.js" charset="euc-kr"></script>
 <script type="text/javascript" src="/Taster/ckfinder/ckfinder.js"></script>  --%>
+<!-- 스마트에디터 CSS, 자바스크립트 관련 자료 설정 -->
+
+<!-- <link href="/Taster/rboard/smartEditor2/css/default.css" rel="stylesheet" type="text/css" /> -->
+<script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="/Taster/rboard/smartEditor2/js/HuskyEZCreator.js" charset="utf-8"></script>
 
 
-
+	
 <script type="text/javascript">
 	function validation() {
 		var frm = document.forms(0);
@@ -42,7 +47,7 @@
 
 </script>
 
-</script>
+
  
 </head>
 <body>
@@ -54,7 +59,7 @@
 	</table>
 	
 	<s:if test="resultClass == NULL">
-		<form name="f" action="rboardWriteAction.action" method="post" enctype="multipart/form-data" onsubmit="return validation();">
+		<form id="frm" name="f" action="rboardWriteAction.action" method="post" enctype="multipart/form-data" onsubmit="return validation();">
 	</s:if>
 	
 	<s:else>
@@ -101,7 +106,7 @@
 		
 		<tr>
 			<td align="right" colspan="2">
-			<input name="submit" type="submit" value="작성완료" class="inputb" onclick="submitContents(this)">
+			<input id="savebutton" name="submit" type="submit" value="작성완료" class="inputb">
 			<input name="list" type="button" value="목록" class="inputb" onClick="javascript:location.href='adminRboardList.action?currentPage=<s:property value="currentPage"/>'">
 			
 			</td>
@@ -109,22 +114,82 @@
 		
  	</table>
 	</form>
+	
+	
+<script type="text/javascript" charset="utf-8">
 
-<%-- <ckfinder:setupCKEditor basePath="ckfinder/" editor="rec_content"/>
-<ckeditor:replace replace="rec_content" basePath="/ckeditor"></ckeditor:replace>
- --%>
-<script>
-window.onload=function(){
+$(function(){
+    //전역변수선언
+    var editor_object = [];
+     
+    nhn.husky.EZCreator.createInIFrame({
+        oAppRef: editor_object,
+        elPlaceHolder: "rec_content",
+        sSkinURI: "/Taster/rboard/smartEditor2/SmartEditor2Skin.html", 
+        htParams : {
+            // 툴바 사용 여부 (true:사용/ false:사용하지 않음)
+            bUseToolbar : true,             
+            // 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
+            bUseVerticalResizer : true,     
+            // 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
+            bUseModeChanger : true, 
+        }
+    });
+     
+    //전송버튼 클릭이벤트
+    $("#savebutton").click(function(){
+        //id가 smarteditor인 textarea에 에디터에서 대입
+        editor_object.getById["rec_content"].exec("UPDATE_CONTENTS_FIELD", []);
+         
+        // 이부분에 에디터 validation 검증
+         
+        //폼 submit
+        $("#frm").submit();
+    })
+})
 
-CKEDITOR.replace('rec_content',
-		{
-	toolbar :'Basic',
-	filebrowserImageUloadUrl:'fileupload.jsp?type=images', //파일 업로드시 사용
-	width : '100%', //넓이값
-	height : '200' //높이값
-		})
+
+/* // 이미지업로드 경로(붙여넣기할때 경로명이 바뀔수도 있으니 조심해야 한다. /로시작하는것은 절대경로를 의미)
+
+var imagepath = "/Taster/rboard/smartEditor2/smartImages";
+
+var oEditors = [];
+
+nhn.husky.EZCreator.createInIFrame({
+
+ oAppRef: oEditors,
+
+ elPlaceHolder: "rec_content",
+
+ sSkinURI: "/Taster/rboard/smartEditor2/SmartEditor2Skin.html",
+
+ fCreator: "createSEditor2"
+
+}); */
+
+
+
+/* 
+function insertIMG(irid,fileame){
+
+  var sHTML = "<img src='" + imagepath + "/" + fileame + "' border='0'>";
+
+  oEditors.getById[irid].exec("PASTE_HTML", [sHTML]);
+
 }
-</script> 
+
+function _onSubmit(elClicked){ 
+
+ oEditors.getById["rec_content"].exec("UPDATE_IR_FIELD", []); 
+
+ f.submit();
+
+}
+ */
+
+
+
+</script>
 
 </body>
 </html>
