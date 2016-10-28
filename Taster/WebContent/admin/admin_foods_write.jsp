@@ -80,7 +80,7 @@ function openZipcode(){
 </head>
 
 <body>
-<div class="top_module"></div>
+
 <center>
 <div id="joinDiv">
 <div><strong>식당 등록</strong></div>
@@ -112,7 +112,8 @@ function openZipcode(){
 		<th>가격대</th>
 		<td>
 			<s:textfield name="shop_price" theme="simple" value="%{resultClass.shop_price}"/>
-		</td>
+			</td>
+			
 		</tr>
 		 
 	  
@@ -123,6 +124,8 @@ function openZipcode(){
 		<img src="/Taster/images/bt_zipcode.gif" alt="" onclick="openZipcode();" /> <br />
 		<s:textfield name="r_shop_addr4" theme="simple"/>
 		</td>
+		</tr>
+		
 
 		
 		<tr>
@@ -153,6 +156,14 @@ function openZipcode(){
             </s:if>
           </td>
         </tr>
+
+	<tr>
+		<td colspan="2" align="center" style="height:50px;border:1px solid white;">
+		<input type= "image" src="/Taster/images/bt_ok.gif" >
+		<img src="/Taster/images/bt_cancel.gif" alt="" onclick="javascript:if(confirm('작성한 정보가 초기화 됩니다. 취소하시겠습니까?')){location.href='AshopWriteForm.action'}" /> 
+	
+
+	</tr>
 		
 </table>
 </form>
