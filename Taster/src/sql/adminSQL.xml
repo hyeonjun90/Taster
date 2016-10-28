@@ -95,31 +95,21 @@
       </select>
       
 
-         <delete id="Shop-deleteIdx" parameterClass="admin_shop">
+      <delete id="Shop-deleteIdx" parameterClass="admin_shop">
       DELETE FROM SHOP
       <include refid="Shop-where-Sidx"/> 
       </delete>
-   
-
-   
+      
+        
       <select id="Shop-select-filesavName" resultClass="String" parameterClass="HashMap">
       	select file_savname from shop where shop_idx = #shop_idx#
       </select>
-
+      
       <!--  
       <update id="Shop_update_file_savname" parameterClass="HashMap">
          update shop set file_savname = #file_savname# where shop_idx = #shop_idx# 
       </update>
       -->
-<!--        성준이가 한거
-      <delete id="Shop-deleteIdx" parameterClass="int">
-      DELETE FROM SHOP
-
-      <include refid="Shop-where-Sidx"/>
-
-      </delete> -->
-
-
       
       <!--  
       <select id="selectOne" parameterClass="int" resultMap="boardRes">
@@ -127,10 +117,33 @@
        </select>
       -->
       
-
-      <update id="Shop_update_file_savname" parameterClass="HashMap">
-         update shop set file_savname = #file_savname# where shop_idx = #shop_idx# 
+      <!--update 쿼리문 정의-->
+      <!-- 샵 수정할때 파일 변경 관련 , 내가 변경함 -->
+      <update id="UpdateFileUpload" parameterClass="admin_shop">
+         UPDATE SHOP SET FILE_ORGNAME=#file_orgname#,
+         FILE_SAVNAME=#file_savname#
+         <include refid="Shop-where-Sidx"/> 
       </update>
+      
+      
+      <!-- 샵 수정하기 관련 액션,  샵수정할때 파일변경은 바로 위를 참조할 것-->
+      <update id="Shop-updateAshop" parameterClass="admin_shop">
+      UPDATE SHOP SET SHOP_NAME = #shop_name#, 
+                  SHOP_TEL = #shop_tel#,
+                  SHOP_KIND = #shop_kind#,
+                  SHOP_ADDR1 = #shop_addr1#,
+                  SHOP_ADDR2 = #shop_addr2#,
+                  SHOP_ADDR3 = #shop_addr3#,
+                  SHOP_ADDR4 = #shop_addr4#,
+                  SHOP_PRICE = #shop_price#,
+                  SHOP_HOLIDAY = #shop_holiday#
+      <include refid="Shop-where-Sidx"/>
+      </update>
+      
+      <!-- 조회수 -->
+      <update id="ShopUpdateReadHit" parameterClass="admin_shop"> UPDATE SHOP SET SHOP_READCOUNT = shop_readCount + 1 WHERE Shop_idx = #Shop_idx# </update>
+
+      
      
 
       <!-- insert 쿼리문 정의 -->

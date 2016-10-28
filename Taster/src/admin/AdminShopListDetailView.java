@@ -37,6 +37,9 @@ public class AdminShopListDetailView extends ActionSupport {
    
    
    public String execute() throws Exception {
+	   
+	   paramClass.setShop_idx(getShop_idx());
+	   sqlMapper.update("ShopUpdateReadHit",paramClass);
 
       resultClass = (ShopBean) sqlMapper.queryForObject("Shop-selectOne", getShop_idx());
       

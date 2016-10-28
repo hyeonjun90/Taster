@@ -102,8 +102,9 @@
 		</tr>
  	</table>
 <input name="list" align="right" type="button" value="목록보기" class="inputb" onClick="javascript:location.href='AshoplistAction.action?currentPage=<s:property value="currentPage" />'">
-<!-- 성준<input name="execute" type="button" value="삭제하기" class="inputb"onClick='execute()'>-->
+
 <input name="list" type="button" value="삭제하기" class="inputb" onClick="javascript:location.href='AshopDeleteAction.action?shop_idx=<s:property value="resultClass.shop_idx" />&currentPage=<s:property value="currentPage" />'">
+<input name="list" type="button" value="수정하기" class="inputb" onClick="javascript:location.href='AshopModifyAction.action?shop_idx=<s:property value="resultClass.shop_idx" />&currentPage=<s:property value="currentPage" />'">
 
 
 
