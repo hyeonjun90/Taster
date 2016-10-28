@@ -124,7 +124,6 @@ function openZipcode(){
 </head>
 
 <body>
-<div class="top_module"></div>
 <center>
 <div id="joinDiv">
 <div><strong>식당 등록</strong></div>
