@@ -7,31 +7,40 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-
+<style type="text/css">
+a:link, a:visited, a:hover, a:active {
+	font-size: 10pt;
+	color: black;
+	text-decoration: none;
+}
+</style>
+<style>
+	.joinDiv{
+		width:750px; border-bottom:3px solid #f0f0f0;
+		text-align: left; padding: 10px;
+		font-size: 14px; font-family : 'Noto Sans', sans-serif;
+	}
+</style>
 <title>문의 게시판</title>
-<link rel="stylesheet" href="/Taster/css/style.css" />
+<link rel="stylesheet" href="/Taster/css/style.css"/>
 </head>
-
 <body>
-	<table width="100%" border="0" cellspacing="0" cellpadding="2">
-		<tr>
-			<td align="center"><h2>문의 게시판</h2></td>
-		</tr>
-	</table>
+
+<div style="width:800px; margin:30px auto; ">
 	
-	<table width="100%" border="0" cellspacing="0" cellpadding="2">
-		<tr align="center" bgcolor="#f3f3f3">
-			<td width="30" align="center"><strong>번호</strong></td>
-			<td width="300" align="center"><strong>제목</strong></td>
-			<td width="70" align="center"><strong>닉네임</strong></td>
-			<td width="50" align="center"><strong>날짜</strong></td>
-			<td width="30" align="center"><strong>조회</strong></td>
+	<table width="800" border="0" cellspacing="0" cellpadding="0">
+		<tr  align="center" bgcolor="#FF895A" height="10">
+				<td width="90" height="30px" bgcolor="#FF9D62"><font color="white" size="2"><strong>번호</strong></font></td>
+				<td width="390" height="35px"><font color="white" size="2"><strong>제목</strong></font></td>
+				<td width="110" height="35px" ><font color="white" size="2"><strong>닉네임</strong></font></td>
+				<td width="120" height="35px"><font color="white" size="2"><strong>날짜</strong></font></td>
+				<td width="90" height="35px"><font color="white" size="2"><strong>조회</strong></font></td>
 		</tr>
-
-		<tr bgcolor="#777777">
-			<td height="1" colspan="5"></td>
+		
+		<tr>
+				<td colspan="5"><hr /></td>
 		</tr>
-
+	
 	<s:iterator value="list" status="stat">
 	
 		<!-- 글제목 클릭시 상세보기 페이지로 넘어가는 액션 -->
@@ -44,10 +53,10 @@
 			</s:param>
 		</s:url>
 	
-		<tr>
+		<tr align="center">
 			<!-- 글 번호 -->
 			<td align="center" bgcolor= "#f3f3f3"><s:property value="b_idx" /></td>
-				<td align="center">
+			<td align="center">
 				<!--				  
 				<s:if test="re_level != 0">
 					<c:forEach var = "i" begin = "${re_level}" end = "0">&nbsp;</c:forEach>→
@@ -64,16 +73,20 @@
 			<td align="center"><s:property value="b_readCount" /></td>
 		</tr>
 
-		<tr bgcolor="#777777">
-			<td height="1" colspan="5"></td>
+		<tr>
+			<td colspan="5"><hr/></td>
 		</tr>
 
 	</s:iterator>
 
 	<!-- 게시물 없을때 -->
 	<s:if test="list.size() <= 0">
-		<tr>
+		<tr bgcolor="#FFFFFF" align="center">
 			<td colspan="5" align="center">등록된 게시물이 없습니다</td>
+		</tr>
+		
+		<tr bgcolor="#777777">
+					<td height="1" colspan="1"></td>
 		</tr>
 	</s:if>
 
@@ -111,5 +124,7 @@
 		</td>
 	</tr>
 </table>
+
+</div>
 </body>
 </html>
