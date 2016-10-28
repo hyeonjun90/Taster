@@ -12,15 +12,77 @@
 <script type='text/javascript' src='http://code.jquery.com/jquery-1.11.0.min.js'></script>
 <link rel="stylesheet" href="/Taster/css/style.css" />
 <script src="https://code.jquery.com/jquery-latest.js"></script>
+<script>
+var switch_smile = 0;
+function setPungga(p){
+	document.r_form.r_pungga.value=p;
+	if(p == "1") {
+		if(switch_smile == 0) {
+			$("#good").css("background-image", "url(/Taster/images/shop/good.jpg)");
+			$("#soso").css("background-image", "url(/Taster/images/shop/soso_org.jpg)");
+			$("#bad").css("background-image", "url(/Taster/images/shop/bad_org.jpg)");
+			$("#good_t").css("color", "orange");
+			$("#soso_t").css("color", "gray");
+			$("#bad_t").css("color", "gray");
+			switch_smile = 1;
+		} else {
+			$("#good").css("background-image", "url(/Taster/images/shop/good_org.jpg)");
+			$("#good_t").css("color", "gray");
+			switch_smile = 0;
+		}
+	} else if (p == "2") {
+		if(switch_smile == 0) {
+			$("#soso").css("background-image", "url(/Taster/images/shop/soso.jpg)");
+			$("#good").css("background-image", "url(/Taster/images/shop/good_org.jpg)");
+			$("#bad").css("background-image", "url(/Taster/images/shop/bad_org.jpg)");
+			$("#soso_t").css("color", "orange");
+			$("#good_t").css("color", "gray");
+			$("#bad_t").css("color", "gray");
+			switch_smile = 1;
+		} else {
+			$("#soso").css("background-image", "url(/Taster/images/shop/soso_org.jpg)");
+			$("#soso_t").css("color", "gray");
+			switch_smile = 0;
+		}
+	} else if (p == "3") {
+		if(switch_smile == 0) {
+			$("#bad").css("background-image", "url(/Taster/images/shop/bad.jpg)");
+			$("#good").css("background-image", "url(/Taster/images/shop/good_org.jpg)");
+			$("#soso").css("background-image", "url(/Taster/images/shop/soso_org.jpg)");
+			$("#bad_t").css("color", "orange");
+			$("#good_t").css("color", "gray");
+			$("#soso_t").css("color", "gray");
+			switch_smile = 1;
+		} else {
+			$("#bad").css("background-image", "url(/Taster/images/shop/bad_org.jpg)");
+			$("#bad_t").css("color", "gray");
+			switch_smile = 0;
+		}
+	}	
+}
+
+/* function showPungga() {
+	document.countPungga.value=count;
+	if(count == "1") {
+		$("#r_pyungga").css("background-image", "url(/Taster/images/shop/good.jpg)");
+	} else if (count == "2") {
+		$("#r_pyungga").css("background-image", "url(/Taster/images/shop/soso.jpg)");
+	} else if (count == "3") {
+		$("#r_pyungga").css("background-image", "url(/Taster/images/shop/bad.jpg)");
+	}
+} */
+
+</script>
+
 
 <style>
 	.clearDiv{	clear:both; }
 
     .category_bt{ width: 50px; height: 80px; float: left; text-align: center; background: white; 
-    			margin:10px 10px 10px 30px; /* ≈æ øﬁ πŸ≈“ ø¿ */border: 7px solid black;padding-top: 0px; }
-	.pyugga_good {background:url('/Taster/images/shop/good.jpg');}
-	.pyugga_soso {background:url('/Taster/images/shop/soso.jpg');}
-	.pyugga_bad {background:url('/Taster/images/shop/bad.jpg');}
+    			margin:10px 10px 10px 30px; /* ≈æ øﬁ πŸ≈“ ø¿ */border: 7px solid white;padding-top: 0px; }
+	.pungga_good {background:url('/Taster/images/shop/good_org.jpg');}
+	.pungga_soso {background:url('/Taster/images/shop/soso_org.jpg');}
+	.pungga_bad {background:url('/Taster/images/shop/bad_org.jpg');}
 	
 	.readhit {background:url('/Taster/images/readhit.jpg'); width: 30px; height: 30px;}
 	.review-write {background:url('/Taster/images/review-write.jpg'); width: 30px; height: 30px;}
@@ -28,7 +90,7 @@
 	.icon { width: 43px; height: 43px; display: inline-block; background-repeat: no-repeat; cursor: pointer; }
 	.icon2 { width: 25px; height: 15px; float:center; display: inline-block; background-repeat: no-repeat; }
 	.icon_title{ font-size: 13px; font-weight: 600; margin-top: -10px; font-family : 'Noto Sans', sans-serif;}
-	
+
 	
 /* 	.icon_title{
 		font-size: 13px;
@@ -54,7 +116,7 @@
 	.r_score { font-size: 30px; color:orange; font-weight:bold; }
 	.subject {float:left; width: 500px; float:left;text-align:left; font-size:15px; height:300px;}
 	.r_memberInfo{padding: 10px; font-size: 12px; float:left; text-align:left; margin-top:10px;}
-	.r_content {padding: 10px; font-size: 12px; float:left; text-align:left; margin-top:10px;}
+	.r_content {padding: 10px; font-size: 12px; float:left; text-align:left; margin:10px;}
 	.r_pyungga {font-size: 25px; color:orange; float:right; margin:10px; font-weight:bold; margin-top:10px;border:1px solid red;}
 	.favorite {width: 60px;height: 70px; background-size:60px 50px;padding-top:5px;float:right;}
     
@@ -72,6 +134,7 @@
 </head>
 
 <body>
+
 <center>
 <div style="width:100%;min-height:500px;margin-top:40px;">
 
@@ -134,22 +197,22 @@
   <div class="reviewblock" style="width:800px;">∏Æ∫‰ ≥≤±‚±‚°⁄</div>
   
   <!-- ∏Æ∫‰ ¿€º∫ ∆˚ -->
-  	<form action="foodsReviewWrite.action" method="post" style="width:800px; height:350px; border:3px solid orange;">
-  	
+  	<form name="r_form" action="foodsReviewWrite.action" method="post" style="width:800px; height:350px; border:3px solid orange;">
+  	 <input type="hidden" name="r_pungga"/>
   		
-  		<!-- ∏¿∆Ú∞°«œ±‚-->
+  		<!-- ∏¿∆Ú∞°«œ±‚--> 
   		<div style="width:340px; height:100px; float:left; text-align:center; border:1px solid yellow;">
-  			<span class="category_bt">
-  				<em class="pyugga_good icon"></em>
-  				<span style="border:1px solid gray; color:orange;">∏¿¿÷¥Ÿ</span>
+  			<span class="category_bt" onclick="setPungga('1')">
+  				<em class="pungga_good icon" id="good"></em>
+  				<span style="color:gray;" id="good_t">∏¿¿÷¥Ÿ</span>
   			</span>
-  			<span class="category_bt">
-  				<em class="pyugga_soso icon"></em>
-  				<span style="border:1px solid black;color:orange;">±¶¬˙¥Ÿ</span>
+  			<span class="category_bt" onclick="setPungga('2')" >
+  				<em class="pungga_soso icon" id="soso"></em>
+  				<span style="color:gray;" id="soso_t">±¶¬˙¥Ÿ</span>
   			</span>
-  			<span class="category_bt">
-  				<em class="pyugga_bad icon"></em>
-  				<span style="border:1px solid black;color:orange;">∫∞∑Œ</span>
+  			<span class="category_bt" onclick="setPungga('3')">
+  				<em class="pungga_bad icon" id="bad"></em>
+  				<span style="color:gray;" id="bad_t">∫∞∑Œ</span>
   			</span>
   		</div>  
   		<!-- ªÁ¡¯ æ˜∑ŒµÂ -->
@@ -195,11 +258,11 @@
 	<div class="reviewList" id="reviewList" style="width:80%;">
 
 	<div class="reviewblock">${FDBean.shop_name}¿« ∏Æ∫‰(?)</div>
-	<div class="r_pyungga">¿¸√º(?)|∏¿¿÷¥Ÿ(?)|±¶¬˙¥Ÿ(?)|∫∞∑Œ(?)</div>
+	<div class="reviewblock" style="float:right; font-size:20px;">¿¸√º(?)|∏¿¿÷¥Ÿ(?)|±¶¬˙¥Ÿ(?)|∫∞∑Œ(?)</div>
 	
 	<!-- µÓ∑œµ» ∏Æ∫‰ ∏ÆΩ∫∆Æ √‚∑¬ -->
 	<c:forEach items="${RevList}" var="RevList" varStatus="status">
-		<!-- ∏Æ∫‰∫Ì∑œ -->
+		<!-- ∏Æ∫‰∫Ì∑œ -->	
 		<div class="reviewContent" style="width:100%; margin-top:20px;">
 			<!-- ¿€º∫¿⁄¡§∫∏ -->
 			<div class="r_memberInfo" style="width:10%;">
@@ -214,8 +277,28 @@
 				<span>${RevList.r_content }</span>
 			</div>
 			<!-- ∆Ú∞° / ∏∏µÂ¥¬¡ﬂ-->
-			<div class="r_pyungga" style="width:10%;">${RevList.r_pungga}</div>	
 			
+			<div class="r_pyungga" style="width:10%;">
+				<c:if test="${RevList.r_pungga} == '1'">
+					<span class="category_bt" onclick="setPungga('1')">
+  				<em class="pungga_good icon" id="good"></em>
+  				<span style="color:gray;" id="good_t">∏¿¿÷¥Ÿ</span>
+  			</span>
+				</c:if>
+			</div>	
+<%-- 				<div class="r_pyungga" style="width:10%;" id="r_pyungga">
+					<input type="hidden" name="countPungga" value="${RevList.r_pungga}">${RevList.r_pungga}
+				
+				
+				
+				</div>	
+
+
+<s:if test="resultClass == NULL">
+			<div class="category_bt <c:if test="${keyword eq 'ƒ°≈≤'}">selected</c:if>" onclick="menuSearch('ƒ°≈≤');">
+				<em class="c7 icon"></em>
+				<div class="icon_title">ƒ°≈≤</div>
+			</div> --%>
 				
 		</div>
 		

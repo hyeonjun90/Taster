@@ -105,7 +105,7 @@ public class FoodsCommentWriteAction extends ActionSupport implements SessionAwa
 			r_upload3 = " ";
 		}
 		
-		//RBean.setR_image(upload(getReview_idx(), (getR_upload1()+"-"+getR_upload2()+"-"+getR_upload3()).toString()));
+		RBean.setR_image(upload(getReview_idx(), (getR_upload1()+"-"+getR_upload2()+"-"+getR_upload3()).toString()));
 		
 		
 

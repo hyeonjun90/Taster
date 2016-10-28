@@ -31,6 +31,7 @@ public class FoodsDetailAction extends ActionSupport {
 	
 	private FoodsDetailBean FDBean = new FoodsDetailBean(); 
 	private ArrayList<FoodsDetailBean> RevList = new ArrayList<FoodsDetailBean>(); //¸®ºä(ÄÚ¸àÆ®) ¸®½ºÆ®
+	private int[] PunggaList; //Æò°¡Á¡¼ö Ä«¿îÆÃ¿ë
 	
 	private int shop_idx; //¼¥ ÀÎµ¦½º
 	private int rTotalCount; //ÃÑ ¸®ºä ¼ö 
@@ -64,6 +65,16 @@ public class FoodsDetailAction extends ActionSupport {
 				
 				return SUCCESS;
 				
+	}
+	
+	public int[] countPungga() throws Exception {
+		
+		PunggaList[0] = (int) sqlMapper.queryForObject("counTotalPungga");
+		PunggaList[1] = (int) sqlMapper.queryForObject("countPungga1");
+		PunggaList[2] = (int) sqlMapper.queryForObject("countPungga2");
+		PunggaList[3] = (int) sqlMapper.queryForObject("countPungga3");
+
+		return (int[])PunggaList;
 	}
 	
 
