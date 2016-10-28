@@ -64,6 +64,7 @@ function logout() {
        
        <s:if test="#session.member_level == 3">
        
+       <div class="top1" onclick="location.href='AshoplistAction.action'" style="color:#ff3300;"> 전체식당 관리 </div>
        <div class="top1" onclick="location.href='approvalRequestList.action'" style="color:#ff3300;" >신규식당 승인</div>
        
        <div class="top1" onclick="location.href='adminMemberList.action'" style="color:#ff3300;">회원 관리</div>
