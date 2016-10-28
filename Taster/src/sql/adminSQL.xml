@@ -102,7 +102,7 @@
       
         
       <select id="Shop-select-filesavName" resultClass="String" parameterClass="HashMap">
-      	select file_savname from shop where shop_idx = #shop_idx#
+         select file_savname from shop where shop_idx = #shop_idx#
       </select>
       
       <!--  
@@ -142,9 +142,9 @@
       
       <!-- 조회수 -->
       <update id="shop-readCount" parameterClass="bean.ShopBean">
-	UPDATE SHOP SET SHOP_READCOUNT = shop_readCount + 1
-	WHERE shop_idx = #shop_idx#
-	</update>
+   UPDATE SHOP SET SHOP_READCOUNT = shop_readCount + 1
+   WHERE shop_idx = #shop_idx#
+   </update>
       
      
 
