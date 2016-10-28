@@ -20,6 +20,33 @@
    .line { border-left:2px solid #FF9900;}
    #tblForm tr td {border:1px solid blue; width: 525px;}
 </style>
+
+<style>
+	.clearDiv{	clear:both;	}
+	
+	.icon { width: 70px; height: 70px; display: inline-block; background-repeat: no-repeat; cursor: pointer; }
+	
+	.category_bt{ width: 80px; height: 80px; float: left; text-align: center; background: white; border-radius: 60px;margin: 10px 23px 10px; /* е╬ ©ч ╧ыер ©ю */border: 7px solid white;padding-top: 0px; }
+	.icon_title{ font-size: 13px; font-weight: 600; margin-top: -10px; font-family : 'Noto Sans', sans-serif;}
+	.category_bt:hover{ border: 7px solid #DDE5B8; padding-top: 0px; }
+
+
+	.hotList div {font-family : 'Noto Sans', sans-serif; }
+	.shopInfo div {margin-left:10px; padding: 3px; font-family : 'Noto Sans', sans-serif;}
+	.title { font-size: 18px; color:#555; font-weight:bold;}
+	.r_score { font-size: 18px; color:orange; font-weight:bold; }
+	.shop_addr {width:600px;float:left;text-align:left; color:#a6a6a6; font-size:13px;}
+	.r_content {padding: 10px; font-size: 12px; float:left; width: 600px; text-align:left; margin-top:10px;}
+	.favorite {background-image: url('/Taster/images/fav.png'); 
+    			 width: 52px; height: 31px; background-size: 32px 31px; background-repeat: no-repeat; 
+    			 background-position:50% 0%; float:right;padding-top:30px;}
+    .favorite:hover { background-image: url('/Taster/images/fav_check.png'); }
+    .m_image { width:25px; height: 24px; border-radius: 20px; display:block; float: left;
+    	 background:url('/Taster/images/basic_profile.png') no-repeat; background-size:32px 32px; margin-right:5px;}
+</style>
+
+
+
 <style>
 <style>
 	.clearDiv{	clear:both;	}
@@ -106,7 +133,6 @@ var fTotalCount = ${fTotalCount};
 </head>
 
 <body>
-<div class="top_module"></div>
 
 <table style="width:100%;" class="top_table">
 	<tr>
