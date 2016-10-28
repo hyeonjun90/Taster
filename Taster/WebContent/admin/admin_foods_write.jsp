@@ -6,8 +6,68 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>식당 등록 게시판</title>
-<script language="javascript">
+<link rel="stylesheet" href="/Taster/css/style.css"/>
+<style>
+#joinTable {
+		width: 800px;
+		height: 380px;
+		margin-top: 10px;
+		padding: 0px;
+	}
+	#joinTable tr th {
+		width: 20%;
+		background-color: #f7f7f7;
+		font-size: 10px;
+		font-family : 'Noto Sans', sans-serif;
+		background-image: url('/Taster/images/bg_01.gif');
+		background-size:700%;
+		background-repeat: no-repeat;
+		border-bottom: 1px solid #a6a6a6;
+	}
+	#joinTable tr td {
+		width: 80%;
+		font-size: 11px;
+		font-family : 'NanumGothic';
+		vertical-align: middle;
+		padding-left:3px;
+		border-bottom: 1px solid #a6a6a6;
+	}
+	.zipcode {
+		margin-bottom: 5px;
+		font-size: 10px;
+		font-family : 'Noto Sans', sans-serif;
+	}
+	#joinTable button {
+		font-size: 11px;
+		font-family : 'NanumGothic';
+	}
+	#joinTable input {
+		height: 10px;
+		font-size: 11px;
+		font-family : 'NanumGothic';
+	}
+	#joinTable img {
+		height: 20px;
+		cursor: pointer;
+	}
+	#joinTable font {
+		font-size: 10px;
+		font-family : 'Noto Sans', sans-serif;
+	}
+	#joinDiv {
+		width: 820px;
+		border: 1px solid #a6a6a6;
+		margin-top: 30px;
+		margin-bottom: 15px;
+	}
+	#joinDiv div {
+		width:750px; border-bottom:3px solid #f0f0f0;
+		text-align: left; padding: 10px;
+		font-size: 14px; font-family : 'Noto Sans', sans-serif;
+	}
+</style>
 
+<script language="javascript">
 function openZipcode(){
 	var url="AdminShopSearchZipcode.action";
 	open(url, "","toolbar=no,location=no,"
@@ -18,123 +78,101 @@ function openZipcode(){
 
 </script>
 </head>
-<body>
 
-<table width="600" border="0" cellspacing="0" cellpadding="2">
-		<tr>
-			<td align="right"><h2>식당등록 게시판</h2></td>
-		</tr>
-</table>
+<body>
+<div class="top_module"></div>
+<center>
+<div id="joinDiv">
+<div><strong>식당 등록</strong></div>
 
 
 <form action="AshopWriteAction.action" method="post" enctype="multipart/form-data" name="joinForm">
+
 <input type="hidden" name="r_shop_addr" value=""/>
 <input type="hidden" name="r_shop_addr1" value="" />
 <input type="hidden" name="r_shop_addr2" value="" />
 <input type="hidden" name="r_shop_addr3" value="" />
 
-<table width="600" border="0" cellspacing="0" cellpadding="2">
-
+<table id="joinTable">
 		<tr>
-			<td align="center" width="100">
-				<font color="#FF0000">*</font> 식당이름:<s:textfield name="shop_name" theme="simple" value="%{resultClass.shop_name}" cssStyle="width:370px"/>
+			<th>식당 이름</th>
+			<td>
+				<s:textfield name="shop_name" theme="simple" value="%{resultClass.shop_name}"/>
 			</td>                                                                
-			
 		</tr> 
 		
        <tr>
-		<td align="center" width="100">
-				<font color="#FF0000">*</font> 전화번호:
-				<s:textfield name="shop_tel" theme="simple"  value="%{resultClass.shop_tel}" cssStyle="width:370px" />
+       		<th>전화번호</th>
+			<td>
+				<s:textfield name="shop_tel" theme="simple"  value="%{resultClass.shop_tel}" />
 			</td>
-			
 		</tr>
 		
 		<tr>
-		<td align="center"  width="100">
-				<font color="#FF0000">*</font> 가 격 대:
-				&nbsp;<s:textfield name="shop_price" theme="simple" value="%{resultClass.shop_price}"   cssStyle="width:370px"  />
+		<th>가격대</th>
+		<td>
+			<s:textfield name="shop_price" theme="simple" value="%{resultClass.shop_price}"/>
 			</td>
 			
 		</tr>
 		 
 	  
 		<tr>
-		<td align="center" width="100">
-				<font color="#FF0000">*</font> 주소:
-		</td>
-		</tr>
-		
-		<tr>
-		<td align="right" width="100">
-		<input  align="right" type="button" value="주소검색" class="inputb" onclick="openZipcode();">
-		
+		<th>주소</th>
+		<td>
 		<input type="text" name="shop_addr4" id="shop_addr4" class="zipcode" size="50" onclick="openZipcode();"/>
-		
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <s:textfield name="r_shop_addr4" theme="simple" cssStyle="width:370px"/>
-		
+		<img src="/Taster/images/bt_zipcode.gif" alt="" onclick="openZipcode();" /> <br />
+		<s:textfield name="r_shop_addr4" theme="simple"/>
 		</td>
 		</tr>
 		
 		
 		
-		<tr>
-		<td align="center" width="100">
-				<font color="#FF0000">*</font> 휴   일:
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<s:textfield name="shop_holiday" theme="simple" value="%{resultClass.shop_holiday}"  cssStyle="width:370px"  />
-			</td>
-			
-		</tr>
 		
-	
-		<tr>
-		<td  align="center" width="100">
-				<font color="#FF0000">*</font> 조 회 수:
-				&nbsp;<s:textfield name="shop_readCount" theme="simple" value="%{resultClass.shop_readCount}"  cssStyle="width:370px"  />
-			</td>
-			
-		</tr>
+		
+		
+		 
+		
+		
+		
 		
 		<tr>
-			<td align="left" colspan="2">
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<th>휴일:</th>
+		<td>
+	     <s:textfield name="shop_holiday" theme="simple" value="%{resultClass.shop_holiday}"/>
+	     </td>
+		</tr>
+		
+		<tr>
+		<th>업종</th>
+			<td>
 			 <input type="radio" name="shop_kind" value="한식"> 한식 
-		    &nbsp;
-			
-			<input type="radio" name="shop_kind" value="중식"> 중식
-		    &nbsp;
-			
+			 <input type="radio" name="shop_kind" value="중식"> 중식
 			<input type="radio" name="shop_kind" value="양식"> 양식 
-		    &nbsp;
-		    
 		    <input type="radio" name="shop_kind" value="일식"> 일식 
-		    &nbsp;
-		    
 		    <input type="radio" name="shop_kind" value="분식"> 분식 
-		    &nbsp;
-			<br>
 			</td>
 		</tr>
 		
 		<tr>
-		
-          <td align="right" bgcolor="#F4F4F4">  첨부파일 </td>
-          
-          <td bgcolor="#FFFFFF">
-              <s:file name="upload" theme="simple"/>
-            
+		<th>첨부파일</th>
+          <td style="heght:30px; font-size:10px;">
+            <s:file name="upload" theme="simple"/>
             <s:if test="resultClass.file_orgname != NULL">
-		&nbsp; * <s:property value="resultClass.file_orgname" /> 파일이 등록되어 있습니다. 다시 업로드하면 기존의 파일은 삭제됩니다.
-		
-	</s:if>
-	<br>
-		<input type="submit" value="등록"/>
+            <s:property value="resultClass.file_orgname" /> 파일이 등록되어 있습니다. 다시 업로드하면 기존의 파일은 삭제됩니다.
+            </s:if>
+          </td>
+        </tr>
+
+	<tr>
+		<td colspan="2" align="center" style="height:50px;border:1px solid white;">
+		<input type= "image" src="/Taster/images/bt_ok.gif" font-size="11px" height="20">
+		<img src="/Taster/images/bt_cancel.gif" alt="" onclick="javascript:if(confirm('작성한 정보가 초기화 됩니다. 취소하시겠습니까?')){location.href='AshopWriteForm.action'}" /> 
 		</td>
+	</tr>
 		
-		</tr>
-	</table>
-		</form>
-	
-	 
+</table>
+</form>
+</div>
 </body>
 </html>
