@@ -130,12 +130,14 @@
          <s:property value="resultClass.file_orgname"/> 
          </td>
       </tr>
-              
+      
       <tr>
-      <td colspan="2" align="right">
-      	<input name="list" align="right" type="button" value="목록보기" class="inputb" onClick="javascript:location.href='AshoplistAction.action?currentPage=<s:property value="currentPage" />'">
-		<input name="list" type="button" value="삭제하기" class="inputb" onClick="javascript:location.href='AshopDeleteAction.action?shop_idx=<s:property value="resultClass.shop_idx" />&currentPage=<s:property value="currentPage" />'">
-		<input name="list" type="button" value="수정하기" class="inputb" onClick="javascript:location.href='AshopModifyAction.action?shop_idx=<s:property value="resultClass.shop_idx" />&currentPage=<s:property value="currentPage" />'">
+      <td colspan="2" align="right" style="height:40px;">
+      	<input name="list" align="right" type="button" value="목록보기" style="height:25px;"
+      	 class="inputb"
+      	  onClick="javascript:location.href='AshoplistAction.action?currentPage=<s:property value="currentPage" />'">
+		<input name="list" style="height:25px;" type="button" value="삭제하기" class="inputb" onClick="javascript:location.href='AshopDeleteAction.action?shop_idx=<s:property value="resultClass.shop_idx" />&currentPage=<s:property value="currentPage" />'">
+		<input name="list" style="height:25px;" type="button" value="수정하기" class="inputb" onClick="javascript:location.href='AshopModifyAction.action?shop_idx=<s:property value="resultClass.shop_idx" />&currentPage=<s:property value="currentPage" />'">
 		
       </td>
       </tr>

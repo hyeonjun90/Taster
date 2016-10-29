@@ -156,7 +156,7 @@ function openZipcode(){
 		<tr>
 		<th>첨부파일</th>
           <td>
-            <s:file name="upload" theme="simple"/>
+            <input type="file" name="upload" style="height:30px;" />
             <s:if test="resultClass.file_orgname != NULL">
             <s:property value="resultClass.file_orgname" /> 파일이 등록되어 있습니다. 다시 업로드하면 기존의 파일은 삭제됩니다.
             </s:if>
@@ -164,9 +164,8 @@ function openZipcode(){
         </tr>
 
 	<tr>
-		<td colspan="2" align="center" style="height:50px;border:1px solid white;">
+		<td colspan="2" align="center" style="height:60px;border:1px solid white;">
 		
-		<input type= "image" src="/Taster/images/bt_ok.gif">
 
 		<img src="/Taster/images/bt_ok.gif" alt="" onclick="document.joinForm.submit()" >
 
