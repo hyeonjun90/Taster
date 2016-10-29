@@ -215,8 +215,14 @@
       </delete>
       
       
-      
-
+      <!-- 회원 리스트 출력 -->
+      <select id="getMemberList" resultClass="bean.MemberBean">
+      	select * from member order by member_joinDate desc
+      </select>
+	<!-- 회원 삭제 -->
+		<delete id="deleteMember" parameterClass="String">
+			delete from member where member_id=#member_id#
+		</delete>
 
 
 </sqlMap>

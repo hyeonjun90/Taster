@@ -86,7 +86,7 @@ function logout() {
      <input type="text" name="keyword" id="keyword" placeholder="검색 목록을 선택해 주세요."/>
      <input type="submit" value="검  색" class="btn_search" onclick="topSearch();"  
         style="margin-right:30px;font-size:13px;font-weight:bold;"/>
-     <input type="button" value="상세검색" class="btn_search" style="font-size:13px;font-weight:bold;"/>
+    <!--  <input type="button" value="상세검색" class="btn_search" style="font-size:13px;font-weight:bold;"/> -->
   </div>
 </form>
 </div>

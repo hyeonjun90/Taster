@@ -8,8 +8,66 @@
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>문의 게시판</title>
 
-
-<link rel="stylesheet" href="/Taster/qboard/css.css" type="text/css">
+<link rel="stylesheet" href="/Taster/css/style.css"/>
+<style>
+#joinTable {
+		width: 800px;
+		height: 380px;
+		margin-top: 10px;
+		padding: 0px;
+	}
+	#joinTable tr th {
+		width: 20%;
+		background-color: #f7f7f7;
+		font-size: 10px;
+		font-family : 'Noto Sans', sans-serif;
+		background-image: url('/Taster/images/bg_01.gif');
+		background-size:700%;
+		background-repeat: no-repeat;
+		border-bottom: 1px solid #a6a6a6;
+	}
+	#joinTable tr td {
+		width: 80%;
+		font-size: 11px;
+		font-family : 'NanumGothic';
+		vertical-align: middle;
+		padding-left:3px;
+		border-bottom: 1px solid #a6a6a6;
+	}
+	.zipcode {
+		margin-bottom: 5px;
+		font-size: 10px;
+		font-family : 'Noto Sans', sans-serif;
+	}
+	#joinTable button {
+		font-size: 11px;
+		font-family : 'NanumGothic';
+	}
+	#joinTable input {
+		height: 10px;
+		font-size: 11px;
+		font-family : 'NanumGothic';
+	}
+	#joinTable img {
+		height: 20px;
+		cursor: pointer;
+	}
+	#joinTable font {
+		font-size: 10px;
+		font-family : 'Noto Sans', sans-serif;
+	}
+	#joinDiv {
+		width: 820px;
+		border: 1px solid #a6a6a6;
+		margin-top: 30px;
+		margin-bottom: 15px;
+	}
+	#joinDiv div {
+		width:750px; border-bottom:3px solid #f0f0f0;
+		text-align: left; padding: 10px;
+		font-size: 14px; font-family : 'Noto Sans', sans-serif;
+	}
+</style>
 
 <script type="text/javascript">
 	function validation()
@@ -53,7 +111,8 @@
 </script>
 </head>
 <body>
-	<table width="600" border="0" cellspacing="0" cellpadding="2">
+<center>
+	<table width="600" border="0" cellspacing="0" cellpadding="2" style="margin:0px auto;">
 		<tr>
 			<td align="center"><h2>문의 게시판</h2></td>
 		</tr>
@@ -80,7 +139,7 @@
 			
 			<!--<s:hidden name="old_file" value="%{resultClass.file_savname}" />-->
 	</s:else>
-	<table width="600" border="0" cellspacing="0" cellpadding="0">
+	<table width="600" border="0" cellspacing="0" cellpadding="0" style="margin:0px auto;">
         <tr>
           <td align="right" colspan="2"><font color="#FF0000">*</font>는 필수 입력사항입니다.</td>
         </tr>
@@ -168,5 +227,6 @@
 
     </table>
 </form>
+</center>
 </body>
 </html>

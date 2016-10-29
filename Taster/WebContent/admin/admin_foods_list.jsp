@@ -15,6 +15,10 @@ a:link, a:visited, a:hover, a:active {
 	color: black;
 	text-decoration: none;
 }
+.sInfo {
+	font-size: 11px;
+	font-family: NanumGothic;
+}
 </style>
 </head>
 
@@ -58,12 +62,12 @@ a:link, a:visited, a:hover, a:active {
          <!-- 식당이름 -->
              <s:a href="%{viewURL}"><s:property value="shop_name"/></s:a>
          </td>
-         <td  align="center"><s:property value="shop_price" /></td>
-         <td  align="center"><s:property value="shop_tel" /></td>
-         <td  align="center"><s:property value="shop_kind" /></td>
-         <td  align="center"><s:property value="shop_holiday" /></td>
-         <td  align="center"><s:property value="shop_addr1" /></td>
-         <td  align="center"><s:property value="shop_readCount" /></td>
+         <td class="sInfo" align="center"><s:property value="shop_price" /></td>
+         <td class="sInfo" align="center"><s:property value="shop_tel" /></td>
+         <td class="sInfo" align="center"><s:property value="shop_kind" /></td>
+         <td class="sInfo" align="center"><s:property value="shop_holiday" /></td>
+         <td class="sInfo" align="center"><s:property value="shop_addr1" /></td>
+         <td class="sInfo" align="center"><s:property value="shop_readCount" /></td>
       </tr>
 
       <tr>
