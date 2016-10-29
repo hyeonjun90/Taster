@@ -47,7 +47,7 @@
    
    <!-- bookmarkList select문 선언 -->
    <select id="bookmarkList-selecAll" resultClass="bean.BookmarkListBean" parameterClass="HashMap">
-   		select * from (select * from (select shop_name, file_savname, rownum rnum from shop 
+   		select * from (select * from (select shop_idx, shop_name, file_savname, rownum rnum from shop 
 			where shop_idx in (select shop_idx from bookmark where member_id=#member_id# )
    			order by shop_idx DESC) where <![CDATA[rownum<1000]]>) where <![CDATA[rnum>0]]>
    </select>

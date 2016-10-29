@@ -34,7 +34,7 @@
 
 	.menuList div {font-family : 'Noto Sans', sans-serif; }
 	.shopInfo div {margin-left:10px; padding: 3px; font-family : 'Noto Sans', sans-serif;}
-	.title { font-size: 18px; color:#555; font-weight:bold;}
+	.title { font-size: 18px; color:#555; font-weight:bold; cursor: pointer;}
 	.r_score { font-size: 18px; color:orange; font-weight:bold; }
 	.shop_addr {width:600px;float:left;text-align:left; color:#a6a6a6; font-size:13px; }
 	.r_content {padding: 10px; font-size: 12px; float:left; width: 600px; text-align:left; margin-top:10px;}
@@ -232,7 +232,9 @@ var fTotalCount = ${fTotalCount};
 			</div>
 		</div>
 		<div style="width:300px; text-align:right; float:right;font-size:11px;color:#a6a6a6;">
-			 >>${fList.shop_name} 정보 더보기
+			 <span onclick="location.href='foodsDetailView.action?shop_idx=${fList.shop_idx }'" style="cursor:pointer;">
+			 	>>${fList.shop_name} 정보 더보기
+			 </span>
 		</div>
 		<div style="clear:both; height:10px;"></div>		
 		<div style="clear:both; width:800px; border:1px solid #d5d5d5;"></div>

@@ -147,7 +147,12 @@
    </definition>
    
    <!-- 관리자페이지 -->
-	
+   
+	 <definition name="adminMemberList" template="/common/layout.jsp">
+      <put-attribute name="top" value="/common/top1.jsp"/>
+      <put-attribute name="body" value="/admin/member_list.jsp"/>
+      <put-attribute name="bottom" value="/common/bottom.jsp"/>
+   </definition>
 	<!-- 신규가게 등록 요청글 관련 -->
 
 	<!-- 신규가게 등록 목록 보기 화면 -->

@@ -66,10 +66,14 @@ public class FoodsDetailAction extends ActionSupport implements SessionAware {
 		}
 		
 		imgList = img.split("\\|");
-		
+		System.out.println("imgList : " + imgList[0]);
 		HashMap<String, Object> map = new HashMap<>();
-		System.out.println("session.member_id : " + session.get("member_id").toString());
-		map.put("member_id", session.get("member_id").toString());
+		//System.out.println("session.member_id : " + session.get("member_id").toString());
+		if(session.get("member_id") != null) {
+			map.put("member_id", session.get("member_id").toString());
+		} else {
+			map.put("member_id", "");
+		}
 		map.put("shop_idx", getShop_idx());
 		
 		bookOk = (int) sqlMapper.queryForObject("bookOk", map);
