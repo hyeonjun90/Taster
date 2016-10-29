@@ -178,6 +178,9 @@
    <select id="getReviewSeq" resultClass="int">
       SELECT max(review_idx) FROM REVIEW
    </select>
+   <select id="bookOk" parameterClass="HashMap" resultClass="Integer">
+   		select count(*) from bookmark where shop_idx=#shop_idx# and member_id=#member_id#
+   </select>
    
    <!-- ¸®ºä ÀÛ¼º -->
    <insert id="insertReview" parameterClass="bean.ReviewBean">

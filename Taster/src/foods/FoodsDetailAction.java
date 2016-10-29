@@ -38,6 +38,7 @@ public class FoodsDetailAction extends ActionSupport implements SessionAware {
 	
 	private Map session;
 	private ArrayList<Integer> bookList;
+	private int bookOk;
 	String member_id;
 	
 	String[] imgList; // 리뷰 이미지 담을 배열
@@ -66,7 +67,12 @@ public class FoodsDetailAction extends ActionSupport implements SessionAware {
 		
 		imgList = img.split("\\|");
 		
-		bookList = (ArrayList<Integer>) sqlMapper.queryForList("bookList", member_id);
+		HashMap<String, Object> map = new HashMap<>();
+		System.out.println("session.member_id : " + session.get("member_id").toString());
+		map.put("member_id", session.get("member_id").toString());
+		map.put("shop_idx", getShop_idx());
+		
+		bookOk = (int) sqlMapper.queryForObject("bookOk", map);
 		rCntBean = (ReviewCntBean) sqlMapper.queryForObject("review_pungga_cnt", getShop_idx()); // 리뷰 평가별 개수 구하기
 		return SUCCESS;
 				
@@ -135,6 +141,14 @@ public class FoodsDetailAction extends ActionSupport implements SessionAware {
 
 	public void setImgList(String[] imgList) {
 		this.imgList = imgList;
+	}
+
+	public int getBookOk() {
+		return bookOk;
+	}
+
+	public void setBookOk(int bookOk) {
+		this.bookOk = bookOk;
 	}
 	
 }
