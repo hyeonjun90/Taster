@@ -168,21 +168,38 @@
    </select>
 
    <select id="foodsDetail" parameterClass="int" resultClass="bean.FoodsDetailBean">
-      SELECT shop_idx, shop_name, shop_tel, shop_kind, shop_addr1, shop_addr2, shop_addr3, shop_addr4, shop_price, shop_holiday, shop_readCount, shop_regDate, file_savname
-      FROM SHOP WHERE shop_idx = #shop_idx#
+      SELECT s.shop_idx, shop_name, shop_tel, shop_kind, shop_addr1, shop_addr2, shop_addr3, shop_addr4,
+       shop_price, shop_holiday, shop_readCount, shop_regDate, file_savname, 
+       nvl((select ROUND(AVG(r1.r_score),1) from shop s1 
+                                inner join review r1 on r1.shop_idx = s1.shop_idx 
+                                where r1.SHOP_IDX=s.SHOP_IDX), 0) as avg_r_score
+      FROM SHOP s WHERE shop_idx = #shop_idx#
    </select>
    <select id="getReviewSeq" resultClass="int">
-      SELECT review_no_seq.NEXTVAL FROM DUAL
+      SELECT max(review_idx) FROM REVIEW
    </select>
    
+   <!-- 리뷰 작성 -->
    <insert id="insertReview" parameterClass="bean.ReviewBean">
       insert into REVIEW (review_idx, r_title, r_content, r_score, r_pungga, r_image, r_regdate, member_id, shop_idx)
-      VALUES (review_no_seq.NEXTVAL, #r_title#, #r_content#, #r_score#, #r_pungga#, #r_image#, #r_regdate#, #member_id#, #shop_idx#)
+      VALUES (review_no_seq.NEXTVAL, 'review_title', #r_content#, #r_score#, #r_pungga#, #r_image#, sysdate, #member_id#, #shop_idx#)
    </insert>
+   <!-- 리뷰 작성 후 uploads가 null이 아니면 리뷰 이미지 업데이트 -->
+   <update id="r_image_update" parameterClass="HashMap">
+   		update review set r_image=#r_image# where review_idx=#review_idx#
+   </update>
+   <!-- 리뷰 평가 수 계산 -->
+   <select id="review_pungga_cnt" parameterClass="Integer" resultClass="bean.ReviewCntBean">
+   	select count(*) as rTotalCnt, 
+	  (select count(*) from review r1 where shop_idx=#shop_idx# and r_pungga='1')  as rGoodCnt , 
+	  (select count(*) from review r1 where shop_idx=#shop_idx# and r_pungga='2')  as rSosoCnt ,
+	  (select count(*) from review r1 where shop_idx=#shop_idx# and r_pungga='3')  as rBadCnt 
+	  from review group by shop_idx having shop_idx=#shop_idx#
+   </select>
    
    
    <select id="reviewList" parameterClass="int" resultClass="bean.FoodsDetailBean">
-      SELECT  review_idx, r_title, r_content, r_pungga, r_image, r_regdate, member_nicname, member_image
+      SELECT  review_idx, r_title, r_content, r_pungga, r_image, r_regdate, member_nicname, member_image 
                       FROM review r left join member m on r.member_id=m.member_id
                       where r.shop_idx=#shop_idx#
                       ORDER BY r.review_idx desc 

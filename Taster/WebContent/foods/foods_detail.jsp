@@ -2,7 +2,7 @@
     pageEncoding="EUC-KR"%>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -61,16 +61,29 @@ function setPungga(p){
 	}	
 }
 
-/* function showPungga() {
-	document.countPungga.value=count;
-	if(count == "1") {
-		$("#r_pyungga").css("background-image", "url(/Taster/images/shop/good.jpg)");
-	} else if (count == "2") {
-		$("#r_pyungga").css("background-image", "url(/Taster/images/shop/soso.jpg)");
-	} else if (count == "3") {
-		$("#r_pyungga").css("background-image", "url(/Taster/images/shop/bad.jpg)");
-	}
-} */
+function bookMark(shop_idx) {
+	$.ajax({
+		url: "insertBookMark.action",
+		type: "POST",
+		async:true,
+		dataType: "Text", 
+		data: {"shop_idx": shop_idx },
+		success: function(data) {
+			//alert(data);
+			var bk = data.split("|");
+			if(bk[0].trim() == "0") {
+				favId = "#favorite_"+bk[1];
+				$(favId).css("background-image", "url('/Taster/images/fav_check.png')");
+			} else {
+				favId = "#favorite_"+bk[1];
+				$(favId).css("background-image", "url('/Taster/images/fav.png')");
+			}
+			
+			
+		}
+		
+	});
+}
 
 </script>
 
@@ -83,6 +96,10 @@ function setPungga(p){
 	.pungga_good {background:url('/Taster/images/shop/good_org.jpg');}
 	.pungga_soso {background:url('/Taster/images/shop/soso_org.jpg');}
 	.pungga_bad {background:url('/Taster/images/shop/bad_org.jpg');}
+	
+	.pungga_good2 {background:url('/Taster/images/shop/good.jpg');}
+	.pungga_soso2 {background:url('/Taster/images/shop/soso.jpg');}
+	.pungga_bad2 {background:url('/Taster/images/shop/bad.jpg');}
 	
 	.readhit {background:url('/Taster/images/readhit.jpg'); width: 30px; height: 30px;}
 	.review-write {background:url('/Taster/images/review-write.jpg'); width: 30px; height: 30px;}
@@ -117,10 +134,13 @@ function setPungga(p){
 	.subject {float:left; width: 500px; float:left;text-align:left; font-size:15px; height:300px;}
 	.r_memberInfo{padding: 10px; font-size: 12px; float:left; text-align:left; margin-top:10px;}
 	.r_content {padding: 10px; font-size: 12px; float:left; text-align:left; margin:10px;}
-	.r_pyungga {font-size: 25px; color:orange; float:right; margin:10px; font-weight:bold; margin-top:10px;border:1px solid red;}
-	.favorite {width: 60px;height: 70px; background-size:60px 50px;padding-top:5px;float:right;}
-    
-    .reviewblock {font-size: 25px; color:orange; text-align:left; margin:10px; font-weight:bold; border:1px solid orange;}
+	.r_pyungga {font-size: 25px; color:orange; float:right; margin:10px; font-weight:bold; margin-top:10px;}
+	
+    .favorite {background-image: url('/Taster/images/fav.png'); 
+    			 width: 60px; height: 70px; background-size: 60px 50px; background-repeat: no-repeat; 
+    			 background-position:50% 0%; float:right;padding-top:30px;}
+    .favorite:hover { background-image: url('/Taster/images/fav_check.png'); }
+    .reviewblock {font-size: 25px; color:orange; text-align:left; margin:10px; font-weight:bold; }
     .inputb {width:100px; height:80px; BORDER-LEFT: #cecece 1px solid; BORDER-RIGHT:#999999 1px solid; BORDER-TOP: #cecece 1px solid; COLOR:#000000; FONT-SIZE:10pt; background-color:#EDEDED;}
 	
     
@@ -139,19 +159,24 @@ function setPungga(p){
 <div style="width:100%;min-height:500px;margin-top:40px;">
 
 	<!-- 사진 미리보기 뜨기 -->
-	<div style="text-align:left; width:100%;">사진 반복되게 코드 수정</div>
-	<div style="background-image:url('/Taster/images/shop/${FDBean.file_savname}');
-				background-repeat:repeat; display:block; 
-				width:300px;height:300px;background-size:300px 300px;padding-top:5px;float:left;"></div>
-		
-<%-- 	<div style="width:1000px; height:240px; float:left;">
-		<img src="/Taster/images/shop/${FDBean.file_savname}">
-	</div> --%>
-	
+	<div style="text-align:left; width:100%;"></div>
+	<div style="margin:0px auto;">
+	<c:forEach items="${imgList}" var="imgList" varStatus="status">
+	<div id="img_${status.index }" style="background-image:url('/Taster/images/review/${imgList}');
+				background-repeat:no-repeat; display:block; 
+				width:250px;height:150px;background-size:250px 150px;padding-top:5px;float:left;margin:10px;">
+				<font color="black">${imgList}</font></div>
+		<c:if test="${status.index > 4 }">
+			<script>
+				$("#img_${status.index }").css("display", "none");
+			</script>
+		</c:if>
+	</c:forEach>
+	</div>
 	<div class="clearDiv"></div>
-	
+	<img alt="" src="/Taster/images/review/file_485_2.jpg">
 	<!-- 가계정보 -->
-	<div class="foodDetail" style="width:80%;  float:center; margin:100px auto;">
+	<div class="foodDetail" style="width:80%;  float:center; margin:100px auto; ">
 		<div style="float:left; width:90%; text-align:left;">
 			<span class="title">${FDBean.shop_name}</span> <!-- 가게이름 -->
 			<span class="r_score">${FDBean.avg_r_score}</span> <!-- 평점 평균 -->
@@ -166,8 +191,24 @@ function setPungga(p){
 		</div>
 		
 		<!-- 즐겨찾기 추가 -->
-		<div style="background-image:url('/Taster/images/star.jpg');background-repeat: no-repeat; display:block; " class="favorite">
-		<span style="float:bottom;">즐겨찾기</span></div>
+		<div id="favorite_${bookList}" class="favorite"
+						 style="<c:forEach items="${bookList}" var="bookList">
+									<c:if test="${bookList eq shop_idx }">
+						 			background-image:url('/Taster/images/fav_check.png');
+						 			</c:if>
+						 			<c:if test="${bookList ne shop_idx || empty session.member_id}">
+						 				
+									</c:if>
+								</c:forEach>
+								padding-top:45px;"<c:if test="${!empty session.member_id}">
+									onclick="bookMark('${shop_idx}');"
+								</c:if>
+								<c:if test="${empty session.member_id}">
+									onclick="javascript:alert('로그인 후에 이용 가능합니다.');"
+								</c:if>
+			>
+			<font style="font-size:13px;">즐겨찾기</font>
+		</div>
 		
 		<!-- 구분선 -->
 		<div style="clear:both; width:100%;float:left; border:1px solid #d5d5d5;"></div>
@@ -184,7 +225,7 @@ function setPungga(p){
 		<!-- 지도 -->
 		<div style="background-image:url('/Taster/images/map.jpg');
 					background-repeat: no-repeat; display:block; 
-					width:300px;height:300px;background-size:300px 300px;padding-top:5px;float:right;"></div>
+					width:300px;height:200px;background-size:300px 300px;padding-top:5px;float:right;"></div>
 		<!-- 구분선 -->
 		<div style="clear:both; width:100%; border:1px solid #d5d5d5;"></div>
 	
@@ -193,15 +234,17 @@ function setPungga(p){
 
   <!-- 댓글리뷰 작성 창 -->
    <%-- <s:if test="#session.member_id != null | #session.member_level == 3"> --%> <!-- 로그인한 이용자나 관리자만 작성 가능 -->
-  
-  <div class="reviewblock" style="width:800px;">리뷰 남기기★</div>
+<div class="rblock2" style='margin-top:-80px;'>
+  <div class="reviewblock" style="width:800px;margin-top:-30px;">리뷰 남기기★</div>
   
   <!-- 리뷰 작성 폼 -->
-  	<form name="r_form" action="foodsReviewWrite.action" method="post" style="width:800px; height:350px; border:3px solid orange;">
+  	<form name="r_form" action="foodsReviewWrite.action" method="post" 
+  				style="width:800px;" enctype="multipart/form-data">
   	 <input type="hidden" name="r_pungga"/>
-  		
+  	 <input type="hidden" name="shop_idx" value="${shop_idx }" />
+  	 <input type="hidden" name="member_id" value="${session.member_id }" />
   		<!-- 맛평가하기--> 
-  		<div style="width:340px; height:100px; float:left; text-align:center; border:1px solid yellow;">
+  		<div style="width:340px; height:100px; float:left; text-align:center;">
   			<span class="category_bt" onclick="setPungga('1')">
   				<em class="pungga_good icon" id="good"></em>
   				<span style="color:gray;" id="good_t">맛있다</span>
@@ -217,17 +260,21 @@ function setPungga(p){
   		</div>  
   		<!-- 사진 업로드 -->
   		<div>
-  		<table style="float:right; width:450px; height:120px; border:1px solid red;">
-		<th>사진 업로드</th>
-		<s:file label="File (1)" name="r_upload1"/>
-		<s:file label="File (2)" name="r_upload2"/>
-		<s:file label="FIle (3)" name="r_upload3"/>
+  		<table style="float:right; width:450px; height:120px;">
+  			<tr>
+				<th>사진 업로드</th>
+				<td>
+					<s:file label="File (1)" name="uploads"/>
+					<s:file label="File (2)" name="uploads"/>
+					<s:file label="FIle (3)" name="uploads"/>
+				</td>
+			</tr>
 		</table>
 		</div>
 		
 		<div class="clearDiv"></div>
 		
-		<div style="width:340px; height:20px; float:left; border:1px solid blue;">
+		<div style="width:340px; height:20px; float:left; margin-top:-20px;">
   		별점 평가하기 : 
   			 <input type="radio" name="r_score" value="1">1
   			 <input type="radio" name="r_score" value="2">2
@@ -236,29 +283,30 @@ function setPungga(p){
   			 <input type="radio" name="r_score" value="5">5
   		</div>
 		<!-- 리뷰 내용 -->
-		<div style="width:630px; height:150px; float:left; border:1px solid green;">
+		<div style="width:630px; height:150px; float:left; margin-top:20px;">
 		<s:hidden name="org_review_idx" value="%{RBean.review_idx}"/>	<!-- 리뷰인덱스 -->
 		<s:hidden name="review_idx" value="%{RBean.review_idx}"/>
 		<s:hidden name="shop_idx" value="%{RBean.shop_idx}"/>
 		<s:hidden name="r_regdate" value="%{RBean.r_regdate}"/>
-		<s:textarea name="r_title" theme="simple" value="%{RBean.r_title}" cols="80" rows="1"/>
+
 		<s:textarea name="r_content" theme="simple" value="%{RBean.r_content}" cols="80" rows="10"/>
 		</div>
-			<input name="submit" type="submit" value="작성완료" class="inputb" style="margin-top:30px;padding:0px">
-		<h3>${RBean.review_idx }//////</h3>
+			<input name="submit" type="submit" value="작성완료" class="inputb" style="margin-top:20px;padding:0px">
   </form>
-  
-  
-
 	 
 	<!-- 리뷰리스트 블록 -->
 
-	<div style="clear:both; width:80%; border:1px solid #d5d5d5; margin:30px;"></div>	
+	<div style="clear:both; width:80%; margin-top:70px; border:1px solid #d5d5d5;"></div>	
 	
-	<div class="reviewList" id="reviewList" style="width:80%;">
+	<div class="reviewList" id="reviewList" style="width:80%;margin-top:20px;">
 
-	<div class="reviewblock">${FDBean.shop_name}의 리뷰(?)</div>
-	<div class="reviewblock" style="float:right; font-size:20px;">전체(?)|맛있다(?)|괜찮다(?)|별로(?)</div>
+	<div class="reviewblock">${FDBean.shop_name}의 리뷰(${rCntBean.rTotalCnt })</div>
+	<div class="reviewblock" style="float:right; font-size:17px;">
+		<font style="color:#a6a6a6;">전체</font>(${rCntBean.rTotalCnt })
+		<font style="color:#a6a6a6;">&nbsp;|&nbsp;맛있다</font>(${rCntBean.rGoodCnt })
+		<font style="color:#a6a6a6;">&nbsp;|&nbsp;괜찮다</font>(${rCntBean.rSosoCnt })
+		<font style="color:#a6a6a6;">&nbsp;|&nbsp;별로</font>(${rCntBean.rBadCnt })
+	</div>
 	
 	<!-- 등록된 리뷰 리스트 출력 -->
 	<c:forEach items="${RevList}" var="RevList" varStatus="status">
@@ -266,39 +314,45 @@ function setPungga(p){
 		<div class="reviewContent" style="width:100%; margin-top:20px;">
 			<!-- 작성자정보 -->
 			<div class="r_memberInfo" style="width:10%;">
-				<span class="m_image"></span>
+				<span class="m_image" 
+				<c:if test="${RevList.member_image != null }">
+					style="background:url('/Taster/images/member/${RevList.member_image }') no-repeat;
+							background-size: 36px 36px;" </c:if>>
+				</span>
 				<span class="r_content">${RevList.member_nicname}</span>
 			</div>
 			<!-- 리뷰내용 -->
 			<div class="r_content" style="width:70%;" >
-				<span class="gray">${RevList.r_regdate}</span>
-				<span class="r_title" ><strong>${RevList.r_title}</strong>&nbsp;</span>
-				<br>
+				<span class="gray">
+					<fmt:formatDate value="${RevList.r_regdate}" pattern="yyyy-MM-dd"/>
+				</span>
+				&nbsp;&nbsp;&nbsp;
 				<span>${RevList.r_content }</span>
 			</div>
 			<!-- 평가 / 만드는중-->
 			
 			<div class="r_pyungga" style="width:10%;">
-				<c:if test="${RevList.r_pungga} == '1'">
-					<span class="category_bt" onclick="setPungga('1')">
-  				<em class="pungga_good icon" id="good"></em>
-  				<span style="color:gray;" id="good_t">맛있다</span>
-  			</span>
+				<c:if test="${RevList.r_pungga eq '1'}">
+					<span class="category_bt">
+  						<em class="pungga_good2 icon" id="good"></em>
+  						<span id="good_t" style="font-size:15px;">맛있다</span>
+  					</span>
 				</c:if>
+				
+				<c:if test="${RevList.r_pungga eq '2'}">
+					<span class="category_bt" onclick="setPungga('2')" >
+		  				<em class="pungga_soso2 icon" id="soso"></em>
+		  				<span id="soso_t" style="font-size:15px;">괜찮다</span>
+		  			</span>
+				</c:if>
+				<c:if test="${RevList.r_pungga eq '3'}">
+					<span class="category_bt" onclick="setPungga('3')">
+		  				<em class="pungga_bad2 icon" id="bad"></em>
+		  				<span id="bad_t" style="font-size:15px;">별로</span>
+		  			</span>
+		  		</c:if>
 			</div>	
-<%-- 				<div class="r_pyungga" style="width:10%;" id="r_pyungga">
-					<input type="hidden" name="countPungga" value="${RevList.r_pungga}">${RevList.r_pungga}
-				
-				
-				
-				</div>	
 
-
-<s:if test="resultClass == NULL">
-			<div class="category_bt <c:if test="${keyword eq '치킨'}">selected</c:if>" onclick="menuSearch('치킨');">
-				<em class="c7 icon"></em>
-				<div class="icon_title">치킨</div>
-			</div> --%>
 				
 		</div>
 		
@@ -306,7 +360,7 @@ function setPungga(p){
 		
 	</c:forEach>
 	</div>
-	
+	</div>
 
 </div>
 
