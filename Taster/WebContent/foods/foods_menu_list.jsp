@@ -183,7 +183,7 @@ var fTotalCount = ${fTotalCount};
 					width:150px;height:150px;background-size:150px 150px;padding-top:5px;float:left;">
 			</div>
 			<div style="float:left; width:550px; text-align:left;">
-				<span class="title" onclick="location.href='foodsReviewWrite.action?shop_idx=${fList.shop_idx }'">
+				<span class="title" onclick="location.href='foodsDetailView.action?shop_idx=${fList.shop_idx }'">
 					${status.index + 1}. ${fList.shop_name}</span>
 				<span class="r_score">
 				<c:if test="${fList.avg_r_score != null }">

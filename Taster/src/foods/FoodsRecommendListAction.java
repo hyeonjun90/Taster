@@ -12,6 +12,8 @@ public class FoodsRecommendListAction  extends ActionSupport {
 	public static Reader reader; //파일 스트림을 위한 reader
 	public static SqlMapClient sqlMapper; //SqlMapClient API를 사용하기 위한 sqlMapper 객체
 	
+	private String category; // 상단 메뉴 색깔 표시
+	
 	//생성자
 	public FoodsRecommendListAction() throws IOException {
 		reader = Resources.getResourceAsReader("sqlMapConfig.xml"); //sqlMapConfig.xml 파일의 설정내용을 가져온다.
@@ -20,6 +22,17 @@ public class FoodsRecommendListAction  extends ActionSupport {
 	}
 		
 	public String form() throws Exception {
+		setCategory("recom");
 		return SUCCESS;
 	}
+
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
+	
+	
 }

@@ -92,7 +92,7 @@
 	
 	<!-- 문의하기 게시판 쓰기 폼 이동-->
 	<definition name="qboard_write" template="/common/layout.jsp">
-	<put-attribute name="top" value="/common/top2.jsp"/>
+	<put-attribute name="top" value="/common/top1.jsp"/>
 	<put-attribute name="body" value="/qboard/qboard_write.jsp"/>
 	<put-attribute name="bottom" value="/common/bottom.jsp"/>
 	</definition>
@@ -103,19 +103,19 @@
 <!-- 문의하기 게시판 리스트 이동-->
 	  
 	<definition name="qboard_list" template="/common/layout.jsp">
-	<put-attribute name="top" value="/common/top2.jsp"/>
+	<put-attribute name="top" value="/common/top1.jsp"/>
 	<put-attribute name="body" value="/qboard/qboard_list.jsp"/>
 	<put-attribute name="bottom" value="/common/bottom.jsp"/>
 	</definition>
 	
 	<definition name="qboard_write" template="/common/layout.jsp">
-	<put-attribute name="top" value="/common/top2.jsp"/>
+	<put-attribute name="top" value="/common/top1.jsp"/>
 	<put-attribute name="body" value="/qboard/qboard_write.jsp"/>
 	<put-attribute name="bottom" value="/common/bottom.jsp"/>
 	</definition>
 	
 	<definition name="qboard_view" template="/common/layout.jsp">
-	<put-attribute name="top" value="/common/top2.jsp"/>
+	<put-attribute name="top" value="/common/top1.jsp"/>
 	<put-attribute name="body" value="/qboard/qboard_view.jsp"/>
 	<put-attribute name="bottom" value="/common/bottom.jsp"/>
 	</definition>
@@ -152,19 +152,19 @@
 
 	<!-- 신규가게 등록 목록 보기 화면 -->
 	<definition name="AshopWrite" template="/common/layout.jsp">
-	<put-attribute name="top" value="/common/top2.jsp"/>
+	<put-attribute name="top" value="/common/top1.jsp"/>
 	<put-attribute name="body" value="/admin/admin_foods_write.jsp"/>
 	<put-attribute name="bottom" value="/common/bottom.jsp"/>
 	</definition>
 
 	<definition name="AshopWriteResult" template="/common/layout.jsp">
-	<put-attribute name="top" value="/common/top2.jsp"/>
+	<put-attribute name="top" value="/common/top1.jsp"/>
 	<put-attribute name="body" value="/admin/admin_foods_writeResult.jsp"/>
 	<put-attribute name="bottom" value="/common/bottom.jsp"/>
 	</definition>
 	   
 	<definition name="AshopList" template="/common/layout.jsp">
-	<put-attribute name="top" value="/common/top2.jsp"/>
+	<put-attribute name="top" value="/common/top1.jsp"/>
 	<put-attribute name="body" value="/admin/admin_foods_list.jsp"/>
 	<put-attribute name="bottom" value="/common/bottom.jsp"/>
 	</definition>
@@ -172,20 +172,20 @@
 
 	<!-- 신규가게 등록 요청 리스트 조회-->
 	<definition name="ApprovalRequestList" template="/common/layout.jsp">
-	<put-attribute name="top" value="/common/top2.jsp"/>
+	<put-attribute name="top" value="/common/top1.jsp"/>
 	<put-attribute name="body" value="/admin/approval_request_list.jsp"/>
 	<put-attribute name="bottom" value="/common/bottom.jsp"/>
 	</definition>
 	
 	<!-- 신규가게등록 리스트 글 상세보기 -->
 	<definition name="ApprovalRequestDetail" template="/common/layout.jsp">
-	<put-attribute name="top" value="/common/top2.jsp"/>
+	<put-attribute name="top" value="/common/top1.jsp"/>
 	<put-attribute name="body" value="/admin/approval_request_detail.jsp"/>
 	<put-attribute name="bottom" value="/common/bottom.jsp"/>
 	</definition>
 	<!-- 관리자가 작성한 리스트 글 상세보기-->
 	<definition name="AdminShopListDetail" template="/common/layout.jsp">
-	<put-attribute name="top" value="/common/top2.jsp"/>
+	<put-attribute name="top" value="/common/top1.jsp"/>
 	<put-attribute name="body" value="/admin/admin_foods_detail.jsp"/>
 	<put-attribute name="bottom" value="/common/bottom.jsp"/>
 	</definition>
@@ -201,21 +201,21 @@
 	<!-- 맛집추천리스트 관련 -->
 	<!-- 관리자 화면에서 맛집추천리스트 등록글 리스트 조회 -->
 	<definition name="AdminRboardList" template="/common/layout.jsp">
-	<put-attribute name="top" value="/common/top2.jsp"/>
+	<put-attribute name="top" value="/common/top1.jsp"/>
 	<put-attribute name="body" value="/rboard/admin_rboard_list.jsp"/>
 	<put-attribute name="bottom" value="/common/bottom.jsp"/>
 	</definition>
 		
 	<!-- 관리자 화면에서 맛집추천리스트 작성하기 -->
 	<definition name="AdminRboardWrite" template="/common/layout.jsp">
-	<put-attribute name="top" value="/common/top2.jsp"/>
+	<put-attribute name="top" value="/common/top1.jsp"/>
 	<put-attribute name="body" value="/rboard/admin_rboard_write.jsp"/>
 	<put-attribute name="bottom" value="/common/bottom.jsp"/>
 	</definition>
 	
 		<!-- 맛집추천리스트 등록글 상세 조회 -->
 	<definition name="rboardDetail" template="/common/layout.jsp">
-	<put-attribute name="top" value="/common/top2.jsp"/>
+	<put-attribute name="top" value="/common/top1.jsp"/>
 	<put-attribute name="body" value="/rboard/foods_rboard_view.jsp"/>
 	<put-attribute name="bottom" value="/common/bottom.jsp"/>
 	</definition>

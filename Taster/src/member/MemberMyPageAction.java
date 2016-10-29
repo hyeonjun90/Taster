@@ -38,6 +38,8 @@ public class MemberMyPageAction extends ActionSupport implements SessionAware{
 	int pageSize = 3;
 	int beforeSize;
 	
+	private int reviewCount;
+	private int bookCount;
 	
 	private Map session;
 	
@@ -63,8 +65,11 @@ public class MemberMyPageAction extends ActionSupport implements SessionAware{
 		
 		System.out.println("¼¼¼Ç : " + session.get("member_id"));
 		
+		String member_id = session.get("member_id").toString();
 		reviewListform();
 		bookmarkListform();
+		reviewCount = (int) sqlMapper.queryForObject("reviewCount", member_id);
+		bookCount = (int) sqlMapper.queryForObject("bookCount", member_id);
 		
 		return SUCCESS;
 	}
@@ -226,6 +231,18 @@ public class MemberMyPageAction extends ActionSupport implements SessionAware{
 	}
 	public void setBeforeSize(int beforeSize) {
 		this.beforeSize = beforeSize;
+	}
+	public int getReviewCount() {
+		return reviewCount;
+	}
+	public void setReviewCount(int reviewCount) {
+		this.reviewCount = reviewCount;
+	}
+	public int getBookCount() {
+		return bookCount;
+	}
+	public void setBookCount(int bookCount) {
+		this.bookCount = bookCount;
 	}
 
 

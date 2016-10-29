@@ -105,11 +105,11 @@
          select file_savname from shop where shop_idx = #shop_idx#
       </select>
       
-      <!--  
+      
       <update id="Shop_update_file_savname" parameterClass="HashMap">
          update shop set file_savname = #file_savname# where shop_idx = #shop_idx# 
       </update>
-      -->
+      
       
       <!--  
       <select id="selectOne" parameterClass="int" resultMap="boardRes">
@@ -150,8 +150,8 @@
 
       <!-- insert 쿼리문 정의 -->
       <insert id="Shop-insertAshop" parameterClass="admin_shop">
-      INSERT INTO SHOP(shop_idx, shop_name, shop_tel, shop_kind, shop_addr1, shop_addr2, shop_addr3, shop_addr4, shop_price, shop_holiday, shop_readCount, shop_regDate)
-      VALUES (shop_no_seq.NEXTVAL, #shop_name#, #shop_tel#, #shop_kind#, #shop_addr1#, #shop_addr2#, #shop_addr3#, #shop_addr4#, #shop_price#, #shop_holiday#, #shop_readCount#,sysdate)
+      INSERT INTO SHOP(shop_idx, shop_name, shop_tel, shop_kind, shop_addr1, shop_addr2, shop_addr3, shop_addr4, shop_price, shop_holiday, shop_readCount, shop_regDate, file_orgname, file_savname)
+      VALUES (shop_no_seq.NEXTVAL, #shop_name#, #shop_tel#, #shop_kind#, #shop_addr1#, #shop_addr2#, #shop_addr3#, #shop_addr4#, #shop_price#, #shop_holiday#, #shop_readCount#,sysdate, #file_orgname#, #file_savname#)
       </insert>
       
       <!-- update 쿼리문 정의 -->

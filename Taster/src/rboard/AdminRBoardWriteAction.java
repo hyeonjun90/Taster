@@ -5,16 +5,27 @@ import com.ibatis.common.resources.Resources;
 import com.ibatis.sqlmap.client.SqlMapClient;
 import com.ibatis.sqlmap.client.SqlMapClientBuilder;
 
+
 import java.util.*;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+
 import java.io.Reader;
 import java.io.IOException;
 
 import java.io.File;
 import org.apache.commons.io.FileUtils;
+import org.apache.struts2.interceptor.ServletRequestAware;
+import org.apache.struts2.interceptor.SessionAware;
+
 
 import bean.RecomBoardBean;
+import util.FileUploadService;
+import util.TepConstants;
+import util.TepUtils;
 
-public class AdminRBoardWriteAction extends ActionSupport {
+public class AdminRBoardWriteAction extends ActionSupport implements SessionAware, ServletRequestAware {
 	
 	public static Reader reader;
 	public static SqlMapClient sqlMapper;
@@ -32,10 +43,14 @@ public class AdminRBoardWriteAction extends ActionSupport {
 	private String file_savName;*/
 	Calendar today = Calendar.getInstance();
 	
-	/*private File upload;
+	private Map session;
+	
+	private HttpServletRequest request;
+	
+	private File upload;
 	private String uploadContentType;
 	private String uploadFileName;
-	private String fileUploadPath = "";*/
+	private String serverFullPath = "";
 	
 	public AdminRBoardWriteAction() throws IOException {
 		
@@ -52,13 +67,44 @@ public class AdminRBoardWriteAction extends ActionSupport {
 		paramClass = new RecomBoardBean();
 		resultClass = new RecomBoardBean();
 		
-		paramClass.setRec_idx(getRec_idx());
-		paramClass.setRec_date(today.getTime());
-		paramClass.setRec_subject(getRec_subject());
-		paramClass.setRec_content(getRec_content());
-		paramClass.setRec_image(getRec_image());
+		String basePath = TepConstants.UPLOAD_TEMP_PATH; //업로드 경로
 		
-		sqlMapper.insert("rboard-insertRboard", paramClass);
+		FileUploadService fs = new FileUploadService(); //파일 업로드를 위한 class 파일 객체 생성
+		
+		try {
+			uploadFileName = System.currentTimeMillis()+"_"+uploadFileName; //업로드 파일명 생성
+			serverFullPath = fs.saveFile(upload, basePath, uploadFileName); //업로드 패스 받기
+		} catch (Exception e) {
+			System.out.println("file upload error : "+e.getMessage());
+		}
+		try {
+			int rec_idx = (int) session.get("rec_idx");
+			
+			paramClass.setRec_date(today.getTime());
+			paramClass.setRec_subject(getRec_subject());
+			paramClass.setRec_content(getRec_content());
+			rec_image = TepUtils.getCookies(request, TepConstants.CKIMG_PATH);
+			//paramClass.setRec_image(serverFullPath);
+
+			if(rec_image != null){
+				setRec_image(rec_image);
+			}
+			
+			//setO_m_sdate(TepUtils.dateParse(getO_msdate()));
+			//setO_m_edate(TepUtils.dateParse(getO_medate()));
+			//setO_r_sdate(TepUtils.dateParse(getO_rsdate()));
+			//setO_r_edate(TepUtils.dateParse(getO_redate()));
+			//setO_current_pnum(0);
+			//setO_date(Calendar.getInstance().getTime());
+			//setO_readcount(0);
+			//setM_no(m_no);
+			
+			//sqlMapper.insert("jin.openmeet_insert",this);
+			sqlMapper.insert("rboard-insertRboard", paramClass);
+		} catch (Exception e) {
+			System.out.println("recommandList insert error : "+e.getMessage());
+		}			
+		
 		
 /*		if(getUpload() != null) {
 			resultClass = (RecomBoardBean) sqlMapper.queryForObject("selectLastNo");
@@ -79,6 +125,8 @@ public class AdminRBoardWriteAction extends ActionSupport {
 		return SUCCESS;
 	}
 
+
+	
 	public static Reader getReader() {
 		return reader;
 	}
@@ -165,6 +213,18 @@ public class AdminRBoardWriteAction extends ActionSupport {
 
 	public void setToday(Calendar today) {
 		this.today = today;
+	}
+
+	@Override
+	public void setServletRequest(HttpServletRequest arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setSession(Map arg0) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

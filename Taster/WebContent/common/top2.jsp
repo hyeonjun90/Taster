@@ -34,6 +34,12 @@ function logout() {
       text-align:center;
    }
    .lineDiv {height:50px;width:0px;border:0.5px solid #a6a6a6;padding:0px;margin:0px;}
+   #myInfo { position: absolute; border:2px solid orange; width:150px; height:150px;
+   	 border-radius: 80px; margin-top:50px; left:45%; 
+   	 background-image:url('/Taster/images/member/${session.member_image}');background-size:150px 150px;}
+   	#myInfo2 {position: absolute; border:0px solid orange; width:150px; height:30px;
+   			margin-top:210px; left:45%; text-align:center; } 
+   	
 </style>
 
 <div class="top_module" id="top_module">
@@ -65,13 +71,43 @@ function logout() {
        
        <s:if test="#session.member_level == 3">
        
+       <div class="top1" onclick="location.href='AshoplistAction.action'" style="color:#ff3300;"> 전체식당 관리 </div>
        <div class="top1" onclick="location.href='approvalRequestList.action'" style="color:#ff3300;" >신규식당 승인</div>
        
        <div class="top1" onclick="location.href='adminMemberList.action'" style="color:#ff3300;">회원 관리</div>
        
        </s:if>
+		
+  		<div id="myInfo">
+  		</div>
+		<div id="myInfo2">
+			<font style="color:#fff;font-size:14px;font-family:NanumGothic;font-weight:bold;">
+				${session.member_nicname } &nbsp;&nbsp;
+				<img src="/Taster/images/review-write.jpg" />
+				${reviewCount }&nbsp;&nbsp;
+				<img src="/Taster/images/favorite_s.jpg" />
+				${bookCount }
+			</font>
+		</div>
+  	
   </div>
-</div>
+ 
+  
+	<%-- <div>
+	<div class="m_image" 
+		<s:if test="{#session.member_image}">
+			style="background:url('/Taster/images/member/${fList.member_image }') no-repeat;
+			background-size: 36px 36px;" 
+		</s:if>>
+	</div>
+	<strong>
+		<s:if test="${#session.member_nicname != null }">
+					${#session.member_nicname }
+		</s:if>
+	</strong>
+	</div> --%>
+	
+</div> 
 
 
 <script>

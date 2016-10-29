@@ -70,7 +70,7 @@ var beforeThis = "";
 		currentPage += 1;
 		fTotalCount -= 3; // 페이지 개수
 		$.ajax({
-			url: "foodsAreaListMore.action",
+			url: "foodsMenuListMore.action",
 			type: "POST",
 			async:true,
 			dataType: "Text", 

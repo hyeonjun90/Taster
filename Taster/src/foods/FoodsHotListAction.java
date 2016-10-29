@@ -37,6 +37,8 @@ public class FoodsHotListAction  extends ActionSupport implements SessionAware {
 	private ArrayList<Integer> bookList;
 	String member_id;
 	
+	private String category; // 상단 메뉴 색깔 표시
+	
 	//생성자
 	public FoodsHotListAction() throws IOException {
 		reader = Resources.getResourceAsReader("sqlMapConfig.xml"); //sqlMapConfig.xml 파일의 설정내용을 가져온다.
@@ -72,6 +74,7 @@ public class FoodsHotListAction  extends ActionSupport implements SessionAware {
 		
 	public String form() throws Exception { //food_hot_list.jsp로 이동 
 		
+		setCategory("hot");
 		fBean= new FoodsHotListBean();
 		fList = new ArrayList<>();
 		HashMap<String, Object> pagingMap = new HashMap<>();
@@ -168,6 +171,14 @@ public class FoodsHotListAction  extends ActionSupport implements SessionAware {
 
 	public void setBookList(ArrayList<Integer> bookList) {
 		this.bookList = bookList;
+	}
+
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
 	}
 
 }
