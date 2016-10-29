@@ -70,7 +70,7 @@
 <body>
 <center>
 <div id="joinDiv">
- <div><strong>상세보기</strong></div>
+ <div><strong>식당 상세보기</strong></div>
       <table id="joinTable">
       
       <tr>
