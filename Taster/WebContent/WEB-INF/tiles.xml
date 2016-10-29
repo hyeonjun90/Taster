@@ -147,7 +147,12 @@
    </definition>
    
    <!-- 관리자페이지 -->
-	
+   
+	 <definition name="adminMemberList" template="/common/layout.jsp">
+      <put-attribute name="top" value="/common/top1.jsp"/>
+      <put-attribute name="body" value="/admin/member_list.jsp"/>
+      <put-attribute name="bottom" value="/common/bottom.jsp"/>
+   </definition>
 	<!-- 신규가게 등록 요청글 관련 -->
 
 	<!-- 신규가게 등록 목록 보기 화면 -->
@@ -186,7 +191,7 @@
 	<!-- 관리자가 작성한 리스트 글 상세보기-->
 	<definition name="AdminShopListDetail" template="/common/layout.jsp">
 	<put-attribute name="top" value="/common/top1.jsp"/>
-	<put-attribute name="body" value="/admin/admin_foods_detail.jsp"/>
+	<put-attribute name="body" value="/admin/admin_foods_detail2.jsp"/>
 	<put-attribute name="bottom" value="/common/bottom.jsp"/>
 	</definition>
 	  

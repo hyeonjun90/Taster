@@ -23,18 +23,25 @@ import com.opensymphony.xwork2.ActionSupport;
 import bean.FoodsDetailBean;
 import bean.FoodsMenuListBean;
 import bean.ReviewBean;
+import bean.ReviewCntBean;
 
-public class FoodsDetailAction extends ActionSupport {
+public class FoodsDetailAction extends ActionSupport implements SessionAware {
 	
 	public static Reader reader;
 	public static SqlMapClient sqlMapper;
 	
 	private FoodsDetailBean FDBean = new FoodsDetailBean(); 
 	private ArrayList<FoodsDetailBean> RevList = new ArrayList<FoodsDetailBean>(); //리뷰(코멘트) 리스트
-	private int[] PunggaList; //평가점수 카운팅용
 	
 	private int shop_idx; //샵 인덱스
-	private int rTotalCount; //총 리뷰 수 
+	private ReviewCntBean rCntBean; // 리뷰 수 Bean
+	
+	private Map session;
+	private ArrayList<Integer> bookList;
+	private int bookOk;
+	String member_id;
+	
+	String[] imgList; // 리뷰 이미지 담을 배열
 	
 	//private String category;
 	
@@ -49,35 +56,32 @@ public class FoodsDetailAction extends ActionSupport {
 	}
 	
 	public String execute() throws Exception{
-			
-		//setCategory("detail");
-		//currentPage = 1;
-		//beforeSize = 0;
-				//fTotalCount = (int)sqlMapper.queryForObject("");
-				
-		//pageSize = pageSize * currentPage;
-				FDBean = (FoodsDetailBean) sqlMapper.queryForObject("foodsDetail", getShop_idx()); //식당정보 불러오기 
-				System.out.println(shop_idx);
-				RevList = (ArrayList<FoodsDetailBean>)sqlMapper.queryForList("reviewList", getShop_idx()); //리뷰(코멘트) 리스트 출력
-
-				//System.out.println("fList.size: " + fList.size());
-				//sqlMapper.update("updateReadHit",FDBean);
-				
-				return SUCCESS;
-				
-	}
-	
-	public int[] countPungga() throws Exception {
 		
-		PunggaList[0] = (int) sqlMapper.queryForObject("counTotalPungga");
-		PunggaList[1] = (int) sqlMapper.queryForObject("countPungga1");
-		PunggaList[2] = (int) sqlMapper.queryForObject("countPungga2");
-		PunggaList[3] = (int) sqlMapper.queryForObject("countPungga3");
-
-		return (int[])PunggaList;
+		FDBean = (FoodsDetailBean) sqlMapper.queryForObject("foodsDetail", getShop_idx()); //식당정보 불러오기
+		RevList = (ArrayList<FoodsDetailBean>)sqlMapper.queryForList("reviewList", getShop_idx()); //리뷰(코멘트) 리스트 출력
+		String img = "";
+		for(int i=0; i<RevList.size(); i++) {
+			if(RevList.get(i).getR_image() != null) 
+				img += RevList.get(i).getR_image().trim();	
+		}
+		
+		imgList = img.split("\\|");
+		System.out.println("imgList : " + imgList[0]);
+		HashMap<String, Object> map = new HashMap<>();
+		//System.out.println("session.member_id : " + session.get("member_id").toString());
+		if(session.get("member_id") != null) {
+			map.put("member_id", session.get("member_id").toString());
+		} else {
+			map.put("member_id", "");
+		}
+		map.put("shop_idx", getShop_idx());
+		
+		bookOk = (int) sqlMapper.queryForObject("bookOk", map);
+		rCntBean = (ReviewCntBean) sqlMapper.queryForObject("review_pungga_cnt", getShop_idx()); // 리뷰 평가별 개수 구하기
+		return SUCCESS;
+				
 	}
 	
-
 	
 	public int getShop_idx() {
 		return shop_idx;
@@ -103,28 +107,52 @@ public class FoodsDetailAction extends ActionSupport {
 		RevList = revList;
 	}
 
-	public static Reader getReader() {
-		return reader;
+	public Map getSession() {
+		return session;
 	}
 
-	public static void setReader(Reader reader) {
-		FoodsDetailAction.reader = reader;
+	public void setSession(Map session) {
+		this.session = session;
 	}
 
-	public static SqlMapClient getSqlMapper() {
-		return sqlMapper;
+	public ArrayList<Integer> getBookList() {
+		return bookList;
 	}
 
-	public static void setSqlMapper(SqlMapClient sqlMapper) {
-		FoodsDetailAction.sqlMapper = sqlMapper;
+	public void setBookList(ArrayList<Integer> bookList) {
+		this.bookList = bookList;
 	}
 
-	public int getrTotalCount() {
-		return rTotalCount;
+	public String getMember_id() {
+		return member_id;
 	}
 
-	public void setrTotalCount(int rTotalCount) {
-		this.rTotalCount = rTotalCount;
+	public void setMember_id(String member_id) {
+		this.member_id = member_id;
+	}
+
+	public ReviewCntBean getrCntBean() {
+		return rCntBean;
+	}
+
+	public void setrCntBean(ReviewCntBean rCntBean) {
+		this.rCntBean = rCntBean;
+	}
+
+	public String[] getImgList() {
+		return imgList;
+	}
+
+	public void setImgList(String[] imgList) {
+		this.imgList = imgList;
+	}
+
+	public int getBookOk() {
+		return bookOk;
+	}
+
+	public void setBookOk(int bookOk) {
+		this.bookOk = bookOk;
 	}
 	
 }

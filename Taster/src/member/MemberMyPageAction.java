@@ -129,7 +129,6 @@ public class MemberMyPageAction extends ActionSupport implements SessionAware{
 		
 		currentPage = 1;
 		beforeSize = 0;
-		shopTotalCount = (int)sqlMapper.queryForObject("reviewListCount");
 		
 		pageSize = pageSize * currentPage;
 		
@@ -155,15 +154,11 @@ public class MemberMyPageAction extends ActionSupport implements SessionAware{
 		
 		currentPage = 1;
 		beforeSize = 0;
-		shopTotalCount = (int)sqlMapper.queryForObject("bookmarkListCount");
-		
 		pageSize = pageSize * currentPage;
 		
 		pagingMap.put("beforeSize", beforeSize);
 		pagingMap.put("pageSize", pageSize);
 		pagingMap.put("member_id", session.get("member_id"));
-		
-		shopTotalCount = (int) sqlMapper.queryForObject("bookmarkListCount");
 		
 		shopTotalCount = (int)sqlMapper.queryForObject("bookmarkListCount");   //식당 전체 카운터 해주는 쿼리문 
 		bList=(ArrayList<BookmarkListBean>) sqlMapper.queryForList("bookmarkList-selecAll", pagingMap);

@@ -17,7 +17,6 @@ public class FoodsDetailBean {
 	private int shop_readCount;		// 조회수
 	private Date shop_regDate; //
 	private String file_savname;
-	
 
 	private String member_id; 	// Member테이블의 member_id 
 	private String member_nicname; //멤버테이블

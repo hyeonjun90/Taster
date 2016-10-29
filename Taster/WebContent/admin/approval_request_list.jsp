@@ -9,90 +9,36 @@
 <link rel="stylesheet" href="/Taster/css/style.css" type="text/css">
 
 <style>
-#joinTable {
-		width: 800px;
-		height: 380px;
-		margin-top: 10px;
-		padding: 0px;
-	}
-	#joinTable tr th {
-		width: 20%;
-		background-color: #f7f7f7;
-		font-size: 10px;
-		font-family : 'Noto Sans', sans-serif;
-		background-image: url('/Taster/images/bg_01.gif');
-		background-size:700%;
-		background-repeat: no-repeat;
-		border-bottom: 1px solid #a6a6a6;
-	}
-	#joinTable tr td {
-		width: 80%;
-		font-size: 11px;
-		font-family : 'NanumGothic';
-		vertical-align: middle;
-		padding-left:3px;
-		border-bottom: 1px solid #a6a6a6;
-	}
-	.zipcode {
-		margin-bottom: 5px;
-		font-size: 10px;
-		font-family : 'Noto Sans', sans-serif;
-	}
-	#joinTable button {
-		font-size: 11px;
-		font-family : 'NanumGothic';
-	}
-	#joinTable input {
-		height: 10px;
-		font-size: 11px;
-		font-family : 'NanumGothic';
-	}
-	#joinTable img {
-		height: 20px;
-		cursor: pointer;
-	}
-	#joinTable font {
-		font-size: 10px;
-		font-family : 'Noto Sans', sans-serif;
-	}
-	#joinDiv {
-		width: 820px;
-		border: 1px solid #a6a6a6;
-		margin-top: 30px;
-		margin-bottom: 15px;
-	}
-	#joinDiv div {
-		width:750px; border-bottom:3px solid #f0f0f0;
-		text-align: left; padding: 10px;
-		font-size: 14px; font-family : 'Noto Sans', sans-serif;
+
+	.minfo {
+		font-size:11px;
+		font-family: NanumGothic;
 	}
 </style>
+
 </head>
 <body>
-	<table width="1000" border="1" cellspacing="1" cellpadding="10">
-	<tr>
-		<td align="center"><h2>신규등록 요청 목록</h2></td>
-	</tr>
-	<tr>
-	
-	</table>
+<center>
 	<form name="checkForm" action="rboardWriteAction.action" enctype="multipart/form-data">
 	
-	<table width="1000" border="1" cellspacing="1" cellpadding="2">
-		<tr align="center" bgcolor="#F3F3F3">
-			<td width="30"><input id="allCheck" type="checkbox" onclick="allChk(this);"></td>
-			<td width="30"><strong>No</strong></td>
-			<td width="50"><strong>작성일</strong></td>
-			<td width="50"><strong>아이디</strong></td>
-			<td width="50"><strong>닉네임</strong></td>
-			<td width="80"><strong>식당명</strong></td>
-			<td width="80"><strong>업종</strong></td>
-			<td width="200"><strong>식당위치</strong></td>
-			<td width="80"><strong>가격대</strong></td>
+	<table id="jointable" width="80%" border="0" cellspacing="0" cellpadding="0">
+		<tr>
+			<td colspan="8" align="center"><h3>신규등록 요청 목록</h3></td>
+		</tr>
+		<tr align="center" bgcolor="#FF895A" height="10">
+			<td width="30" bgcolor="#FF895A"><input id="allCheck" type="checkbox" onclick="allChk(this);"></td>
+
+			<td width="50" height="30px" bgcolor="#FF9D62"><strong>작성일</strong></td>
+			<td width="50" height="30px" bgcolor="#FF9D62"><strong>아이디</strong></td>
+			<td width="50" height="30px" bgcolor="#FF9D62"><strong>닉네임</strong></td>
+			<td width="80" height="30px" bgcolor="#FF9D62"><strong>식당명</strong></td>
+			<td width="80" height="30px" bgcolor="#FF9D62"><strong>업종</strong></td>
+			<td width="200" height="30px" bgcolor="#FF9D62"><strong>식당위치</strong></td>
+			<td width="80" height="30px" bgcolor="#FF9D62"><strong>가격대</strong></td>
 
 		</tr>
 		<tr bgcolor="#777777">
-			<td height="1" colspan="9"></td>
+			<td height="1" colspan="8"></td>
 		</tr>
 		
 		<s:iterator value="list" status="stat">
@@ -108,42 +54,37 @@
 		
 			<tr bgcolor="#FFFFFF" align="center">
 				
-				<td><input name="RowCheck" type="checkbox" value="${result.rec_idx}"/></td>
-				<td><s:property value="r_idx"/></td>
-				<td align="center"><s:property value="r_regdate"/></td>
-				<td align="center"><s:property value="r_id"/></td>
-				<td align="center"><s:property value="r_nicname"/></td>
-				<td align="left"> &nbsp;<s:a href="%{ReqDetailViewURL}"><s:property value="r_shop_name"/></s:a></td>
-				<td align="center"><s:property value="r_shop_kind"/></td>
-				<td align="center"><s:property value='"r_shop_addr1"+"r_shop_addr2"'/></td>
-				<td align="center"><s:property value="r_shop_price"/></td>
+				<%-- <td><input name="RowCheck" type="checkbox" value="${result.rec_idx}"/></td> --%>
+				<td class="minfo"><s:property value="r_idx"/></td>
+				<td class="minfo" align="center"><s:property value="r_regdate"/></td>
+				<td class="minfo" align="center"><s:property value="r_id"/></td>
+				<td class="minfo" align="center"><s:property value="r_nicname"/></td>
+				<td class="minfo" align="left"> &nbsp;<s:a href="%{ReqDetailViewURL}"><s:property value="r_shop_name"/></s:a></td>
+				<td class="minfo" align="center"><s:property value="r_shop_kind"/></td>
+				<td class="minfo" align="center"><s:property value='"r_shop_addr1"+"r_shop_addr2"'/></td>
+				<td class="minfo" align="center"><s:property value="r_shop_price"/></td>
 
 			</tr>
 		
 		
 			<tr bgcolor="#777777">
-				<td height="1" colspan="9"></td>
+				<td height="1" colspan="8"></td>
 			</tr>
 		</s:iterator>
 		
 		<s:if test="list.size()<=0">
 		<tr bgcolor="#FFFFFF" align="center">
-			<td colspan="5">등록된 게시물이 없습니다.</td>
+			<td colspan="8">등록된 게시물이 없습니다.</td>
 		</tr>
 		<tr bgcolor="#777777">
-			<td height="1" colspan="9"></td>
+			<td height="1" colspan="8"></td>
 		</tr>
 		</s:if>
 		
-		<tr align="right">
-			<td colspan="9">
-			<input type="button" value="승인하기" class="inputb" onClick="javascript:location.href='ApprovalRequestOk.action?currentpage=<s:property value="currentPage"/>';">
-			<input type="button" value="거부하기" class="inputb" onClick="javascript:location.href='ApprovalRequestNok.action?currentpage=<s:property value="currentPage"/>';">
-			</td>
-		</tr>
+
 		
 		<tr align="center">
-			<td colspan="9"><s:property value="pagingHtml" escape="false"/></td>
+			<td colspan="8"><s:property value="pagingHtml" escape="false"/></td>
 		</tr>
 		
 
@@ -151,7 +92,7 @@
 				
 	</table>
 	</form>
-	
+	</center>
 <script type="text/javascript">
 //모두체크
 function allChk(obj) {

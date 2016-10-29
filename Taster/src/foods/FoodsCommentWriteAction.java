@@ -52,7 +52,7 @@ public class FoodsCommentWriteAction extends ActionSupport implements SessionAwa
 	private File[] uploads;
 	private String[] uploadsFileName;
 	private String[] uploadsContentType;
-	private String fileUploadPath = "C:\\Java\\upload\\";
+	private String fileUploadPath = "C:\\Java\\git\\Taster\\WebContent\\images\\review\\";
 	
 	Calendar today = Calendar.getInstance();
 	
@@ -76,81 +76,58 @@ public class FoodsCommentWriteAction extends ActionSupport implements SessionAwa
 	public String execute() throws Exception {
 		
 		//RBean = new ReviewBean(); 
+		member_id = getMember_id();
 		
-		int review_idx = (int)sqlMapper.queryForObject("getReviewSeq");
-
 		RBean.setReview_idx(review_idx);
-		System.out.println(getReview_idx());
 		RBean.setR_title(getR_title());
-		System.out.println(getR_title());
 		RBean.setR_content(getR_content());
-		System.out.println(getR_content());
 		RBean.setR_score(getR_score());
-		System.out.println(getR_score());
 		RBean.setR_pungga(getR_pungga());
-		System.out.println(getR_pungga());
-		
-		RBean.setR_regdate(today.getTime());
 		RBean.setShop_idx(getShop_idx());
-		System.out.println(getShop_idx());
-		RBean.setMember_id(session.get("member_id").toString());
-		System.out.println(getMember_id());
+		RBean.setMember_id(member_id);
 		
 		//입력되지 않은 파일창은 공백으로 채움 
-		if(getR_upload1() == null ) {
-			r_upload1 = " ";
-		} else if (getR_upload2() == null ) {
-			r_upload2 = " ";
-		} else if (getR_upload3() == null ) {
-			r_upload3 = " ";
-		}
 		
-		RBean.setR_image(upload(getReview_idx(), (getR_upload1()+"-"+getR_upload2()+"-"+getR_upload3()).toString()));
-		
-		
-
 		sqlMapper.insert("insertReview", RBean);
-		//upload() 메서드로 미지 올리고 각 파일명 이름 합쳐서 r_image에 전달
 		
-		System.out.println(r_image);
-		System.out.println(r_upload1);
-		System.out.println(r_upload2);
-		System.out.println(r_upload3);
+		int review_idx = (int)sqlMapper.queryForObject("getReviewSeq");
+		System.out.println("review_idx : " + review_idx);
 		
+		if(getUploads() != null) {
+			HashMap<String, Object> map = new HashMap<>();
+			
+			String r_image = upload(review_idx, getUploads());
+			map.put("review_idx", review_idx);
+			map.put("r_image", r_image);
+			
+			sqlMapper.update("r_image_update", map);
+		}
 		return SUCCESS;
 	}
 		
 
+	public String upload(int review_idx, File[] uploads) throws Exception {
+		
+		r_image = "";
+		String file_savname = "";
+		String file_ext = "";
+		for(int i=0; i<uploads.length; i++) {
+			file_ext = getUploadsFileName()[i].substring(
+					getUploadsFileName()[i].lastIndexOf('.')+ 1,
+					getUploadsFileName()[i].length());
+			
+			file_savname = "file_" + review_idx +"_" + i + "." + file_ext;
+			
+			File destFile = new File(fileUploadPath + file_savname);
+			FileUtils.copyFile(getUploads()[i], destFile);
+			//System.out.println("file_savname : " + file_savname);
+			r_image = r_image + file_savname + "|";
+		}
+		//System.out.println("r_image : " + r_image);
+		//String[] test = r_image.split("\\|"); // 특수문자로 split 할때는 특수문자 앞에 역슬래쉬(\) 2개를 붙여줘야함
 
-	public String upload(int review_idx, String r_image) throws Exception {
-		
-		//합쳐진 파일명 - 단위로 쪼개기
-		uploadsFileName = r_image.split("-");
-		
-		//기존파일명 / 신규파일명 / 파일배열 
-		String[] orgfileName = null;
-		File[] copyFromFile = null;
-		String[] newName = null;
-		
-		//파일배열 [0]~[2]까지  파일교환
-		for (int i = 0; i < uploads.length; i++) {
-			
-			orgfileName [i]= uploadsFileName[i];
-			copyFromFile[i] = uploads[i];
-		
-		if(orgfileName[i] != null && copyFromFile[i] != null){
-			newName[i] = uploadsFileName[i] + "_" + review_idx + "." + orgfileName[i].substring(orgfileName[i].lastIndexOf('.') + 1, orgfileName[i].length());
-			
-			File destFile = new File(fileUploadPath + newName);
-			FileUtils.copyFile(copyFromFile[i], destFile);
-		}
-		//쪼갠 파일명을 다시 r_image에 넣기
-		setR_image((getR_upload1()+"-"+getR_upload2()+"-"+getR_upload3()).toString());
-		
-		}
-		return r_image;
-		
-		}
+		return r_image;	
+	}
 	
 	public void setSession(Map session) {
 		// TODO Auto-generated method stub
