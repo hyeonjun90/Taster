@@ -165,7 +165,7 @@ function bookMark(shop_idx) {
 	<div id="img_${status.index }" style="background-image:url('/Taster/images/review/${imgList}');
 				background-repeat:no-repeat; display:block; 
 				width:250px;height:150px;background-size:250px 150px;padding-top:5px;float:left;margin:10px;">
-				<font color="black">${imgList}</font></div>
+				<font color="black"></font></div>
 		<c:if test="${status.index > 4 }">
 			<script>
 				$("#img_${status.index }").css("display", "none");
@@ -174,7 +174,6 @@ function bookMark(shop_idx) {
 	</c:forEach>
 	</div>
 	<div class="clearDiv"></div>
-	<img alt="" src="/Taster/images/review/file_485_2.jpg">
 	<!-- 가계정보 -->
 	<div class="foodDetail" style="width:80%;  float:center; margin:100px auto; ">
 		<div style="float:left; width:90%; text-align:left;">
