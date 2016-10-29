@@ -82,7 +82,7 @@ from shop s
 		select count(*) from review where member_id = #member_id#
 	</select>
 	
-		<select id="bookmarkListCount" resultClass="Integer" parameterClass ="String">
+	<select id="bookmarkListCount" resultClass="Integer" parameterClass ="String">
 		select count(*) from bookmark where member_id = #member_id#
 	</select>
 	
