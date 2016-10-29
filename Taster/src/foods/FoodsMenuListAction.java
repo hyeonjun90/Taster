@@ -33,7 +33,7 @@ public class FoodsMenuListAction extends ActionSupport implements SessionAware {
 	
 	private Map session;
 	private ArrayList<Integer> bookList;
-	String member_id;
+	private String member_id;
 	
 	//»ý¼ºÀÚ
 	public FoodsMenuListAction() throws IOException{
