@@ -7,76 +7,124 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>등록한 식당 보기</title>
+<link rel="stylesheet" href="/Taster/css/style.css"/>
+<style>
+#joinTable {
+		width: 800px;
+		height: 380px;
+		margin-top: 10px;
+		padding: 0px;
+	}
+	#joinTable tr th {
+		width: 20%;
+		background-color: #f7f7f7;
+		font-size: 10px;
+		font-family : 'Noto Sans', sans-serif;
+		background-image: url('/Taster/images/bg_01.gif');
+		background-size:700%;
+		background-repeat: no-repeat;
+		border-bottom: 1px solid #a6a6a6;
+	}
+	#joinTable tr td {
+		width: 80%;
+		font-size: 11px;
+		font-family : 'NanumGothic';
+		vertical-align: middle;
+		padding-left:3px;
+		border-bottom: 1px solid #a6a6a6;
+	}
+	.zipcode {
+		margin-bottom: 5px;
+		font-size: 10px;
+		font-family : 'Noto Sans', sans-serif;
+	}
+	#joinTable button {
+		font-size: 11px;
+		font-family : 'NanumGothic';
+	}
+	#joinTable input {
+		height: 10px;
+		font-size: 11px;
+		font-family : 'NanumGothic';
+	}
+	#joinTable img {
+		height: 20px;
+		cursor: pointer;
+	}
+	#joinTable font {
+		font-size: 10px;
+		font-family : 'Noto Sans', sans-serif;
+	}
+	#joinDiv {
+		width: 820px;
+		border: 1px solid #a6a6a6;
+		margin-top: 30px;
+		margin-bottom: 15px;
+	}
+	#joinDiv div {
+		width:750px; border-bottom:3px solid #f0f0f0;
+		text-align: left; padding: 10px;
+		font-size: 14px; font-family : 'Noto Sans', sans-serif;
+	}
+</style>
 </head>
 <body>
-<table width="600" border="0" cellspacing="0" cellpadding="2">
-		<tr>
-			<td align="center"><h2>식당등록 게시판</h2></td>
-		</tr>
-</table>
-
-
-	
-<br>
-<table width="300" height="20" border="1"> 
+<center>
+<div id="joinDiv">
+<div><strong>식당등록 게시판</strong></div>
+<table id="joinTable"> 
 
 <tr>
-<td width="100">식당 이름: </td>
+<th>식당이름</th>
 <td>${shop_name}</td>
 </tr>
 
 
 <tr>
-<td width="100">전화번호:</td>
+<th>전화번호</th>
 <td>${shop_tel}</td>
 </tr>
 
 <tr>
-<td width="100" >가격:</td>
+<th>가격</th>
 <td>${shop_price}</td>
 </tr>
 
 
 <tr>
-<td width="100">주소:</td>
+<th>주소</th>
 <td>${r_shop_addr1}//${r_shop_addr2}//${r_shop_addr3}//${r_shop_addr4}</td>
 </tr>
 
 
 <tr>
-<td width="100">업종:</td>
+<th>업종</th>
 <td>${shop_kind}</td>
 </tr>
 
 <tr>
-<td width="100">휴일:</td>
+<th>휴일</th>
 <td>${shop_holiday}</td>
 </tr>
 
 <tr>
-<td width="100">조회수:</td>
+<th>조회수</th>
 <td>${shop_readCount}</td>
 </tr>
 
 
 <tr>
-<td width="100">첨부파일:</td>
+<th>첨부파일</th>
 <td>${file_orgname}</td>
 </tr>
 
+<tr>
+		<td colspan="2" align="center" style="height:50px;border:1px solid white;">
+
 
 </table>
-
-          
-					
-          
-
 <input name="list" align="right" type="button" value="목록보기" class="inputb" onClick="javascript:location.href='AshoplistAction.action?currentPage=<s:property value="currentPage" />'">
-
-
-
-
-
+</div>
 </body>
 </html>
 

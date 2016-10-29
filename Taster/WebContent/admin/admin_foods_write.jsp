@@ -138,18 +138,25 @@ function openZipcode(){
 		<tr>
 		<th>업종</th>
 			<td>
-			 <input type="radio" name="shop_kind" value="한식"> 한식 
-			 <input type="radio" name="shop_kind" value="중식"> 중식
+			<input type="radio" name="shop_kind" value="한식"> 한식 
+			<input type="radio" name="shop_kind" value="중식"> 중식
 			<input type="radio" name="shop_kind" value="양식"> 양식 
 		    <input type="radio" name="shop_kind" value="일식"> 일식 
 		    <input type="radio" name="shop_kind" value="분식"> 분식 
+		    <input type="radio" name="shop_kind" value="치킨"> 치킨 
+		    <input type="radio" name="shop_kind" value="주류"> 주류 
+		    <input type="radio" name="shop_kind" value="제빵"> 제빵 
+		    <input type="radio" name="shop_kind" value="육류"> 육류 
+		    <input type="radio" name="shop_kind" value="카페"> 카페
+		    <input type="radio" name="shop_kind" value="이색"> 이색
+		    <input type="radio" name="shop_kind" value="해산물"> 해산물 
 			</td>
 		</tr>
 		
 		<tr>
 		<th>첨부파일</th>
           <td>
-            <s:file name="upload" theme="simple"/>
+            <input type="file" name="upload" style="height:30px;" />
             <s:if test="resultClass.file_orgname != NULL">
             <s:property value="resultClass.file_orgname" /> 파일이 등록되어 있습니다. 다시 업로드하면 기존의 파일은 삭제됩니다.
             </s:if>
@@ -157,8 +164,11 @@ function openZipcode(){
         </tr>
 
 	<tr>
-		<td colspan="2" align="center" style="height:50px;border:1px solid white;">
+		<td colspan="2" align="center" style="height:60px;border:1px solid white;">
+		
+
 		<img src="/Taster/images/bt_ok.gif" alt="" onclick="document.joinForm.submit()" >
+
 		<img src="/Taster/images/bt_cancel.gif" alt="" onclick="javascript:if(confirm('작성한 정보가 초기화 됩니다. 취소하시겠습니까?')){location.href='AshopWriteForm.action'}" /> 
 	
 
