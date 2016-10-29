@@ -69,7 +69,7 @@
 </style>
 </head>
 <body>
-	<table width="1000" border="1" cellspacing="1" cellpadding="10">
+	<table id="jointable" width="80%">
 	<tr>
 		<td align="center"><h2>신규등록 요청 목록</h2></td>
 	</tr>
@@ -78,7 +78,7 @@
 	</table>
 	<form name="checkForm" action="rboardWriteAction.action" enctype="multipart/form-data">
 	
-	<table width="1000" border="1" cellspacing="1" cellpadding="2">
+	<table id="jointable" width="80%" border="1">
 		<tr align="center" bgcolor="#F3F3F3">
 			<td width="30"><input id="allCheck" type="checkbox" onclick="allChk(this);"></td>
 			<td width="30"><strong>No</strong></td>
@@ -128,19 +128,14 @@
 		
 		<s:if test="list.size()<=0">
 		<tr bgcolor="#FFFFFF" align="center">
-			<td colspan="5">등록된 게시물이 없습니다.</td>
+			<td colspan="9">등록된 게시물이 없습니다.</td>
 		</tr>
 		<tr bgcolor="#777777">
 			<td height="1" colspan="9"></td>
 		</tr>
 		</s:if>
 		
-		<tr align="right">
-			<td colspan="9">
-			<input type="button" value="승인하기" class="inputb" onClick="javascript:location.href='ApprovalRequestOk.action?currentpage=<s:property value="currentPage"/>';">
-			<input type="button" value="거부하기" class="inputb" onClick="javascript:location.href='ApprovalRequestNok.action?currentpage=<s:property value="currentPage"/>';">
-			</td>
-		</tr>
+
 		
 		<tr align="center">
 			<td colspan="9"><s:property value="pagingHtml" escape="false"/></td>
