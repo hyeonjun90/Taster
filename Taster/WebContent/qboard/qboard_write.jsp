@@ -22,7 +22,7 @@
 		font-size: 10px;
 		font-family : 'Noto Sans', sans-serif;
 		background-image: url('/Taster/images/bg_01.gif');
-		background-size:700%;
+		background-size:1300%;
 		background-repeat: no-repeat;
 		border-bottom: 1px solid #a6a6a6;
 	}
@@ -33,6 +33,7 @@
 		vertical-align: middle;
 		padding-left:3px;
 		border-bottom: 1px solid #a6a6a6;
+		background-size:200% 
 	}
 	.zipcode {
 		margin-bottom: 5px;
@@ -69,55 +70,42 @@
 	}
 </style>
 
-<script type="text/javascript">
-	function validation()
-	{
-		var frm = document.forms(0);
-
-		//글제목을 입력안하고 작성버튼 누를시
-		if(frm.b_title.value == "")
-		{
-			alert("입력해주세요");
-			return false;
-		}
-		/* 
-		else if(frm.member_id.value == "")
-		{
-			alert("입력해주세요");
-			return false;
-		}
-		
-		
-		else if(frm.b_pwd.value == "")
-		{
-			alert("입력해주세요");
-			return false;
-		}
-		 */
-		 
-		 //글내용을 입력안하고 작성버튼 누를시
-		else if(frm.b_content.value == "")
-		{
-			alert("입력해주세요");
-			return false;
-		}
-
-		return true;
+<script>
+function validation(){
+	var form = document.joinForm;
+	
+	if(form.b_title.value == ""){
+		alert("제목을 입력해 주세요.");
+		return;
+	}
+	if(form.member_id.value ==""){
+		alert("닉네임을 입력해 주세요.");
+		return;
+	}
+	if(form.b_pwd.value ==""){
+		alert=("비밀번호를 입력해 주세요.");
+		return;
 	}
 	
-	 $(document).ready(function(){
-		 $("#b_content").cleditor();
-	 });
+	if(form.b_content.value ==""){
+		alert=("내용을 입력해 주세요");
+		return;
+	}
+	
+	form.submit();
+}
 </script>
+
+
 </head>
 <body>
 <center>
-	<table width="600" border="0" cellspacing="0" cellpadding="2" style="margin:0px auto;">
-		<tr>
-			<td align="center"><h2>문의 게시판</h2></td>
-		</tr>
-	</table>
- 
+<div id="joinDiv">
+<div><strong>문의 게시판</strong></div>
+<form action="qWritePro.action" method="post" enctype="multipart/form-data" name="joinForm">
+
+<s:hidden name="b_idx" value="%{resultClass.b_idx}" />
+<s:hidden name="currentPage" value="%{currentPage}" />
  	<!-- 답변관련
 	<s:if test="reply">
 		<form action="replyAction.action" method="post" enctype="multipart/form-data" onsubmit="return validation();">
@@ -127,106 +115,62 @@
 	</s:if>
 	 -->
 	
-	<!-- 상단의 펑션 호출 -->
+<%-- 	<!-- 상단의 펑션 호출 -->
 	<s:if test="resultClass == NULL">
-		<form action="qWritePro.action" method="post" enctype="multipart/form-data" onsubmit="return validation();">
+		<form action="qWritePro.action" method="post" enctype="multipart/form-data" onsubmit="return validation();"></form>
 	</s:if>
 	<!-- 글번호, 현재페이지 값이 숨겨진 상태로 전송됨  -->
-	<s:else>
+ --%>
+<%-- 	<s:else>
 		<form action="qModifyPro.action" method="post" enctype="multipart/form-data">
 			<s:hidden name="b_idx" value="%{resultClass.b_idx}" />
 			<s:hidden name="currentPage" value="%{currentPage}" />
-			
+		</form>	
 			<!--<s:hidden name="old_file" value="%{resultClass.file_savname}" />-->
-	</s:else>
-	<table width="600" border="0" cellspacing="0" cellpadding="0" style="margin:0px auto;">
+		</s:else> 
+--%>
+	<table id="joinTable">
         <tr>
           <td align="right" colspan="2"><font color="#FF0000">*</font>는 필수 입력사항입니다.</td>
         </tr>
-        
-        <tr bgcolor="#777777">
-          <td height="1" colspan="2"></td>
-        </tr>
-				
+
         <tr>
-          <td width="100" bgcolor="#F4F4F4"><font color="#FF0000">*</font>  제목</td>
-          <td width="500" bgcolor="#FFFFFF">
-            <s:textfield name="b_title" theme="simple" value="%{resultClass.b_title}" cssStyle="width:370px" maxlength="50"/>
+          <th><font color="#FF0000">*</font>제목</th>
+          <td>
+            <s:textfield name="b_title" theme="simple" value="%{resultClass.b_title}"  maxlength="50"/>
           </td>
         </tr>
         							
-        <tr bgcolor="#777777">
-          <td height="1" colspan="2"></td>
-        </tr>
-        
+
         <tr>
-          <td bgcolor="#F4F4F4"><font color="#FF0000">*</font>  닉네임 </td>
-          <td bgcolor="#FFFFFF">
+          <th><font color="#FF0000">*</font>닉네임 </th>
+          <td>
           <!-- 이름 -->
-            <%-- <s:textfield name="member_id" theme="simple" value="${session.member_id}" cssStyle="width:100px" maxlength="20"/> --%>
-            <input type="text" value="${session.member_id }" name="member_id" readonly cssStyle="width:100px" maxlength="20"/>
+            <%-- <s:textfield name="member_id" theme="simple" value="${session.member_id}" cssStyle="width:100px" maxlength="20"/> 
+          --%>
+            <input type="text" value="${session.member_id }" name="member_id" readonly  maxlength="20"/>
           </td>
-        </tr>
-        <tr bgcolor="#777777">
-          <td height="1" colspan="2"></td>	
         </tr>
  
- 		<!-- 비밀번호  -->
- 		<!--  
-        <tr>
-          <td bgcolor="#F4F4F4"><font color="#FF0000">*</font>  비밀번호 </td>
-          <td bgcolor="#FFFFFF">
-            <s:textfield name="b_pwd" theme="simple" value="%{resultClass.b_pwd}" cssStyle="width:100px" maxlength="20"/>
-          </td>
-        </tr>
-        <tr bgcolor="#777777">
-          <td height="1" colspan="2"></td>	
-        </tr>
-       -->
         
-	<tr>
-          <td bgcolor="#F4F4F4"><font color="#FF0000">*</font>  내용 </td>
-          <td bgcolor="#FFFFFF">
-            <s:textarea name="b_content" theme="simple" value="%{resultClass.b_content}" cols="50" rows="10" />
+		<tr>
+          <th><font color="#FF0000">*</font>내용 </th>
+          <td>
+            <s:textarea name="b_content" theme="simple" value="%{resultClass.b_content}" cols="80" rows="10" />
           </td>
-        </tr>
-        <tr bgcolor="#777777">
-          <td height="1" colspan="2"></td>
-        </tr>
-        
-        <!-- 첨부파일 생략 -->
-        <!--
-        <tr>
-          <td bgcolor="#F4F4F4">  첨부파일 </td>
-          <td bgcolor="#FFFFFF">
-            <s:file name="upload" theme="simple"/>
-            
-            <s:if test="resultClass.file_orgname != NULL">
-		&nbsp; * <s:property value="resultClass.file_orgname" /> 파일이 등록되어 있습니다. 다시 업로드하면 기존의 파일은 삭제됩니다.
-	</s:if>
-						
-          </td>
-        </tr>
-          -->
-          
-        <tr bgcolor="#777777">
-          <td height="1" colspan="2"></td>	
         </tr>
         
         <tr>
-          <td height="10" colspan="2"></td>
-        </tr>
-        
-        <!-- 작성완료 버튼(문의게시판 리스트로 넘어감) -->
-        <tr>
-          <td align="right" colspan="2">
-          	<input name="submit" type="submit" value="작성완료" class="inputb">
-            <input name="list" type="button" value="목록" class="inputb" onClick="javascript:location.href='qboardList.action?currentPage=<s:property value="currentPage" />'">
-          </td>
-        </tr>
+			<td colspan="2" align="center" style="height:60px;border:1px solid white;">
+			<img src="/Taster/images/bt_ok.gif" alt="" onclick="validation()" >
+
+			<img src="/Taster/images/bt_cancel.gif" alt="" onclick="javascript:if(confirm('글 작성을 그만두고 목록으로 돌아가겠습니까?')){location.href='qboardList.action?currentPage=<s:property value="currentPage"/>'} " /> 
+			<%-- <input name="list" type="button" value="목록" class="inputb" onClick="javascript:location.href='qboardList.action?currentPage=<s:property value="currentPage" />'"> --%>
+		</tr>
 
     </table>
 </form>
+</div>
 </center>
 </body>
 </html>
