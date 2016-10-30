@@ -175,9 +175,9 @@
 					</s:param>
 				</s:url> --%>
 				
-			<input name="ApprovalOk"  type="button" value="승인하기" class="inputb" onClick='ApprovalOk()'>
-			<input name="ApprovalNok" type="button" value="거부하기" class="inputb" onClick='ApprovalNok()'>
-			<input name="list" type="button" value=" 목 록 " class="inputb" onClick="javascript:location.href='approvalRequestList.action?currentPage=<s:property value="currentPage"/>'">
+			<input name="ApprovalOk"  type="button" value="승인하기" class="inputb" onClick='ApprovalOk()' style="height:25px;">
+			<input name="ApprovalNok" type="button" value="거부하기" class="inputb" onClick='ApprovalNok()' style="height:25px;">
+			<input name="list" type="button" value=" 목 록 " class="inputb" onClick="javascript:location.href='approvalRequestList.action?currentPage=<s:property value="currentPage"/>'" style="height:25px;">
  			
  			</td>
  		</tr>

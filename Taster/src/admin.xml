@@ -130,7 +130,15 @@
       <action name="rboardDetailView" class="rboard.AdminRBoardViewAction" method="execute">
          <result type="tiles">rboardDetail</result>
       </action>
-
+      
+      <!-- 회원 리스트 -->
+      <action name="adminMemberList" class="admin.AdminMemberListAction" method="form">
+      	<result type="tiles">adminMemberList</result>
+      </action>
+      <!-- 회원 삭제 -->
+	  <action name="deleteMemberAction" class="admin.AdminMemberListAction" method="deleteMember">
+	  	<result type="chain">adminMemberList</result>
+	  </action>
    </package>
 </struts>
   

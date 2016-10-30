@@ -86,7 +86,7 @@ function logout() {
      <input type="text" name="keyword" id="keyword" placeholder="검색 목록을 선택해 주세요."/>
      <input type="submit" value="검  색" class="btn_search" onclick="topSearch();"  
         style="margin-right:30px;font-size:13px;font-weight:bold;"/>
-     <input type="button" value="상세검색" class="btn_search" style="font-size:13px;font-weight:bold;"/>
+    <!--  <input type="button" value="상세검색" class="btn_search" style="font-size:13px;font-weight:bold;"/> -->
   </div>
 </form>
 </div>
@@ -97,7 +97,7 @@ function logout() {
       <td onclick="location.href='foodsHotList.action'" <c:if test="${category=='hot'}">style="background-color:orange;"</c:if>>뜨는 맛집</td>
       <td onclick="location.href='foodsNewList.action'" <c:if test="${category=='new'}">style="background-color:orange;"</c:if>>신규 맛집</td>
       <td onclick="location.href='foodsRecommendList.action'" <c:if test="${category=='recom'}">style="background-color:orange;"</c:if>>추천 맛집</td>
-      <td onclick="">전체 보기</td>
+      <!-- <td onclick="">전체 보기</td> -->
    </tr>
 </table>
 

@@ -12,8 +12,8 @@
 	.clearDiv{	clear:both;	}
 	.shopInfo {	border:1px solid #d5d5d5; width:300px; height:150px; margin:20px; float:left; text-align:center;
 	 box-sizing:border-box; vertical-align: middle}
-	 .shopInfo span {vertical-align: middle; position:relative; color:#000; font-size:18px; font-weight:bold;
-	  			margin-top:50px;  }
+	 .shopInfo span {vertical-align: middle; position:relative; color:#fff; font-size:18px; font-weight:bold;
+	  			margin-top:50px; background:orange; border-radius:15px; padding:7px; }
 	.shopKind {width:99%;margin-top:25px;margin-left:10px;text-align:left;font-size:14px;color:#ff792a;font-weight:bold;}
 </style>
 </head>

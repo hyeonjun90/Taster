@@ -160,12 +160,12 @@ function bookMark(shop_idx) {
 
 	<!-- 사진 미리보기 뜨기 -->
 	<div style="text-align:left; width:100%;"></div>
-	<div style="margin:0px auto;">
+	<div style="margin:0px auto; ">
 	<c:forEach items="${imgList}" var="imgList" varStatus="status">
 	<div id="img_${status.index }" style="background-image:url('/Taster/images/review/${imgList}');
 				background-repeat:no-repeat; display:block; 
 				width:250px;height:150px;background-size:250px 150px;padding-top:5px;float:left;margin:10px;">
-				<font color="black"></font></div>
+	</div>
 		<c:if test="${status.index > 4 }">
 			<script>
 				$("#img_${status.index }").css("display", "none");
@@ -174,6 +174,7 @@ function bookMark(shop_idx) {
 	</c:forEach>
 	</div>
 	<div class="clearDiv"></div>
+	<div ></div>
 	<!-- 가계정보 -->
 	<div class="foodDetail" style="width:80%;  float:center; margin:100px auto; ">
 		<div style="float:left; width:90%; text-align:left;">
@@ -190,15 +191,14 @@ function bookMark(shop_idx) {
 		</div>
 		
 		<!-- 즐겨찾기 추가 -->
-		<div id="favorite_${bookList}" class="favorite"
-						 style="<c:forEach items="${bookList}" var="bookList">
-									<c:if test="${bookList eq shop_idx }">
-						 			background-image:url('/Taster/images/fav_check.png');
-						 			</c:if>
-						 			<c:if test="${bookList ne shop_idx || empty session.member_id}">
-						 				
-									</c:if>
-								</c:forEach>
+		<div id="favorite_${shop_idx}" class="favorite"
+						 style="<c:if test="${bookOk > 0 }">
+					 			background-image:url('/Taster/images/fav_check.png');
+					 			</c:if>
+					 			<c:if test="${bookList != shop_idx || empty session.member_id}">
+					 				
+								</c:if>
+								
 								padding-top:45px;"<c:if test="${!empty session.member_id}">
 									onclick="bookMark('${shop_idx}');"
 								</c:if>
@@ -238,7 +238,7 @@ function bookMark(shop_idx) {
   
   <!-- 리뷰 작성 폼 -->
   	<form name="r_form" action="foodsReviewWrite.action" method="post" 
-  				style="width:800px;" enctype="multipart/form-data">
+  				style="width:800px;margin-bottom:20px;" enctype="multipart/form-data">
   	 <input type="hidden" name="r_pungga"/>
   	 <input type="hidden" name="shop_idx" value="${shop_idx }" />
   	 <input type="hidden" name="member_id" value="${session.member_id }" />
@@ -295,7 +295,7 @@ function bookMark(shop_idx) {
 	 
 	<!-- 리뷰리스트 블록 -->
 
-	<div style="clear:both; width:80%; margin-top:70px; border:1px solid #d5d5d5;"></div>	
+	<div style="clear:both; width:80%; margin-top:70px; height:30px; border-bottom:2px solid #d5d5d5;"></div>	
 	
 	<div class="reviewList" id="reviewList" style="width:80%;margin-top:20px;">
 
