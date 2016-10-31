@@ -78,6 +78,12 @@
 		<!-- 개별 뷰 블록 -->
 		
 		<div class="RecommendView">
+		 <s:if test="#session.member_level == 3">
+  	  		<div class="rec_date">
+       		<input name="list" align="right" type="button" value="수정하기" class="inputb" onClick="javascript:location.href='rboardUpdateAction.action?rec_idx=${RecomList.rec_idx}';" />
+         	<input name="write" align="right" type="button" value="삭제하기" class="inputb" onClick="javascript:location.href='rboardDeleteAction.action?rec_idx=${RecomList.rec_idx}';" />
+     		</div>
+     	</s:if>
 		 	<div id="rec_idx" class="rec_idx">No: ${RecomList.rec_idx}</div><!-- 글번호 -->
 		 	<div id="rec_date" class="rec_date">작성일:${RecomList.rec_date}</div><!-- 작성일 -->
 	
@@ -86,7 +92,7 @@
 		 	<div style="clear:both; width:100%;float:left; border:1px solid #d5d5d5;"></div> <!-- 구분선 -->
 		 	
 		 		<div id="content">
-		 			<p class="rec_image"><img src="/Taster/images/${RecomList.rec_image}"/></p><!-- 이미지 -->
+		 			<p class="rec_image"><img src="/Taster/images/recomList/${RecomList.rec_image}"/></p><!-- 이미지 -->
 					<p class="rec_content" >${RecomList.rec_content}</p>		<!-- 본문내용 -->
 				</div>
 		

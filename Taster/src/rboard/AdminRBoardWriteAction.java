@@ -50,9 +50,9 @@ public class AdminRBoardWriteAction extends ActionSupport implements SessionAwar
 	private File upload;
 	private String uploadContentType;
 	private String uploadFileName;
-	private String fileUploadPath = "C:\\Java\\git\\Taster\\WebContent\\images\\recomList\\";
+	private String fileUploadPath = "C:\\Users\\USER\\git\\Taster\\Taster\\WebContent\\images\\recomList\\";
 	//private String serverFullPath = "";
-	
+	//C:\Users\USER\git\Taster\Taster\WebContent\images\recomList
 	
 	
 	public AdminRBoardWriteAction() throws IOException {
@@ -92,7 +92,7 @@ public class AdminRBoardWriteAction extends ActionSupport implements SessionAwar
 			
 			sqlMapper.insert("rboard-insertRboard", paramClass);
 			
-			if(rec_image != null){ 
+			if(getUpload() != null){ 
 				int rec_idx = (int)sqlMapper.queryForObject("rboard-selectLastNo");
 				
 				rec_image = upload(rec_idx, getUpload());
