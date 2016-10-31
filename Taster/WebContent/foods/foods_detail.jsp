@@ -3,6 +3,7 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -328,6 +329,13 @@ function bookMark(shop_idx) {
 				</span>
 				&nbsp;&nbsp;&nbsp;
 				<span>${RevList.r_content }</span>
+				<br/>
+				<c:if test="${RevList.r_image ne null }">
+					<c:set var="imgf" value="${fn:split(RevList.r_image, '|') }"/>
+					<c:forEach var="s1" items="${imgf }">
+						<img src="/Taster/images/review/${s1 }" alt="" style="width:50px;height:50px;" />
+					</c:forEach>
+				</c:if>
 			</div>
 			<!-- 평가 / 만드는중-->
 			

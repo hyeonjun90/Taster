@@ -75,10 +75,13 @@ window.onload = function() {
 	</s:if>
 	
 	<s:else>
+<<<<<<< HEAD
 		<form action="rboardUpdateAction.action" method="post" enctype="multipart/form-data">
 			<s:hidden name="rec_idx" value="{resultClass.rec_idx}"/>
 			<s:hidden name="currentPage" value="%{currentPage}"/>
 			<s:hidden name="old_file" value="%{resultClass.file_savname}"/>
+=======
+>>>>>>> branch 'master' of https://github.com/hyeonjun90/Taster.git
 	</s:else>
 	
 	<table align="center"  width="80%" border="0" cellspacing="0" cellpadding="0">
@@ -103,7 +106,8 @@ window.onload = function() {
 			<td bgcolor="#FFFFFF">
 			
 			<!-- 스마트 에디터 적용 -->
-			<textarea name="rec_content" id="rec_content" style="width:700px; height:300px; display:none;" value="${resultClass.rec_content}"></textarea>
+			<textarea name="rec_content" id="rec_content" style="width:700px;
+			 height:300px; display:none;" value="${resultClass.rec_content}"></textarea>
 			
 			</td> 
 		</tr>

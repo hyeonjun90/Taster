@@ -11,20 +11,21 @@
 <style>
 	.clearDiv{	clear:both;	}
 	.shopInfo {	border:1px solid #d5d5d5; width:300px; height:150px; margin:20px; float:left; text-align:center;
-	 box-sizing:border-box; vertical-align: middle}
+	 box-sizing:border-box; vertical-align: middle; cursor: pointer}
 	 .shopInfo span {vertical-align: middle; position:relative; color:#fff; font-size:18px; font-weight:bold;
 	  			margin-top:50px; background:orange; border-radius:15px; padding:7px; }
 	.shopKind {width:99%;margin-top:25px;margin-left:10px;text-align:left;font-size:14px;color:#ff792a;font-weight:bold;}
 </style>
 </head>
   
+  
 <body>
 <center>
 <div style="width:100%;">
-<div class="shopKind">½Å±Ô ¸ÀÁý.</div>
+<div class="shopKind">½Å±Ô ¸ÀÁý</div>
 <div style="width:1040px; height:300px;text-align:center; margin:0px auto;">
 <c:forEach items="${newShopList}" var="shopBean" varStatus="status">
-	<div class="shopInfo">
+	<div class="shopInfo" onclick="location.href='foodsDetailView.action?shop_idx=${shopBean.shop_idx }'">
 		<div style="background-image:url('/Taster/images/shop/${shopBean.file_savname}');
 				background-repeat: no-repeat; display:block; 
 				width:298px;height:149px;background-size:298px 149px;padding-top:50px;">
