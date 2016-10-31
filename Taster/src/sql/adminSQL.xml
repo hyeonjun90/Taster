@@ -121,7 +121,7 @@
       <!-- 샵 수정할때 파일 변경 관련 , 내가 변경함 -->
       <update id="UpdateFileUpload" parameterClass="admin_shop">
          UPDATE SHOP SET FILE_ORGNAME=#file_orgname#,
-         FILE_SAVNAME=#file_savname#
+         FILE_SAVNAME = #file_savname#
          <include refid="Shop-where-Sidx"/> 
       </update>
       
