@@ -34,7 +34,7 @@
 			<include refid="rboard-where-idx"/>
 		</select>
 		
-		<select id="rboard-selectLastNo" resultClass="rboard" parameterClass="int">
+		<select id="rboard-selectLastNo" resultClass="int" parameterClass="int">
 			SELECT max(rec_idx) as rec_idx FROM RECOMBOARD
 		</select>
 		
@@ -64,5 +64,11 @@
 		INSERT INTO RECOMBOARD(rec_idx, rec_date, rec_subject, rec_content, rec_image)
 		VALUES (recomBoard_no_seq.NEXTVAL, #rec_date#, #rec_subject#, #rec_content#, #rec_image#)
 		</insert>
+		
+		
+		<select id="recommandList" parameterClass="int" resultClass="bean.RecomBoardBean">
+      		SELECT  * FROM RecomBoard ORDER BY rec_idx desc 
+   </select>
+
 		
 </sqlMap>

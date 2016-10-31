@@ -50,7 +50,10 @@ public class AdminRBoardWriteAction extends ActionSupport implements SessionAwar
 	private File upload;
 	private String uploadContentType;
 	private String uploadFileName;
-	private String serverFullPath = "";
+	private String fileUploadPath = "C:\\Java\\git\\Taster\\WebContent\\images\\recomList\\";
+	//private String serverFullPath = "";
+	
+	
 	
 	public AdminRBoardWriteAction() throws IOException {
 		
@@ -64,67 +67,68 @@ public class AdminRBoardWriteAction extends ActionSupport implements SessionAwar
 	}
 	
 	public String execute() throws Exception {
+		
 		paramClass = new RecomBoardBean();
 		resultClass = new RecomBoardBean();
 		
-		String basePath = TepConstants.UPLOAD_TEMP_PATH; //업로드 경로
+		//String basePath = TepConstants.UPLOAD_TEMP_PATH; //업로드 경로
 		
-		FileUploadService fs = new FileUploadService(); //파일 업로드를 위한 class 파일 객체 생성
+		//FileUploadService fs = new FileUploadService(); //파일 업로드를 위한 class 파일 객체 생성
 		
-		try {
+	/*	try {
 			uploadFileName = System.currentTimeMillis()+"_"+uploadFileName; //업로드 파일명 생성
 			serverFullPath = fs.saveFile(upload, basePath, uploadFileName); //업로드 패스 받기
 		} catch (Exception e) {
 			System.out.println("file upload error : "+e.getMessage());
-		}
-		try {
-			int rec_idx = (int) session.get("rec_idx");
+		}*/
+	
+			int rec_idx = (int)sqlMapper.queryForObject("rboard-selectLastNo") + 1;
 			
+			paramClass.setRec_idx(rec_idx);
+			System.out.println(rec_idx);
 			paramClass.setRec_date(today.getTime());
+			System.out.println(rec_date);
 			paramClass.setRec_subject(getRec_subject());
+			System.out.println(rec_subject);
 			paramClass.setRec_content(getRec_content());
-			rec_image = TepUtils.getCookies(request, TepConstants.CKIMG_PATH);
+			System.out.println(rec_content);
+			//rec_image = TepUtils.getCookies(request, TepConstants.CKIMG_PATH);
 			//paramClass.setRec_image(serverFullPath);
-
+			
+			rec_image = upload(rec_idx, getUpload());
+			System.out.println(rec_image);
+		
 			if(rec_image != null){
 				setRec_image(rec_image);
 			}
-			
-			//setO_m_sdate(TepUtils.dateParse(getO_msdate()));
-			//setO_m_edate(TepUtils.dateParse(getO_medate()));
-			//setO_r_sdate(TepUtils.dateParse(getO_rsdate()));
-			//setO_r_edate(TepUtils.dateParse(getO_redate()));
-			//setO_current_pnum(0);
-			//setO_date(Calendar.getInstance().getTime());
-			//setO_readcount(0);
-			//setM_no(m_no);
-			
-			//sqlMapper.insert("jin.openmeet_insert",this);
+	
 			sqlMapper.insert("rboard-insertRboard", paramClass);
-		} catch (Exception e) {
-			System.out.println("recommandList insert error : "+e.getMessage());
-		}			
-		
-		
-/*		if(getUpload() != null) {
-			resultClass = (RecomBoardBean) sqlMapper.queryForObject("selectLastNo");
-		
-			String file_name = "file_" + resultClass.getRec_idx();
-			String file_ext = getUploadFileName().substring(getUploadFileName().lastIndexOf('.')+1, getUploadFileName().length());
+				
 			
-			File destFile = new File(fileUploadPath + file_name + "." + file_ext);
-			FileUtils.copyFile(getUpload(), destFile);
-			
-			paramClass.setRec_idx(resultClass.getRec_idx());
-			paramClass.setFile_orgname(getUploadFileName());
-			paramClass.setFile_savname(file_name+"."+file_ext);
-			
-			sqlMapper.update("updateFile", paramClass);
-		}*/
-		
 		return SUCCESS;
 	}
+	
+	
+	public String upload(int rec_idx, File upload) throws Exception {
+		
+		rec_image = "";
+		String file_savname = "";
+		String file_ext = "";
 
+		file_ext = getUploadFileName().substring(getUploadFileName().lastIndexOf('.')+ 1,getUploadFileName().length());
+			
+		file_savname = "file_" + rec_idx +"." + file_ext;
+			
+		File destFile = new File(fileUploadPath + file_savname);
+		FileUtils.copyFile(getUpload(), destFile);
+		//System.out.println("file_savname : " + file_savname);
+		//rec_image = rec_image + file_savname + "|";
+		
+		//System.out.println("r_image : " + r_image);
+		//String[] test = r_image.split("\\|"); // 특수문자로 split 할때는 특수문자 앞에 역슬래쉬(\) 2개를 붙여줘야함
+
+		return rec_image;	
+	}
 
 	
 	public static Reader getReader() {
@@ -225,6 +229,50 @@ public class AdminRBoardWriteAction extends ActionSupport implements SessionAwar
 	public void setSession(Map arg0) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	public HttpServletRequest getRequest() {
+		return request;
+	}
+
+	public void setRequest(HttpServletRequest request) {
+		this.request = request;
+	}
+
+	public File getUpload() {
+		return upload;
+	}
+
+	public void setUpload(File upload) {
+		this.upload = upload;
+	}
+
+	public String getUploadContentType() {
+		return uploadContentType;
+	}
+
+	public void setUploadContentType(String uploadContentType) {
+		this.uploadContentType = uploadContentType;
+	}
+
+	public String getUploadFileName() {
+		return uploadFileName;
+	}
+
+	public void setUploadFileName(String uploadFileName) {
+		this.uploadFileName = uploadFileName;
+	}
+
+	public String getFileUploadPath() {
+		return fileUploadPath;
+	}
+
+	public void setFileUploadPath(String fileUploadPath) {
+		this.fileUploadPath = fileUploadPath;
+	}
+
+	public Map getSession() {
+		return session;
 	}
 
 }

@@ -118,8 +118,16 @@
          </result>
       </action>
       
+      <action name="ckeditorImageUpload" class="rboard.CkImageUploadAction">
+			<result name="success">/rboard/ck_imgup_result.jsp</result>
+		</action>
+		
+		<action name="ckeditorImageUploadModify" class="rboard.CkImageUploadAction" method="">
+			<result name="success">/rboard/ck_imgup_result.jsp</result>
+		</action>
+      
       <!-- 맛집추천리스트 등록글 상세 조회 -->
-      <action name="rboardDetailView" class="rboard.RboardDetailView" method="execute">
+      <action name="rboardDetailView" class="rboard.AdminRBoardViewAction" method="execute">
          <result type="tiles">rboardDetail</result>
       </action>
       

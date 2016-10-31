@@ -2,14 +2,20 @@
     pageEncoding="EUC-KR"%>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ taglib prefix="ckeditor" uri="http://ckeditor.com" %>
-<%@ taglib prefix="ckfinder" uri="http://cksource.com/ckfinder" %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>스트럿츠2 게시판</title>
 <link rel="stylesheet" href="/Taster/css/style.css" type="text/css"> 
-<script src="/Taster/ckeditor/ckeditor.js" charset="euc-kr"></script>
+<script src="/TEP/static/js/openmeetform.js"></script>
+<link rel="stylesheet" href="/TEP/static/css/root.css">
+<script src="/Taster/rboard/ckeditor/ckeditor.js"></script>
+<link rel="stylesheet" href="/TEP/static/css/alertify.default.css">
+
+
+
 
 
 	
@@ -57,7 +63,7 @@ window.onload = function() {
 </head>
 <body>
 
-	<table width="900" border="0" cellspacing="0" cellpadding="2">
+	<table align="center" width="80%" border="0" cellspacing="0" cellpadding="2">
 		<tr>
 			<td align="center"><h2>추천리스트 등록하기</h2></td>
 		</tr>
@@ -74,16 +80,16 @@ window.onload = function() {
 			<s:hidden name="old_file" value="%{resultClass.file_savname}"/> --%>
 	</s:else>
 	
-	<table width="800" border="0" cellspacing="0" cellpadding="0">
+	<table align="center"  width="80%" border="0" cellspacing="0" cellpadding="0">
 
 		<tr bgcolor="#777777">
 			<td height="1" colspan="2"></td>
 		</tr>
 		
 		<tr>
-			<td width="100" bgcolor="#F4F4F4"><font color="#FF0000">*</font> 제목</td>
-			<td width="700" bgcolor="#FFFFFF">
-				<s:textfield name="rec_subject" theme="simple" value="%{resultClass.rec_subject}" cssStyle="width:700px;" maxlength="90"/>
+			<th bgcolor="#F4F4F4" scope="row">제목</th>
+			<td width="800" bgcolor="#FFFFFF">
+				<s:textfield name="rec_subject" theme="simple" value="%{resultClass.rec_subject}" cssStyle="width:99%;" maxlength="200"/>
 			</td>
 		</tr>
 		
@@ -92,7 +98,7 @@ window.onload = function() {
 		</tr>
 
 		<tr>
-			<td bgcolor="#F4F4F4"><font color="#FF0000">*</font> 내용</td>
+			<th bgcolor="#F4F4F4" scope="row">내용</th>
 			<td bgcolor="#FFFFFF">
 			
 			<!-- 스마트 에디터 적용 -->
@@ -100,6 +106,17 @@ window.onload = function() {
 			
 			</td> 
 		</tr>
+		
+		<tr>
+       		<th bgcolor="#F4F4F4" scope="row">첨부파일</th>
+       			<td>
+       				<s:file cssClass="txt" theme="simple" name="rec_image" />
+       				<s:if test="resultClass.rec_image!=null">
+       					<span class="bk"><s:property value="resultClass.rec_image" />파일이 등록되어있습니다. 다시 업로드하면 기존의 파일은 삭제됩니다.</span>
+					<!-- <s:property value="%{resultClass.image1}"/> -->
+					</s:if>
+       			</td>
+      		</tr>
 		
 		<tr bgcolor="#777777">
 			<td height="1" colspan="2"></td>
@@ -112,7 +129,7 @@ window.onload = function() {
 		<tr>
 			<td align="right" colspan="2">
 			<input id="savebutton" name="submit" type="submit" value="작성완료" class="inputb">
-			<input name="list" type="button" value="목록" class="inputb" onClick="javascript:location.href='adminRboardList.action?currentPage=<s:property value="currentPage"/>'">
+			<input name="list" type="button" value="목록" class="inputb" onClick="javascript:location.href='adminRboardList.action?currentPage=1'">
 			
 			</td>
 		</tr>
