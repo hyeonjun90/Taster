@@ -118,6 +118,18 @@
          </result>
       </action>
       
+      <!-- 추천리스트 수정 -->
+      <action name="rboardUpdateAction" class="rboard.AdminRBoardUpdateAction">
+         <result type="tiles">AdminRboardUpdate</result>
+      </action>
+      
+         <!-- 추천리스트 삭제 -->
+      <action name="rboardDeleteAction" class="rboard.AdminRBoardDeleteAction">
+         <result type="redirect-action">
+         <param name="actionName">adminRboardList</param>
+         </result>
+      </action>
+      
       <action name="ckeditorImageUpload" class="rboard.CkImageUploadAction">
 			<result name="success">/rboard/ck_imgup_result.jsp</result>
 		</action>

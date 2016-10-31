@@ -210,6 +210,13 @@
 	<put-attribute name="body" value="/rboard/admin_rboard_list.jsp"/>
 	<put-attribute name="bottom" value="/common/bottom.jsp"/>
 	</definition>
+	
+	<!-- 관리자 화면에서 맛집추천리스트 등록글 수정 -->
+	<definition name="AdminRboardUpdate" template="/common/layout.jsp">
+	<put-attribute name="top" value="/common/top1.jsp"/>
+	<put-attribute name="body" value="/rboard/admin_rboard_write.jsp"/>
+	<put-attribute name="bottom" value="/common/bottom.jsp"/>
+	</definition>
 		
 	<!-- 관리자 화면에서 맛집추천리스트 작성하기 -->
 	<definition name="AdminRboardWrite" template="/common/layout.jsp">

@@ -65,7 +65,7 @@
 		VALUES (recomBoard_no_seq.NEXTVAL, #rec_date#, #rec_subject#, #rec_content#, '')
 		</insert>
 		<!-- 등록된 이미지 있으면 사진 업데이트 -->
-		<update id="rboard-updateRboard" parameterClass="String">
+		<update id="rboard-updateRboard" parameterClass="HashMap">
 			update RECOMBOARD set rec_image=#rec_image# where rec_idx=#rec_idx#
 		</update>	
 		
