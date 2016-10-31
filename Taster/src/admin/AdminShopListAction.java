@@ -66,8 +66,8 @@ public class AdminShopListAction extends ActionSupport {
 	
 public String search() throws Exception {
 	
-	searchKeyword = new String(searchKeyword.getBytes("iso-8859-1"),"euc-kr") ;
-	//System.out.println(searchKeyword);
+	searchKeyword = getSearchKeyword();
+	System.out.println(searchKeyword);
     //System.out.println(searchNum);
 
 		

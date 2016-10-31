@@ -97,7 +97,8 @@ var fTotalCount = ${fTotalCount};
 
 	<div class="hotList" id="hotList" style="width:830px;">
 	<c:forEach items="${fList}" var="fList" varStatus="status">
-		<div class="shopInfo" style="width:810px;margin-top:20px;">
+		<div class="shopInfo" style="width:810px;margin-top:20px;"
+		onclick="location.href='foodsDetailView.action?shop_idx=${fList.shop_idx }'" style="cursor:pointer;">
 			<div style="background-image:url('/Taster/images/shop/${fList.file_savname}');
 					background-repeat: no-repeat; display:block; 
 					width:150px;height:150px;background-size:150px 150px;padding-top:5px;float:left;">
