@@ -52,7 +52,7 @@
 
 window.onload = function() {
 	CKEDITOR.replace('rec_content',{
-			'filebrowserUploadUrl':'ckeditorImageUpload.action'
+			'filebrowserUploadUrl':'ckeditorImageUpload.action';
 	});
 }
 
@@ -70,7 +70,8 @@ window.onload = function() {
 	</table>
 	
 	<s:if test="resultClass == NULL">
-		<form id="frm" name="f" action="rboardWriteAction.action" method="post" enctype="multipart/form-data" onsubmit="return validation();">
+		<form id="frm" name="f" action="rboardWriteAction.action" method="post" 
+			enctype="multipart/form-data" onsubmit="return validation();">
 	</s:if>
 	
 	<s:else>
@@ -110,7 +111,7 @@ window.onload = function() {
 		<tr>
        		<th bgcolor="#F4F4F4" scope="row">첨부파일</th>
        			<td>
-       				<s:file cssClass="txt" theme="simple" name="rec_image" />
+       				<s:file cssClass="txt" theme="simple" name="upload" />
        				<s:if test="resultClass.rec_image!=null">
        					<span class="bk"><s:property value="resultClass.rec_image" />파일이 등록되어있습니다. 다시 업로드하면 기존의 파일은 삭제됩니다.</span>
 					<!-- <s:property value="%{resultClass.image1}"/> -->

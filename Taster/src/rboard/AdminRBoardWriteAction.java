@@ -81,30 +81,27 @@ public class AdminRBoardWriteAction extends ActionSupport implements SessionAwar
 		} catch (Exception e) {
 			System.out.println("file upload error : "+e.getMessage());
 		}*/
-	
-			int rec_idx = (int)sqlMapper.queryForObject("rboard-selectLastNo") + 1;
 			
 			paramClass.setRec_idx(rec_idx);
-			System.out.println(rec_idx);
 			paramClass.setRec_date(today.getTime());
-			System.out.println(rec_date);
 			paramClass.setRec_subject(getRec_subject());
-			System.out.println(rec_subject);
 			paramClass.setRec_content(getRec_content());
-			System.out.println(rec_content);
+
 			//rec_image = TepUtils.getCookies(request, TepConstants.CKIMG_PATH);
 			//paramClass.setRec_image(serverFullPath);
 			
-			rec_image = upload(rec_idx, getUpload());
-			System.out.println(rec_image);
-		
-			if(rec_image != null){
-				setRec_image(rec_image);
-			}
-	
 			sqlMapper.insert("rboard-insertRboard", paramClass);
-				
 			
+			if(rec_image != null){ 
+				int rec_idx = (int)sqlMapper.queryForObject("rboard-selectLastNo");
+				
+				rec_image = upload(rec_idx, getUpload());
+				HashMap<String, Object> map = new HashMap<>();
+				map.put("rec_idx", rec_idx);
+				map.put("rec_image", rec_image);
+				
+				sqlMapper.update("rboard-updateRboard", map);
+			}
 		return SUCCESS;
 	}
 	
@@ -114,7 +111,8 @@ public class AdminRBoardWriteAction extends ActionSupport implements SessionAwar
 		rec_image = "";
 		String file_savname = "";
 		String file_ext = "";
-
+		
+		System.out.println("getUploadFileName() : " + getUploadFileName());
 		file_ext = getUploadFileName().substring(getUploadFileName().lastIndexOf('.')+ 1,getUploadFileName().length());
 			
 		file_savname = "file_" + rec_idx +"." + file_ext;
@@ -127,7 +125,7 @@ public class AdminRBoardWriteAction extends ActionSupport implements SessionAwar
 		//System.out.println("r_image : " + r_image);
 		//String[] test = r_image.split("\\|"); // 특수문자로 split 할때는 특수문자 앞에 역슬래쉬(\) 2개를 붙여줘야함
 
-		return rec_image;	
+		return file_savname;	
 	}
 
 	

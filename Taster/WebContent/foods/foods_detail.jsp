@@ -12,6 +12,7 @@
 <script type='text/javascript' src='http://code.jquery.com/jquery-1.11.0.min.js'></script>
 <link rel="stylesheet" href="/Taster/css/style.css" />
 <script src="https://code.jquery.com/jquery-latest.js"></script>
+<script src="http://maps.google.com/maps/api/js?sensor=true"></script>
 <script>
 var switch_smile = 0;
 function setPungga(p){
