@@ -61,7 +61,7 @@
 				<td class="minfo" align="center"><s:property value="r_nicname"/></td>
 				<td class="minfo" align="left"> &nbsp;<s:a href="%{ReqDetailViewURL}"><s:property value="r_shop_name"/></s:a></td>
 				<td class="minfo" align="center"><s:property value="r_shop_kind"/></td>
-				<td class="minfo" align="center"><s:property value='"r_shop_addr1"+"r_shop_addr2"'/></td>
+				<td class="minfo" align="center"><s:property value="r_shop_addr1 + '  ' +r_shop_addr2"/></td>
 				<td class="minfo" align="center"><s:property value="r_shop_price"/></td>
 
 			</tr>

@@ -34,7 +34,7 @@
 			<include refid="rboard-where-idx"/>
 		</select>
 		
-		<select id="rboard-selectLastNo" resultClass="int" parameterClass="int">
+		<select id="rboard-selectLastNo" resultClass="int" >
 			SELECT max(rec_idx) as rec_idx FROM RECOMBOARD
 		</select>
 		
@@ -62,13 +62,18 @@
 		<!-- insert 쿼리문 정의 -->
 		<insert id="rboard-insertRboard" parameterClass="rboard">
 		INSERT INTO RECOMBOARD(rec_idx, rec_date, rec_subject, rec_content, rec_image)
-		VALUES (recomBoard_no_seq.NEXTVAL, #rec_date#, #rec_subject#, #rec_content#, #rec_image#)
+		VALUES (recomBoard_no_seq.NEXTVAL, #rec_date#, #rec_subject#, #rec_content#, '')
 		</insert>
-		
+		<!-- 등록된 이미지 있으면 사진 업데이트 -->
+		<update id="rboard-updateRboard" parameterClass="HashMap">
+			update RECOMBOARD set rec_image=#rec_image# where rec_idx=#rec_idx#
+		</update>	
 		
 		<select id="recommandList" parameterClass="int" resultClass="bean.RecomBoardBean">
       		SELECT  * FROM RecomBoard ORDER BY rec_idx desc 
    </select>
+   
+   
 
 		
 </sqlMap>

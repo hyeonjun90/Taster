@@ -70,14 +70,18 @@ window.onload = function() {
 	</table>
 	
 	<s:if test="resultClass == NULL">
-		<form id="frm" name="f" action="rboardWriteAction.action" method="post" enctype="multipart/form-data" onsubmit="return validation();">
+		<form id="frm" name="f" action="rboardWriteAction.action" method="post" 
+			enctype="multipart/form-data" onsubmit="return validation();">
 	</s:if>
 	
 	<s:else>
-		<%-- <form action="modifyAction.action" method="post" enctype="multipart/form-data">
+<<<<<<< HEAD
+		<form action="rboardUpdateAction.action" method="post" enctype="multipart/form-data">
 			<s:hidden name="rec_idx" value="{resultClass.rec_idx}"/>
 			<s:hidden name="currentPage" value="%{currentPage}"/>
-			<s:hidden name="old_file" value="%{resultClass.file_savname}"/> --%>
+			<s:hidden name="old_file" value="%{resultClass.file_savname}"/>
+=======
+>>>>>>> branch 'master' of https://github.com/hyeonjun90/Taster.git
 	</s:else>
 	
 	<table align="center"  width="80%" border="0" cellspacing="0" cellpadding="0">
@@ -102,7 +106,8 @@ window.onload = function() {
 			<td bgcolor="#FFFFFF">
 			
 			<!-- 스마트 에디터 적용 -->
-			<textarea name="rec_content" id="rec_content" style="width:700px; height:300px; display:none;" value="${resultClass.rec_content}"></textarea>
+			<textarea name="rec_content" id="rec_content" style="width:700px;
+			 height:300px; display:none;" value="${resultClass.rec_content}"></textarea>
 			
 			</td> 
 		</tr>
@@ -110,7 +115,7 @@ window.onload = function() {
 		<tr>
        		<th bgcolor="#F4F4F4" scope="row">첨부파일</th>
        			<td>
-       				<s:file cssClass="txt" theme="simple" name="rec_image" />
+       				<s:file cssClass="txt" theme="simple" name="upload" />
        				<s:if test="resultClass.rec_image!=null">
        					<span class="bk"><s:property value="resultClass.rec_image" />파일이 등록되어있습니다. 다시 업로드하면 기존의 파일은 삭제됩니다.</span>
 					<!-- <s:property value="%{resultClass.image1}"/> -->
