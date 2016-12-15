@@ -82,10 +82,6 @@ function validation(){
 		alert("닉네임을 입력해 주세요.");
 		return;
 	}
-	if(form.b_pwd.value ==""){
-		alert=("비밀번호를 입력해 주세요.");
-		return;
-	}
 	
 	if(form.b_content.value ==""){
 		alert=("내용을 입력해 주세요");
